@@ -1,0 +1,17 @@
+#home {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 100%;
+    font-weight: 400;
+    line-height: 26px;
+    background-color: whitesmoke;
+}
+
+#title{
+    font-weight:bold;
+}
+
+#detail{
+    margin-top:10px;
+    margin-bottom:10px;
+}

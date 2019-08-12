@@ -1,0 +1,65 @@
+﻿<div id="home">
+    <link href="~/css/FeedBack/styles.css" rel="stylesheet" />
+
+    <section id="contact-us">
+        <div class="container">
+            <div class="section-header">
+                <h1 id="title" class="text-center">@ViewBag.Title</h1>
+                <p class="text-center wow fadeInDown"><strong>请描述软件使用过程中出现的问题</strong></p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact">
+
+        <div class="container-wrapper">
+            <div class="container contact-info">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <div class="contact-form">
+                            <h4><strong>联系开发者</strong></h4>
+
+                            <div>
+                                <h4>LLLXY</h4>
+                                <h5>QQ： 837685961</h5>
+                                <h5 title="Email">Email：
+                                    <a href="mailto:lixinyangemil@outlook.com">lixinyangemil@outlook.com</a>
+                                </h5>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-md-8">
+                        <div class="contact-form">
+                            <form asp-controller="FeedBack" asp-action="Index" method="post">
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="你的联系方式（Enail/QQ）" id="name" name="contact" />
+                                        <p class="help-block"></p>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="标题" id="email" name="title" />
+                                    </div>
+                                </div>
+
+                                <div id="detail" class="control-group">
+                                    <div class="controls">
+                                        <textarea rows="10" cols="100" class="form-control" placeholder="问题描述" id="message" maxlength="999" style="resize:none" name="detail"></textarea>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary pull-right">提交</button><br />
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

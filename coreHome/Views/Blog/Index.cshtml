@@ -1,0 +1,64 @@
+﻿@model List<Article>
+
+@{
+    ArticleManager manager = new ArticleManager();
+}
+
+<div id="wrapper">
+
+    <link rel="stylesheet" href="~/css/Blog/main.css" />
+
+    <!-- 文章列表 -->
+    <div id="main">
+
+        <h1 style="text-align:center;">@ViewBag.Warning</h1>
+        <h1 style="text-align:center;">第 @(ViewBag.CurrentIndex + 1) 页 / 共 @ViewBag.LastPage 页</h1>
+
+        @foreach (Article article in Model)
+        {
+            <!-- 文章 -->
+            <article class="post">
+                <header>
+                    <div class="title">
+                        <!--标题-->
+                        <h2>@article.Title</h2>
+                        <!--简述-->
+                        <h3>@article.Overview</h3>
+                    </div>
+                    <div class="meta">
+                        <h2 class="published">
+                            @article.Time
+                        </h2>
+                        <a href="#" class="author">
+                            <h2 class="name">LLLXY</h2>
+                            <img src="/favicon.ico" />
+                        </a>
+                    </div>
+                </header>
+                <!--封面-->
+                <a class="image featured" style="max-height:300px;" href="Blog/Detail?id=@article.ID&index=@ViewBag.CurrentIndex">
+                    <img src="@manager.GetCoverPath(article.Title)" style="width:100%;" />
+                </a>
+                <footer>
+                    <ul class="actions">
+                        <li><a href="Blog/Detail?id=@article.ID&index=@ViewBag.CurrentIndex" class="btn btn-default navbar-btn">查看全文</a></li>
+                        @if (ViewBag.LastRead == article.ID.ToString())
+                        {
+                            <li class="lastReadTag">上次阅读</li>
+                        }
+                    </ul>
+                </footer>
+            </article>
+
+        }
+
+        <!-- 页面导航 -->
+        <h1>&nbsp;&nbsp;&nbsp; 第 @(ViewBag.CurrentIndex + 1) 页 / 共 @ViewBag.LastPage 页</h1>
+        <ul class="actions pagination">
+            <li class="btn_changepage"><button onclick="window.location.href='blog?index=@(ViewBag.CurrentIndex-1)';" class="btn btn-default navbar-btn">上一页</button></li>
+            <li class="btn_changepage"><button onclick="window.location.href='blog?index=@(ViewBag.CurrentIndex+1)';" class="btn btn-default navbar-btn">下一页</button></li>
+        </ul>
+
+    </div>
+
+</div>

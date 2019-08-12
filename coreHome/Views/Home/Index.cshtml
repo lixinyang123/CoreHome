@@ -1,0 +1,175 @@
+﻿
+<div>
+
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/Home/style.css" />
+
+    <div class="fh5co-loader"></div>
+
+    <div id="page">
+        <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner">
+
+            <div id="colorbg"></div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <div class="display-t js-fullheight">
+
+                            <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
+                                <img id="user" class="profile-thumb" src="~/img/user.jpg" />
+                                <h1><span>@ViewBag.Title</span></h1>
+                                <h2>
+                                    Powered by
+                                    <a href="https://dotnet.microsoft.com/">
+                                        <strong><u>.Net Core</u></strong>
+                                    </a>
+                                </h2>
+                                <h2>@ViewBag.Warning</h2>
+                                <h3><span>QQ：837685961</span></h3>
+                                <br />
+                                <h3><span>email：lixinyangemil@outlook.com</span></h3>
+                                <br /><br /><br />
+
+                                <a onclick="moveToDC()">
+                                    <img id="btn_dowm" src="~/img/down.png" width="40" />
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="fh5co-blog">
+            <div class="container">
+
+                <!--Title-->
+                <div class="row animate-box">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <h2>Download Center</h2>
+                        <p></p>
+                    </div>
+                </div>
+
+                <!--MainApp-->
+                <div class="row">
+                    <div class="fh5co-blog animate-box">
+                        <div class="blog_imgbox">
+                            <a class="blog-bg" style="background-image:url(/img/codeonline.jpg);" href="http://www.ccczg.site/"></a>
+                        </div>
+                        <div class="blog-text">
+                            <h3>CodeOnline</h3>
+                            <p>Docker+CodeServer驱动的在线开发平台 .</p>
+                            <ul class="stuff">
+                                <li><a href="http://www.ccczg.site/">抢先体验<i class="icon-arrow-right22"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--MainApp-->
+                <div class="row">
+                    <div class="fh5co-blog animate-box">
+                        <div class="blog_imgbox">
+                            <a class="blog-bg" style="background-image:url(/img/chaoxing.jpg);" href="https://github.com/lixinyang123/WebAssetsManager/raw/master/WebAssetsManager/File/超星刷课.zip"></a>
+                        </div>
+                        <div class="blog-text">
+                            <h3>超星尔雅刷课</h3>
+                            <p>超星尔雅（学习通）刷课软件，支持自动播放，后台播放，自动答题，自动跳转功能 .</p>
+                            <ul class="stuff">
+                                <li>
+                                    <a href='ms-windows-store://pdp/?ProductId=9N0DM5C6NZLH'>
+                                        <img src='https://assets.windowsphone.com/42e5aa4a-f19a-4205-9191-a97105ed7663/Chinese_Simplified_get-it-from-MS_InvariantCulture_Default.png' alt='Chinese badge' style='width: 110px; height: 40px;' />
+                                    </a>
+                                    <a href='https://www.microsoft.com/store/apps/9N0DM5C6NZLH?cid=storebadge&ocid=badge'><i>获取UWP版本</i></a>
+                                </li>
+                                <li><a href="https://raw.githubusercontent.com/lixinyang123/WebAssetsManager/master/File/超星刷课.zip">下载<span style="color:orange;">新版</span>安装包<i class="icon-arrow-right22"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--AllApp-->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="fh5co-blog animate-box">
+                            <div class="blog_imgbox">
+                                <a class="blog-bg" style="background-image:url(/img/parsedcm.jpg)" href="http://www.lllxy.site/parsedcm/"></a>
+                            </div>
+                            <div class="blog-text">
+                                <h3>ParseDCM</h3>
+                                <p class="detail">在线的Dicom解析器，暂不支持无损格式解析.</p>
+                                <ul class="stuff">
+                                    <li><a href="http://www.lllxy.site/parsedcm/">访问网站<i class="icon-arrow-right22"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="fh5co-blog animate-box">
+                            <div class="blog_imgbox">
+                                <a class="blog-bg" style="background-image:url(/img/tiku.jpg);" href="http://www.lllxy.site/cxtk/"></a>
+                            </div>
+                            <div class="blog-text">
+                                <h3>题库查询系统</h3>
+                                <p class="detail">超星尔雅题库查询系统，你可以在这里查找习题答案.</p>
+                                <ul class="stuff">
+                                    <li><a href="http://www.lllxy.site/cxtk/">了解更多<i class="icon-arrow-right22"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="fh5co-blog animate-box">
+                            <div class="blog_imgbox">
+                                <a class="blog-bg" style="background-image:url(/img/createjt.jpg);" href="https://www.microsoft.com/store/apps/9P2DG3TB2TS3"></a>
+                            </div>
+                            <div class="blog-text">
+                                <h3>假条生成器</h3>
+                                <p class="detail">选择日期生成工院假条（不支持外校）.<br /><a href="ms-windows-store://pdp/?ProductId=9P2DG3TB2TS3">访问微软商店</a></p>
+                                <ul class="stuff">
+                                    <li>
+                                        <a href="https://www.microsoft.com/store/apps/9P2DG3TB2TS3">了解更多<i class="icon-arrow-right22"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--MainApp-->
+                <div class="row">
+                    <div class="fh5co-blog animate-box">
+                        <div class="blog_imgbox">
+                            <a class="blog-bg" style="background-image:url(/img/translator.jpg);" href="https://raw.githubusercontent.com/lixinyang123/WebAssetsManager/master/File/Translator.tar.gz"></a>
+                        </div>
+                        <div class="blog-text">
+                            <h3>Translator</h3>
+                            <p>Linux平台的第三方有道词典 . </p>
+                            <ul class="stuff">
+                                <li><a href="https://raw.githubusercontent.com/lixinyang123/WebAssetsManager/master/File/Translator.tar.gz">下载压缩包<i class="icon-arrow-right22"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <audio id="player" autoplay="autoplay" />
+
+        <script src="~/js/Shared/jquery.min.js"></script>
+        <script src="js/Shared/jquery.waypoints.min.js"></script>
+
+        <!-- Main -->
+        <script src="~/js/Home/main.js"></script>
+
+    </div>
+
+</div>

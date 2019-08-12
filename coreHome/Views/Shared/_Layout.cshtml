@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="LLLXY啊啊啊" />
+
+    <title>LLLXY</title>
+
+    <link rel="stylesheet" href="~/css/Shared/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/Shared/style.css" />
+
+    <script type="text/javascript" src="~/js/Shared/jquery.js"></script>
+    <script type="text/javascript" src="~/js/Shared/bootstrap.js"></script>
+</head>
+<body>
+
+    <nav id="header" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-controller="/Home" asp-action="Index" class="navbar-brand">
+                    <strong>LLLXY</strong>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="/Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="/Blog" asp-action="Index">Blog</a></li>
+                    <li><a asp-controller="/FeedBack" asp-action="Index">Feedback</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div id="content">
+        @RenderBody()
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <a>&copy; LLLXY 2019</a>
+                    <strong>&nbsp;&nbsp;豫ICP备18041216号</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="top" class="gototop js-top">
+        <a onclick="MoveTop()"><i><strong>TOP</strong></i></a>
+    </div>
+
+    <!-- Main -->
+    <script type="text/javascript" src="~/js/Shared/main.js"></script>
+
+</body>
+</html>

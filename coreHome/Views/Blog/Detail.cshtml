@@ -1,0 +1,79 @@
+﻿@model coreHome.Models.Article
+@{
+    ArticleManager manager = new ArticleManager();
+}
+
+<div>
+    <div id="wrapper">
+
+        <link rel="stylesheet" href="~/css/Blog/main.css" />
+        <link rel="stylesheet" href="~/css/HighLightJS/default.css" />
+        <script src="~/js/HighLightJS/highlight.pack.js"></script>
+        <script src="~/js/HighLightJS/highlightjs-line-numbers.js"></script>
+
+        <!-- 文章列表 -->
+        <div id="main">
+
+            <!-- 文章 -->
+            <article class="post">
+                <header>
+                    <div class="title">
+
+                        <!--标题-->
+                        <h2 id="title">@Model.Title</h2>
+
+                        <!--概述-->
+                        <h3>
+                            <strong>@Model.Overview</strong>
+                        </h3>
+
+                    </div>
+                    <div class="meta">
+                        <h2 class="published">@Model.Time</h2>
+                        <a href="#" class="author">
+                            <h2 class="name">LLLXY</h2>
+                            <img src="/favicon.ico" />
+                        </a>
+                    </div>
+                </header>
+
+                <!--封面-->
+                <a class="image featured" style="max-height:300px;"><img src="@manager.GetCoverPath(Model.Title)" style="width:100%;" /></a>
+                <!--内容-->
+                <div id="detail"></div>
+
+            </article>
+
+
+            <ul class="actions pagination">
+                <li><button onclick="window.location.href = '/blog?index=@ViewBag.CurrentIndex'" class="btn btn-default navbar-btn">返回</button></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!--加载文章内容-->
+    <script>
+        var detail = document.getElementById("detail");
+
+        var contentUrl = "/BlogAssets/" + document.getElementById("title").innerText + "/index.html";
+        $.ajax({
+            type: 'GET',
+            url: contentUrl,
+            dataType: 'html',
+            async: true,
+            success: function (data) {
+                detail.innerHTML = data;
+
+                hljs.initHighlighting();
+                hljs.initLineNumbersOnLoad();
+            },
+            error: function () {
+                alert("文章内容加载失败");
+                detail.innerHTML = "加载失败";
+                console.log("error");
+            }
+        });
+
+    </script>
+</div>
