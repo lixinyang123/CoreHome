@@ -96,3 +96,7 @@ a:hover, a:active, a:focus {
     min-height: 100px;
     background-color: black;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
