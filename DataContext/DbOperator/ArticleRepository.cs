@@ -1,4 +1,5 @@
 ﻿using DataContext.DbConfigurator;
+using DataContext.ModelDbContext;
 using DataContext.Models;
 using Microsoft.Extensions.Options;
 using System;

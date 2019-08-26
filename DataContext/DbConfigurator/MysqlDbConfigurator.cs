@@ -1,4 +1,5 @@
-﻿using DataContext.Models;
+﻿using DataContext.ModelDbContext;
+using DataContext.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 

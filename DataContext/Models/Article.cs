@@ -40,14 +40,4 @@ namespace DataContext.Models
         public string Content { get; set; }
     }
 
-    /// <summary>
-    /// 数据库上下文
-    /// </summary>
-    public class ArticleDbContext : DbContext
-    {
-        public ArticleDbContext(DbContextOptions options) : base(options) { }
-
-        public DbSet<Article> Article { get; set; }
-    }
-
 }
