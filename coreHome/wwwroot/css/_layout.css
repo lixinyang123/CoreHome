@@ -92,11 +92,16 @@ a:hover, a:active, a:focus {
 }
 
 #footer {
-    padding-top:40px;
-    min-height: 100px;
+    padding:40px;
     background-color: black;
 }
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+#admin {
+    font-size: smaller;
+    color: #4d4d4d;
+    font-weight:bold;
 }

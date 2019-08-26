@@ -7,11 +7,11 @@
 
     <title>LLLXY</title>
 
-    <link rel="stylesheet" href="~/css/Shared/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/Shared/style.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/_layout.css" />
 
-    <script type="text/javascript" src="~/js/Shared/jquery.js"></script>
-    <script type="text/javascript" src="~/js/Shared/bootstrap.js"></script>
+    <script type="text/javascript" src="~/lib/jQuery/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -49,9 +49,13 @@
     <div id="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
-                    <a>&copy; LLLXY 2019</a>
+                <div class="col-md-10">
+                    <a class="glyphicon glyphicon-copyright-mark"><strong>LLLXY2019</strong></a>
                     <strong>&nbsp;&nbsp;豫ICP备18041216号</strong>
+                    <span>
+                        &nbsp;&nbsp;
+                        <a id="admin" class="glyphicon glyphicon-new-window" asp-controller="/Admin" asp-action="Index">Admin</a>
+                    </span>
                 </div>
             </div>
         </div>
@@ -62,7 +66,7 @@
     </div>
 
     <!-- Main -->
-    <script type="text/javascript" src="~/js/Shared/main.js"></script>
+    <script type="text/javascript" src="~/js/_layout.js"></script>
 
 </body>
 </html>
