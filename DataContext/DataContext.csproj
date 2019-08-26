@@ -2,31 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <ApplicationIcon />
-    <Win32Resource />
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="config.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="config.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MySql.Data.EntityFrameworkCore.Design" Version="8.0.17" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

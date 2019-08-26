@@ -1,8 +1,7 @@
 ﻿using DataContext.ModelDbContext;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using DataContext.Models;
-using System.IO;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace DataContext.DbConfigurator
 {
@@ -10,13 +9,9 @@ namespace DataContext.DbConfigurator
     {
         private readonly string articleConnection;
 
-        public MysqlDbConfigurator()
+        public MysqlDbConfigurator(IOptions<ConnectionStrings> seeting)
         {
-            //读取配置文件
-            string jsonStr = File.ReadAllText("config.json");
-            //解析配置文件
-            ConnectionStrings connectionStrings = JsonConvert.DeserializeObject<ConnectionStrings>(jsonStr);
-            articleConnection = connectionStrings.ArticleConnection;
+            articleConnection = seeting.Value.ArticleConnection;
         }
 
         public ArticleDbContext CreateArticleDbContext()

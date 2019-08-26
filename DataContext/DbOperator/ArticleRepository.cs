@@ -1,18 +1,21 @@
 ﻿using DataContext.DbConfigurator;
 using DataContext.ModelDbContext;
 using DataContext.Models;
+using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace DataContext.DbOperator
 {
     public class ArticleRepository
     {
-        private readonly MysqlDbConfigurator configurator;
+        private MysqlDbConfigurator configurator;
 
-        public ArticleRepository()
+        public ArticleRepository(IOptions<ConnectionStrings> seeting)
         {
-            configurator = new MysqlDbConfigurator();
+            configurator = new MysqlDbConfigurator(seeting);
         }
 
         public void Add(Article article)
