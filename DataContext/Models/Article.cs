@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace coreHome.Models
+namespace DataContext.Models
 {
     /// <summary>
     /// 博客文章

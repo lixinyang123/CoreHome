@@ -1,16 +1,16 @@
-﻿using System;
-using coreHome.Models;
-using coreHome.Service;
+﻿using coreHome.Service;
+using DataContext.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 
 namespace coreHome.Controllers
 {
     public class HomeController : Controller
     {
-        private IHostingEnvironment environment;
+        private readonly IHostingEnvironment environment;
 
         public HomeController(IHostingEnvironment env)
         {
@@ -39,8 +39,10 @@ namespace coreHome.Controllers
                 catch (Exception) { }
             }
 
-            CookieOptions options = new CookieOptions();
-            options.Expires = DateTime.Now.AddDays(30);
+            CookieOptions options = new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(30)
+            };
             Response.Cookies.Append("lastTime", now.ToString("yyyy/MM/dd hh:mm:ss"), options);
             return View();
         }

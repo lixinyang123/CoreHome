@@ -1,8 +1,8 @@
-﻿using coreHome.Models;
+﻿using DataContext.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace coreHome.Service
+namespace DataContext.DbConfigurator
 {
     public class MysqlDbConfigurator
     {

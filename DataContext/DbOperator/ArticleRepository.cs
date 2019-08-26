@@ -1,10 +1,12 @@
-﻿using coreHome.Models;
-using coreHome.Service;
+﻿using DataContext.DbConfigurator;
+using DataContext.Models;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
-namespace coreHome.DatabaseOperator
+namespace DataContext.DbOperator
 {
     public class ArticleRepository
     {
@@ -17,7 +19,7 @@ namespace coreHome.DatabaseOperator
 
         public void Add(Article article)
         {
-            using(ArticleDbContext context = configurator.CreateArticleDbContext())
+            using (ArticleDbContext context = configurator.CreateArticleDbContext())
             {
                 context.Article.Add(article);
                 context.SaveChanges();
@@ -36,7 +38,7 @@ namespace coreHome.DatabaseOperator
             using (ArticleDbContext context = configurator.CreateArticleDbContext())
             {
                 int count = Count() - limit;
-                return context.Article.OrderByDescending(i=>i.ID).Skip(limit).Take(count > 5 ? pageSize : count).ToList();
+                return context.Article.OrderByDescending(i => i.ID).Skip(limit).Take(count > 5 ? pageSize : count).ToList();
             }
         }
 

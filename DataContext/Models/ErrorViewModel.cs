@@ -1,6 +1,4 @@
-using System;
-
-namespace coreHome.Models
+﻿namespace DataContext.Models
 {
     public class ErrorViewModel
     {

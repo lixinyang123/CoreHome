@@ -1,13 +1,12 @@
-﻿using coreHome.Models;
-using coreHome.Service;
-using coreHome.DatabaseOperator;
+﻿using coreHome.Service;
+using DataContext.DbOperator;
+using DataContext.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace coreHome.Controllers
 {
@@ -57,7 +56,7 @@ namespace coreHome.Controllers
             return index;
         }
 
-        public IActionResult Detail(int id,int index)
+        public IActionResult Detail(int id, int index)
         {
             ViewBag.CurrentIndex = index;
             ViewBag.WebRootPath = environment.WebRootPath;

@@ -1,4 +1,4 @@
-﻿namespace coreHome.Models
+﻿namespace DataContext.Models
 {
     public class ConnectionStrings
     {
