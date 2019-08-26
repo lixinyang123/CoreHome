@@ -1,4 +1,4 @@
-﻿using coreHome.Servrice;
+﻿using coreHome.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace coreHome.Controllers

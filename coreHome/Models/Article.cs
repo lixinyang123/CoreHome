@@ -1,7 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace coreHome.Models
 {
+    /// <summary>
+    /// 博客文章
+    /// </summary>
     public class Article
     {
         /// <summary>
@@ -24,5 +28,26 @@ namespace coreHome.Models
         /// 概述
         /// </summary>
         public string Overview { get; set; }
+
+        /// <summary>
+        /// 封面
+        /// </summary>
+        public string Cover { get; set; }
+
+        /// <summary>
+        /// 博客内容
+        /// </summary>
+        public string Content { get; set; }
     }
+
+    /// <summary>
+    /// 数据库上下文
+    /// </summary>
+    public class ArticleDbContext : DbContext
+    {
+        public ArticleDbContext(DbContextOptions options) : base(options) { }
+
+        public DbSet<Article> Article { get; set; }
+    }
+
 }

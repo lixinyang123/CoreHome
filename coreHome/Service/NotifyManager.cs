@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace coreHome.Servrice
+namespace coreHome.Service
 {
     public static class NotifyManager
     {

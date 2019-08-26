@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace coreHome.DatabaseOperator
+namespace coreHome.Service
 {
     public class MysqlDbConfigurator
     {
@@ -15,9 +15,9 @@ namespace coreHome.DatabaseOperator
 
         public ArticleDbContext CreateArticleDbContext()
         {
-            var optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
+            DbContextOptionsBuilder<ArticleDbContext> optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
             optionBuilder.UseMySQL(articleConnection);
-            var context = new ArticleDbContext(optionBuilder.Options);
+            ArticleDbContext context = new ArticleDbContext(optionBuilder.Options);
             context.Database.EnsureCreatedAsync();
             return context;
         }

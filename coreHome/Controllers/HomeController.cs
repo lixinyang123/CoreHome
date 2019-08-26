@@ -1,6 +1,6 @@
 ﻿using System;
 using coreHome.Models;
-using coreHome.Servrice;
+using coreHome.Service;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

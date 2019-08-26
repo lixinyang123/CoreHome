@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.IO;
 
-namespace coreHome.Servrice
+namespace coreHome.Service
 {
     public static class SearchEngineService
     {
