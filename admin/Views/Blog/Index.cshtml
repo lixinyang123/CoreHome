@@ -1,0 +1,34 @@
+﻿@model List<Article>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="content">
+    <link rel="stylesheet" href="~/css/blog/index.css" />
+
+    <button class="btn btn-primary">Upload</button>
+
+    <table id="articlelist" class="table table-hover">
+
+        <tr id="topbar">
+            <td>ID</td>
+            <td>Title</td>
+            <td>Time</td>
+            <td>Modify</td>
+            <td>Delete</td>
+        </tr>
+
+        @foreach (var artcile in Model)
+        {
+            <tr>
+                <td>@artcile.ID</td>
+                <td>@artcile.Title</td>
+                <td>@artcile.Time</td>
+                <td><a>Modify</a></td>
+                <td><a asp-controller="Blog" asp-action="DelArticle">Delete</a></td>
+            </tr>
+        }
+
+    </table>
+</div>

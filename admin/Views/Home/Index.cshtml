@@ -1,30 +1,7 @@
-﻿@model List<Article>
-
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
 <div>
-    <table class="table table-hover">
-
-        <tr>
-            <td>ID</td>
-            <td>Title</td>
-            <td>Time</td>
-            <td>Modify</td>
-            <td>Delete</td>
-        </tr>
-
-        @foreach (var artcile in Model)
-        {
-            <tr>
-                <td>@artcile.ID</td>
-                <td>@artcile.Title</td>
-                <td>@artcile.Time</td>
-                <td><a>Modify</a></td>
-                <td><a>Delete</a></td>
-            </tr>
-        }
-
-    </table>
+    <h1>Overview</h1>
 </div>
