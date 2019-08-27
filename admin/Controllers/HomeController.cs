@@ -35,9 +35,11 @@ namespace admin.Controllers
             string accessTokenUrl = @"https://api.github.com/user?access_token=" + accessTokenStr;
             HttpResponseMessage userInfo = await httpClient.GetAsync(accessTokenUrl);
             string jsonStr = await userInfo.Content.ReadAsStringAsync();
-
+            //解析JSON字符串
             Admin admin = JsonConvert.DeserializeObject<Admin>(jsonStr);
             
+            //判断管理员
+
             //添加Session
 
             //跳转回Index
