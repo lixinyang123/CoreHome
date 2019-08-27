@@ -29,3 +29,17 @@ function upload() {
         alert("请完善数据");
     }
 }
+
+//预览封面
+function viewCover() {
+    var picSrc = document.getElementById("cover").value;
+    var viewer = document.getElementById("coverViewer");
+
+    if (picSrc != "") {
+        viewer.removeAttribute("hidden");
+        viewer.src = picSrc;
+    }
+    else {
+        viewer.setAttribute("hidden", "");
+    }
+}

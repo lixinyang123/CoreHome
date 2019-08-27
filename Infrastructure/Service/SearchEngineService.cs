@@ -1,9 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Text;
-using System.IO;
 
-namespace coreHome.Service
+namespace Infrastructure.Service
 {
     public static class SearchEngineService
     {

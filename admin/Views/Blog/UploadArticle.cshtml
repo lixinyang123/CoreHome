@@ -26,8 +26,10 @@
             @*博客封面*@
             <div class="form-group">
                 <label>Cover File</label>
-                <input name="cover" type="file" class="data">
+                <input id="cover" name="cover" type="text" class="form-control datadata" placeholder="link of cover" onchange="viewCover()"/>
             </div>
+
+            <img id="coverViewer" style="width:80%;" hidden/>
 
             @*博客内容*@
             <div class="form-group">

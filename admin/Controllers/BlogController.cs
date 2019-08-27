@@ -30,32 +30,19 @@ namespace admin.Controllers
         {
             if(Request.Method=="POST")
             {
-                Article article = new Article();
-                //标题
-                article.Title = Request.Form["title"];
-                //时间
-                article.Time = DateTime.Now.ToString("yyyy/MM/dd");
-
-                //封面
-                IFormFile file = Request.Form.Files["cover"];
-                //保存封面到本地
-                using (Stream stream = file.OpenReadStream())
+                Article article = new Article()
                 {
-                    byte[] buffer = new byte[stream.Length];
-                    stream.Read(buffer, 0, Convert.ToInt32(stream.Length));
-                    string path = "C:\\Server\\BlogCover\\";
-                    string coverName = Guid.NewGuid().ToString() + ".jpg";
-                    if (!Directory.Exists(path))
-                        Directory.CreateDirectory(path);
-                    string fullPath = path + coverName;
-                    System.IO.File.WriteAllBytes(fullPath, buffer);
-                    article.Cover = fullPath;
-                }
-
-                //概述
-                article.Overview = Request.Form["overview"];
-                //内容
-                article.Content = Request.Form["content"];
+                    //标题
+                    Title = Request.Form["title"],
+                    //时间
+                    Time = DateTime.Now.ToString("yyyy/MM/dd"),
+                    //封面
+                    Cover = Request.Form["cover"],
+                    //概述
+                    Overview = Request.Form["overview"],
+                    //内容
+                    Content = Request.Form["content"]
+                };
 
                 articleRepository.Add(article);
 

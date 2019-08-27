@@ -1,10 +1,10 @@
-﻿using coreHome.Service;
+﻿using System;
+using System.Diagnostics;
 using DataContext.Models;
+using Infrastructure.Service;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Diagnostics;
 
 namespace coreHome.Controllers
 {
