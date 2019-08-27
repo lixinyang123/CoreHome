@@ -50,14 +50,22 @@ namespace admin.Controllers
             }
             else
             {
-                return View();
+                ViewBag.Msg = "UploadArticle";
+                return View("ArticleEditor");
             }
         }
 
-        public IActionResult DelArticle(int id)
+        public IActionResult DeleteArticle(int id)
         {
             articleRepository.Delete(id);
             return Redirect("Index");
+        }
+
+        public IActionResult ModifyArticle(int id)
+        {
+            ViewBag.Msg = "ModifyArticle";
+            Article article = articleRepository.Find(id);
+            return View("ArticleEditor", article);
         }
 
     }

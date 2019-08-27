@@ -1,12 +1,12 @@
 ﻿
 @{
-    ViewData["Title"] = "UploadArticle";
+    ViewData["Title"] = "ArticleEditor";
 }
 
     <div>
         <script type="text/javascript" src="~/js/blog/uploadarticle.js"></script>
 
-        <h2>ArticleEdditor</h2>
+        <h2>@ViewBag.Msg</h2>
 
         <form method="post" asp-controller="blog" asp-action="uploadarticle" enctype="multipart/form-data">
             
