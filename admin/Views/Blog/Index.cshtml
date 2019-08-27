@@ -7,7 +7,7 @@
 <div id="content">
     <link rel="stylesheet" href="~/css/blog/index.css" />
 
-    <button class="btn btn-primary">Upload</button>
+    <button class="btn btn-primary" onclick="window.location.href='/blog/uploadarticle'">Upload</button>
 
     <table id="articlelist" class="table table-hover">
 
@@ -26,7 +26,7 @@
                 <td>@artcile.Title</td>
                 <td>@artcile.Time</td>
                 <td><a>Modify</a></td>
-                <td><a asp-controller="Blog" asp-action="DelArticle">Delete</a></td>
+                <td><a href="/blog/delarticle?id=@artcile.ID">Delete</a></td>
             </tr>
         }
 

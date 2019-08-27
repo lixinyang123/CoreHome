@@ -29,6 +29,19 @@ namespace DataContext.DbOperator
         }
 
         /// <summary>
+        /// 删除文章
+        /// </summary>
+        /// <param name="id">文章id</param>
+        public void Delete(int id)
+        {
+            using (ArticleDbContext context = configurator.CreateArticleDbContext())
+            {
+                context.Article.Remove(Find(id));
+                context.SaveChanges();
+            }
+        }
+
+        /// <summary>
         /// 单个文章查找
         /// </summary>
         /// <param name="id">文章ID</param>
