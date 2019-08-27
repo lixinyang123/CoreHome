@@ -4,7 +4,6 @@ using DataContext.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 
@@ -16,10 +15,10 @@ namespace coreHome.Controllers
         private readonly ArticleRepository articleRepository;
         private readonly int pageSize = 5;
 
-        public BlogController(IHostingEnvironment env, IOptions<ConnectionStrings> seeting)
+        public BlogController(IHostingEnvironment env)
         {
             environment = env;
-            articleRepository = new ArticleRepository(seeting);
+            articleRepository = new ArticleRepository();
 
             SearchEngineService.PushToBaidu(environment.WebRootPath);
         }

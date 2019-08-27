@@ -1,7 +1,5 @@
 ﻿using DataContext.ModelDbContext;
-using DataContext.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace DataContext.DbConfigurator
 {
@@ -9,9 +7,9 @@ namespace DataContext.DbConfigurator
     {
         private readonly string articleConnection;
 
-        public MysqlDbConfigurator(IOptions<ConnectionStrings> seeting)
+        public MysqlDbConfigurator()
         {
-            articleConnection = seeting.Value.ArticleConnection;
+            articleConnection = "server=localhost;user id=root;password=lxy15937905153;database=articles";
         }
 
         public ArticleDbContext CreateArticleDbContext()
