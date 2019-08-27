@@ -36,6 +36,8 @@ namespace admin.Controllers
             HttpResponseMessage userInfo = await httpClient.GetAsync(accessTokenUrl);
             string jsonStr = await userInfo.Content.ReadAsStringAsync();
 
+            Admin admin = JsonConvert.DeserializeObject<Admin>(jsonStr);
+            
             //添加Session
 
             //跳转回Index
