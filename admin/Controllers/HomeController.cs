@@ -7,8 +7,16 @@ namespace admin.Controllers
 {
     public class HomeController : Controller
     {
+        private ArticleRepository articleRepository;
+
+        public HomeController()
+        {
+            articleRepository = new ArticleRepository();
+        }
+
         public IActionResult Index()
         {
+            
             return View();
         }
 

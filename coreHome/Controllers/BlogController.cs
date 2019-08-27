@@ -1,6 +1,7 @@
 ﻿using coreHome.Service;
 using DataContext.DbOperator;
 using DataContext.Models;
+using Infrastructure.common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,8 +26,11 @@ namespace coreHome.Controllers
 
         public IActionResult Index(int index)
         {
-            index = GetPageIndex(index);
+            index = PageManager.GetStartIndex(index, articleRepository.Count(), pageSize);
             List<Article> articles = articleRepository.Find(index, pageSize);
+
+            //获取页面总数
+            ViewBag.LastPage = PageManager.GetLastPage(articleRepository.Count(), pageSize);
 
             if (articles.Count == 0)
             {
@@ -36,23 +40,6 @@ namespace coreHome.Controllers
             ViewBag.CurrentIndex = index;
             ViewBag.LastRead = Request.Cookies["lastRead"];
             return View(articles);
-        }
-
-        private int GetPageIndex(int index)
-        {
-            decimal lastPage = Math.Ceiling((decimal)articleRepository.Count() / pageSize);
-            ViewBag.LastPage = lastPage;
-            if (index >= lastPage)
-            {
-                index--;
-            }
-
-            if (index < 0)
-            {
-                index = 0;
-            }
-
-            return index;
         }
 
         public IActionResult Detail(int id, int index)

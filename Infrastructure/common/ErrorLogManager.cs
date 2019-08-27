@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 
-namespace coreHome.Service
+namespace Infrastructure.common
 {
     public static class ErrorLogManager
     {
         private static readonly string path = "C:\\Server";
-        private static readonly string errorLog = path + "\\CXTK_ErrorLog.txt";
+        private static readonly string errorLog = path + "\\ErrorLog.txt";
 
         /// <summary>
         /// 记录异常信息
@@ -14,9 +14,14 @@ namespace coreHome.Service
         public static void SetErrorLog(Exception ex)
         {
             if (!Directory.Exists(errorLog))
+            {
                 Directory.CreateDirectory(errorLog);
+            }
+
             if (!File.Exists(errorLog))
+            {
                 File.Create(errorLog);
+            }
 
             using (StreamWriter sw = File.AppendText(errorLog))
             {
