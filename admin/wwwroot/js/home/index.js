@@ -12,7 +12,7 @@
 
 function getPassword() {
     $.ajax({
-        url: '/Home/Login',
+        url: '/Admin/Home/Login',
         type: 'get',
         dataType: 'text',
         success: function (data) {

@@ -7,7 +7,7 @@
 <div id="content">
     <link rel="stylesheet" href="~/css/blog/index.css" />
 
-    <button class="btn btn-primary" onclick="window.location.href='/blog/uploadarticle'">Upload</button>
+    <button class="btn btn-primary" onclick="window.location.href='/Admin/Blog/UploadArticle'">Upload</button>
 
     <table id="articlelist" class="table table-hover">
 
@@ -25,8 +25,8 @@
                 <td>@artcile.ID</td>
                 <td>@artcile.Title</td>
                 <td>@artcile.Time</td>
-                <td><a href="/blog/ModifyArticle?id=@artcile.ID">Modify</a></td>
-                <td><a href="/blog/DeleteArticle?id=@artcile.ID">Delete</a></td>
+                <td><a href="/Admin/Blog/ModifyArticle?id=@artcile.ID">Modify</a></td>
+                <td><a href="/Admin/Blog/DeleteArticle?id=@artcile.ID">Delete</a></td>
             </tr>
         }
 
