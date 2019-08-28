@@ -3,6 +3,10 @@ html, body, div, h1, h2, h3, a, img, ul, li, article, footer, header {
     font-size: 100%;
 }
 
+img{
+    width:100%;
+}
+
 article, footer, header {
     display: block;
 }
