@@ -1,7 +1,28 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@{
+    Layout = null;
 }
 
-<div>
-    <h1>Login</h1>
-</div>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/home/index.css" />
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body style="background-image:url('@ViewBag.picUrl');">
+
+    <div id="content">
+        <h1>Login</h1>
+
+        <hr />
+        <footer>
+            <p>&copy; 2019 - LLLXY</p>
+        </footer>
+    </div>
+
+</body>
+</html>

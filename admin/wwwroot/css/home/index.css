@@ -1,0 +1,10 @@
+﻿body{
+    text-align:center;
+}
+
+#content {
+    margin:0 auto 0 auto;
+    width:400px;
+    background-color:white;
+    vertical-align:middle;
+}
