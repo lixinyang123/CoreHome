@@ -8,6 +8,10 @@ using admin.Models;
 using DataContext.Models;
 using Infrastructure.Service;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.AspNetCore.Http;
+using System.Security.Cryptography;
+using System.Text;
+using System.Collections.Generic;
 
 namespace admin.Controllers
 {
@@ -26,7 +30,7 @@ namespace admin.Controllers
             string jsonStr = await new HttpClient().GetStringAsync(url);
             BingWallpaper wallpaper = JsonConvert.DeserializeObject<BingWallpaper>(jsonStr);
             ViewBag.picUrl = "http://cn.bing.com" + wallpaper.images[0].url;
-            Response.Cookies.Append("admin", Guid.NewGuid().ToString());
+            Response.Cookies.Append("user", Guid.NewGuid().ToString());
             return View();
         }
 
@@ -34,20 +38,32 @@ namespace admin.Controllers
         {
             //随机生成密码
             string password = Guid.NewGuid().ToString().Substring(0, 6);
-            //发送密码到手机
-            NotifyManager.PushNotify("coreHome admin password", password);
             //记录密码并设置过期时间为一分钟
-            cache.Set(Request.Cookies["admin"], password, DateTimeOffset.Now.AddMinutes(1));
+            string cacheKey = Request.Cookies["user"];
+            cache.Set(cacheKey, password, DateTimeOffset.Now.AddMinutes(1));
+            //发送密码到手机
+            NotifyManager.PushNotify("coreHomeVerfy", password);
         }
 
         public IActionResult VerfyPassword([FromForm]string pwd)
         {
-            string cacheKey = Request.Cookies["admin"];
-            if(pwd== cache.Get(cacheKey).ToString())
+            string cacheKey = Request.Cookies["user"];
+            string password = cache.Get(cacheKey).ToString();
+            if (pwd==password)
             {
                 //移除缓存
                 cache.Remove(cacheKey);
-                //添加Session
+                //生成访问令牌
+                string accessToken = Guid.NewGuid().ToString();
+                //颁发访问令牌
+                ISession session = HttpContext.Session;
+                cacheKey = "admin" + cacheKey;
+                session.SetString(cacheKey, accessToken);
+                //服务端维持一小时的状态保持
+                cache.Set(cacheKey, accessToken, DateTimeOffset.Now.AddHours(2));
+
+                //验证方式
+                //通过"admin"+cookie值获取session和cache中的accessToken进行对比
 
                 //重定向到仪表盘
                 return Redirect("/Overview");
