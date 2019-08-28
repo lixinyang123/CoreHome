@@ -1,10 +1,12 @@
-﻿using admin.Models;
-using DataContext.Models;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using System;
+using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Net.Http;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using admin.Models;
+using DataContext.Models;
+using Infrastructure.Service;
 
 namespace admin.Controllers
 {
@@ -19,9 +21,13 @@ namespace admin.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public void Login()
         {
-            return Content("successful");
+            //随机生成密码
+            string password = Guid.NewGuid().ToString().Substring(0, 6);
+            //发送密码到手机
+            NotifyManager.PushNotify("coreHome admin password", password);
+            TempData.Add("pwd", password);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

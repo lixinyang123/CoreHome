@@ -15,9 +15,6 @@ function getPassword() {
         url: '/Home/Login',
         type: 'get',
         dataType: 'text',
-        success: function (data) {
-            alert(data);
-        },
         error: error => console.log(error)
     });
 }
