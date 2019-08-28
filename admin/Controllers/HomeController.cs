@@ -1,23 +1,20 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.Net.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using admin.Models;
+﻿using admin.Models;
 using DataContext.Models;
 using Infrastructure.Service;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.AspNetCore.Http;
-using System.Security.Cryptography;
-using System.Text;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
+using System;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace admin.Controllers
 {
     public class HomeController : Controller
     {
-        private IMemoryCache cache;
+        private readonly IMemoryCache cache;
 
         public HomeController(IMemoryCache _cache)
         {
@@ -49,7 +46,7 @@ namespace admin.Controllers
         {
             string cacheKey = Request.Cookies["user"];
             string password = cache.Get(cacheKey).ToString();
-            if (pwd==password)
+            if (pwd == password)
             {
                 //移除缓存
                 cache.Remove(cacheKey);
