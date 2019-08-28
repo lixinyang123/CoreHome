@@ -51,7 +51,7 @@ namespace admin
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            //开发者模式添加Admin路由，模拟工作环境
+            //开发环境添加Admin路由，模拟工作环境的真实路径
             if (env.IsDevelopment())
             {
                 app.UseMvc(routes =>
