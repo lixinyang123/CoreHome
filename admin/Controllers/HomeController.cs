@@ -31,15 +31,23 @@ namespace admin.Controllers
             return View();
         }
 
-        public void Login()
+        public IActionResult Login()
         {
             //随机生成密码
             string password = Guid.NewGuid().ToString().Substring(0, 6);
             //记录密码并设置过期时间为一分钟
             string cacheKey = Request.Cookies["user"];
             cache.Set(cacheKey, password, DateTimeOffset.Now.AddMinutes(1));
-            //发送密码到手机
-            NotifyManager.PushNotify("coreHomeVerfy", password);
+            try
+            {
+                //发送密码到手机
+                NotifyManager.PushNotify("coreHomeVerfy", password);
+                return Content("验证码已经发送");
+            }
+            catch (Exception)
+            {
+                return Content("网络错误");
+            }
         }
 
         public IActionResult VerfyPassword([FromForm]string pwd)
