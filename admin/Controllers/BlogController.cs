@@ -1,46 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using DataContext.DbOperator;
+﻿using DataContext.DbOperator;
 using DataContext.Models;
 using Infrastructure.common;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Memory;
+using System;
+using System.Collections.Generic;
 
 namespace admin.Controllers
 {
-    public class BlogController : Controller
+    public class BlogController : VerifyController
     {
         private readonly ArticleRepository articleRepository;
-        private IMemoryCache cache;
         private readonly int pageSize = 20;
 
-        public BlogController(IMemoryCache _cache)
+        public BlogController(IMemoryCache _cache) : base(_cache)
         {
-            cache = _cache;
             articleRepository = new ArticleRepository();
-        }
-
-        public override void OnActionExecuting(ActionExecutingContext context)
-        {
-            try
-            {
-                string admin = Request.Cookies["admin"];
-                ISession session = HttpContext.Session;
-                string sessionStr = session.GetString(admin);
-                string cacheStr = cache.Get<string>(admin);
-                if (sessionStr != cacheStr)
-                {
-                    context.HttpContext.Response.Redirect("/Home");
-                }
-            }
-            catch (Exception)
-            {
-                context.HttpContext.Response.Redirect("/Home");
-            }
-
-            base.OnActionExecuting(context);
         }
 
         public IActionResult Index(int index)
