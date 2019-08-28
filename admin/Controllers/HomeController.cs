@@ -40,14 +40,19 @@ namespace admin.Controllers
             cache.Set(Request.Cookies["admin"], password, DateTimeOffset.Now.AddMinutes(1));
         }
 
-        public async Task<IActionResult> VerfyPassword([FromForm]string pwd)
+        public IActionResult VerfyPassword([FromForm]string pwd)
         {
-            string password = cache.Get(Request.Cookies["admin"]).ToString();
-            if(pwd==password)
+            string cacheKey = Request.Cookies["admin"];
+            if(pwd== cache.Get(cacheKey).ToString())
             {
-                return View("/Overview");
+                //移除缓存
+                cache.Remove(cacheKey);
+                //添加Session
+
+                //重定向到仪表盘
+                return Redirect("/Overview");
             }
-            return await Index();
+            return Redirect("/Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
