@@ -7,17 +7,26 @@ using Newtonsoft.Json;
 using admin.Models;
 using DataContext.Models;
 using Infrastructure.Service;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace admin.Controllers
 {
     public class HomeController : Controller
     {
+        private IMemoryCache cache;
+
+        public HomeController(IMemoryCache _cache)
+        {
+            cache = _cache;
+        }
+
         public async Task<IActionResult> Index()
         {
             string url = "http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
             string jsonStr = await new HttpClient().GetStringAsync(url);
             BingWallpaper wallpaper = JsonConvert.DeserializeObject<BingWallpaper>(jsonStr);
             ViewBag.picUrl = "http://cn.bing.com" + wallpaper.images[0].url;
+            Response.Cookies.Append("admin", Guid.NewGuid().ToString());
             return View();
         }
 
@@ -27,7 +36,18 @@ namespace admin.Controllers
             string password = Guid.NewGuid().ToString().Substring(0, 6);
             //发送密码到手机
             NotifyManager.PushNotify("coreHome admin password", password);
-            TempData.Add("pwd", password);
+            //记录密码并设置过期时间为一分钟
+            cache.Set(Request.Cookies["admin"], password, DateTimeOffset.Now.AddMinutes(1));
+        }
+
+        public async Task<IActionResult> VerfyPassword([FromForm]string pwd)
+        {
+            string password = cache.Get(Request.Cookies["admin"]).ToString();
+            if(pwd==password)
+            {
+                return View("/Overview");
+            }
+            return await Index();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -25,7 +25,7 @@
 
         <button id="btn_sign" class="btn btn-default" onclick="signIn()">Sign In</button>
 
-        <form hidden>
+        <form method="post" asp-controller="home" asp-action="VerfyPassword" hidden>
             <div class="form-group">
                 <label>The verification code has been sent to your phone</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter the verification code to sign in" />

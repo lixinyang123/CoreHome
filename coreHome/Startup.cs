@@ -26,9 +26,6 @@ namespace coreHome
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //读取配置信息
-            services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
-
             services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -46,7 +43,6 @@ namespace coreHome
                 app.UseHsts();
             }
 
-            app.UseSession();
             app.UseHttpsRedirection();
             app.UseCookiePolicy();
             app.UseStaticFiles();
