@@ -55,15 +55,17 @@ namespace admin.Controllers
                 cache.Remove(cacheKey);
                 //生成访问令牌
                 string accessToken = Guid.NewGuid().ToString();
+                //赋予管理员权限
+                string admin = Guid.NewGuid().ToString();
+                Response.Cookies.Append("admin", admin);
                 //颁发访问令牌
                 ISession session = HttpContext.Session;
-                cacheKey = "admin" + cacheKey;
-                session.SetString(cacheKey, accessToken);
+                session.SetString(admin, accessToken);
                 //服务端维持一小时的状态保持
-                cache.Set(cacheKey, accessToken, DateTimeOffset.Now.AddHours(2));
+                cache.Set(admin, accessToken, DateTimeOffset.Now.AddHours(2));
 
                 //验证方式
-                //通过"admin"+cookie值获取session和cache中的accessToken进行对比
+                //通过cookie.Get("admin")值获取session和cache中的accessToken进行对比
 
                 //重定向到仪表盘
                 return Redirect("/Overview");

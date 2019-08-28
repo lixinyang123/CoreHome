@@ -1,11 +1,9 @@
-﻿using System;
-using System.IO;
-using DataContext.DbOperator;
+﻿using DataContext.DbOperator;
 using DataContext.Models;
 using Infrastructure.common;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 
 namespace admin.Controllers
 {
@@ -28,7 +26,7 @@ namespace admin.Controllers
 
         public IActionResult UploadArticle()
         {
-            if(Request.Method=="POST")
+            if (Request.Method == "POST")
             {
                 Article article = new Article()
                 {
