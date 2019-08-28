@@ -21,7 +21,7 @@ namespace admin.Controllers
 
         public IActionResult Login()
         {
-            return Redirect("");
+            return Content("successful");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

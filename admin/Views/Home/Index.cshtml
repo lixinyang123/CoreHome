@@ -11,15 +11,30 @@
     <title>Index</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/home/index.css" />
+
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/home/index.js"></script>
 </head>
 <body style="background-image:url('@ViewBag.picUrl');">
 
-    <div id="content">
-        <h1>Login</h1>
+    <div id="content" class="center-block">
 
-        <hr />
+        <img id="user" class="img-circle" src="~/images/user.jpg" />
+
+        <h3>Sign in with admin</h3>
+
+        <button id="btn_sign" class="btn btn-default" onclick="getPassword()">Sign In</button>
+
+        <form hidden>
+            <div class="form-group">
+                <label>The verification code has been sent to your phone</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter the verification code to sign in" />
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
         <footer>
+            <hr />
             <p>&copy; 2019 - LLLXY</p>
         </footer>
     </div>
