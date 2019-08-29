@@ -7,3 +7,19 @@
     opacity:0.8;
     text-align:center;
 }
+
+li{
+    float: left;
+    list-style: none;
+    margin: 15px;
+    font-weight: bold;
+}
+
+li,a{
+    color: gray;
+}
+
+li,a:hover{
+    color: white;
+    text-decoration: none;
+}
