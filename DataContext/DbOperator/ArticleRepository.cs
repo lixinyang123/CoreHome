@@ -50,6 +50,7 @@ namespace DataContext.DbOperator
         {
             using (ArticleDbContext context = configurator.CreateArticleDbContext())
             {
+                //将新的实体的修改进行插入
                 context.Article.Update(newArticle);
                 context.SaveChanges();
             }
