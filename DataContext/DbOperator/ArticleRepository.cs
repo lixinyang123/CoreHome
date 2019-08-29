@@ -50,7 +50,7 @@ namespace DataContext.DbOperator
         {
             using (ArticleDbContext context = configurator.CreateArticleDbContext())
             {
-                context.Update(newArticle);
+                context.Article.Update(newArticle);
                 context.SaveChanges();
             }
         }
