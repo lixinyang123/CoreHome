@@ -3,15 +3,6 @@ html, body, div, h1, h2, h3, a, img, ul, li, article, footer, header {
     font-size: 100%;
 }
 
-img {
-    width: 100%;
-    max-width: 800px;
-}
-
-#coverImg {
-    max-width:unset;
-}
-
 article, footer, header {
     display: block;
 }
@@ -193,6 +184,9 @@ h3 {
 /* Icon */
 
 /* Image */
+img{
+    max-width:100%;
+}
 
 .image {
     border: 0;

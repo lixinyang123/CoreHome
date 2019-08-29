@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataContext.Models
 {
@@ -37,6 +38,11 @@ namespace DataContext.Models
         /// 博客内容
         /// </summary>
         public string Content { get; set; }
+
+        /// <summary>
+        /// 博客评论
+        /// </summary>
+        public List<string> Comment = new List<string>();
     }
 
 }
