@@ -11,7 +11,7 @@ namespace admin.Controllers
         //验证方式
         //通过cookie.Get("admin")值获取session和cache中的accessToken进行对比
 
-        private readonly IMemoryCache cache;
+        public readonly IMemoryCache cache;
 
         public VerifyController(IMemoryCache _cache)
         {
@@ -28,12 +28,12 @@ namespace admin.Controllers
                 string cacheStr = cache.Get<string>(admin);
                 if (sessionStr != cacheStr)
                 {
-                    context.HttpContext.Response.Redirect("/Home");
+                    context.HttpContext.Response.Redirect("/Admin/Home");
                 }
             }
             catch (Exception)
             {
-                context.HttpContext.Response.Redirect("/Home");
+                context.HttpContext.Response.Redirect("/Admin/Home");
             }
 
             base.OnActionExecuting(context);
