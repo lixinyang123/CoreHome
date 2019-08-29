@@ -28,6 +28,7 @@ namespace admin.Controllers
                 string cacheStr = cache.Get<string>(admin);
                 if (sessionStr != cacheStr || sessionStr == null || cacheStr == null)
                 {
+                    //验证访问令牌失败直接撤销管理员权限
                     Response.Cookies.Delete("admin");
                     context.HttpContext.Response.Redirect("/Admin/Home");
                 }
