@@ -57,9 +57,15 @@ namespace admin.Controllers
 
         public IActionResult VerfyPassword([FromForm]string pwd)
         {
-            string cacheKey = Request.Cookies["user"];
-            string password = cache.Get(cacheKey).ToString();
-            if (pwd == password)
+            string cacheKey = null, password = null;
+            try
+            {
+                cacheKey = Request.Cookies["user"];
+                password = cache.Get(cacheKey).ToString();
+            }
+            catch (Exception) { }
+
+            if (pwd == password && pwd!=null && password != null)
             {
                 //移除缓存
                 cache.Remove(cacheKey);
