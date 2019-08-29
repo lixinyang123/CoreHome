@@ -60,14 +60,16 @@
 
             <!--评论列表-->
             <h2>评论列表</h2>
-            @{ 
-                string[] comments = Model.Comment.Split("#end#");
-            }
 
-            @foreach (var item in comments)
+            @try
             {
-                <p>@item</p>
+                @foreach (var item in Model.Comment.Split("#end#"))
+                {
+                    <p>@item</p>
+                }
             }
+            catch (Exception) { }
+
 
             <ul class="actions pagination">
                 <li><button onclick="window.location.href = '/blog?index=@ViewBag.CurrentIndex'" class="btn btn-default navbar-btn">返回</button></li>
