@@ -1,0 +1,51 @@
+﻿@model Article
+
+@{
+    ViewData["Title"] = "ModifyArticle";
+}
+
+<div>
+    <script type="text/javascript" src="~/js/blog/uploadarticle.js"></script>
+
+    <h2>Modify Article</h2>
+
+    <form method="post" asp-controller="Blog" asp-action="ModifyArticle">
+
+        <input name="id" type="hidden" value="@Model.ID" />
+        <input name="time" type="hidden" value="@Model.Time" />
+
+        @*博客标题*@
+        <div class="form-group">
+            <label>Article Title</label>
+            <input name="title" type="text" class="form-control data" placeholder="Title" value="@Model.Title">
+        </div>
+
+        @*博客概述*@
+        <div class="form-group">
+            <label>Article Overview</label>
+            <input id="overview" name="overview" type="hidden" class="data" />
+            <textarea id="editoverview" class="form-control" rows="3">@Model.Overview</textarea>
+        </div>
+
+        @*博客封面*@
+        <div class="form-group">
+            <label>Cover File</label>
+            <input id="cover" name="cover" type="text" class="form-control datadata" placeholder="link of cover" onchange="viewCover()" value="@Model.Cover"/>
+        </div>
+
+        <img id="coverViewer" style="width:80%;" src="@Model.Cover" />
+
+        @*博客内容*@
+        <div class="form-group">
+            <label>Article Content</label>
+            <input id="content" name="content" type="hidden" class="data" />
+            <textarea id="editcontent" class="form-control" rows="10">@Model.Content</textarea>
+        </div>
+
+        <input id="submit" type="submit" hidden />
+    </form>
+
+    <button class="btn btn-info" onclick="upload()">Submit</button>
+
+</div>
+

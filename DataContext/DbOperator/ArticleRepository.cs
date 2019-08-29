@@ -42,6 +42,20 @@ namespace DataContext.DbOperator
         }
 
         /// <summary>
+        /// 修改博客
+        /// </summary>
+        /// <param name="id">需要修改的博客ID</param>
+        /// <param name="newArticle">修改后的博客</param>
+        public void Modify(Article newArticle)
+        {
+            using (ArticleDbContext context = configurator.CreateArticleDbContext())
+            {
+                context.Update(newArticle);
+                context.SaveChanges();
+            }
+        }
+
+        /// <summary>
         /// 单个文章查找
         /// </summary>
         /// <param name="id">文章ID</param>

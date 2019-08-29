@@ -45,26 +45,33 @@ namespace admin.Controllers
 
                 articleRepository.Add(article);
 
-                return Redirect("Index");
+                return RedirectToAction("index");
             }
             else
             {
-                ViewBag.Msg = "UploadArticle";
-                return View("ArticleEditor");
+                return View();
             }
         }
 
         public IActionResult DeleteArticle(int id)
         {
             articleRepository.Delete(id);
-            return Redirect("Index");
+            return RedirectToAction("index");
         }
 
-        public IActionResult ModifyArticle(int id)
+        public IActionResult ModifyArticle([FromForm]Article newArticle)
         {
-            ViewBag.Msg = "ModifyArticle";
-            Article article = articleRepository.Find(id);
-            return View("ArticleEditor", article);
+            if(Request.Method=="POST")
+            {
+                articleRepository.Modify(newArticle);
+                return RedirectToAction("index");
+            }
+            else
+            {
+                int id = Convert.ToInt32(Request.Query["id"]);
+                Article article = articleRepository.Find(id);
+                return View(article);
+            }
         }
 
     }
