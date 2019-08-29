@@ -12,36 +12,6 @@ ul {
 }
 
 body {
-    -webkit-text-size-adjust: none;
-}
-
-/* Box Model */
-
-*, *:before, *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-/* Grid */
-
-/* Basic */
-
-@-ms-viewport {
-    width: device-width;
-}
-
-body {
-    -ms-overflow-style: scrollbar;
-}
-
-@media screen and (max-width: 480px) {
-
-    html, body {
-        min-width: 320px;
-    }
-}
-
-body {
     background: #f4f4f4;
 }
 
@@ -548,4 +518,9 @@ code tbody{
 
 .btn_changepage{
     float:left;
+}
+
+textarea {
+    resize: none;
+    margin-bottom:5px;
 }

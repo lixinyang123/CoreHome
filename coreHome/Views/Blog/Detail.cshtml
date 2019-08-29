@@ -40,10 +40,17 @@
                 <!--内容-->
                 <div id="detail"></div>
 
-                <input id="md" type="hidden" value="@Model.Content"/>
+                <input id="md" type="hidden" value="@Model.Content" />
 
             </article>
 
+            <!--评论输入框-->
+            <div id="detail" class="control-group">
+                <div class="controls">
+                    <textarea rows="4" cols="100" class="form-control" placeholder="评论" name="detail"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">提交</button><br />
+            </div>
 
             <ul class="actions pagination">
                 <li><button onclick="window.location.href = '/blog?index=@ViewBag.CurrentIndex'" class="btn btn-default navbar-btn">返回</button></li>
