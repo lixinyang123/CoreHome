@@ -1,12 +1,12 @@
-﻿using DataContext.DbOperator;
+﻿using System;
+using System.Collections.Generic;
+using DataContext.DbOperator;
 using DataContext.Models;
 using Infrastructure.common;
 using Infrastructure.Service;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 
 namespace coreHome.Controllers
 {
@@ -60,6 +60,14 @@ namespace coreHome.Controllers
             {
                 return Content("没有此文章");
             }
+        }
+
+        public IActionResult Comment([FromForm]int id,int index,string detail)
+        {
+            Article article = articleRepository.Find(id);
+            article.Comment += detail + "#end#";
+            articleRepository.Modify(article);
+            return Redirect($"/Blog/Detail?id={id}&index={index}");
         }
 
     }

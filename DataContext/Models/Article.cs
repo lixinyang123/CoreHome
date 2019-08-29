@@ -42,7 +42,7 @@ namespace DataContext.Models
         /// <summary>
         /// 博客评论
         /// </summary>
-        public List<string> Comment = new List<string>();
+        public string Comment { get; set; }
     }
 
 }

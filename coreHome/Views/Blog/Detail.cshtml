@@ -44,13 +44,30 @@
 
             </article>
 
-            <!--评论输入框-->
-            <div id="detail" class="control-group">
-                <div class="controls">
-                    <textarea rows="4" cols="100" class="form-control" placeholder="评论" name="detail"></textarea>
+            <!--评论模块-->
+            <form method="post" asp-controller="Blog" asp-action="Comment">
+                <input name="id" type="hidden" value="@Model.ID" />
+                <input name="index" type="hidden" value="@ViewBag.CurrentIndex" />
+                <!--评论输入框-->
+                <div id="detail" class="control-group">
+                    <div class="controls">
+                        <textarea name="detail" rows="3" maxlength="150" class="form-control" placeholder="评论"></textarea>
+                    </div>
+                    <!--提交按钮-->
+                    <button type="submit" class="btn btn-primary pull-right">提交</button><br />
                 </div>
-                <button type="submit" class="btn btn-primary pull-right">提交</button><br />
-            </div>
+            </form>
+
+            <!--评论列表-->
+            <h2>评论列表</h2>
+            @{ 
+                string[] comments = Model.Comment.Split("#end#");
+            }
+
+            @foreach (var item in comments)
+            {
+                <p>@item</p>
+            }
 
             <ul class="actions pagination">
                 <li><button onclick="window.location.href = '/blog?index=@ViewBag.CurrentIndex'" class="btn btn-default navbar-btn">返回</button></li>
