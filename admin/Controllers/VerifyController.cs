@@ -26,8 +26,9 @@ namespace admin.Controllers
                 ISession session = HttpContext.Session;
                 string sessionStr = session.GetString(admin);
                 string cacheStr = cache.Get<string>(admin);
-                if (sessionStr != cacheStr)
+                if (sessionStr != cacheStr || sessionStr == null || cacheStr == null)
                 {
+                    Response.Cookies.Delete("admin");
                     context.HttpContext.Response.Redirect("/Admin/Home");
                 }
             }

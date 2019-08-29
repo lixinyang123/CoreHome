@@ -23,6 +23,10 @@ namespace admin.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if(Request.Cookies.TryGetValue("admin",out string admin))
+            {
+                return Redirect("/Admin/Overview");
+            }
             string url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
             string jsonStr = await new HttpClient().GetStringAsync(url);
             BingWallpaper wallpaper = JsonConvert.DeserializeObject<BingWallpaper>(jsonStr);
@@ -62,7 +66,8 @@ namespace admin.Controllers
                 string accessToken = Guid.NewGuid().ToString();
                 //赋予管理员权限
                 string admin = Guid.NewGuid().ToString();
-                Response.Cookies.Append("admin", admin);
+                CookieOptions cookieOptions = new CookieOptions() { Expires = DateTimeOffset.Now.AddHours(2) };
+                Response.Cookies.Append("admin", admin, cookieOptions);
                 //颁发访问令牌
                 ISession session = HttpContext.Session;
                 session.SetString(admin, accessToken);
