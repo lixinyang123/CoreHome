@@ -23,10 +23,10 @@ namespace admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            string url = "http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
+            string url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
             string jsonStr = await new HttpClient().GetStringAsync(url);
             BingWallpaper wallpaper = JsonConvert.DeserializeObject<BingWallpaper>(jsonStr);
-            ViewBag.picUrl = "http://cn.bing.com" + wallpaper.images[0].url;
+            ViewBag.picUrl = "https://cn.bing.com" + wallpaper.images[0].url;
             Response.Cookies.Append("user", Guid.NewGuid().ToString());
             return View();
         }
@@ -66,7 +66,7 @@ namespace admin.Controllers
                 //颁发访问令牌
                 ISession session = HttpContext.Session;
                 session.SetString(admin, accessToken);
-                //服务端维持一小时的状态保持
+                //服务端维持两小时的状态保持
                 cache.Set(admin, accessToken, DateTimeOffset.Now.AddHours(2));
 
                 //验证方式
