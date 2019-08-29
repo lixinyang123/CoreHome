@@ -1,7 +1,9 @@
 ﻿function initData() {
     document.getElementById("overview").value = document.getElementById("editoverview").value;
     document.getElementById("content").value = document.getElementById("editcontent").value;
-    document.getElementById("comment").value = document.getElementById("editcomment").value;
+    try {
+        document.getElementById("comment").value = document.getElementById("editcomment").value;
+    } catch (err) { }
 }
 
 function checkData() {

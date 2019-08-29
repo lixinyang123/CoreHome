@@ -46,7 +46,7 @@ namespace admin.Controllers
             try
             {
                 //发送密码到手机
-                NotifyManager.PushNotify("coreHomeVerfy", password);
+                NotifyManager.PushNotify("CoreHome", "VerifyCode："+password);
                 return Content("验证码已经发送");
             }
             catch (Exception)
