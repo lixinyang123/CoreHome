@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using DataContext.DbOperator;
 using DataContext.Models;
 using Infrastructure.common;
@@ -12,16 +13,13 @@ namespace coreHome.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly IHostingEnvironment environment;
         private readonly ArticleRepository articleRepository;
         private readonly int pageSize = 5;
 
         public BlogController(IHostingEnvironment env)
         {
-            environment = env;
             articleRepository = new ArticleRepository();
-
-            SearchEngineService.PushToBaidu(environment.WebRootPath);
+            SearchEngineService.PushToBaidu(env.WebRootPath);
         }
 
         public IActionResult Index(int index)
@@ -42,10 +40,8 @@ namespace coreHome.Controllers
             return View(articles);
         }
 
-        public IActionResult Detail(int id, int index)
+        public IActionResult Detail(int id)
         {
-            ViewBag.CurrentIndex = index;
-            ViewBag.WebRootPath = environment.WebRootPath;
             Article article = articleRepository.Find(id);
             if (article != null)
             {
@@ -62,12 +58,12 @@ namespace coreHome.Controllers
             }
         }
 
-        public IActionResult Comment([FromForm]int id,int index,string detail)
+        public IActionResult Comment([FromForm]int id,string detail)
         {
             Article article = articleRepository.Find(id);
             article.Comment += detail + "#end#";
             articleRepository.Modify(article);
-            return Redirect($"/Blog/Detail?id={id}&index={index}");
+            return Content("评论成功<br/><a onclick='history.back(-1)' href='#'>返回</a>","text/html", Encoding.GetEncoding("GB2312"));
         }
 
     }

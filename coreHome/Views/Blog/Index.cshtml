@@ -32,12 +32,12 @@
                     </div>
                 </header>
                 <!--封面-->
-                <a class="image featured" style="max-height:300px;" href="Blog/Detail?id=@article.ID&index=@ViewBag.CurrentIndex">
+                <a class="image featured" style="max-height:300px;" href="Blog/Detail?id=@article.ID">
                     <img src="@article.Cover" style="width:100%;" />
                 </a>
                 <footer>
                     <ul class="actions">
-                        <li><a href="Blog/Detail?id=@article.ID&index=@ViewBag.CurrentIndex" class="btn btn-default navbar-btn">查看全文</a></li>
+                        <li><a href="Blog/Detail?id=@article.ID" class="btn btn-default navbar-btn">查看全文</a></li>
                         @if (ViewBag.LastRead == article.ID.ToString())
                         {
                             <li class="lastReadTag">上次阅读</li>
