@@ -65,7 +65,9 @@ namespace DataContext.DbOperator
         {
             using (ArticleDbContext context = configurator.CreateArticleDbContext())
             {
-                return context.Article.Single(i => i.ID == id);
+                Article article = context.Article.Single(i => i.ID == id);
+                article.Comments = context.Comment.Where(i => i.ArticleID == article.ID).ToList();
+                return article;
             }
         }
 

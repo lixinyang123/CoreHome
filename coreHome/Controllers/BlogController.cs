@@ -61,7 +61,7 @@ namespace coreHome.Controllers
         public IActionResult Comment([FromForm]int id,string detail)
         {
             Article article = articleRepository.Find(id);
-            article.Comment += detail + "#end#";
+            article.Comments.Add(new Comment() { Time = DateTime.Now.ToString(), Detail = detail });
             articleRepository.Modify(article);
             return Content("评论成功<br/><a onclick='history.back(-1)' href='#'>返回</a>","text/html", Encoding.GetEncoding("GB2312"));
         }

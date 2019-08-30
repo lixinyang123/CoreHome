@@ -11,5 +11,7 @@ namespace DataContext.ModelDbContext
         public ArticleDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Article> Article { get; set; }
+
+        public DbSet<Comment> Comment { get; set; }
     }
 }

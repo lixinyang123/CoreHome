@@ -60,14 +60,10 @@
             <!--评论列表-->
             <h2>评论列表</h2>
 
-            @try
+            @foreach (var item in Model.Comments)
             {
-                @foreach (var item in Model.Comment.Split("#end#"))
-                {
-                    <p>@item</p>
-                }
+                <p>@item.Detail</p>
             }
-            catch (Exception) { }
 
 
             <ul class="actions pagination">
