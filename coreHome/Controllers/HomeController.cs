@@ -10,9 +10,9 @@ namespace coreHome.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IHostingEnvironment environment;
+        private readonly IWebHostEnvironment environment;
 
-        public HomeController(IHostingEnvironment env)
+        public HomeController(IWebHostEnvironment env)
         {
             environment = env;
 

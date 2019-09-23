@@ -16,7 +16,7 @@ namespace coreHome.Controllers
         private readonly ArticleRepository articleRepository;
         private readonly int pageSize = 5;
 
-        public BlogController(IHostingEnvironment env)
+        public BlogController(IWebHostEnvironment env)
         {
             articleRepository = new ArticleRepository();
             SearchEngineService.PushToBaidu(env.WebRootPath);
