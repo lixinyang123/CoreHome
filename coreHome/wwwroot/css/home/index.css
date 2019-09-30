@@ -320,6 +320,14 @@ h1, h2, h3 {
     background-color: whitesmoke;
 }
 
+#picbg {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+}
+
 #colorbg {
     background: linear-gradient(90deg, #496eaa, #944fa8, #a8804f, #496eaa);
     background-size: 1400% 300%;

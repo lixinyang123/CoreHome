@@ -21,7 +21,6 @@ namespace coreHome.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Title = "LLLXY";
             string lastTime = Request.Cookies["lastTime"];
 
             DateTime now = DateTime.Now;
