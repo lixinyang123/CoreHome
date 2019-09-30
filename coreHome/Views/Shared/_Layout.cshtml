@@ -14,6 +14,7 @@
 
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/lib/darkMode/darkmode.js"></script>
 </head>
 <body>
 
@@ -69,6 +70,17 @@
 
     <!-- Main -->
     <script type="text/javascript" src="~/js/shared/_layout.js"></script>
+
+    @if (DateTime.Now.Hour > 18 || DateTime.Now.Hour < 7)
+    {
+            <script>
+                DarkReader.enable({
+                    brightness: 100,
+                    contrast: 90,
+                    sepia: 10
+                });
+            </script>
+    }
 
 </body>
 </html>
