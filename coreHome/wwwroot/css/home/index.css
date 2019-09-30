@@ -173,18 +173,18 @@ h1, h2, h3 {
     margin-bottom: 5em;
 }
 
-    .fh5co-heading h2 {
-        font-size: 40px;
-        margin-bottom: 20px;
-        line-height: 1.5;
-        color: #000;
-    }
+.fh5co-heading h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: #000;
+}
 
-    .fh5co-heading p {
-        font-size: 18px;
-        line-height: 1.5;
-        color: #828282;
-    }
+.fh5co-heading p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #828282;
+}
 
 .fh5co-blog {
     width: 100%;
@@ -208,9 +208,9 @@ h1, h2, h3 {
     height: 300px;
 }
 
-    .fh5co-blog .blog-bg:hover {
-        transform: scale(1.1);
-    }
+.fh5co-blog .blog-bg:hover {
+    transform: scale(1.1);
+}
 
 .blog_imgbox {
     overflow: hidden;
@@ -263,11 +263,11 @@ h1, h2, h3 {
     padding-top: 20px;
 }
 
-    .fh5co-blog .blog-text .stuff li {
-        list-style: none;
-        display: inline-block;
-        margin-left: 10px;
-    }
+.fh5co-blog .blog-text .stuff li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 10px;
+}
 
 @media screen and (max-width: 768px) {
     .fh5co-blog .blog-text .stuff li {
@@ -283,14 +283,14 @@ h1, h2, h3 {
     float: right;
 }
 
-    .fh5co-blog .blog-text .stuff li:last-child a {
-        color: #000;
-    }
+.fh5co-blog .blog-text .stuff li:last-child a {
+    color: #000;
+}
 
-    .fh5co-blog .blog-text .stuff li:last-child i {
-        padding-right: 0;
-        padding-left: 10px;
-    }
+.fh5co-blog .blog-text .stuff li:last-child i {
+    padding-right: 0;
+    padding-left: 10px;
+}
 
 .fh5co-blog .blog-text .stuff li i {
     font-size: 14px;
