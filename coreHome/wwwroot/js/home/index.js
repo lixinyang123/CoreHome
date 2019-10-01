@@ -56,7 +56,7 @@ function GetRandomNum(Min, Max) {
 var timer;
 
 function SetRandomAudio() {
-    var random = GetRandomNum(1, 4);
+    var random = GetRandomNum(1, 2);
     console.log(random);
     var audioName = "/audio/audio" + random + ".mp3"
     var player = document.getElementById("player");
