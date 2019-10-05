@@ -43,10 +43,10 @@ namespace coreHome
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthorization();
             app.UseCookiePolicy();
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
