@@ -1,0 +1,32 @@
+[
+  {
+    "outputFileName": "wwwroot/js/home/index.min.js",
+    "inputFiles": [
+      "wwwroot/js/home/index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/blog/uploadarticle.min.js",
+    "inputFiles": [
+      "wwwroot/js/blog/uploadarticle.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/shared/_layout.min.css",
+    "inputFiles": [
+      "wwwroot/css/shared/_layout.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/home/index.min.css",
+    "inputFiles": [
+      "wwwroot/css/home/index.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/blog/index.min.css",
+    "inputFiles": [
+      "wwwroot/css/blog/index.css"
+    ]
+  }
+]
