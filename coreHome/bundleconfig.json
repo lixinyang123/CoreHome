@@ -1,0 +1,62 @@
+[
+  {
+    "outputFileName": "wwwroot/lib/darkMode/darkmode.min.js",
+    "inputFiles": [
+      "wwwroot/lib/darkMode/darkmode.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/HighLightJS/js/highlight.pack.min.js",
+    "inputFiles": [
+      "wwwroot/lib/HighLightJS/js/highlight.pack.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/HighLightJS/js/highlightjs-line-numbers.min.js",
+    "inputFiles": [
+      "wwwroot/lib/HighLightJS/js/highlightjs-line-numbers.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/shared/_layout.min.js",
+    "inputFiles": [
+      "wwwroot/js/shared/_layout.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/home/index.min.js",
+    "inputFiles": [
+      "wwwroot/js/home/index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/blog/detail.min.js",
+    "inputFiles": [
+      "wwwroot/js/blog/detail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/shared/_layout.min.css",
+    "inputFiles": [
+      "wwwroot/css/shared/_layout.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/home/index.min.css",
+    "inputFiles": [
+      "wwwroot/css/home/index.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/feedback/index.min.css",
+    "inputFiles": [
+      "wwwroot/css/feedback/index.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/blog/shared.min.css",
+    "inputFiles": [
+      "wwwroot/css/blog/shared.css"
+    ]
+  }
+]
