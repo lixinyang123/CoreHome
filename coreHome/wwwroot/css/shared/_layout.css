@@ -10,7 +10,7 @@ body {
     font-weight: 400;
     font-size: 16px;
     line-height: 1.7;
-    color: #787878;
+    color: #666;
     background-color: whitesmoke;
     padding-top: 50px;
     display: flex;
@@ -102,11 +102,11 @@ a:hover, a:active, a:focus {
 
 #admin {
     font-size: smaller;
-    color: #9d9d9d;
+    color: #727272;
     font-weight: bold;
 }
 
 #framework {
-    color: #9d9d9d;
+    color: #727272;
     font-weight: bold;
 }
