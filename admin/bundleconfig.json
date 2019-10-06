@@ -6,12 +6,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/blog/uploadarticle.min.js",
-    "inputFiles": [
-      "wwwroot/js/blog/uploadarticle.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/css/shared/_layout.min.css",
     "inputFiles": [
       "wwwroot/css/shared/_layout.css"
@@ -27,6 +21,12 @@
     "outputFileName": "wwwroot/css/blog/index.min.css",
     "inputFiles": [
       "wwwroot/css/blog/index.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/blog/shared.min.js",
+    "inputFiles": [
+      "wwwroot/js/blog/shared.js"
     ]
   }
 ]
