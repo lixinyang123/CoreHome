@@ -6,12 +6,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/lib/HighLightJS/js/highlight.pack.min.js",
-    "inputFiles": [
-      "wwwroot/lib/HighLightJS/js/highlight.pack.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/lib/HighLightJS/js/highlightjs-line-numbers.min.js",
     "inputFiles": [
       "wwwroot/lib/HighLightJS/js/highlightjs-line-numbers.js"
