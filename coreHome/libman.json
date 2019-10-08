@@ -36,6 +36,22 @@
         "package.json",
         "README.md"
       ]
+    },
+    {
+      "library": "jquery@3.4.1",
+      "destination": "wwwroot/lib/jquery/",
+      "files": [
+        "dist/core.js",
+        "dist/jquery.js",
+        "dist/jquery.min.js",
+        "dist/jquery.min.map",
+        "dist/jquery.slim.js",
+        "dist/jquery.slim.min.js",
+        "dist/jquery.slim.min.map",
+        "README.md",
+        "package.json",
+        "LICENSE.txt"
+      ]
     }
   ]
 }
