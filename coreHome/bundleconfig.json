@@ -1,11 +1,5 @@
 [
   {
-    "outputFileName": "wwwroot/lib/darkMode/darkmode.min.js",
-    "inputFiles": [
-      "wwwroot/lib/darkMode/darkmode.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/lib/HighLightJS/js/highlightjs-line-numbers.min.js",
     "inputFiles": [
       "wwwroot/lib/HighLightJS/js/highlightjs-line-numbers.js"
@@ -51,6 +45,12 @@
     "outputFileName": "wwwroot/css/blog/shared.min.css",
     "inputFiles": [
       "wwwroot/css/blog/shared.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/darkreader/darkreader.min.js",
+    "inputFiles": [
+      "wwwroot/lib/darkreader/darkreader.js"
     ]
   }
 ]
