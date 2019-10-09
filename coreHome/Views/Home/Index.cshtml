@@ -10,9 +10,12 @@
     <div id="page">
         <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner">
 
-            <div id="colorbg"></div>
-            @*<div style="background-image:url(); width:100%; height:100%; 
-                position:absolute; background-size:cover; bottom:0; left:0;"></div>*@
+            @*<div id="colorbg"></div>*@
+
+            @*<div style="background-image:url(); width:100%; height:100%;
+                   position:absolute; background-size:cover; bottom:0; left:0;"></div>*@
+
+            <video style="width:100%; height:100%; object-fit:cover; position:absolute; bottom:0; left:0;" src="https://f.video.weibocdn.com/004irQWilx07xDloPOR201041203W46Q0E020.mp4?label=mp4_720p&template=1280x720.25.0&trans_finger=11ccc9c970f47cffd9369c72510b3033&Expires=1570584581&ssig=PYYg9fMKvv&KID=unistore,video" autoplay loop></video>
 
             <div class="container">
                 <div class="row">
@@ -175,7 +178,7 @@
             </div>
         </div>
 
-        <audio id="player" autoplay="autoplay" />
+        <audio id="player" autoplay muted/>
 
         <!-- Main -->
         <script src="~/js/home/index.min.js"></script>

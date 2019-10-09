@@ -61,7 +61,6 @@ function SetRandomAudio() {
     var audioName = "/audio/audio" + random + ".mp3"
     var player = document.getElementById("player");
     player.src = audioName;
-    player.autoplay = true;
     player.addEventListener('ended', SetRandomAudio);
 }
 
