@@ -15,7 +15,10 @@
             @*<div style="background-image:url(); width:100%; height:100%;
                    position:absolute; background-size:cover; bottom:0; left:0;"></div>*@
 
-            <video style="width:100%; height:100%; object-fit:cover; position:absolute; bottom:0; left:0;" src="https://f.video.weibocdn.com/004irQWilx07xDloPOR201041203W46Q0E020.mp4?label=mp4_720p&template=1280x720.25.0&trans_finger=11ccc9c970f47cffd9369c72510b3033&Expires=1570584581&ssig=PYYg9fMKvv&KID=unistore,video" autoplay loop></video>
+            @{ 
+                var videoSrc = @"https://apd-2c2215e3c5c4d66deccdb0de789a5354.v.smtcdns.com/vlive.qqvideo.tc.qq.com/A6R9YY2fRc7zoOnW1DVGw4pu4zhXndb5L1M2FPmF9U6I/uwMROfz2r5zCIaQXGdGnC2dfJ6nY7Lpd3nJnZkkgeq3pDuzz/k3006ahxw6f.p701.1.mp4?sdtfrom=v1104&guid=e64db48867ad067f56c94407588b1818&vkey=47CB9B07E6AC8FFECDA1C65CAD968EC73DCFA6BCFE1782C7D07C4DA8BF8C615FA6AF11435C0C84357415F302275027ADACE6467F21AE650A9F7A49541E116E67C76A6A8C92CEDB8619A8DC828BF66DE8132B12FE22512566F4BDE9B9E8E0E973CA6091ADEFB59B8CEC79132815FC1F54F1EBCECE4254E00614229ABE4220B320#t=3";
+            }
+            <video style="width:100%; height:100%; object-fit:cover; position:absolute; bottom:0; left:0;" src="@videoSrc" autoplay loop></video>
 
             <div class="container">
                 <div class="row">
