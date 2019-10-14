@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace DataContext.DbOperator
 {
-    public class ArticleRepository : IDbOperator<Article>
+    public class ArticleOperator : IDbOperator<Article>
     {
         private readonly DbConfigurator configurator;
         
-        public ArticleRepository()
+        public ArticleOperator()
         {
             configurator = new DbConfigurator();
         }

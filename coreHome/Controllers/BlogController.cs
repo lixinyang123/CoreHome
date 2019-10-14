@@ -13,12 +13,12 @@ namespace coreHome.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly ArticleRepository articleRepository;
+        private readonly ArticleOperator articleRepository;
         private readonly int pageSize = 5;
 
         public BlogController(IWebHostEnvironment env)
         {
-            articleRepository = new ArticleRepository();
+            articleRepository = new ArticleOperator();
             SearchEngineService.PushToBaidu(env.WebRootPath);
         }
 
