@@ -2,7 +2,7 @@
 
 namespace DataContext.DbOperator
 {
-    internal interface IDbOperator<DbModel>
+    public interface IDbOperator<DbModel>
     {
         /// <summary>
         /// 增

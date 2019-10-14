@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using DataContext.DbOperator;
+using DataContext.Models;
 
 namespace coreHome
 {
@@ -27,6 +29,7 @@ namespace coreHome
 
             services.AddSession();
             services.AddControllersWithViews();
+            services.AddTransient<IDbOperator<Article>, ArticleOperator>();
         }
 
         //配置HTTP请求
