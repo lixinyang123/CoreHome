@@ -1,4 +1,4 @@
-﻿using DataContext.DbConfigurator;
+﻿using DataContext.DbConfig;
 using DataContext.ModelDbContext;
 using DataContext.Models;
 using System.Collections.Generic;
@@ -6,13 +6,13 @@ using System.Linq;
 
 namespace DataContext.DbOperator
 {
-    public class ArticleRepository
+    public class ArticleRepository : IDbOperator<Article>
     {
-        private readonly MysqlDbConfigurator configurator;
-
+        private readonly DbConfigurator configurator;
+        
         public ArticleRepository()
         {
-            configurator = new MysqlDbConfigurator();
+            configurator = new DbConfigurator();
         }
 
         /// <summary>

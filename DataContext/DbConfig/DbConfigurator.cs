@@ -1,13 +1,13 @@
 ﻿using DataContext.ModelDbContext;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataContext.DbConfigurator
+namespace DataContext.DbConfig
 {
-    public class MysqlDbConfigurator
+    public class DbConfigurator
     {
         private readonly string articleConnection;
 
-        public MysqlDbConfigurator()
+        public DbConfigurator()
         {
             articleConnection = "server=localhost;user id=root;password=lxy15937905153;database=articles";
         }
