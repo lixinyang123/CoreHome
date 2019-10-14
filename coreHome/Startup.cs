@@ -29,6 +29,8 @@ namespace coreHome
 
             services.AddSession();
             services.AddControllersWithViews();
+
+            //数据库服务
             services.AddTransient<IDbOperator<Article>, ArticleOperator>();
         }
 
