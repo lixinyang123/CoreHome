@@ -106,7 +106,7 @@ a:hover, a:active, a:focus {
     font-weight: bold;
 }
 
-#framework {
+.footerlink {
     color: #727272;
     font-weight: bold;
 }
