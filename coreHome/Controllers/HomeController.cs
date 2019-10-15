@@ -10,13 +10,9 @@ namespace coreHome.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IWebHostEnvironment environment;
-
         public HomeController(IWebHostEnvironment env)
         {
-            environment = env;
-
-            SearchEngineService.PushToBaidu(environment.WebRootPath);
+            SearchEngineService.PushToBaidu(env.WebRootPath);
         }
 
         public IActionResult Index()

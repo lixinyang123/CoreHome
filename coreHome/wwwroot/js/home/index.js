@@ -57,9 +57,9 @@ var timer;
 
 function SetRandomAudio() {
     var random = GetRandomNum(1, 2);
+    random = 1;
     console.log(random);
-    //var audioName = "/audio/audio" + random + ".mp3"
-    var audioName = "/audio/audio1.mp3"
+    var audioName = "/audio/audio" + random + ".mp3"
     var player = document.getElementById("player");
     player.src = audioName;
     player.addEventListener('ended', SetRandomAudio);

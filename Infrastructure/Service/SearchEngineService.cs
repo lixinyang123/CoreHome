@@ -14,7 +14,7 @@ namespace Infrastructure.Service
         public static async void PushToBaidu(string WebRootPath)
         {
             HttpClient httpClient = new HttpClient();
-            string url = @" http://data.zz.baidu.com/urls?site=https://www.lllxy.site&token=5ZG2x3hnCmpkN4Qh";
+            string url = @"http://data.zz.baidu.com/urls?site=https://www.lllxy.net&token=5ZG2x3hnCmpkN4Qh";
 
             string SiteMapPath = WebRootPath + "\\SiteMap.txt";
             string linkStr = File.ReadAllText(SiteMapPath);
