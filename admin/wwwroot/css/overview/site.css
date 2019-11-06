@@ -1,0 +1,12 @@
+﻿body {
+    padding-top: 44px;
+    background-color: #f6f8fa;
+}
+
+.tests-card {
+    background-color: #f8fcf9;
+}
+
+#functions {
+    min-height: calc(100vh - 685px);
+}
