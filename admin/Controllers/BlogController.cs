@@ -10,12 +10,12 @@ namespace admin.Controllers
 {
     public class BlogController : VerifyController
     {
-        private readonly ArticleOperator articleRepository;
+        private readonly IDbOperator<Article> articleRepository;
         private readonly int pageSize = 20;
 
-        public BlogController(IMemoryCache _cache) : base(_cache)
+        public BlogController(IMemoryCache _cache, IDbOperator<Article> articleOperator) : base(_cache)
         {
-            articleRepository = new ArticleOperator();
+            articleRepository = articleOperator;
         }
 
         public IActionResult Index(int index)

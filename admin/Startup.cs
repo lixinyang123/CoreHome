@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DataContext.DbOperator;
+using DataContext.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +19,7 @@ namespace admin
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // 将服务添加到容器
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -32,6 +34,9 @@ namespace admin
                 options.IdleTimeout = TimeSpan.FromHours(2);
             });
             services.AddControllersWithViews();
+
+            //数据库服务
+            services.AddTransient<IDbOperator<Article>, ArticleOperator>();
         }
 
         // 配置应用服务
