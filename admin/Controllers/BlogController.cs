@@ -31,6 +31,7 @@ namespace admin.Controllers
             {
                 Article article = new Article()
                 {
+                    ID = Guid.NewGuid().ToString(),
                     //标题
                     Title = Request.Form["title"],
                     //时间
@@ -53,7 +54,7 @@ namespace admin.Controllers
             }
         }
 
-        public IActionResult DeleteArticle(int id)
+        public IActionResult DeleteArticle(string id)
         {
             articleRepository.Delete(id);
             return RedirectToAction("index");
@@ -68,7 +69,7 @@ namespace admin.Controllers
             }
             else
             {
-                int id = Convert.ToInt32(Request.Query["id"]);
+                string id = Request.Query["id"];
                 Article article = articleRepository.Find(id);
                 return View(article);
             }

@@ -20,6 +20,6 @@
         /// <summary>
         /// 博客ID
         /// </summary>
-        public int ArticleID { get; set; }
+        public string ArticleID { get; set; }
     }
 }

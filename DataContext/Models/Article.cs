@@ -17,7 +17,7 @@ namespace DataContext.Models
         /// 博客ID
         /// </summary>
         [Key]
-        public int ID { get; set; }
+        public string ID { get; set; }
 
         /// <summary>
         /// 标题

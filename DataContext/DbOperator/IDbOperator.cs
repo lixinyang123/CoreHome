@@ -14,7 +14,7 @@ namespace DataContext.DbOperator
         /// 删
         /// </summary>
         /// <param name="id">删除对象的ID</param>
-        public void Delete(int id);
+        public void Delete(string id);
 
         /// <summary>
         /// 改
@@ -27,7 +27,7 @@ namespace DataContext.DbOperator
         /// </summary>
         /// <param name="id">查找的ID</param>
         /// <returns>查到的对象</returns>
-        public DbModel Find(int id);
+        public DbModel Find(string id);
 
         /// <summary>
         /// 范围查找

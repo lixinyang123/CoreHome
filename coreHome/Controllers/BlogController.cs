@@ -40,7 +40,7 @@ namespace coreHome.Controllers
             return View(articles);
         }
 
-        public IActionResult Detail(int id)
+        public IActionResult Detail(string id)
         {
             Article article = articleRepository.Find(id);
             if (article != null)
@@ -58,7 +58,7 @@ namespace coreHome.Controllers
             }
         }
 
-        public IActionResult Comment([FromForm]int id,string detail)
+        public IActionResult Comment([FromForm]string id,string detail)
         {
             Article article = articleRepository.Find(id);
             article.Comments.Add(new Comment() { Time = DateTime.Now.ToString(), Detail = detail });

@@ -21,24 +21,20 @@ namespace DataContext.DbOperator
         /// <param name="article">文章对象</param>
         public void Add(Article article)
         {
-            using (ArticleDbContext context = configurator.CreateArticleDbContext())
-            {
-                context.Article.Add(article);
-                context.SaveChanges();
-            }
+            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            context.Article.Add(article);
+            context.SaveChanges();
         }
 
         /// <summary>
         /// 删除文章
         /// </summary>
         /// <param name="id">文章id</param>
-        public void Delete(int id)
+        public void Delete(string id)
         {
-            using (ArticleDbContext context = configurator.CreateArticleDbContext())
-            {
-                context.Article.Remove(Find(id));
-                context.SaveChanges();
-            }
+            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            context.Article.Remove(Find(id));
+            context.SaveChanges();
         }
 
         /// <summary>
@@ -48,12 +44,10 @@ namespace DataContext.DbOperator
         /// <param name="newArticle">修改后的博客</param>
         public void Modify(Article newArticle)
         {
-            using (ArticleDbContext context = configurator.CreateArticleDbContext())
-            {
-                //将新实体的修改进行插入
-                context.Article.Update(newArticle);
-                context.SaveChanges();
-            }
+            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            //将新实体的修改进行插入
+            context.Article.Update(newArticle);
+            context.SaveChanges();
         }
 
         /// <summary>
@@ -61,14 +55,12 @@ namespace DataContext.DbOperator
         /// </summary>
         /// <param name="id">文章ID</param>
         /// <returns>文章对象</returns>
-        public Article Find(int id)
+        public Article Find(string id)
         {
-            using (ArticleDbContext context = configurator.CreateArticleDbContext())
-            {
-                Article article = context.Article.Single(i => i.ID == id);
-                article.Comments = context.Comment.Where(i => i.ArticleID == article.ID).ToList();
-                return article;
-            }
+            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            Article article = context.Article.Single(i => i.ID == id);
+            article.Comments = context.Comment.Where(i => i.ArticleID == article.ID).ToList();
+            return article;
         }
 
         /// <summary>
@@ -80,11 +72,9 @@ namespace DataContext.DbOperator
         public List<Article> Find(int index, int pageSize)
         {
             int limit = index * pageSize;
-            using (ArticleDbContext context = configurator.CreateArticleDbContext())
-            {
-                int count = Count() - limit;
-                return context.Article.OrderByDescending(i => i.ID).Skip(limit).Take(count > 5 ? pageSize : count).ToList();
-            }
+            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            int count = Count() - limit;
+            return context.Article.OrderByDescending(i => i.ID).Skip(limit).Take(count > 5 ? pageSize : count).ToList();
         }
 
         /// <summary>
@@ -93,10 +83,8 @@ namespace DataContext.DbOperator
         /// <returns>文章数量</returns>
         public int Count()
         {
-            using (ArticleDbContext context = configurator.CreateArticleDbContext())
-            {
-                return context.Article.Count();
-            }
+            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            return context.Article.Count();
         }
 
     }
