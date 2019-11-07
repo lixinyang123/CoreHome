@@ -3,11 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>admin</title>
-    @this.UseAiurMarketCss()
+    <title>@ViewData["Title"] - admin</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/shared/_layout.min.css" />
-    <link rel="stylesheet" href="~/css/overview/site.css" />
 </head>
 <body>
     <nav id="navbar" class="navbar navbar-inverse navbar-fixed-bottom">
@@ -29,19 +28,6 @@
         <footer>
             <p>&copy; 2019 - LLLXY</p>
         </footer>
-        @this.UseAiurMarketJs()
-        <script src="@ServiceLocation.UI/node_modules/chart.js/dist/Chart.bundle.min.js"></script>
-        <vc:scroll-to-top></vc:scroll-to-top>
-        <script src="~/js/overview/ws.js"></script>
-        <script src="~/js/overview/http.js"></script>
-        <script src="~/js/overview/down.js"></script>
-        <script src="~/js/overview/site.js"></script>
-        @RenderSection("scripts", required: false)
-        <script>
-            if(window.location.href.toLowerCase().indexOf("overview")>0){
-                startAll();
-            }
-        </script>
     </div>
 
 </body>
