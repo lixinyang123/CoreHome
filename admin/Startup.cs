@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Aiursoft.Pylon;
 using System;
 
 namespace admin
@@ -33,8 +32,6 @@ namespace admin
                 options.IdleTimeout = TimeSpan.FromHours(2);
             });
             services.AddControllersWithViews();
-
-            services.AddAiurDependencies("Tracer");
         }
 
         // 配置应用服务
@@ -54,7 +51,6 @@ namespace admin
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseWebSockets();
 
             //开发环境添加Admin路由，模拟工作环境的真实路径
             if (env.IsDevelopment())
