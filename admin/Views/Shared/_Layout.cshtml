@@ -1,34 +1,49 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - admin</title>
-
+    <title>Admin</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/shared/_layout.min.css" />
+    <link rel="stylesheet" href="~/css/shared/_layout.css" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
-    <nav id="navbar" class="navbar navbar-inverse navbar-fixed-bottom">
-        <div class="container">
-            <div class="row">
-                <ul>
-                    <li><a asp-controller="Overview" asp-action="Index">Overview</a></li>
-                    <li><a asp-controller="Blog" asp-action="Index">Blog</a></li>
-                    <li><a href="#">App</a></li>
-                    <li><a href="#">Other</a></li>
-                </ul>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Admin</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Overview" asp-action="Index">Overviewer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="#">App</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Blog" asp-action="Index">Blog</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - LLLXY</p>
-        </footer>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
 
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - LLLXY
+        </div>
+    </footer>
 </body>
 </html>

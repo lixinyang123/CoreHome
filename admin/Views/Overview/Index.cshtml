@@ -1,9 +1,73 @@
 ﻿
-@{
-    ViewData["Title"] = "Overview";
-}
+<h1 class="display-4">@DateTime.Now.ToString("yyyy年MM月dd日 hh:mm") Welcome</h1>
+<p>Access from <code>@Context.Connection.RemoteIpAddress.ToString()</code><span class="badge badge-secondary ml-2" id="spanStatus">Idle</span></p>
 
-<h1>@DateTime.Now.ToString("yyyy年MM月dd日 hh:mm")</h1>
-<h2>欢迎！</h2>
+<div class="container">
+    <div class="row no-gutters">
 
+        <div class="col-md-6 mt-3">
+            <div class="card mb-2 tests-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">HTTP Lag</h5>
+                    <p class="test-status"><pre id="httpStatus"></pre></p>
+                    <p class="test-status"><code id="httpMax"></code></p>
+                    <canvas id="httpChart"></canvas>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-md-6 mt-3">
+            <div class="card mb-2 tests-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Download Speed</h5>
+                    <p class="test-status"><pre id="downStatus"></pre></p>
+                    <p class="test-status"><code id="downMax"></code></p>
+                    <canvas id="downloadChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-3">
+            <div class="card mb-2 tests-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">WebSocket Lag</h5>
+                    <p class="test-status"><pre id="wsStatus"></pre></p>
+                    <p class="test-status"><code id="wsmax"></code></p>
+                    <canvas id="wsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-4" id="functions">
+    <div class="row no-gutters">
+        <div class="col-sm-12 px-1">
+            <div class="card mb-2 tests-card">
+                <div class="card-body">
+                    <h5 class="card-title">Bad requests log</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-sm" id="logTable">
+                            <tr>
+                                <th>Time</th>
+                                <th>Trigger</th>
+                                <th>Value</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/aiursoft/js/AiurCore.min.js"></script>
+<script src="~/lib/aiursoft/js/Chart.bundle.min.js"></script>
+
+<script src="~/js/overview/down.min.js"></script>
+<script src="~/js/overview/http.min.js"></script>
+<script src="~/js/overview/site.min.js"></script>
+<script src="~/js/overview/ws.min.js"></script>
+
+<script>
+    window.onload = setTimeout(startAll, 1000);
+</script>

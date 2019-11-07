@@ -28,5 +28,29 @@
     "inputFiles": [
       "wwwroot/js/blog/shared.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/overview/down.min.js",
+    "inputFiles": [
+      "wwwroot/js/overview/down.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/overview/http.min.js",
+    "inputFiles": [
+      "wwwroot/js/overview/http.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/overview/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/overview/site.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/overview/ws.min.js",
+    "inputFiles": [
+      "wwwroot/js/overview/ws.js"
+    ]
   }
 ]

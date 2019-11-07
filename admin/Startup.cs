@@ -53,6 +53,7 @@ namespace admin
             }
 
             app.UseSession();
+            app.UseWebSockets();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();

@@ -19,18 +19,18 @@
 
     <div id="content" class="center-block">
 
-        <img id="user" class="img-circle" src="~/images/user.jpg" />
+        <img id="user" src="~/images/user.jpg" />
 
-        <h3>Sign in with admin</h3>
+        <h4>Sign in with admin</h4>
 
-        <button id="btn_sign" class="btn btn-default" onclick="signIn()">Sign In</button>
+        <button id="btn_sign" class="btn btn-secondary" onclick="signIn()">Sign In</button>
 
         <form method="post" asp-controller="home" asp-action="VerfyPassword" hidden>
             <div class="form-group">
                 <label>The verification code has been sent to your phone</label>
                 <input name="pwd" type="password" class="form-control" placeholder="Enter the verification code to sign in" />
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-dark">Submit</button>
         </form>
 
         <footer>
