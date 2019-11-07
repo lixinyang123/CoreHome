@@ -100,7 +100,7 @@ a:hover, a:active, a:focus {
     display: none;
 }
 
-#admin {
+.logo-link {
     font-size: smaller;
     color: #727272;
     font-weight: bold;
