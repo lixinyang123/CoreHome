@@ -38,8 +38,8 @@
         <script src="~/js/overview/site.js"></script>
         @RenderSection("scripts", required: false)
         <script>
-            if (window.location.href.toLowerCase().indexOf("overview") > 0) {
-                document.onload = setTimeout(startAll, 1000);
+            if(window.location.href.toLowerCase().indexOf("overview")>0){
+                startAll();
             }
         </script>
     </div>
