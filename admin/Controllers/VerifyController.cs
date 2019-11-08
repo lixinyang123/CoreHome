@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -12,30 +14,36 @@ namespace admin.Controllers
         //通过cookie.Get("admin")值获取session和cache中的accessToken进行对比
 
         public readonly IMemoryCache cache;
+        private readonly IWebHostEnvironment environment;
 
-        public VerifyController(IMemoryCache _cache)
+        public VerifyController(IMemoryCache _cache, IWebHostEnvironment env)
         {
             cache = _cache;
+            environment = env;
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            try
+            //开发者模式不进行身份验证
+            if (!environment.IsDevelopment())
             {
-                string admin = Request.Cookies["admin"];
-                ISession session = HttpContext.Session;
-                string sessionStr = session.GetString(admin);
-                string cacheStr = cache.Get<string>(admin);
-                if (sessionStr != cacheStr || sessionStr == null || cacheStr == null)
+                try
                 {
-                    //验证访问令牌失败直接撤销管理员权限
-                    Response.Cookies.Delete("admin");
+                    string admin = Request.Cookies["admin"];
+                    ISession session = HttpContext.Session;
+                    string sessionStr = session.GetString(admin);
+                    string cacheStr = cache.Get<string>(admin);
+                    if (sessionStr != cacheStr || sessionStr == null || cacheStr == null)
+                    {
+                        //验证访问令牌失败直接撤销管理员权限
+                        Response.Cookies.Delete("admin");
+                        context.HttpContext.Response.Redirect("/Admin/Home");
+                    }
+                }
+                catch (Exception)
+                {
                     context.HttpContext.Response.Redirect("/Admin/Home");
                 }
-            }
-            catch (Exception)
-            {
-                context.HttpContext.Response.Redirect("/Admin/Home");
             }
 
             base.OnActionExecuting(context);

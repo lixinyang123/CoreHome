@@ -32,13 +32,13 @@
                     </div>
                 </header>
                 <!--封面-->
-                <a class="image featured" style="max-height:300px;" href="Blog/Detail?id=@article.ID">
+                <a class="image featured" style="max-height:300px;" href="Blog/Detail?articleid=@article.ArticleID">
                     <img src="@article.Cover" style="width:100%;" />
                 </a>
                 <footer>
                     <ul class="actions">
-                        <li><a href="Blog/Detail?id=@article.ID" class="btn btn-default navbar-btn">查看全文</a></li>
-                        @if (ViewBag.LastRead == article.ID.ToString())
+                        <li><a href="Blog/Detail?articleid=@article.ArticleID" class="btn btn-default navbar-btn">查看全文</a></li>
+                        @if (ViewBag.LastRead == article.ArticleID)
                         {
                             <li class="lastReadTag">上次阅读</li>
                         }
@@ -49,7 +49,7 @@
         }
 
         <!-- 页面导航 -->
-        <h1>&nbsp;&nbsp;&nbsp; 第 @(ViewBag.CurrentIndex + 1) 页 / 共 @ViewBag.LastPage 页</h1>
+        <h1>第 @(ViewBag.CurrentIndex + 1) 页 / 共 @ViewBag.LastPage 页</h1>
         <ul class="actions pagination">
             <li class="btn_changepage"><button onclick="window.location.href='blog?index=@(ViewBag.CurrentIndex-1)';" class="btn btn-default navbar-btn">上一页</button></li>
             <li class="btn_changepage"><button onclick="window.location.href='blog?index=@(ViewBag.CurrentIndex+1)';" class="btn btn-default navbar-btn">下一页</button></li>

@@ -14,10 +14,15 @@ namespace DataContext.Models
         }
 
         /// <summary>
-        /// 博客ID
+        /// 编号ID
         /// </summary>
         [Key]
-        public string ID { get; set; }
+        public int ID { get; set; }
+
+        /// <summary>
+        /// 博客ID
+        /// </summary>
+        public string ArticleID { get; set; }
 
         /// <summary>
         /// 标题

@@ -1,24 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DataContext.DbOperator;
+﻿using DataContext.DbOperator;
 using DataContext.Models;
 using Infrastructure.common;
 using Infrastructure.Service;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace coreHome.Controllers
 {
     public class BlogController : Controller
     {
         private readonly IDbOperator<Article> articleRepository;
+        private readonly IDbOperator<Comment> commentRepository;
+        private VerificationCodeHelper verificationHelper;
         private readonly int pageSize = 5;
 
-        public BlogController(IWebHostEnvironment env,IDbOperator<Article> articleOperator)
+        public BlogController(IWebHostEnvironment env,
+            IDbOperator<Article> articleOperator,
+            IDbOperator<Comment> commentOperator)
         {
             articleRepository = articleOperator;
+            commentRepository = commentOperator;
+            verificationHelper = new VerificationCodeHelper();
             SearchEngineService.PushToBaidu(env.WebRootPath);
         }
 
@@ -40,16 +45,16 @@ namespace coreHome.Controllers
             return View(articles);
         }
 
-        public IActionResult Detail(string id)
+        public IActionResult Detail(string articleID)
         {
-            Article article = articleRepository.Find(id);
+            Article article = articleRepository.Find(articleID);
             if (article != null)
             {
                 CookieOptions options = new CookieOptions
                 {
                     Expires = DateTime.Now.AddDays(7)
                 };
-                Response.Cookies.Append("lastRead", id.ToString(), options);
+                Response.Cookies.Append("lastRead", articleID, options);
                 return View(article);
             }
             else
@@ -58,12 +63,39 @@ namespace coreHome.Controllers
             }
         }
 
-        public IActionResult Comment([FromForm]string id,string detail)
+        public IActionResult Comment([FromForm]string id, [FromForm]string detail, [FromForm]string code)
         {
-            Article article = articleRepository.Find(id);
-            article.Comments.Add(new Comment() { Time = DateTime.Now.ToString(), Detail = detail });
-            articleRepository.Modify(article);
-            return Content("<h1>评论成功<br/><a onclick='history.back(-1)' href='#'>返回</a></h1>","text/html", Encoding.GetEncoding("GB2312"));
+            ISession session = HttpContext.Session;
+            var str = session.GetString("Verification");
+            if (str == null)
+                return Content("请先同意隐私策略");
+
+            if (code!=null && code != string.Empty && str == code.ToLower())
+            {
+                if (detail != null && detail != string.Empty)
+                {
+                    Comment comment = new Comment()
+                    {
+                        CommentID = Guid.NewGuid().ToString(),
+                        Time = DateTime.Now.ToString(),
+                        Detail = detail,
+                        ArticleID = id
+                    };
+
+                    commentRepository.Add(comment);
+                    return Content("评论成功");
+                }
+                return Content("评论不能为空");
+            }
+            return Content("验证码错误");
+
+        }
+
+        public IActionResult VerificationCode()
+        {
+            ISession session = HttpContext.Session;
+            session.SetString("Verification", verificationHelper.VerificationCode);
+            return File(verificationHelper.VerificationImage , "image/png");
         }
 
     }

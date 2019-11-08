@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DataContext.DbOperator
 {
@@ -36,6 +37,13 @@ namespace DataContext.DbOperator
         /// <param name="count">查找的数量</param>
         /// <returns></returns>
         public List<DbModel> Find(int start, int count);
+
+        /// <summary>
+        /// 按条件查找所有匹配结果
+        /// </summary>
+        /// <param name="func">指定条件</param>
+        /// <returns></returns>
+        public List<DbModel> FindAll(Func<DbModel, bool> func);
 
         /// <summary>
         /// 统计

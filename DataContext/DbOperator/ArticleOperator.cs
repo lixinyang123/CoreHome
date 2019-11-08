@@ -1,6 +1,7 @@
 ﻿using DataContext.DbConfig;
 using DataContext.ModelDbContext;
 using DataContext.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,6 +35,9 @@ namespace DataContext.DbOperator
         {
             using ArticleDbContext context = configurator.CreateArticleDbContext();
             context.Article.Remove(Find(id));
+            var commentOperator = new CommentOperator();
+            //删除此文章的所有评论
+            commentOperator.FindAll(i => i.ArticleID == id).ForEach( i =>{commentOperator.Delete(i.CommentID);} );
             context.SaveChanges();
         }
 
@@ -53,13 +57,13 @@ namespace DataContext.DbOperator
         /// <summary>
         /// 单个文章查找
         /// </summary>
-        /// <param name="id">文章ID</param>
+        /// <param name="id">博客ID</param>
         /// <returns>文章对象</returns>
         public Article Find(string id)
         {
             using ArticleDbContext context = configurator.CreateArticleDbContext();
-            Article article = context.Article.Single(i => i.ID == id);
-            article.Comments = context.Comment.Where(i => i.ArticleID == article.ID).ToList();
+            Article article = context.Article.Single(i => i.ArticleID == id);
+            article.Comments = new CommentOperator().FindAll(i => i.ArticleID == id);
             return article;
         }
 
@@ -75,6 +79,16 @@ namespace DataContext.DbOperator
             using ArticleDbContext context = configurator.CreateArticleDbContext();
             int count = Count() - limit;
             return context.Article.OrderByDescending(i => i.ID).Skip(limit).Take(count > 5 ? pageSize : count).ToList();
+        }
+
+        /// <summary>
+        /// 按条件查找所有博客
+        /// </summary>
+        /// <param name="func">查找条件</param>
+        /// <returns></returns>
+        public List<Article> FindAll(Func<Article, bool> func)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

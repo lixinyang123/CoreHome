@@ -13,6 +13,7 @@
     <form method="post" asp-controller="Blog" asp-action="ModifyArticle">
 
         <input name="id" type="hidden" value="@Model.ID" />
+        <input name="articleID" type="hidden" value="@Model.ArticleID" />
         <input name="time" type="hidden" value="@Model.Time" />
 
         @*博客标题*@

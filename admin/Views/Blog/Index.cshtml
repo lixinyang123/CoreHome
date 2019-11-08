@@ -12,7 +12,7 @@
     <table id="articlelist" class="table table-hover">
 
         <tr id="topbar">
-            <td>ID</td>
+            <td>ArticleID</td>
             <td>Title</td>
             <td>Time</td>
             <td>Modify</td>
@@ -22,11 +22,11 @@
         @foreach (var artcile in Model)
         {
             <tr>
-                <td>@artcile.ID</td>
+                <td>@artcile.ArticleID</td>
                 <td>@artcile.Title</td>
                 <td>@artcile.Time</td>
-                <td><a href="/Admin/Blog/ModifyArticle?id=@artcile.ID">Modify</a></td>
-                <td><a href="/Admin/Blog/DeleteArticle?id=@artcile.ID">Delete</a></td>
+                <td><a href="/Admin/Blog/ModifyArticle?articleID=@artcile.ArticleID">Modify</a></td>
+                <td><a href="/Admin/Blog/DeleteArticle?articleID=@artcile.ArticleID">Delete</a></td>
             </tr>
         }
 

@@ -1,5 +1,6 @@
 ﻿using admin.Attributes;
 using admin.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System;
@@ -17,7 +18,7 @@ namespace admin.Controllers
 
         private readonly IPusher<WebSocket> _pusher;
 
-        public OverviewController(IMemoryCache _cache) : base(_cache)
+        public OverviewController(IMemoryCache _cache, IWebHostEnvironment env) : base(_cache,env)
         {
             _pusher = new WebSocketPusher();
         }

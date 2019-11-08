@@ -31,6 +31,7 @@ namespace coreHome
             services.AddControllersWithViews();
 
             //数据库服务
+            services.AddTransient<IDbOperator<Comment>, CommentOperator>();
             services.AddTransient<IDbOperator<Article>, ArticleOperator>();
         }
 
@@ -50,6 +51,7 @@ namespace coreHome
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.UseCookiePolicy();
+            app.UseSession();
             app.UseStaticFiles();
             app.UseRouting();
 

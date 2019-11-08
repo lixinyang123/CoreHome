@@ -1,6 +1,7 @@
 ﻿using DataContext.DbOperator;
 using DataContext.Models;
 using Infrastructure.common;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System;
@@ -13,7 +14,9 @@ namespace admin.Controllers
         private readonly IDbOperator<Article> articleRepository;
         private readonly int pageSize = 20;
 
-        public BlogController(IMemoryCache _cache, IDbOperator<Article> articleOperator) : base(_cache)
+        public BlogController(IMemoryCache _cache,
+            IDbOperator<Article> articleOperator,
+            IWebHostEnvironment env) : base(_cache,env)
         {
             articleRepository = articleOperator;
         }
@@ -31,7 +34,7 @@ namespace admin.Controllers
             {
                 Article article = new Article()
                 {
-                    ID = Guid.NewGuid().ToString(),
+                    ArticleID = Guid.NewGuid().ToString(),
                     //标题
                     Title = Request.Form["title"],
                     //时间
@@ -54,9 +57,9 @@ namespace admin.Controllers
             }
         }
 
-        public IActionResult DeleteArticle(string id)
+        public IActionResult DeleteArticle(string articleID)
         {
-            articleRepository.Delete(id);
+            articleRepository.Delete(articleID);
             return RedirectToAction("index");
         }
 
@@ -69,8 +72,8 @@ namespace admin.Controllers
             }
             else
             {
-                string id = Request.Query["id"];
-                Article article = articleRepository.Find(id);
+                string articleID = Request.Query["articleID"];
+                Article article = articleRepository.Find(articleID);
                 return View(article);
             }
         }

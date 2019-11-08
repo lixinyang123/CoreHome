@@ -524,3 +524,26 @@ textarea {
     resize: none;
     margin-bottom:5px;
 }
+
+#verfyImg {
+    float: left;
+    height: 40px;
+}
+
+#verfyInput {
+    margin-left:5px;
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+    float: left;
+}
+
+#btn_submit {
+    float: left;
+    margin-top: 4px;
+    margin: 4px 0 0 10px;
+}
+
+#comment {
+    margin-top: 50px;
+}

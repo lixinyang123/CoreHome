@@ -1,11 +1,19 @@
-﻿namespace DataContext.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DataContext.Models
 {
     public class Comment
     {
         /// <summary>
+        /// 序号ID
+        /// </summary>
+        [Key]
+        public int ID { get; set; }
+
+        /// <summary>
         /// 评论ID
         /// </summary>
-        public int ID { get; set; }
+        public string CommentID { get; set; }
 
         /// <summary>
         /// 评论时间
