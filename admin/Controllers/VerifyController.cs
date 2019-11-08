@@ -25,7 +25,7 @@ namespace admin.Controllers
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             //开发者模式不进行身份验证
-            if (environment.IsDevelopment())
+            if (!environment.IsDevelopment())
             {
                 try
                 {
