@@ -49,8 +49,8 @@ namespace coreHome
             }
 
             app.UseHttpsRedirection();
-            app.UseAuthorization();
             app.UseCookiePolicy();
+            app.UseAuthorization();
             app.UseSession();
             app.UseStaticFiles();
             app.UseRouting();
