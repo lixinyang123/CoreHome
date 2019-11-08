@@ -79,7 +79,7 @@ namespace admin.Controllers
                 cache.Set(cacheKey, accessToken, DateTimeOffset.Now.AddHours(2));
 
                 //验证方式
-                //通过cookie.Get("admin")值获取session和cache中的accessToken进行对比
+                //session.GetString("admin")值获取accessToken和cache中读取cacheKey对应的accessToken进行对比
 
                 //重定向到仪表盘
                 return Redirect("/Admin/Overview");
