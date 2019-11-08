@@ -24,10 +24,11 @@ namespace admin.Controllers
         public async Task<IActionResult> Index()
         {
             //有管理员权限的话直接跳转的Overview验证访问令牌
-            if(Request.Cookies.TryGetValue("admin",out string admin))
+            if(HttpContext.Session.TryGetValue("admin",out byte[] value))
             {
                 return Redirect("/Admin/Overview");
             }
+
             string url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
             string jsonStr = await new HttpClient().GetStringAsync(url);
             BingWallpaper wallpaper = JsonConvert.DeserializeObject<BingWallpaper>(jsonStr);
@@ -71,15 +72,11 @@ namespace admin.Controllers
                 cache.Remove(cacheKey);
                 //生成访问令牌
                 string accessToken = Guid.NewGuid().ToString();
-                //赋予管理员权限
-                string admin = Guid.NewGuid().ToString();
-                CookieOptions cookieOptions = new CookieOptions() { Expires = DateTimeOffset.Now.AddHours(2) };
-                Response.Cookies.Append("admin", admin, cookieOptions);
                 //颁发访问令牌
                 ISession session = HttpContext.Session;
-                session.SetString(admin, accessToken);
+                session.SetString("admin", accessToken);
                 //服务端维持两小时的状态保持
-                cache.Set(admin, accessToken, DateTimeOffset.Now.AddHours(2));
+                cache.Set(cacheKey, accessToken, DateTimeOffset.Now.AddHours(2));
 
                 //验证方式
                 //通过cookie.Get("admin")值获取session和cache中的accessToken进行对比
