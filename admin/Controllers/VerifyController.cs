@@ -42,6 +42,7 @@ namespace admin.Controllers
                 }
                 catch (Exception)
                 {
+                    Response.Cookies.Delete("admin");
                     context.HttpContext.Response.Redirect("/Admin/Home");
                 }
             }
