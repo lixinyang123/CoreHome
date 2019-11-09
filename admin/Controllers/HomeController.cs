@@ -33,16 +33,18 @@ namespace admin.Controllers
             string jsonStr = await new HttpClient().GetStringAsync(url);
             BingWallpaper wallpaper = JsonConvert.DeserializeObject<BingWallpaper>(jsonStr);
             ViewBag.picUrl = "https://cn.bing.com" + wallpaper.images[0].url;
-            Response.Cookies.Append("user", Guid.NewGuid().ToString());
             return View();
         }
 
         public IActionResult Login()
         {
+            string cacheKey = Guid.NewGuid().ToString();
+            Response.Cookies.Append("user", cacheKey);
+
             //随机生成密码
             string password = Guid.NewGuid().ToString().Substring(0, 6);
+
             //记录密码并设置过期时间为一分钟
-            string cacheKey = Request.Cookies["user"];
             cache.Set(cacheKey, password, DateTimeOffset.Now.AddMinutes(1));
             try
             {
@@ -68,18 +70,14 @@ namespace admin.Controllers
 
             if (pwd == password && pwd!=null && password != null)
             {
-                //移除缓存
-                cache.Remove(cacheKey);
                 //生成访问令牌
                 string accessToken = Guid.NewGuid().ToString();
                 //颁发访问令牌
                 ISession session = HttpContext.Session;
-                session.SetString("admin", accessToken);
+                session.SetString("accessToken", accessToken);
+
                 //服务端维持两小时的状态保持
                 cache.Set(cacheKey, accessToken, DateTimeOffset.Now.AddHours(2));
-
-                //验证方式
-                //session.GetString("admin")值获取accessToken和cache中读取cacheKey对应的accessToken进行对比
 
                 //重定向到仪表盘
                 return Redirect("/Admin/Overview");

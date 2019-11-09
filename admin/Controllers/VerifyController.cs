@@ -29,19 +29,21 @@ namespace admin.Controllers
             {
                 try
                 {
-                    string cacheKey = Request.Cookies["user"];
                     ISession session = HttpContext.Session;
-                    string sessionStr = session.GetString("admin");
+                    string sessionStr = session.GetString("accessToken");
+
+                    string cacheKey = Request.Cookies["user"];
                     string cacheStr = cache.Get<string>(cacheKey);
+
                     if (sessionStr != cacheStr || sessionStr == null || cacheStr == null)
                     {
                         //验证访问令牌失败直接撤销管理员权限
-                        context.HttpContext.Response.Redirect("/Admin/Home");
+                        context.HttpContext.Response.Redirect("/Admin");
                     }
                 }
                 catch (Exception)
                 {
-                    context.HttpContext.Response.Redirect("/Admin/Home");
+                    context.HttpContext.Response.Redirect("/Admin");
                 }
             }
 
