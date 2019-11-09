@@ -11,7 +11,7 @@ namespace admin.Controllers
     public class VerifyController : Controller
     {
         //验证方式
-        //通过cookie.Get("admin")值获取session和cache中的accessToken进行对比
+        //通过session中存的accessToken和cache中放行的accessToken进行对比
 
         public readonly IMemoryCache cache;
         private readonly IWebHostEnvironment environment;

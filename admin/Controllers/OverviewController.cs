@@ -12,28 +12,28 @@ namespace admin.Controllers
 {
     public class OverviewController : VerifyController
     {
-        private static byte[] _data;
+        private static byte[] data;
 
-        private const int _length = 1024 * 1024 * 1;
+        private const int length = 1024 * 1024 * 1;
 
-        private readonly IPusher<WebSocket> _pusher;
+        private readonly IPusher<WebSocket> pusher;
 
         public OverviewController(IMemoryCache _cache, IWebHostEnvironment env) : base(_cache,env)
         {
-            _pusher = new WebSocketPusher();
+            pusher = new WebSocketPusher();
         }
 
         private static byte[] GetData()
         {
-            if (_data == null)
+            if (data == null)
             {
-                _data = new byte[_length];
-                for (int i = 0; i < _length; i++)
+                data = new byte[length];
+                for (int i = 0; i < length; i++)
                 {
-                    _data[i] = 1;
+                    data[i] = 1;
                 }
             }
-            return _data;
+            return data;
         }
 
         public IActionResult Index()
@@ -45,12 +45,12 @@ namespace admin.Controllers
         [ForceWebSocket]
         public async Task<IActionResult> Pushing()
         {
-            await _pusher.Accept(HttpContext);
-            for (int i = 0; i < 36000 && _pusher.Connected; i++)
+            await pusher.Accept(HttpContext);
+            for (int i = 0; i < 36000 && pusher.Connected; i++)
             {
                 try
                 {
-                    _pusher.SendMessage(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffffff") + $"|{i + 1}").GetAwaiter();
+                    pusher.SendMessage(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffffff") + $"|{i + 1}").GetAwaiter();
                     await Task.Delay(100);
                 }
                 catch
@@ -64,7 +64,7 @@ namespace admin.Controllers
         [NoCache]
         public IActionResult Download()
         {
-            HttpContext.Response.Headers.Add("Content-Length", _length.ToString());
+            HttpContext.Response.Headers.Add("Content-Length", length.ToString());
             return new FileContentResult(GetData(), "application/octet-stream");
         }
 
