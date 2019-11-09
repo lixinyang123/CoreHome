@@ -24,7 +24,7 @@ namespace admin.Controllers
         public async Task<IActionResult> Index()
         {
             //有管理员权限的话直接跳转的Overview验证访问令牌
-            if(HttpContext.Session.TryGetValue("admin",out byte[] value))
+            if(HttpContext.Session.TryGetValue("accessToken", out byte[] value))
             {
                 return Redirect("/Admin/Overview");
             }
