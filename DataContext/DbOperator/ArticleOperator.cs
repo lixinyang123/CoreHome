@@ -35,10 +35,16 @@ namespace DataContext.DbOperator
         {
             using ArticleDbContext context = configurator.CreateArticleDbContext();
             context.Article.Remove(Find(id));
-            var commentOperator = new CommentOperator();
-            //删除此文章的所有评论
-            commentOperator.FindAll(i => i.ArticleID == id).ForEach( i =>{commentOperator.Delete(i.CommentID);} );
             context.SaveChanges();
+
+            //删除此文章的所有评论
+            var commentOperator = new CommentOperator();
+            var comments = commentOperator.FindAll(i => i.ArticleID == id).ToList();
+            comments.ForEach(comment =>
+            {
+                if (comment.ArticleID == id)
+                    commentOperator.Delete(comment.CommentID);
+            });
         }
 
         /// <summary>
