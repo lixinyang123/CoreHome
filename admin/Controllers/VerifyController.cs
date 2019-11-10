@@ -37,13 +37,12 @@ namespace admin.Controllers
 
                     if (sessionStr != cacheStr || sessionStr == null || cacheStr == null)
                     {
-                        //验证访问令牌失败直接撤销管理员权限
-                        session.Remove("accessToken");
-                        context.HttpContext.Response.Redirect("/Admin");
+                        throw new Exception("AuthenticationException");
                     }
                 }
                 catch (Exception)
                 {
+                    //验证访问令牌失败直接撤销管理员权限
                     session.Remove("accessToken");
                     context.HttpContext.Response.Redirect("/Admin");
                 }
