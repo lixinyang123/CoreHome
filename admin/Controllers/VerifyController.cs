@@ -27,9 +27,9 @@ namespace admin.Controllers
             //开发者模式不进行身份验证
             if (!environment.IsDevelopment())
             {
+                ISession session = HttpContext.Session;
                 try
                 {
-                    ISession session = HttpContext.Session;
                     string sessionStr = session.GetString("accessToken");
 
                     string cacheKey = Request.Cookies["user"];
@@ -44,6 +44,7 @@ namespace admin.Controllers
                 }
                 catch (Exception)
                 {
+                    session.Remove("accessToken");
                     context.HttpContext.Response.Redirect("/Admin");
                 }
             }
