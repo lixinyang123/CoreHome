@@ -37,6 +37,7 @@ namespace admin
 
             //数据库服务
             services.AddTransient<IDbOperator<Article>, ArticleOperator>();
+            services.AddTransient<IDbOperator<Comment>, CommentOperator>();
         }
 
         // 配置应用服务
