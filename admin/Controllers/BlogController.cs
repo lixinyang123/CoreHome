@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace admin.Controllers
 {
-    public class BlogController : VerifyController
+    public class BlogController : AuthorizationController
     {
         private readonly IDbOperator<Article> articleRepository;
         private readonly int pageSize = 20;

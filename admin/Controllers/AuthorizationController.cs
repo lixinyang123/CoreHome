@@ -1,14 +1,14 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Hosting;
+using System;
 
 namespace admin.Controllers
 {
-    public class VerifyController : Controller
+    public class AuthorizationController : Controller
     {
         //验证方式
         //通过session中存的accessToken和cache中放行的accessToken进行对比
@@ -16,7 +16,7 @@ namespace admin.Controllers
         public readonly IMemoryCache cache;
         private readonly IWebHostEnvironment environment;
 
-        public VerifyController(IMemoryCache _cache, IWebHostEnvironment env)
+        public AuthorizationController(IMemoryCache _cache, IWebHostEnvironment env)
         {
             cache = _cache;
             environment = env;
@@ -44,7 +44,7 @@ namespace admin.Controllers
                 {
                     //验证访问令牌失败直接撤销管理员权限
                     session.Remove("accessToken");
-                    context.HttpContext.Response.Redirect("/Admin");
+                    context.Result = Redirect("/Admin");
                 }
             }
 

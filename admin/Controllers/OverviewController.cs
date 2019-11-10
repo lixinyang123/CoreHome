@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace admin.Controllers
 {
-    public class OverviewController : VerifyController
+    public class OverviewController : AuthorizationController
     {
         private static byte[] data;
 
