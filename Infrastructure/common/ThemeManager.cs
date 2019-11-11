@@ -1,48 +1,48 @@
-using System;
+using Infrastructure.Models;
 using System.IO;
 using System.Text.Json;
-using Infrastructure.Models;
 
 namespace Infrastructure.common
 {
-    public class ThemeManager
+    public static class ThemeManager
     {
-        private readonly static string configPath = @"C:/Server/coreHome/";
-        private readonly static string configFile = configPath + "theme.json";
-        public Theme MyTheme {get;set;}
+        private static readonly string configPath = @"C:/Server/coreHome/";
+        private static readonly string configFile = configPath + "theme.json";
 
-        public ThemeManager()
+        public static Theme GetTheme()
         {
-            if(!Directory.Exists(configPath))
-                Directory.CreateDirectory(configPath);
-            
-            if(File.Exists(configFile))
+            if (!Directory.Exists(configPath))
             {
-                var jsonStr = File.ReadAllText(configFile);
-                MyTheme = JsonSerializer.Deserialize<Theme>(jsonStr);
+                Directory.CreateDirectory(configPath);
+            }
+
+            if (File.Exists(configFile))
+            {
+                string jsonStr = File.ReadAllText(configFile);
+                return JsonSerializer.Deserialize<Theme>(jsonStr);
             }
             else
             {
                 ResetTheme();
+                return new Theme();
             }
         }
 
-        public void ChangeTheme(Theme theme)
+        public static void ChangeTheme(Theme theme)
         {
             string content = JsonSerializer.Serialize(theme);
             SaveTheme(content);
         }
 
-        public void ResetTheme()
+        public static void ResetTheme()
         {
-            MyTheme = new Theme();
-            string content = JsonSerializer.Serialize(MyTheme);
+            string content = JsonSerializer.Serialize(new Theme());
             SaveTheme(content);
         }
 
-        private void SaveTheme(string content)
+        private static void SaveTheme(string content)
         {
-            File.WriteAllText(configFile,content);
+            File.WriteAllText(configFile, content);
         }
 
     }
