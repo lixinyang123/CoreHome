@@ -1,4 +1,7 @@
-﻿
+﻿@{
+    ThemeManager themeManager = new ThemeManager();
+}
+
 <div>
 
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet" />
@@ -10,16 +13,25 @@
     <div id="page">
         <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner">
 
-            <div id="colorbg"></div>
+            @switch (themeManager.MyTheme.backgroundType)
+            {
+                case BackgroundType.Image:
+                    <div style="background-image:url(); width:100%; height:100%;
+                    position:absolute; background-size:cover; bottom:0; left:0;"></div>
+                    break;
 
-            @*<div style="background-image:url(); width:100%; height:100%;
-                   position:absolute; background-size:cover; bottom:0; left:0;"></div>*@
+                case BackgroundType.Video:
+                    var videoSrc = @"";
+                    <video style="width:100%; height:100%; object-fit:cover; position:absolute; bottom:0; left:0;" 
+                    src="@videoSrc" autoplay loop></video>
+                    break;
 
-            @*@{ 
-                var videoSrc = @"";
+                case BackgroundType.Color:
+                    <div id="colorbg"></div>
+                    break;
             }
-            <video style="width:100%; height:100%; object-fit:cover; position:absolute; bottom:0; left:0;" src="@videoSrc" autoplay loop></video>*@
 
+            
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center">
