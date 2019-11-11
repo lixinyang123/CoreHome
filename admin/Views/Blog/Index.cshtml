@@ -4,6 +4,8 @@
     ViewData["Title"] = "Blog";
 }
 
+<h1>Blog</h1>
+
 <div id="content">
     <link rel="stylesheet" href="~/css/blog/index.min.css" />
 
@@ -12,22 +14,22 @@
     <table id="articlelist" class="table table-hover">
 
         <tr id="topbar">
-            <td>ArticleID</td>
             <td>Title</td>
             <td>Time</td>
             <td>Modify</td>
             <td>Delete</td>
+            <td>Comment</td>
         </tr>
 
         @foreach (var artcile in Model)
         {
-            <tr>
-                <td>@artcile.ArticleID</td>
-                <td>@artcile.Title</td>
-                <td>@artcile.Time</td>
-                <td><a href="/Admin/Blog/ModifyArticle?articleID=@artcile.ArticleID">Modify</a></td>
-                <td><a href="/Admin/Blog/DeleteArticle?articleID=@artcile.ArticleID">Delete</a></td>
-            </tr>
+                <tr>
+                    <td>@artcile.Title</td>
+                    <td>@artcile.Time</td>
+                    <td><a href="/Admin/Blog/ModifyArticle?articleID=@artcile.ArticleID">Modify</a></td>
+                    <td><a href="/Admin/Blog/DeleteArticle?articleID=@artcile.ArticleID">Delete</a></td>
+                    <td><a href="/Admin/Blog/Comment?articleID=@artcile.ArticleID">Comment</a></td>
+                </tr>
         }
 
     </table>

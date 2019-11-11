@@ -1,0 +1,31 @@
+﻿@model List<Comment>
+
+<h1>Comment</h1>
+
+<!--评论列表-->
+<div id="comment">
+
+    <h3>ArticleID：@ViewBag.ArticleID </h3>
+
+    <table id="articlelist" class="table table-hover">
+
+        <tr id="topbar">
+            <td>CommentID</td>
+            <td>Time</td>
+            <td>Detail</td>
+            <td>Delete</td>
+        </tr>
+
+        @foreach (var comment in Model)
+        {
+            <tr>
+                <td>@comment.CommentID</td>
+                <td>@comment.Time</td>
+                <td>@comment.Detail</td>
+                <td><a href="/Admin/Blog/DeleteComment?articleID=@ViewBag.ArticleID&commentID=@comment.CommentID">Delete</a></td>
+            </tr>
+        }
+
+    </table>
+
+</div>

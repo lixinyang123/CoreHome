@@ -68,7 +68,7 @@
             <div id="comment">
                 <h2>评论列表</h2>
 
-                @{ 
+                @{
                     var comments = Model.Comments;
                     if (comments.Count > 10)
                     {
@@ -81,12 +81,12 @@
                     <p>@item.Detail</p>
                 }
 
-
-                <ul class="actions pagination">
-                    <li><button onclick="history.back(-1)" class="btn btn-default navbar-btn">返回</button></li>
-                </ul>
             </div>
-            
+
+            <ul class="actions pagination">
+                <li><button onclick="history.back(-1)" class="btn btn-default navbar-btn">返回</button></li>
+            </ul>
+
         </div>
     </div>
 

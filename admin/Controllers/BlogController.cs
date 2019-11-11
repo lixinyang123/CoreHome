@@ -12,13 +12,16 @@ namespace admin.Controllers
     public class BlogController : AuthorizationController
     {
         private readonly IDbOperator<Article> articleRepository;
+        private readonly IDbOperator<Comment> commentRepository;
         private readonly int pageSize = 20;
 
         public BlogController(IMemoryCache _cache,
             IDbOperator<Article> articleOperator,
+            IDbOperator<Comment> commentOperator,
             IWebHostEnvironment env) : base(_cache,env)
         {
             articleRepository = articleOperator;
+            commentRepository = commentOperator;
         }
 
         public IActionResult Index(int index)
@@ -35,15 +38,10 @@ namespace admin.Controllers
                 Article article = new Article()
                 {
                     ArticleID = Guid.NewGuid().ToString(),
-                    //标题
                     Title = Request.Form["title"],
-                    //时间
                     Time = DateTime.Now.ToString("yyyy/MM/dd"),
-                    //封面
                     Cover = Request.Form["cover"],
-                    //概述
                     Overview = Request.Form["overview"],
-                    //内容
                     Content = Request.Form["content"]
                 };
 
@@ -76,6 +74,19 @@ namespace admin.Controllers
                 Article article = articleRepository.Find(articleID);
                 return View(article);
             }
+        }
+
+        public IActionResult Comment(string articleID)
+        {
+            ViewBag.ArticleID = articleID;
+            List<Comment> comments = commentRepository.FindAll(i => i.ArticleID == articleID);
+            return View(comments);
+        }
+
+        public IActionResult DeleteComment(string articleID,string commentID)
+        {
+            commentRepository.Delete(commentID);
+            return Redirect("/Admin/Blog/Comment?articleID=" + articleID);
         }
 
     }
