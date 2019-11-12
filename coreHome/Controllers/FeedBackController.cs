@@ -1,4 +1,4 @@
-﻿using Infrastructure.Service;
+﻿using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace coreHome.Controllers
@@ -15,7 +15,7 @@ namespace coreHome.Controllers
                 string title = Request.Form["title"];
                 string detail = Request.Form["detail"];
 
-                NotifyManager.PushNotify(title + $"[{contact}]", detail);
+                NotifyService.PushNotify(title + $"[{contact}]", detail);
 
                 ViewBag.Title = "感谢您的反馈";
             }

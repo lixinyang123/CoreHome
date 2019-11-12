@@ -1,10 +1,13 @@
 ﻿using System;
+using System.IO;
 using System.Diagnostics;
 using DataContext.Models;
-using Infrastructure.Service;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Infrastructure.common;
+using Infrastructure.Models;
 
 namespace coreHome.Controllers
 {
@@ -41,6 +44,22 @@ namespace coreHome.Controllers
             };
             Response.Cookies.Append("lastTime", now.ToString("yyyy/MM/dd hh:mm:ss"), options);
             return View();
+        }
+
+        public IActionResult Background()
+        {
+            if(System.IO.File.Exists(ThemeManager.backgroundUrl))
+            {
+                byte[] buffer = System.IO.File.ReadAllBytes(ThemeManager.backgroundUrl);
+                return File(buffer, "image/png");
+            }
+            else
+            {
+                Theme theme = ThemeManager.GetTheme();
+                theme.backgroundType = BackgroundType.Color;
+                ThemeManager.ChangeTheme(theme);
+                return NotFound();
+            }
         }
 
         public IActionResult Privacy()

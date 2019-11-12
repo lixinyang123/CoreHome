@@ -9,6 +9,8 @@ namespace Infrastructure.common
         private static readonly string configPath = @"C:/Server/coreHome/";
         private static readonly string configFile = configPath + "theme.json";
 
+        public static readonly string backgroundUrl = @"C:/Server/coreHome/Background.jpg";
+
         public static Theme GetTheme()
         {
             if (!Directory.Exists(configPath))

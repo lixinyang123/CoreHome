@@ -1,4 +1,4 @@
-﻿namespace admin.Models
+﻿namespace Infrastructure.Models
 {
     public class BingWallpaper
     {

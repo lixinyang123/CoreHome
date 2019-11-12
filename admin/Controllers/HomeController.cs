@@ -1,13 +1,10 @@
-﻿using admin.Models;
-using DataContext.Models;
-using Infrastructure.Service;
+﻿using DataContext.Models;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace admin.Controllers
@@ -24,15 +21,12 @@ namespace admin.Controllers
         public async Task<IActionResult> Index()
         {
             //有管理员权限的话直接跳转的Overview验证访问令牌
-            if(HttpContext.Session.TryGetValue("accessToken", out byte[] value))
+            if (HttpContext.Session.TryGetValue("accessToken", out byte[] value))
             {
                 return Redirect("/Admin/Overview");
             }
 
-            string url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
-            string jsonStr = await new HttpClient().GetStringAsync(url);
-            BingWallpaper wallpaper = JsonConvert.DeserializeObject<BingWallpaper>(jsonStr);
-            ViewBag.picUrl = "https://cn.bing.com" + wallpaper.images[0].url;
+            ViewBag.picUrl = await BingWallpaperService.GetUrl();
             return View();
         }
 
@@ -49,7 +43,7 @@ namespace admin.Controllers
             try
             {
                 //发送密码到手机
-                NotifyManager.PushNotify("CoreHome", "VerifyCode："+password);
+                NotifyService.PushNotify("CoreHome", "VerifyCode：" + password);
                 return Content("验证码已经发送");
             }
             catch (Exception)
@@ -68,7 +62,7 @@ namespace admin.Controllers
             }
             catch (Exception) { }
 
-            if (pwd == password && pwd!=null && password != null)
+            if (pwd == password && pwd != null && password != null)
             {
                 //生成访问令牌
                 string accessToken = Guid.NewGuid().ToString();

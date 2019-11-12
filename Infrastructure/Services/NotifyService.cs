@@ -1,8 +1,8 @@
 ﻿using System.Net.Http;
 
-namespace Infrastructure.Service
+namespace Infrastructure.Services
 {
-    public static class NotifyManager
+    public static class NotifyService
     {
         private static readonly string sckey = "SCU53487T3f2525ad756287352c78dbff72f9f6525d0463b66ac44";
 

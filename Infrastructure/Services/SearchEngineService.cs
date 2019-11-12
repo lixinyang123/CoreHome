@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 
-namespace Infrastructure.Service
+namespace Infrastructure.Services
 {
     public static class SearchEngineService
     {
