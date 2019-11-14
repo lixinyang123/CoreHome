@@ -1,5 +1,7 @@
-﻿using Infrastructure.common;
+﻿using System.IO;
+using Infrastructure.common;
 using Infrastructure.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace admin.Controllers
@@ -11,5 +13,30 @@ namespace admin.Controllers
             Theme theme = ThemeManager.GetTheme();
             return View(theme);
         }
+
+        [HttpPost]
+        public IActionResult ChangeTheme(int themeType,int backgroundType)
+        {
+            Theme theme = new Theme()
+            {
+                themeType = (ThemeType)themeType,
+                backgroundType = (BackgroundType)backgroundType
+            };
+
+            if (theme.backgroundType == BackgroundType.Image)
+            {
+                IFormFile file = Request.Form.Files["background"];
+                using Stream stream = file.OpenReadStream();
+                byte[] buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, buffer.Length);
+
+                System.IO.File.WriteAllBytes(ThemeManager.backgroundUrl, buffer);
+            }
+
+            ThemeManager.ChangeTheme(theme);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
