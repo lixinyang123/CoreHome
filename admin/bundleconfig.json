@@ -52,5 +52,17 @@
     "inputFiles": [
       "wwwroot/js/overview/ws.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/theme/index.min.css",
+    "inputFiles": [
+      "wwwroot/css/theme/index.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/theme/index.min.js",
+    "inputFiles": [
+      "wwwroot/js/theme/index.js"
+    ]
   }
 ]

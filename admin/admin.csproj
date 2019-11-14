@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\theme\index.min.css" />
     <_ContentIncludedByDefault Remove="wwwroot\js\overview\down.min.js" />
   </ItemGroup>
 
