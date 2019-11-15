@@ -35,7 +35,7 @@ namespace admin.Controllers
 
             ThemeManager.ChangeTheme(theme);
 
-            return RedirectToAction("Index");
+            return Redirect("/Home/Message?msg=更换主题成功&url=/Admin/Theme");
         }
 
     }
