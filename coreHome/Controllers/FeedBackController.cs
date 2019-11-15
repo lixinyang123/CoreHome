@@ -17,7 +17,7 @@ namespace coreHome.Controllers
 
                 NotifyService.PushNotify(title + $"[{contact}]", detail);
 
-                ViewBag.Title = "感谢您的反馈";
+                return Redirect("/Home/Message?msg=感谢您的反馈，开发者会尽快答复&url=/Feedback");
             }
             return View();
         }
