@@ -67,6 +67,13 @@ namespace coreHome.Controllers
             return View();
         }
 
+        public IActionResult Message(string msg,string url)
+        {
+            ViewBag.Msg = msg;
+            ViewBag.Url = url;
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

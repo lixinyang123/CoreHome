@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Web;
 
 namespace coreHome.Controllers
 {
@@ -68,7 +69,7 @@ namespace coreHome.Controllers
             ISession session = HttpContext.Session;
             var str = session.GetString("Verification");
             if (str == null)
-                return Content("请先同意隐私策略");
+                return Redirect("/Home/Message?msg=请先同意隐私策略&url=/Blog/Detail?articleID=" + id);
 
             if (code!=null && code != string.Empty && str == code.ToLower())
             {
@@ -83,12 +84,11 @@ namespace coreHome.Controllers
                     };
 
                     commentRepository.Add(comment);
-                    return Content("评论成功");
+                    return Redirect("/Home/Message?msg=评论成功&url=/Blog/Detail?articleID=" + id);
                 }
-                return Content("评论不能为空");
+                return Redirect("/Home/Message?msg=评论不能为空&url=/Blog/Detail?articleID=" + id);
             }
-            return Content("验证码错误");
-
+            return Redirect("/Home/Message?msg=验证码错误&url=/Blog/Detail?articleID=" + id);
         }
 
         public IActionResult VerificationCode()
