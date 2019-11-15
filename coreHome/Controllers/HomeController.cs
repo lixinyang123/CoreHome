@@ -1,20 +1,22 @@
-﻿using System;
-using System.IO;
-using System.Diagnostics;
-using DataContext.Models;
+﻿using DataContext.Models;
+using Infrastructure.common;
+using Infrastructure.Models;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Infrastructure.common;
-using Infrastructure.Models;
+using System;
+using System.Diagnostics;
 
 namespace coreHome.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly VerificationCodeHelper verificationHelper;
+
         public HomeController(IWebHostEnvironment env)
         {
+            verificationHelper = new VerificationCodeHelper();
             SearchEngineService.PushToBaidu(env.WebRootPath);
         }
 
@@ -48,7 +50,7 @@ namespace coreHome.Controllers
 
         public IActionResult Background()
         {
-            if(System.IO.File.Exists(ThemeManager.backgroundUrl))
+            if (System.IO.File.Exists(ThemeManager.backgroundUrl))
             {
                 byte[] buffer = System.IO.File.ReadAllBytes(ThemeManager.backgroundUrl);
                 return File(buffer, "image/png");
@@ -67,11 +69,18 @@ namespace coreHome.Controllers
             return View();
         }
 
-        public IActionResult Message(string msg,string url)
+        public IActionResult Message(string msg, string url)
         {
             ViewBag.Msg = msg;
             ViewBag.Url = url;
             return View();
+        }
+
+        public IActionResult VerificationCode()
+        {
+            ISession session = HttpContext.Session;
+            session.SetString("Verification", verificationHelper.VerificationCode);
+            return File(verificationHelper.VerificationImage, "image/png");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Web;
 
 namespace coreHome.Controllers
 {
@@ -15,7 +14,6 @@ namespace coreHome.Controllers
     {
         private readonly IDbOperator<Article> articleRepository;
         private readonly IDbOperator<Comment> commentRepository;
-        private VerificationCodeHelper verificationHelper;
         private readonly int pageSize = 5;
 
         public BlogController(IWebHostEnvironment env,
@@ -24,7 +22,6 @@ namespace coreHome.Controllers
         {
             articleRepository = articleOperator;
             commentRepository = commentOperator;
-            verificationHelper = new VerificationCodeHelper();
             SearchEngineService.PushToBaidu(env.WebRootPath);
         }
 
@@ -67,11 +64,13 @@ namespace coreHome.Controllers
         public IActionResult Comment([FromForm]string id, [FromForm]string detail, [FromForm]string code)
         {
             ISession session = HttpContext.Session;
-            var str = session.GetString("Verification");
+            string str = session.GetString("Verification");
             if (str == null)
+            {
                 return Redirect("/Home/Message?msg=请先同意隐私策略&url=/Blog/Detail?articleID=" + id);
+            }
 
-            if (code!=null && code != string.Empty && str == code.ToLower())
+            if (code != null && code != string.Empty && str == code.ToLower())
             {
                 if (detail != null && detail != string.Empty)
                 {
@@ -89,13 +88,6 @@ namespace coreHome.Controllers
                 return Redirect("/Home/Message?msg=评论不能为空&url=/Blog/Detail?articleID=" + id);
             }
             return Redirect("/Home/Message?msg=验证码错误&url=/Blog/Detail?articleID=" + id);
-        }
-
-        public IActionResult VerificationCode()
-        {
-            ISession session = HttpContext.Session;
-            session.SetString("Verification", verificationHelper.VerificationCode);
-            return File(verificationHelper.VerificationImage , "image/png");
         }
 
     }
