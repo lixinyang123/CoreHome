@@ -18,3 +18,9 @@ function changeBackground(type) {
 function selectImage() {
     document.getElementById("backgroundImage").click();
 }
+
+function apply_onclick() {
+     if (confirm("更改主题?")) {
+         document.getElementById("submit").click();
+    }
+}
