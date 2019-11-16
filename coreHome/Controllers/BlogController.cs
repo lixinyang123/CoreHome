@@ -28,7 +28,7 @@ namespace coreHome.Controllers
         public IActionResult Index(int index)
         {
             index = PageManager.GetStartIndex(index, articleRepository.Count(), pageSize);
-            List<Article> articles = articleRepository.Find(index, pageSize);
+            List<Article> articles = articleRepository.Find(i => i.Title != null, index, pageSize);
 
             //获取页面总数
             ViewBag.LastPage = PageManager.GetLastPage(articleRepository.Count(), pageSize);

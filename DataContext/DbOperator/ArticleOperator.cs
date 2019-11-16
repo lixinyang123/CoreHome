@@ -10,10 +10,12 @@ namespace DataContext.DbOperator
     public class ArticleOperator : IDbOperator<Article>
     {
         private readonly DbConfigurator configurator;
-        
+        private readonly CommentOperator commentOperator;
+
         public ArticleOperator()
         {
             configurator = new DbConfigurator();
+            commentOperator = new CommentOperator();
         }
 
         /// <summary>
@@ -38,12 +40,13 @@ namespace DataContext.DbOperator
             context.SaveChanges();
 
             //删除此文章的所有评论
-            var commentOperator = new CommentOperator();
-            var comments = commentOperator.FindAll(i => i.ArticleID == id).ToList();
+            List<Comment> comments = commentOperator.Find(i => i.ArticleID == id, 0, commentOperator.Count()).ToList();
             comments.ForEach(comment =>
             {
                 if (comment.ArticleID == id)
+                {
                     commentOperator.Delete(comment.CommentID);
+                }
             });
         }
 
@@ -69,7 +72,7 @@ namespace DataContext.DbOperator
         {
             using ArticleDbContext context = configurator.CreateArticleDbContext();
             Article article = context.Article.Single(i => i.ArticleID == id);
-            article.Comments = new CommentOperator().FindAll(i => i.ArticleID == id);
+            article.Comments = commentOperator.Find(i => i.ArticleID == id, 0, commentOperator.Count());
             return article;
         }
 
@@ -79,22 +82,12 @@ namespace DataContext.DbOperator
         /// <param name="index">查找起点</param>
         /// <param name="pageSize">页面展示内容数量</param>
         /// <returns>文章对象列表</returns>
-        public List<Article> Find(int index, int pageSize)
+        public List<Article> Find(Func<Article, bool> func, int index, int pageSize)
         {
             int limit = index * pageSize;
             using ArticleDbContext context = configurator.CreateArticleDbContext();
             int count = Count() - limit;
-            return context.Article.OrderByDescending(i => i.ID).Skip(limit).Take(count > 5 ? pageSize : count).ToList();
-        }
-
-        /// <summary>
-        /// 按条件查找所有博客
-        /// </summary>
-        /// <param name="func">查找条件</param>
-        /// <returns></returns>
-        public List<Article> FindAll(Func<Article, bool> func)
-        {
-            throw new NotImplementedException();
+            return context.Article.OrderByDescending(i => i.ID).Where(func).Skip(limit).Take(count > 5 ? pageSize : count).ToList();
         }
 
         /// <summary>

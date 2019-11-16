@@ -1,9 +1,9 @@
-﻿using DataContext.Models;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using DataContext.DbConfig;
+﻿using DataContext.DbConfig;
 using DataContext.ModelDbContext;
+using DataContext.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DataContext.DbOperator
 {
@@ -20,9 +20,14 @@ namespace DataContext.DbOperator
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// 统计评论总数
+        /// </summary>
+        /// <returns></returns>
         public int Count()
         {
-            throw new NotImplementedException();
+            using ArticleDbContext context = new DbConfigurator().CreateArticleDbContext();
+            return context.Comment.Count();
         }
 
         /// <summary>
@@ -48,23 +53,20 @@ namespace DataContext.DbOperator
             return comment;
         }
 
-        public List<Comment> Find(int start, int count)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
-        /// 按条件查找所有匹配结果
+        /// 范围查找评论
         /// </summary>
         /// <param name="func">查询条件</param>
-        /// <returns>结果列表</returns>
-        public List<Comment> FindAll(Func<Comment, bool> func)
+        /// <param name="start">起始索引</param>
+        /// <param name="count">查询数量</param>
+        /// <returns></returns>
+        public List<Comment> Find(Func<Comment, bool> func, int start, int count)
         {
             using ArticleDbContext context = new DbConfigurator().CreateArticleDbContext();
-            List<Comment> comments = context.Comment.Where(func).OrderByDescending(i=>i.ID).ToList();
+            List<Comment> comments = context.Comment.Where(func).OrderByDescending(i => i.ID).ToList();
             return comments;
         }
-        
+
         public void Modify(Comment newModel)
         {
             throw new NotImplementedException();

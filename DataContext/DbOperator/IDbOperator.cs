@@ -24,26 +24,20 @@ namespace DataContext.DbOperator
         public void Modify(DbModel newModel);
 
         /// <summary>
-        /// 查
+        /// 单个查找
         /// </summary>
         /// <param name="id">查找的ID</param>
         /// <returns>查到的对象</returns>
         public DbModel Find(string id);
 
-        /// <summary>
-        /// 范围查找
-        /// </summary>
-        /// <param name="start">查找的起始索引</param>
-        /// <param name="count">查找的数量</param>
-        /// <returns></returns>
-        public List<DbModel> Find(int start, int count);
-
-        /// <summary>
-        /// 按条件查找所有匹配结果
-        /// </summary>
-        /// <param name="func">指定条件</param>
-        /// <returns></returns>
-        public List<DbModel> FindAll(Func<DbModel, bool> func);
+       /// <summary>
+       /// 范围查找
+       /// </summary>
+       /// <param name="func">查询条件</param>
+       /// <param name="start">起始索引</param>
+       /// <param name="count">查询数量</param>
+       /// <returns></returns>
+        public List<DbModel> Find(Func<DbModel, bool> func, int start, int count);
 
         /// <summary>
         /// 统计
