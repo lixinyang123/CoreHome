@@ -38,7 +38,7 @@
 
                     var time = document.getElementById("btn_accept").getAttribute("time");
                     setCookie("lastTime", time);
-                    alert("请刷新页面使隐私策略生效");
+                    window.location.reload();
                 }, false);
             })();
 
