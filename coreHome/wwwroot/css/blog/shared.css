@@ -169,8 +169,6 @@ img{
     }
 
     .image.featured {
-        display: block;
-        margin: 0 0 2em 0;
         width: 100%;
     }
 
@@ -189,7 +187,6 @@ img{
 
 ul {
     list-style: disc;
-    margin: 0 0 2em 0;
     padding-left: 1em;
 }
 
@@ -244,7 +241,6 @@ ul {
 /* Post */
 
 .post {
-    padding: 3em 3em 1em 3em;
     background: #ffffff;
     border: solid 1px rgba(160, 160, 160, 0.3);
     margin: 0 0 3em 0;
@@ -252,11 +248,11 @@ ul {
 }
 
     .post > header {
+        padding-left:40px;
+        padding-right:40px;
         display: -webkit-flex;
         display: flex;
-        border-bottom: solid 1px rgba(160, 160, 160, 0.3);
         left: -3em;
-        margin: -3em 0 3em 0;
         position: relative;
         width: calc(100% + 6em);
     }
@@ -264,7 +260,7 @@ ul {
         .post > header .title {
             -webkit-flex-grow: 1;
             flex-grow: 1;
-            padding: 3.75em 3em 3.3em 3em;
+            padding: 2.0em 3em 2.0em 3em;
         }
 
             .post > header .title h2 {
@@ -277,8 +273,7 @@ ul {
             }
 
         .post > header .meta {
-            padding: 3.75em 3em 1.75em 3em;
-            border-left: solid 1px rgba(160, 160, 160, 0.3);
+            padding: 2.0em 3em 2.0em 3em;
             min-width: 17em;
             text-align: right;
             width: 17em;
@@ -322,6 +317,8 @@ ul {
         }
 
     .post > footer {
+        padding-left:40px;
+        padding-right:40px;
         display: -webkit-flex;
         display: flex;
         -webkit-align-items: center;
@@ -472,7 +469,8 @@ ul {
     margin: 0 auto;
     max-width: 100%;
     opacity: 1;
-    padding: 4.5em;
+    padding-top: 4.5em;
+    padding-bottom: 4.5em;
     width: 90em;
 }
 
