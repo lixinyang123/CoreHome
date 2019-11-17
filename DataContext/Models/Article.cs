@@ -35,6 +35,11 @@ namespace DataContext.Models
         public string Time { get; set; }
 
         /// <summary>
+        /// 博客标签
+        /// </summary>
+        public string Tag { get; set; }
+
+        /// <summary>
         /// 概述
         /// </summary>
         public string Overview { get; set; }

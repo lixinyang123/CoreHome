@@ -40,6 +40,7 @@ namespace admin.Controllers
                     ArticleID = Guid.NewGuid().ToString(),
                     Title = Request.Form["title"],
                     Time = DateTime.Now.ToString("yyyy/MM/dd"),
+                    Tag = Request.Form["tag"],
                     Cover = Request.Form["cover"],
                     Overview = Request.Form["overview"],
                     Content = Request.Form["content"]
