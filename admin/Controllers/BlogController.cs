@@ -13,15 +13,18 @@ namespace admin.Controllers
     {
         private readonly IDbOperator<Article> articleRepository;
         private readonly IDbOperator<Comment> commentRepository;
+        private readonly IDbOperator<Tag> tagRepository;
         private readonly int pageSize = 20;
 
         public BlogController(IMemoryCache _cache,
             IDbOperator<Article> articleOperator,
             IDbOperator<Comment> commentOperator,
+            IDbOperator<Tag> tagOperator,
             IWebHostEnvironment env) : base(_cache, env)
         {
             articleRepository = articleOperator;
             commentRepository = commentOperator;
+            tagRepository = tagOperator;
         }
 
         public IActionResult Index(int index)
@@ -35,6 +38,7 @@ namespace admin.Controllers
         {
             if (Request.Method == "POST")
             {
+                //添加博客记录
                 Article article = new Article()
                 {
                     ArticleID = Guid.NewGuid().ToString(),
@@ -44,8 +48,13 @@ namespace admin.Controllers
                     Overview = Request.Form["overview"],
                     Content = Request.Form["content"]
                 };
-
                 articleRepository.Add(article);
+
+                //添加博客标签记录
+                new List<string>(Request.Form["tag"].ToString().Split("#")).ForEach(i =>
+                {
+                    tagRepository.Add(new Tag() { ArticleID = article.ArticleID, TagName = i });
+                });
 
                 return RedirectToAction("index");
             }
@@ -61,6 +70,9 @@ namespace admin.Controllers
             articleRepository.Delete(articleID);
             //删除此博客的所有评论
             commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count()).ForEach(j => commentRepository.Delete(j.CommentID));
+            //删除此博客所有标签
+            tagRepository.Delete(articleID);
+
             return RedirectToAction("index");
         }
 

@@ -24,6 +24,7 @@ namespace DataContext.DbOperator
         {
             using ArticleDbContext dbContext = configurator.CreateArticleDbContext();
             dbContext.Tag.Add(t);
+            dbContext.SaveChanges();
         }
 
         public int Count()
@@ -44,6 +45,7 @@ namespace DataContext.DbOperator
             {
                 dbContext.Remove(tags[i]);
             }
+            dbContext.SaveChanges();
         }
 
         public Tag Find(string id)
