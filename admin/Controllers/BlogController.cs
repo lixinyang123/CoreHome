@@ -18,7 +18,7 @@ namespace admin.Controllers
         public BlogController(IMemoryCache _cache,
             IDbOperator<Article> articleOperator,
             IDbOperator<Comment> commentOperator,
-            IWebHostEnvironment env) : base(_cache,env)
+            IWebHostEnvironment env) : base(_cache, env)
         {
             articleRepository = articleOperator;
             commentRepository = commentOperator;
@@ -26,7 +26,7 @@ namespace admin.Controllers
 
         public IActionResult Index(int index)
         {
-            index = PageManager.GetStartIndex(index, articleRepository.Count(), pageSize);
+            index = PageManager.GetStartIndex(index, articleRepository.Count(i => i.ArticleID != null), pageSize);
             List<Article> articles = articleRepository.Find(i => i.Title != null, index, pageSize);
             return View(articles);
         }
@@ -40,7 +40,6 @@ namespace admin.Controllers
                     ArticleID = Guid.NewGuid().ToString(),
                     Title = Request.Form["title"],
                     Time = DateTime.Now.ToString("yyyy/MM/dd"),
-                    Tag = Request.Form["tag"],
                     Cover = Request.Form["cover"],
                     Overview = Request.Form["overview"],
                     Content = Request.Form["content"]
@@ -64,7 +63,7 @@ namespace admin.Controllers
 
         public IActionResult ModifyArticle([FromForm]Article newArticle)
         {
-            if(Request.Method=="POST")
+            if (Request.Method == "POST")
             {
                 articleRepository.Modify(newArticle);
                 return RedirectToAction("index");
@@ -80,11 +79,11 @@ namespace admin.Controllers
         public IActionResult Comment(string articleID)
         {
             ViewBag.ArticleID = articleID;
-            List<Comment> comments = commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count());
+            List<Comment> comments = commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count(i => i.CommentID != null));
             return View(comments);
         }
 
-        public IActionResult DeleteComment(string articleID,string commentID)
+        public IActionResult DeleteComment(string articleID, string commentID)
         {
             commentRepository.Delete(commentID);
             return Redirect("/Admin/Blog/Comment?articleID=" + articleID);

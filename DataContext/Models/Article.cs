@@ -11,6 +11,7 @@ namespace DataContext.Models
         public Article()
         {
             Comments = new List<Comment>();
+            Tags = new List<Tag>();
         }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace DataContext.Models
         /// <summary>
         /// 博客标签
         /// </summary>
-        public string Tag { get; set; }
+        public List<Tag> Tags{ get; set; }
 
         /// <summary>
         /// 概述

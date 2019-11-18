@@ -27,11 +27,11 @@ namespace coreHome.Controllers
 
         public IActionResult Index(int index)
         {
-            index = PageManager.GetStartIndex(index, articleRepository.Count(), pageSize);
+            index = PageManager.GetStartIndex(index, articleRepository.Count(i => i.ArticleID != null), pageSize);
             List<Article> articles = articleRepository.Find(i => i.Title != null, index, pageSize);
 
             //获取页面总数
-            ViewBag.LastPage = PageManager.GetLastPage(articleRepository.Count(), pageSize);
+            ViewBag.LastPage = PageManager.GetLastPage(articleRepository.Count(i => i.ArticleID != null), pageSize);
 
             if (articles.Count == 0)
             {

@@ -43,6 +43,6 @@ namespace DataContext.DbOperator
         /// 统计
         /// </summary>
         /// <returns>总数</returns>
-        public int Count();
+        public int Count(Func<DbModel, bool> func);
     }
 }
