@@ -40,7 +40,7 @@ namespace DataContext.DbOperator
             context.SaveChanges();
 
             //删除此文章的所有评论
-            List<Comment> comments = commentOperator.Find(i => i.ArticleID == id, 0, commentOperator.Count(i => i.ArticleID != null)).ToList();
+            List<Comment> comments = commentOperator.Find(i => i.ArticleID == id, 0, commentOperator.Count()).ToList();
             comments.ForEach(comment =>
             {
                 if (comment.ArticleID == id)
@@ -72,7 +72,7 @@ namespace DataContext.DbOperator
         {
             using ArticleDbContext context = configurator.CreateArticleDbContext();
             Article article = context.Article.Single(i => i.ArticleID == id);
-            article.Comments = commentOperator.Find(i => i.ArticleID == id, 0, commentOperator.Count(i => i.ArticleID != null));
+            article.Comments = commentOperator.Find(i => i.ArticleID == id, 0, commentOperator.Count());
             return article;
         }
 
@@ -86,7 +86,7 @@ namespace DataContext.DbOperator
         {
             int limit = index * pageSize;
             using ArticleDbContext context = configurator.CreateArticleDbContext();
-            int count = Count(i => i.Title != null) - limit;
+            int count = Count() - limit;
             return context.Article.OrderByDescending(i => i.ID).Where(func).Skip(limit).Take(count > 5 ? pageSize : count).ToList();
         }
 
@@ -94,10 +94,10 @@ namespace DataContext.DbOperator
         /// 文章数量统计
         /// </summary>
         /// <returns>文章数量</returns>
-        public int Count(Func<Article, bool> func)
+        public int Count()
         {
             using ArticleDbContext context = configurator.CreateArticleDbContext();
-            return context.Article.Where(func).Count();
+            return context.Article.Count();
         }
 
     }

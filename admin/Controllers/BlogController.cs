@@ -26,7 +26,7 @@ namespace admin.Controllers
 
         public IActionResult Index(int index)
         {
-            index = PageManager.GetStartIndex(index, articleRepository.Count(i => i.ArticleID != null), pageSize);
+            index = PageManager.GetStartIndex(index, articleRepository.Count(), pageSize);
             List<Article> articles = articleRepository.Find(i => i.Title != null, index, pageSize);
             return View(articles);
         }
@@ -79,7 +79,7 @@ namespace admin.Controllers
         public IActionResult Comment(string articleID)
         {
             ViewBag.ArticleID = articleID;
-            List<Comment> comments = commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count(i => i.CommentID != null));
+            List<Comment> comments = commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count());
             return View(comments);
         }
 

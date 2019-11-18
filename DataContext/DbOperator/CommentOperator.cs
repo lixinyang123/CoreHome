@@ -24,10 +24,10 @@ namespace DataContext.DbOperator
         /// 统计评论总数
         /// </summary>
         /// <returns></returns>
-        public int Count(Func<Comment, bool> func)
+        public int Count()
         {
             using ArticleDbContext context = new DbConfigurator().CreateArticleDbContext();
-            return context.Comment.Where(func).Count();
+            return context.Comment.Count();
         }
 
         /// <summary>

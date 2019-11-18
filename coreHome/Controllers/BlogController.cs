@@ -27,11 +27,11 @@ namespace coreHome.Controllers
 
         public IActionResult Index(int index)
         {
-            index = PageManager.GetStartIndex(index, articleRepository.Count(i => i.ArticleID != null), pageSize);
+            index = PageManager.GetStartIndex(index, articleRepository.Count(), pageSize);
             List<Article> articles = articleRepository.Find(i => i.Title != null, index, pageSize);
 
             //获取页面总数
-            ViewBag.LastPage = PageManager.GetLastPage(articleRepository.Count(i => i.ArticleID != null), pageSize);
+            ViewBag.LastPage = PageManager.GetLastPage(articleRepository.Count(), pageSize);
 
             if (articles.Count == 0)
             {
@@ -70,9 +70,9 @@ namespace coreHome.Controllers
                 return Redirect("/Home/Message?msg=请先同意隐私策略&url=/Blog/Detail?articleID=" + id);
             }
 
-            if (code != null && code != string.Empty && str == code.ToLower())
+            if (!string.IsNullOrEmpty(code) && str == code.ToLower())
             {
-                if (detail != null && detail != string.Empty)
+                if (!string.IsNullOrEmpty(detail))
                 {
                     Comment comment = new Comment()
                     {

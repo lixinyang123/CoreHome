@@ -22,10 +22,9 @@ namespace DataContext.DbOperator
             dbContext.Tag.Add(t);
         }
 
-        public int Count(Func<Tag, bool> func)
+        public int Count()
         {
-            using ArticleDbContext dbContext = dbConfigurator.CreateArticleDbContext();
-            return dbContext.Tag.Where(func).Count();
+            throw new NotImplementedException();
         }
 
         public void Delete(string id)
