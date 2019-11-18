@@ -10,12 +10,10 @@ namespace DataContext.DbOperator
     public class ArticleOperator : IDbOperator<Article>
     {
         private readonly DbConfigurator configurator;
-        private readonly CommentOperator commentOperator;
 
         public ArticleOperator()
         {
             configurator = new DbConfigurator();
-            commentOperator = new CommentOperator();
         }
 
         /// <summary>
@@ -38,16 +36,6 @@ namespace DataContext.DbOperator
             using ArticleDbContext context = configurator.CreateArticleDbContext();
             context.Article.Remove(Find(id));
             context.SaveChanges();
-
-            //删除此文章的所有评论
-            List<Comment> comments = commentOperator.Find(i => i.ArticleID == id, 0, commentOperator.Count()).ToList();
-            comments.ForEach(comment =>
-            {
-                if (comment.ArticleID == id)
-                {
-                    commentOperator.Delete(comment.CommentID);
-                }
-            });
         }
 
         /// <summary>
@@ -72,7 +60,6 @@ namespace DataContext.DbOperator
         {
             using ArticleDbContext context = configurator.CreateArticleDbContext();
             Article article = context.Article.Single(i => i.ArticleID == id);
-            article.Comments = commentOperator.Find(i => i.ArticleID == id, 0, commentOperator.Count());
             return article;
         }
 

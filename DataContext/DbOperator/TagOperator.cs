@@ -2,34 +2,48 @@
 using DataContext.ModelDbContext;
 using DataContext.Models;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DataContext.DbOperator
 {
     public class TagOperator : IDbOperator<Tag>
     {
-        private readonly DbConfigurator dbConfigurator;
+        private readonly DbConfigurator configurator;
 
         public TagOperator()
         {
-            dbConfigurator = new DbConfigurator();
+            configurator = new DbConfigurator();
         }
 
+        /// <summary>
+        /// 新增标签记录
+        /// </summary>
+        /// <param name="t">标签记录</param>
         public void Add(Tag t)
         {
-            using ArticleDbContext dbContext = dbConfigurator.CreateArticleDbContext();
+            using ArticleDbContext dbContext = configurator.CreateArticleDbContext();
             dbContext.Tag.Add(t);
         }
 
         public int Count()
         {
-            throw new NotImplementedException();
+            using ArticleDbContext dbContext = configurator.CreateArticleDbContext();
+            return dbContext.Tag.Count();
         }
 
-        public void Delete(string id)
+        /// <summary>
+        /// 删除标签记录
+        /// </summary>
+        /// <param name="articleID"></param>
+        public void Delete(string articleID)
         {
-            throw new NotImplementedException();
+            using ArticleDbContext dbContext = configurator.CreateArticleDbContext();
+            List<Tag> tags = dbContext.Tag.Where(i => i.ArticleID == articleID).ToList();
+            for (int i = 0; i < tags.Count; i++)
+            {
+                dbContext.Remove(tags[i]);
+            }
         }
 
         public Tag Find(string id)
@@ -37,9 +51,17 @@ namespace DataContext.DbOperator
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 查询博客标签
+        /// </summary>
+        /// <param name="func">查询条件</param>
+        /// <param name="start">起始索引</param>
+        /// <param name="count">查询范围</param>
+        /// <returns>标签列表</returns>
         public List<Tag> Find(Func<Tag, bool> func, int start, int count)
         {
-            throw new NotImplementedException();
+            using ArticleDbContext dbContext = configurator.CreateArticleDbContext();
+            return dbContext.Tag.Where(func).ToList();
         }
 
         public void Modify(Tag newModel)

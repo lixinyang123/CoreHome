@@ -46,6 +46,7 @@ namespace coreHome.Controllers
         public IActionResult Detail(string articleID)
         {
             Article article = articleRepository.Find(articleID);
+            article.Comments = commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count());
             if (article != null)
             {
                 CookieOptions options = new CookieOptions

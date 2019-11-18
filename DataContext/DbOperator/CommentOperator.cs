@@ -9,13 +9,20 @@ namespace DataContext.DbOperator
 {
     public class CommentOperator : IDbOperator<Comment>
     {
+        private readonly DbConfigurator configurator;
+
+        public CommentOperator()
+        {
+            configurator = new DbConfigurator();
+        }
+
         /// <summary>
         /// 新增评论
         /// </summary>
         /// <param name="t"></param>
         public void Add(Comment t)
         {
-            using ArticleDbContext context = new DbConfigurator().CreateArticleDbContext();
+            using ArticleDbContext context = configurator.CreateArticleDbContext();
             context.Comment.Add(t);
             context.SaveChanges();
         }
@@ -26,30 +33,30 @@ namespace DataContext.DbOperator
         /// <returns></returns>
         public int Count()
         {
-            using ArticleDbContext context = new DbConfigurator().CreateArticleDbContext();
+            using ArticleDbContext context = configurator.CreateArticleDbContext();
             return context.Comment.Count();
         }
 
         /// <summary>
         /// 删除评论
         /// </summary>
-        /// <param name="id">评论ID</param>
-        public void Delete(string id)
+        /// <param name="commentID">评论ID</param>
+        public void Delete(string commentID)
         {
-            using ArticleDbContext context = new DbConfigurator().CreateArticleDbContext();
-            context.Comment.Remove(Find(id));
+            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            context.Comment.Remove(Find(commentID));
             context.SaveChanges();
         }
 
         /// <summary>
         /// 查找评论
         /// </summary>
-        /// <param name="id">评论ID</param>
+        /// <param name="commentID">评论ID</param>
         /// <returns>评论实体</returns>
-        public Comment Find(string id)
+        public Comment Find(string commentID)
         {
-            using ArticleDbContext context = new DbConfigurator().CreateArticleDbContext();
-            Comment comment = context.Comment.Single(i => i.CommentID == id);
+            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            Comment comment = context.Comment.Single(i => i.CommentID == commentID);
             return comment;
         }
 
@@ -62,7 +69,7 @@ namespace DataContext.DbOperator
         /// <returns></returns>
         public List<Comment> Find(Func<Comment, bool> func, int start, int count)
         {
-            using ArticleDbContext context = new DbConfigurator().CreateArticleDbContext();
+            using ArticleDbContext context = configurator.CreateArticleDbContext();
             List<Comment> comments = context.Comment.Where(func).OrderByDescending(i => i.ID).ToList();
             return comments;
         }

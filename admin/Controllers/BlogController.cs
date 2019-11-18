@@ -57,7 +57,10 @@ namespace admin.Controllers
 
         public IActionResult DeleteArticle(string articleID)
         {
+            //删除博客
             articleRepository.Delete(articleID);
+            //删除此博客的所有评论
+            commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count()).ForEach(j => commentRepository.Delete(j.CommentID));
             return RedirectToAction("index");
         }
 
