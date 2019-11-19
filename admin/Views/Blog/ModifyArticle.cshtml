@@ -27,8 +27,7 @@
             <label>Article Tag</label>
             @{ 
                 string tagStr = string.Empty;
-                Model.Tags.ForEach(i => tagStr += i.TagName + "#");
-                tagStr = tagStr.TrimEnd('#');
+                Model.Tags.ForEach(i => tagStr += "#" + i.TagName);
             }
             <input name="tag" type="text" class="form-control data" placeholder="Tag" value="@tagStr">
         </div>

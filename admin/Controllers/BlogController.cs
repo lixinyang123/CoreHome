@@ -51,7 +51,7 @@ namespace admin.Controllers
                 articleRepository.Add(article);
 
                 //添加博客标签记录
-                new List<string>(Request.Form["tag"].ToString().Split("#")).ForEach(i =>
+                new List<string>(Request.Form["tag"].ToString().TrimStart('#').Split("#")).ForEach(i =>
                 {
                     tagRepository.Add(new Tag() { ArticleID = article.ArticleID, TagName = i });
                 });
@@ -84,7 +84,7 @@ namespace admin.Controllers
 
                 //修改博客标签记录（删除旧记录重新添加）
                 tagRepository.Delete(newArticle.ArticleID);
-                new List<string>(Request.Form["tag"].ToString().Split("#")).ForEach(i =>
+                new List<string>(Request.Form["tag"].ToString().TrimStart('#').Split("#")).ForEach(i =>
                 {
                     tagRepository.Add(new Tag() { ArticleID = newArticle.ArticleID, TagName = i });
                 });
