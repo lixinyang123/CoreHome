@@ -20,7 +20,14 @@
 
                         <!--标题-->
                         <h2 id="title">@Model.Title</h2>
-
+                        <!--标签-->
+                        <p>
+                            @foreach (var tag in Model.Tags)
+                            {
+                                var tagStr = "#" + tag.TagName;
+                                <a class="footerlink"><u>@tagStr</u></a>
+                            }
+                        </p>
                         <!--概述-->
                         <h3>
                             <strong>@Model.Overview</strong>
