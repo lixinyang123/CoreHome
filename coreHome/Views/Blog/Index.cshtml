@@ -37,6 +37,14 @@
                             <div class="title">
                                 <!--标题-->
                                 <h2>@article.Title</h2>
+                                <!--标签-->
+                                <p>
+                                    @foreach (var tag in article.Tags)
+                                    {
+                                        var tagStr = "#" + tag.TagName;
+                                        <a class="footerlink">@tagStr</a>
+                                    }
+                                </p>
                                 <!--简述-->
                                 <h3>@article.Overview</h3>
                             </div>
@@ -61,15 +69,6 @@
                                 {
                                     <li class="lastReadTag">上次阅读</li>
                                 }
-                                <li class="pull-right btn btn-danger navbar-btn">
-                                    @{ 
-                                        foreach(var tag in article.Tags)
-                                        {
-                                            var tagStr = "#" + tag.TagName;
-                                            <a>@tagStr</a>
-                                        }
-                                    }
-                                </li>
                             </ul>
                         </footer>
                     </article>
