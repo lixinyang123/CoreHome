@@ -33,6 +33,7 @@ namespace coreHome
             //数据库服务
             services.AddTransient<IDbOperator<Comment>, CommentOperator>();
             services.AddTransient<IDbOperator<Article>, ArticleOperator>();
+            services.AddTransient<IDbOperator<Tag>, TagOperator>();
         }
 
         //配置HTTP请求

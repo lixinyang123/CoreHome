@@ -14,14 +14,17 @@ namespace coreHome.Controllers
     {
         private readonly IDbOperator<Article> articleRepository;
         private readonly IDbOperator<Comment> commentRepository;
+        private readonly IDbOperator<Tag> tagRepository;
         private readonly int pageSize = 5;
 
         public BlogController(IWebHostEnvironment env,
             IDbOperator<Article> articleOperator,
-            IDbOperator<Comment> commentOperator)
+            IDbOperator<Comment> commentOperator,
+            IDbOperator<Tag>tagOperator)
         {
             articleRepository = articleOperator;
             commentRepository = commentOperator;
+            tagRepository = tagOperator;
             SearchEngineService.PushToBaidu(env.WebRootPath);
         }
 
@@ -29,6 +32,7 @@ namespace coreHome.Controllers
         {
             index = PageManager.GetStartIndex(index, articleRepository.Count(), pageSize);
             List<Article> articles = articleRepository.Find(i => i.Title != null, index, pageSize);
+            articles.ForEach(i => i.Tags = tagRepository.Find(j => j.ArticleID == i.ArticleID, 0, tagRepository.Count()));
 
             //获取页面总数
             ViewBag.LastPage = PageManager.GetLastPage(articleRepository.Count(), pageSize);

@@ -61,6 +61,15 @@
                                 {
                                     <li class="lastReadTag">上次阅读</li>
                                 }
+                                <li class="pull-right btn btn-danger navbar-btn">
+                                    @{ 
+                                        foreach(var tag in article.Tags)
+                                        {
+                                            var tagStr = "#" + tag.TagName;
+                                            <a>@tagStr</a>
+                                        }
+                                    }
+                                </li>
                             </ul>
                         </footer>
                     </article>
