@@ -81,12 +81,21 @@ namespace admin.Controllers
             if (Request.Method == "POST")
             {
                 articleRepository.Modify(newArticle);
+
+                //修改博客标签记录（删除旧记录重新添加）
+                tagRepository.Delete(newArticle.ArticleID);
+                new List<string>(Request.Form["tag"].ToString().Split("#")).ForEach(i =>
+                {
+                    tagRepository.Add(new Tag() { ArticleID = newArticle.ArticleID, TagName = i });
+                });
+
                 return RedirectToAction("index");
             }
             else
             {
                 string articleID = Request.Query["articleID"];
                 Article article = articleRepository.Find(articleID);
+                article.Tags = tagRepository.Find(i => i.ArticleID == article.ArticleID, 0, tagRepository.Count());
                 return View(article);
             }
         }
