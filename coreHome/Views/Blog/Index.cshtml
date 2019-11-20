@@ -16,6 +16,10 @@
                 <br />
                 <div class="post taglist" style="text-align:center;">
                     <h4>Top Tag</h4>
+                    @if (ViewBag.Tags.Count == 0)
+                    {
+                        <h3>Nothing</h3>
+                    }
                     @foreach (string tag in ViewBag.Tags)
                     {
                         <a class="footerlink"  href="/Blog/TagList?tagName=@tag"><u>#@tag</u></a>
@@ -23,7 +27,7 @@
                 </div>
             </div>
 
-            <div class="col-md-10">
+            <div class="col-md-10 articlelist">
 
                 @foreach (Article article in Model)
                 {

@@ -10,7 +10,10 @@ namespace Infrastructure.common
         /// <returns>总页数</returns>
         public static int GetLastPage(int count, int pageSize)
         {
-            return (int)Math.Ceiling((decimal)count / pageSize);
+            int page = (int)Math.Ceiling((decimal)count / pageSize);
+            if (page == 0)
+                page = 1;
+            return page;
         }
 
         /// <summary>
