@@ -47,6 +47,27 @@ namespace coreHome.Controllers
             return View(articles);
         }
 
+        public IActionResult TagList(string tagName,int index=1)
+        {
+            List<Tag> tags = tagRepository.Find(i => i.TagName == tagName, index, pageSize);
+            List<Article> articles = new List<Article>();
+            foreach (var tag in tags)
+            {
+                Article article = articleRepository.Find(tag.ArticleID);
+                article.Tags = tagRepository.Find(i => i.ArticleID == article.ArticleID, 0, tagRepository.Count());
+                articles.Add(article);
+            }
+
+            index = PageManager.GetStartIndex(index, articles.Count, pageSize);
+            //获取页面总数
+            ViewBag.LastPage = PageManager.GetLastPage(articles.Count, pageSize);
+            
+            ViewBag.CurrentIndex = index;
+            ViewBag.LastRead = Request.Cookies["lastRead"];
+            ViewBag.Warning = tagName;
+            return View(articles);
+        }
+
         public IActionResult Detail(string articleID)
         {
             Article article = articleRepository.Find(articleID);

@@ -63,7 +63,7 @@ namespace DataContext.DbOperator
         public List<Tag> Find(Func<Tag, bool> func, int start, int count)
         {
             using ArticleDbContext dbContext = configurator.CreateArticleDbContext();
-            return dbContext.Tag.Where(func).ToList();
+            return dbContext.Tag.Where(func).OrderByDescending(i => i.ID).ToList();
         }
 
         public void Modify(Tag newModel)
