@@ -1,12 +1,12 @@
-﻿using DataContext.DbOperator;
+﻿using System;
+using System.Collections.Generic;
+using DataContext.DbOperator;
 using DataContext.Models;
 using Infrastructure.common;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 
 namespace coreHome.Controllers
 {
@@ -30,10 +30,12 @@ namespace coreHome.Controllers
 
         public IActionResult Index(int index)
         {
-            index = PageManager.GetStartIndex(index, articleRepository.Count(), pageSize);
             List<Article> articles = articleRepository.Find(i => i.Title != null, index, pageSize);
             articles.ForEach(i => i.Tags = tagRepository.Find(j => j.ArticleID == i.ArticleID, 0, tagRepository.Count()));
 
+            GetTagList();
+
+            index = PageManager.GetStartIndex(index, articleRepository.Count(), pageSize);
             //获取页面总数
             ViewBag.LastPage = PageManager.GetLastPage(articleRepository.Count(), pageSize);
 
@@ -58,13 +60,16 @@ namespace coreHome.Controllers
                 articles.Add(article);
             }
 
+            GetTagList();
+
             index = PageManager.GetStartIndex(index, articles.Count, pageSize);
             //获取页面总数
             ViewBag.LastPage = PageManager.GetLastPage(articles.Count, pageSize);
-            
+
+            ViewBag.Warning = tagName;
+
             ViewBag.CurrentIndex = index;
             ViewBag.LastRead = Request.Cookies["lastRead"];
-            ViewBag.Warning = tagName;
             return View(articles);
         }
 
@@ -115,6 +120,18 @@ namespace coreHome.Controllers
                 return Redirect("/Home/Message?msg=评论不能为空&url=/Blog/Detail?articleID=" + id);
             }
             return Redirect("/Home/Message?msg=验证码错误&url=/Blog/Detail?articleID=" + id);
+        }
+
+        public void GetTagList()
+        {
+            List<Tag> tags = tagRepository.Find(i => i.ArticleID != null, 0, tagRepository.Count());
+            List<string> tagList = new List<string>();
+            tags.ForEach(i =>
+            {
+                if (!tagList.Contains(i.TagName))
+                    if (!tagList.Contains(i.TagName)) tagList.Add(i.TagName);
+            });
+            ViewBag.Tags = tagList;
         }
 
     }

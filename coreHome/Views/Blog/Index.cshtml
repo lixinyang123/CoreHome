@@ -14,16 +14,12 @@
             <div class="col-md-2">
                 <input type="text" placeholder="Search" class="form-control" />
                 <br />
-                <div class="post" style="text-align:center;">
+                <div class="post taglist" style="text-align:center;">
                     <h4>Top Tag</h4>
-                    <button class="btn">分类1</button>
-                    <button class="btn">分类2</button>
-                    <button class="btn">分类3</button>
-                    <button class="btn">分类4</button>
-                    <button class="btn">分类5</button>
-                    <button class="btn">分类6</button>
-                    <button class="btn">分类7</button>
-                    <br />
+                    @foreach (string tag in ViewBag.Tags)
+                    {
+                        <a class="footerlink"  href="/Blog/TagList?tagName=@tag"><u>#@tag</u></a>
+                    }
                 </div>
             </div>
 
@@ -59,12 +55,12 @@
                             </div>
                         </header>
                         <!--封面-->
-                        <a class="image featured" style="max-height:300px;" href="Blog/Detail?articleid=@article.ArticleID">
+                        <a class="image featured" style="max-height:300px;" href="/Blog/Detail?articleid=@article.ArticleID">
                             <img src="@article.Cover" style="width:100%;" />
                         </a>
                         <footer>
                             <ul class="actions">
-                                <li><a href="Blog/Detail?articleid=@article.ArticleID" class="btn btn-default navbar-btn">查看全文</a></li>
+                                <li><a href="/Blog/Detail?articleid=@article.ArticleID" class="btn btn-default navbar-btn">查看全文</a></li>
                                 @if (ViewBag.LastRead == article.ArticleID)
                                 {
                                     <li class="lastReadTag">上次阅读</li>

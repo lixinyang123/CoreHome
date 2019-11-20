@@ -538,7 +538,6 @@ textarea {
 
 #btn_submit {
     float: left;
-    margin-top: 4px;
     margin: 4px 0 0 10px;
 }
 
@@ -548,4 +547,8 @@ textarea {
 
 #detail{
     padding:40px;
+}
+
+.taglist{
+    padding:10px 10px 20px 10px;
 }
