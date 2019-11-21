@@ -76,8 +76,20 @@
         <div class="text-center">
             <h1>第 @(ViewBag.CurrentIndex + 1) 页 / 共 @ViewBag.LastPage 页</h1>
             <ul class="actions pagination">
-                <li class="btn_changepage"><button onclick="window.location.href='/blog/taglist?tagName=@ViewBag.Warning&index=@(ViewBag.CurrentIndex-1)';" class="btn btn-default navbar-btn">上一页</button></li>
-                <li class="btn_changepage"><button onclick="window.location.href='/blog/taglist?tagName=@ViewBag.Warning&index=@(ViewBag.CurrentIndex+1)';" class="btn btn-default navbar-btn">下一页</button></li>
+                @{
+                    int previousPage = ViewBag.CurrentIndex - 1;
+                    int nextPage = ViewBag.CurrentIndex + 1;
+                    if (nextPage > ViewBag.LastPage - 1)
+                    {
+                        nextPage = ViewBag.LastPage - 1;
+                    }
+                    if (previousPage < 0)
+                    {
+                        previousPage = 0;
+                    }
+                }
+                <li class="btn_changepage"><button onclick="window.location.href='/blog/taglist?tagName=@ViewBag.Warning&index=@previousPage';" class="btn btn-default navbar-btn">上一页</button></li>
+                <li class="btn_changepage"><button onclick="window.location.href='/blog/taglist?tagName=@ViewBag.Warning&index=@nextPage';" class="btn btn-default navbar-btn">下一页</button></li>
             </ul>
         </div>
 
