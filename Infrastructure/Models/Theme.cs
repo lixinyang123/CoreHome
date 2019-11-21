@@ -5,7 +5,7 @@ namespace Infrastructure.Models
 
     public class Theme
     {
-        public ThemeType themeType { get; set; } = ThemeType.Auto;
-        public BackgroundType backgroundType { get; set; } = BackgroundType.Color;
+        public ThemeType themeType = ThemeType.Auto;
+        public BackgroundType backgroundType = BackgroundType.Color;
     }
 }
