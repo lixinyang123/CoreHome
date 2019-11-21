@@ -64,5 +64,11 @@
     "inputFiles": [
       "wwwroot/js/theme/index.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/bgm/index.min.css",
+    "inputFiles": [
+      "wwwroot/css/bgm/index.css"
+    ]
   }
 ]

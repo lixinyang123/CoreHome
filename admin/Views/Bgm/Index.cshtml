@@ -1,0 +1,33 @@
+﻿@model List<string>
+
+<link rel="stylesheet" href="~/css/bgm/index.min.css" />
+
+<div class="container">
+    <h1>Bgm</h1>
+
+    <button id="btn_upload" class="btn btn-primary">Upload</button>
+
+    <form asp-controller="Bgm" asp-action="UploadMusic" enctype="multipart/form-data" method="post">
+        <input type="file" name="music" hidden />
+        <input id="submit" type="submit" hidden />
+    </form>
+
+    <table id="musicList" class="table table-hover">
+        <tr>
+            <td>Name</td>
+            <td>Seeting</td>
+            <td>Delete</td>
+        </tr>
+
+        @foreach (var music in Model)
+        {
+                <tr>
+                    <td>@music</td>
+                    <td>SetBgm</td>
+                    <td>Delete</td>
+                </tr>
+        }
+
+    </table>
+
+</div>
