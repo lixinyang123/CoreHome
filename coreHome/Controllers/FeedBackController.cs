@@ -17,7 +17,7 @@ namespace coreHome.Controllers
                 string code = Request.Form["code"];
                 if (str == null)
                 {
-                    return Redirect("/Home/Message?msg=请先同意隐私策略&url=/Feedback");
+                    return Redirect("/Home/Message?msg=请先同意底部隐私策略&url=/Feedback");
                 }
 
                 if (code != null && code != string.Empty && str == code.ToLower())

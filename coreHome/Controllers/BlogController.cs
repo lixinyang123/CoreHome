@@ -123,7 +123,7 @@ namespace coreHome.Controllers
             string str = session.GetString("Verification");
             if (str == null)
             {
-                return Redirect("/Home/Message?msg=请先同意隐私策略&url=/Blog/Detail?articleID=" + id);
+                return Redirect("/Home/Message?msg=请先同意底部隐私策略&url=/Blog/Detail?articleID=" + id);
             }
 
             if (!string.IsNullOrEmpty(code) && str == code.ToLower())
