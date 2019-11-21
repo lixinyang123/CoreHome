@@ -52,7 +52,7 @@ namespace coreHome.Controllers
 
         public IActionResult Search(string keyword,int index)
         {
-            List<Article> articles = articleRepository.Find(i => i.Title.Contains(keyword), 0, articleRepository.Count());
+            List<Article> articles = articleRepository.Find(i => i.Title.ToLower().Contains(keyword.ToLower()), 0, articleRepository.Count());
 
             index = PageManager.GetStartPageIndex(index, articles.Count, pageSize);
             ViewBag.LastPage = PageManager.GetLastPageIndex(articles.Count, pageSize);
@@ -72,7 +72,7 @@ namespace coreHome.Controllers
 
         public IActionResult TagList(string tagName,int index)
         {
-            List<Tag> tags = tagRepository.Find(i => i.TagName == tagName, index, pageSize);
+            List<Tag> tags = tagRepository.Find(i => i.TagName.ToLower() == tagName.ToLower(), index, pageSize);
 
             //获取页面起始页和结束页
             index = PageManager.GetStartPageIndex(index, tags.Count, pageSize);
