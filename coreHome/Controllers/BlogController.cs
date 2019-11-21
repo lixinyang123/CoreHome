@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using DataContext.DbOperator;
 using DataContext.Models;
@@ -30,14 +31,14 @@ namespace coreHome.Controllers
 
         public IActionResult Index(int index)
         {
+            //获取页面起始页和结束页
+            index = PageManager.GetStartPageIndex(index, articleRepository.Count(), pageSize);
+            ViewBag.LastPage = PageManager.GetLastPageIndex(articleRepository.Count(), pageSize);
+
             List<Article> articles = articleRepository.Find(i => i.Title != null, index, pageSize);
             articles.ForEach(i => i.Tags = tagRepository.Find(j => j.ArticleID == i.ArticleID, 0, tagRepository.Count()));
 
             GetTagList();
-
-            index = PageManager.GetStartIndex(index, articleRepository.Count(), pageSize);
-            //获取页面总数
-            ViewBag.LastPage = PageManager.GetLastPage(articleRepository.Count(), pageSize);
 
             if (articles.Count == 0)
             {
@@ -49,9 +50,16 @@ namespace coreHome.Controllers
             return View(articles);
         }
 
-        public IActionResult TagList(string tagName,int index=1)
+        public IActionResult TagList(string tagName,int index)
         {
             List<Tag> tags = tagRepository.Find(i => i.TagName == tagName, index, pageSize);
+
+            //获取页面起始页和结束页
+            index = PageManager.GetStartPageIndex(index, tags.Count, pageSize);
+            ViewBag.LastPage = PageManager.GetLastPageIndex(tags.Count, pageSize);
+
+            tags = tags.Skip(index * pageSize).Take(pageSize).ToList();
+
             List<Article> articles = new List<Article>();
             foreach (var tag in tags)
             {
@@ -61,10 +69,6 @@ namespace coreHome.Controllers
             }
 
             GetTagList();
-
-            index = PageManager.GetStartIndex(index, articles.Count, pageSize);
-            //获取页面总数
-            ViewBag.LastPage = PageManager.GetLastPage(articles.Count, pageSize);
 
             ViewBag.Warning = tagName;
 

@@ -29,7 +29,7 @@ namespace admin.Controllers
 
         public IActionResult Index(int index)
         {
-            index = PageManager.GetStartIndex(index, articleRepository.Count(), pageSize);
+            index = PageManager.GetStartPageIndex(index, articleRepository.Count(), pageSize);
             List<Article> articles = articleRepository.Find(i => i.Title != null, index, pageSize);
             return View(articles);
         }
