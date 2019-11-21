@@ -52,5 +52,11 @@
     "inputFiles": [
       "wwwroot/lib/darkreader/darkreader.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/blog/shared.min.js",
+    "inputFiles": [
+      "wwwroot/js/blog/shared.js"
+    ]
   }
 ]

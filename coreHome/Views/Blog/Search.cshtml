@@ -8,7 +8,7 @@
         <!-- 文章列表 -->
         <div id="main">
 
-            <h1 style="text-align:center;">类别：@ViewBag.Warning</h1>
+            <h1 style="text-align:center;">搜索结果：@ViewBag.Warning</h1>
             <h1 style="text-align:center;">第 @(ViewBag.CurrentIndex + 1) 页 / 共 @ViewBag.LastPage 页</h1>
 
             <div>
@@ -89,8 +89,8 @@
                             previousPage = 0;
                         }
                     }
-                    <li class="btn_changepage"><button onclick="window.location.href='/blog/taglist?tagName=@ViewBag.Warning&index=@previousPage';" class="btn btn-default navbar-btn">上一页</button></li>
-                    <li class="btn_changepage"><button onclick="window.location.href='/blog/taglist?tagName=@ViewBag.Warning&index=@nextPage';" class="btn btn-default navbar-btn">下一页</button></li>
+                    <li class="btn_changepage"><button onclick="window.location.href='/blog/search?keyword=@ViewBag.Warning&index=@previousPage';" class="btn btn-default navbar-btn">上一页</button></li>
+                    <li class="btn_changepage"><button onclick="window.location.href='/blog/search?keyword=@ViewBag.Warning&index=@nextPage';" class="btn btn-default navbar-btn">下一页</button></li>
                 </ul>
             </div>
 

@@ -3,6 +3,7 @@
 <div id="wrapper">
 
     <link rel="stylesheet" href="~/css/blog/shared.min.css" />
+    <script src="~/js/blog/shared.min.js"></script>
 
     <!-- 文章列表 -->
     <div id="main">
@@ -12,7 +13,7 @@
 
         <div>
             <div class="col-md-2">
-                <input type="text" placeholder="Search" class="form-control" />
+                <input id="keyword" type="text" placeholder="Search" class="form-control" onkeydown="keyDown()"/>
                 <br />
                 <div class="post taglist" style="text-align:center;">
                     <h4>Top Tag</h4>

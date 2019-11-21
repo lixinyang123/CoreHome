@@ -50,6 +50,26 @@ namespace coreHome.Controllers
             return View(articles);
         }
 
+        public IActionResult Search(string keyword,int index)
+        {
+            List<Article> articles = articleRepository.Find(i => i.Title.Contains(keyword), 0, articleRepository.Count());
+
+            index = PageManager.GetStartPageIndex(index, articles.Count, pageSize);
+            ViewBag.LastPage = PageManager.GetLastPageIndex(articles.Count, pageSize);
+
+            articles = articles.Skip(index * pageSize).Take(pageSize).ToList();
+            articles.ForEach(i => i.Tags = tagRepository.Find(j => j.ArticleID == i.ArticleID, 0, tagRepository.Count()));
+
+            GetTagList();
+
+            ViewBag.Warning = keyword;
+
+            ViewBag.CurrentIndex = index;
+            ViewBag.LastRead = Request.Cookies["lastRead"];
+
+            return View(articles);
+        }
+
         public IActionResult TagList(string tagName,int index)
         {
             List<Tag> tags = tagRepository.Find(i => i.TagName == tagName, index, pageSize);
