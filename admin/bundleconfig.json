@@ -70,5 +70,11 @@
     "inputFiles": [
       "wwwroot/css/bgm/index.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/bgm/Index.min.js",
+    "inputFiles": [
+      "wwwroot/js/bgm/Index.js"
+    ]
   }
 ]

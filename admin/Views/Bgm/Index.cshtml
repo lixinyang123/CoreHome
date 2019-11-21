@@ -1,14 +1,15 @@
 ﻿@model List<string>
 
 <link rel="stylesheet" href="~/css/bgm/index.min.css" />
+<script src="~/js/bgm/Index.min.js"></script>
 
 <div class="container">
     <h1>Bgm</h1>
 
-    <button id="btn_upload" class="btn btn-primary">Upload</button>
+    <button id="btn_upload" class="btn btn-primary" onclick="upload()">Upload</button>
 
     <form asp-controller="Bgm" asp-action="UploadMusic" enctype="multipart/form-data" method="post">
-        <input type="file" name="music" hidden />
+        <input id="selector" type="file" name="music" hidden />
         <input id="submit" type="submit" hidden />
     </form>
 
@@ -24,7 +25,7 @@
                 <tr>
                     <td>@music</td>
                     <td>SetBgm</td>
-                    <td>Delete</td>
+                    <td><a href="/Admin/Bgm/DeleteMusic?musicName=@music">Delete</a></td>
                 </tr>
         }
 

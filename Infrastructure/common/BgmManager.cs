@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Collections.Generic;
 
 namespace Infrastructure.common
 {
@@ -19,5 +18,17 @@ namespace Infrastructure.common
             }
             return musics;
         }
+
+        public static void SaveMusic(string fileName, byte[] buffer)
+        {
+            string fullPath = bgmPath + fileName;
+            File.WriteAllBytes(fullPath, buffer);
+        }
+
+        public static void DelMusic(string fileName)
+        {
+            File.Delete(bgmPath + fileName);
+        }
+
     }
 }
