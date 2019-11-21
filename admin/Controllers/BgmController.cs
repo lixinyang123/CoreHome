@@ -1,13 +1,17 @@
 ﻿using Infrastructure.common;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Collections.Generic;
 using System.IO;
 
 namespace admin.Controllers
 {
-    public class BgmController : Controller
+    public class BgmController : AuthorizationController
     {
+        public BgmController(IMemoryCache _cache, IWebHostEnvironment env) : base(_cache, env) { }
+
         public IActionResult Index()
         {
             List<string> musics = BgmManager.GetBgmList();

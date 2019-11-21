@@ -1,13 +1,17 @@
 ﻿using System.IO;
 using Infrastructure.common;
 using Infrastructure.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace admin.Controllers
 {
-    public class ThemeController : Controller
+    public class ThemeController : AuthorizationController
     {
+        public ThemeController(IMemoryCache _cache, IWebHostEnvironment env) : base(_cache, env) { }
+
         public IActionResult Index()
         {
             Theme theme = ThemeManager.GetTheme();
