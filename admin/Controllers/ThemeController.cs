@@ -23,11 +23,11 @@ namespace admin.Controllers
         {
             Theme theme = new Theme()
             {
-                themeType = (ThemeType)themeType,
-                backgroundType = (BackgroundType)backgroundType
+                ThemeType = (ThemeType)themeType,
+                BackgroundType = (BackgroundType)backgroundType
             };
 
-            if (theme.backgroundType == BackgroundType.Image)
+            if (theme.BackgroundType == BackgroundType.Image)
             {
                 IFormFile file = Request.Form.Files["background"];
                 using Stream stream = file.OpenReadStream();

@@ -58,7 +58,7 @@ namespace coreHome.Controllers
             else
             {
                 Theme theme = ThemeManager.GetTheme();
-                theme.backgroundType = BackgroundType.Color;
+                theme.BackgroundType = BackgroundType.Color;
                 ThemeManager.ChangeTheme(theme);
                 return NotFound();
             }
