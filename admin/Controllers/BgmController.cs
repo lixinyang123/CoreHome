@@ -1,4 +1,5 @@
 ﻿using Infrastructure.common;
+using Infrastructure.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,14 @@ namespace admin.Controllers
         public IActionResult Index()
         {
             List<string> musics = BgmManager.GetBgmList();
+            ViewBag.Bgm = BgmManager.Bgm;
             return View(musics);
+        }
+
+        public IActionResult SetBgmType(int bgmType)
+        {
+            BgmManager.Bgm = new Bgm() { BgmType = (BgmType)bgmType };
+            return RedirectToAction("index");
         }
 
         [HttpPost]
@@ -30,6 +38,12 @@ namespace admin.Controllers
         public IActionResult DeleteMusic(string musicName)
         {
             BgmManager.DelMusic(musicName);
+            return RedirectToAction("index");
+        }
+
+        public IActionResult SetDefaultMusic(string musicName)
+        {
+            BgmManager.Bgm = new Bgm() { BgmType = BgmType.Single, DefaultMusic = musicName };
             return RedirectToAction("index");
         }
 

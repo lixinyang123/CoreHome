@@ -13,22 +13,59 @@
         <input id="submit" type="submit" hidden />
     </form>
 
-    <table id="musicList" class="table table-hover">
-        <tr>
-            <td>Name</td>
-            <td>Seeting</td>
-            <td>Delete</td>
-        </tr>
+    <div>
+        <br />
+        <h3>BgmType</h3>
+        <br />
+        <div class="row">
+            @{ 
+                Bgm bgmType = ViewBag.Bgm;
+            }
+            <div class="col-md-4">
+                <a href="/Admin/Bgm/SetBgmType?bgmType=@Convert.ToInt32(BgmType.None)">
+                    <input name="bgmType" type="radio" @if (bgmType.BgmType == BgmType.None) { Write("checked"); }/>
+                    <strong>None</strong>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/Admin/Bgm/SetBgmType?bgmType=@Convert.ToInt32(BgmType.Single)">
+                    <input name="bgmType" type="radio" @if (bgmType.BgmType == BgmType.Single) { Write("checked"); }/>
+                    <strong>Single</strong>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/Admin/Bgm/SetBgmType?bgmType=@Convert.ToInt32(BgmType.Random)">
+                    <input name="bgmType" type="radio" @if (bgmType.BgmType == BgmType.Random) { Write("checked"); }/>
+                    <strong>Random</strong>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div>
+        <br />
+        <h3>BgmList</h3>
+        <table id="musicList" class="table table-hover">
+            <tr>
+                <td><strong>Name</strong></td>
+                <td><strong>Seeting</strong></td>
+                <td><strong>Delete</strong></td>
+            </tr>
 
-        @foreach (var music in Model)
-        {
-                <tr>
+            @{
+                var defaultMusic = BgmManager.Bgm.DefaultMusic;
+            }
+
+            @foreach (var music in Model)
+            {
+                <tr class="@if (music==defaultMusic) { Write("bg-primary"); }">
                     <td>@music</td>
-                    <td>SetBgm</td>
+                    <td><a href="/Admin/Bgm/SetDefaultMusic?musicName=@music">SetBgm</a></td>
                     <td><a href="/Admin/Bgm/DeleteMusic?musicName=@music">Delete</a></td>
                 </tr>
-        }
+            }
 
-    </table>
+        </table>
+    </div>
 
 </div>
