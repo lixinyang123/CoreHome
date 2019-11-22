@@ -7,3 +7,8 @@
     }
     selector.click();
 }
+
+function play(musicName) {
+    var url = "/Admin/Bgm/Play?musicName=" + musicName;
+    document.getElementById("player").src = url;
+}

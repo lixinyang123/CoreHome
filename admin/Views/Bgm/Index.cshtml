@@ -50,6 +50,7 @@
                 <td><strong>Name</strong></td>
                 <td><strong>Seeting</strong></td>
                 <td><strong>Delete</strong></td>
+                <td><strong>Play</strong></td>
             </tr>
 
             @{
@@ -62,10 +63,13 @@
                     <td>@music</td>
                     <td><a href="/Admin/Bgm/SetDefaultMusic?musicName=@music">SetBgm</a></td>
                     <td><a href="/Admin/Bgm/DeleteMusic?musicName=@music">Delete</a></td>
+                    <td><a href="javascript:void()" onclick="play('@music')">Play</a></td>
                 </tr>
             }
 
         </table>
     </div>
+
+    <audio id="player" autoplay></audio>
 
 </div>

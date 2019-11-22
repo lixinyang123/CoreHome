@@ -59,5 +59,12 @@ namespace admin.Controllers
             return RedirectToAction("index");
         }
 
+        public IActionResult Play(string musicName)
+        {
+            var fullPath = BgmManager.bgmPath + musicName;
+            byte[] buffer = System.IO.File.ReadAllBytes(fullPath);
+            return File(buffer, "audio/mpeg");
+        }
+
     }
 }
