@@ -22,7 +22,17 @@ namespace admin.Controllers
 
         public IActionResult SetBgmType(int bgmType)
         {
-            BgmManager.Bgm = new Bgm() { BgmType = (BgmType)bgmType };
+            Bgm bgm = new Bgm();
+            bgm.BgmType = (BgmType)bgmType;
+            if(bgm.BgmType == BgmType.Single)
+            {
+                List<string> musicList = BgmManager.GetBgmList();
+                if (musicList.Count > 0)
+                {
+                    bgm.DefaultMusic = musicList[0];
+                }
+            }
+            BgmManager.Bgm = bgm;
             return RedirectToAction("index");
         }
 
@@ -31,13 +41,15 @@ namespace admin.Controllers
         {
             using Stream stream = music.OpenReadStream();
             byte[] buffer = new byte[stream.Length];
-            BgmManager.SaveMusic(music.FileName, buffer);
+            stream.Read(buffer, 0, buffer.Length);
+            string fullPath = BgmManager.bgmPath + music.FileName;
+            System.IO.File.WriteAllBytes(fullPath, buffer);
             return RedirectToAction("index");
         }
 
         public IActionResult DeleteMusic(string musicName)
         {
-            BgmManager.DelMusic(musicName);
+            System.IO.File.Delete(BgmManager.bgmPath + musicName);
             return RedirectToAction("index");
         }
 

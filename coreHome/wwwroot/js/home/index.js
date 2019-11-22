@@ -44,29 +44,6 @@ function CookieExist(cookieName) {
     return false;
 }
 
-
-//==============AutoChangeAudio===============
-
-function GetRandomNum(Min, Max) {
-    var Range = Max - Min;
-    var Rand = Math.random();
-    return (Min + Math.round(Rand * Range));
-}
-
-var timer;
-
-function SetRandomAudio() {
-    var random = GetRandomNum(1, 2);
-    random = 1;
-    console.log(random);
-    var audioName = "/audio/audio" + random + ".mp3"
-    var player = document.getElementById("player");
-    player.src = audioName;
-    player.addEventListener('ended', SetRandomAudio);
-}
-
-window.onload = SetRandomAudio();
-
 //=============Initializa================
 if (!CookieExist(".AspNet.Consent")) {
     setTimeout(LoadAnimation, 1000);

@@ -8,7 +8,7 @@ namespace Infrastructure.common
     public static class BgmManager
     {
         private static readonly string configPath = @"C:/Server/coreHome/";
-        private static readonly string bgmPath = @"C:/Server/coreHome/Bgm/";
+        public static readonly string bgmPath = @"C:/Server/coreHome/Bgm/";
 
         private static readonly string configFile = configPath + "Bgm.json";
 
@@ -55,17 +55,6 @@ namespace Infrastructure.common
                 musics.Add(fileInfo.Name);
             }
             return musics;
-        }
-
-        public static void SaveMusic(string fileName, byte[] buffer)
-        {
-            string fullPath = bgmPath + fileName;
-            File.WriteAllBytes(fullPath, buffer);
-        }
-
-        public static void DelMusic(string fileName)
-        {
-            File.Delete(bgmPath + fileName);
         }
 
     }

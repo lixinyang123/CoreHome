@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace coreHome.Controllers
@@ -57,9 +58,43 @@ namespace coreHome.Controllers
             }
             else
             {
-                Theme theme = ThemeManager.Theme;
-                theme.BackgroundType = BackgroundType.Color;
-                ThemeManager.Theme = theme;
+                ThemeManager.Theme = new Theme();
+                return NotFound();
+            }
+        }
+
+        public IActionResult Bgm(int bgmType)
+        {
+            BgmType type = (BgmType)bgmType;
+
+            if(type == BgmType.None)
+            {
+                return Accepted();
+            }
+            else if (type == BgmType.Single)
+            {
+                var fullPath = BgmManager.bgmPath + BgmManager.Bgm.DefaultMusic;
+                if (System.IO.File.Exists(fullPath))
+                {
+                    byte[] buffer = System.IO.File.ReadAllBytes(fullPath);
+                    return File(buffer, "audio/mpeg");
+                }
+                else
+                {
+                    BgmManager.Bgm = new Bgm();
+                    return Accepted();
+                }
+            }
+            else if(type==BgmType.Random)
+            {
+                List<string> musicList = BgmManager.GetBgmList();
+                int random = new Random().Next(0, musicList.Count);
+                var fullPath = BgmManager.bgmPath + musicList[random];
+                byte[] buffer = System.IO.File.ReadAllBytes(fullPath);
+                return File(buffer, "audio/mpeg");
+            }
+            else
+            {
                 return NotFound();
             }
         }
