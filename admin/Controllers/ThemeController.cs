@@ -14,7 +14,7 @@ namespace admin.Controllers
 
         public IActionResult Index()
         {
-            Theme theme = ThemeManager.GetTheme();
+            Theme theme = ThemeManager.Theme;
             return View(theme);
         }
 
@@ -37,9 +37,9 @@ namespace admin.Controllers
                 System.IO.File.WriteAllBytes(ThemeManager.backgroundUrl, buffer);
             }
 
-            ThemeManager.ChangeTheme(theme);
+            ThemeManager.Theme = theme;
 
-            return Redirect("/Home/Message?msg=更换主题成功&url=/Admin/Theme");
+            return RedirectToAction("Index");
         }
 
     }

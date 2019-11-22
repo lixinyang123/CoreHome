@@ -11,29 +11,31 @@ namespace Infrastructure.common
 
         public static readonly string backgroundUrl = @"C:/Server/coreHome/Background.jpg";
 
-        public static Theme GetTheme()
+        public static Theme Theme
         {
-            if (!Directory.Exists(configPath))
+            get
             {
-                Directory.CreateDirectory(configPath);
-            }
+                if (!Directory.Exists(configPath))
+                {
+                    Directory.CreateDirectory(configPath);
+                }
 
-            if (File.Exists(configFile))
-            {
-                string jsonStr = File.ReadAllText(configFile);
-                return JsonSerializer.Deserialize<Theme>(jsonStr);
+                if (File.Exists(configFile))
+                {
+                    string jsonStr = File.ReadAllText(configFile);
+                    return JsonSerializer.Deserialize<Theme>(jsonStr);
+                }
+                else
+                {
+                    ResetTheme();
+                    return new Theme();
+                }
             }
-            else
+            set
             {
-                ResetTheme();
-                return new Theme();
+                string content = JsonSerializer.Serialize(value);
+                SaveTheme(content);
             }
-        }
-
-        public static void ChangeTheme(Theme theme)
-        {
-            string content = JsonSerializer.Serialize(theme);
-            SaveTheme(content);
         }
 
         public static void ResetTheme()
