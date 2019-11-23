@@ -59,7 +59,7 @@
 
             @foreach (var music in Model)
             {
-                <tr class="@if (music==defaultMusic) { Write("bg-warning"); }">
+                <tr class="@if (music==defaultMusic) { Write("defaultMusic"); }">
                     <td>@music</td>
                     <td><a href="/Admin/Bgm/SetDefaultMusic?musicName=@music">SetBgm</a></td>
                     <td><a href="/Admin/Bgm/DeleteMusic?musicName=@music">Delete</a></td>
