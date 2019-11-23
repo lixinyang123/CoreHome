@@ -152,3 +152,8 @@ $(window).scroll(function () {
         $('.js-top').removeClass('active');
     }
 });
+
+//GetVerfyCode
+function getVerfyCode(id) {
+    document.getElementById(id).src = "/Home/VerificationCode?" + Math.random();
+}
