@@ -1,13 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using DataContext.DbOperator;
+﻿using DataContext.DbOperator;
 using DataContext.Models;
 using Infrastructure.common;
-using Infrastructure.Services;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace coreHome.Controllers
 {
@@ -18,15 +16,13 @@ namespace coreHome.Controllers
         private readonly IDbOperator<Tag> tagRepository;
         private readonly int pageSize = 5;
 
-        public BlogController(IWebHostEnvironment env,
-            IDbOperator<Article> articleOperator,
+        public BlogController(IDbOperator<Article> articleOperator,
             IDbOperator<Comment> commentOperator,
-            IDbOperator<Tag>tagOperator)
+            IDbOperator<Tag> tagOperator)
         {
             articleRepository = articleOperator;
             commentRepository = commentOperator;
             tagRepository = tagOperator;
-            SearchEngineService.PushToBaidu(env.WebRootPath);
         }
 
         public IActionResult Index(int index)
@@ -50,7 +46,7 @@ namespace coreHome.Controllers
             return View(articles);
         }
 
-        public IActionResult Search(string keyword,int index)
+        public IActionResult Search(string keyword, int index)
         {
             List<Article> articles = articleRepository.Find(i => i.Title.ToLower().Contains(keyword.ToLower()), 0, articleRepository.Count());
 
@@ -70,7 +66,7 @@ namespace coreHome.Controllers
             return View(articles);
         }
 
-        public IActionResult TagList(string tagName,int index)
+        public IActionResult TagList(string tagName, int index)
         {
             List<Tag> tags = tagRepository.Find(i => i.TagName.ToLower() == tagName.ToLower(), index, pageSize);
 
@@ -81,7 +77,7 @@ namespace coreHome.Controllers
             tags = tags.Skip(index * pageSize).Take(pageSize).ToList();
 
             List<Article> articles = new List<Article>();
-            foreach (var tag in tags)
+            foreach (Tag tag in tags)
             {
                 Article article = articleRepository.Find(tag.ArticleID);
                 article.Tags = tagRepository.Find(i => i.ArticleID == article.ArticleID, 0, tagRepository.Count());
@@ -153,7 +149,12 @@ namespace coreHome.Controllers
             tags.ForEach(i =>
             {
                 if (!tagList.Contains(i.TagName))
-                    if (!tagList.Contains(i.TagName)) tagList.Add(i.TagName);
+                {
+                    if (!tagList.Contains(i.TagName))
+                    {
+                        tagList.Add(i.TagName);
+                    }
+                }
             });
             ViewBag.Tags = tagList;
         }
