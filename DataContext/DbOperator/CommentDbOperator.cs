@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace DataContext.DbOperator
 {
-    public class CommentOperator : IDbOperator<Comment>
+    public class CommentDbOperator : IDbOperator<Comment>
     {
         private readonly DbConfigurator configurator;
 
-        public CommentOperator()
+        public CommentDbOperator()
         {
             configurator = new DbConfigurator();
         }

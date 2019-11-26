@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace DataContext.CacheOperator
 {
-    public class ArticleOperator : ICacheOperator<Article>
+    public class ArticleCacheOperator : ICacheOperator<Article>
     {
         public IDatabase database;
 
-        public ArticleOperator()
+        public ArticleCacheOperator()
         {
             database = new DbConfigurator().CreateArticleCacheContext();
         }

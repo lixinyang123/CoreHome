@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace DataContext.DbOperator
 {
-    public class ArticleOperator : IDbOperator<Article>
+    public class ArticleDbOperator : IDbOperator<Article>
     {
         private readonly DbConfigurator configurator;
 
-        public ArticleOperator()
+        public ArticleDbOperator()
         {
             configurator = new DbConfigurator();
         }

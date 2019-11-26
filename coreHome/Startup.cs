@@ -31,9 +31,9 @@ namespace coreHome
             services.AddControllersWithViews();
 
             //数据库服务
-            services.AddTransient<IDbOperator<Comment>, CommentOperator>();
-            services.AddTransient<IDbOperator<Article>, ArticleOperator>();
-            services.AddTransient<IDbOperator<Tag>, TagOperator>();
+            services.AddTransient<IDbOperator<Comment>, CommentDbOperator>();
+            services.AddTransient<IDbOperator<Article>, ArticleDbOperator>();
+            services.AddTransient<IDbOperator<Tag>, TagDbOperator>();
         }
 
         //配置HTTP请求

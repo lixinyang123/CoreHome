@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace DataContext.DbOperator
 {
-    public class TagOperator : IDbOperator<Tag>
+    public class TagDbOperator : IDbOperator<Tag>
     {
         private readonly DbConfigurator configurator;
 
-        public TagOperator()
+        public TagDbOperator()
         {
             configurator = new DbConfigurator();
         }
