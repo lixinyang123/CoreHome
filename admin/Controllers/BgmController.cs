@@ -1,4 +1,5 @@
-﻿using Infrastructure.common;
+﻿using admin.Attributes;
+using Infrastructure.common;
 using Infrastructure.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,7 +10,8 @@ using System.IO;
 
 namespace admin.Controllers
 {
-    public class BgmController : AuthorizationController
+    [Authorization]
+    public class BgmController : MyController
     {
         public BgmController(IMemoryCache _cache, IWebHostEnvironment env) : base(_cache, env) { }
 

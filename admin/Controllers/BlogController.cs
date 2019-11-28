@@ -1,4 +1,5 @@
-﻿using DataContext.DbOperator;
+﻿using admin.Attributes;
+using DataContext.DbOperator;
 using DataContext.Models;
 using Infrastructure.common;
 using Microsoft.AspNetCore.Hosting;
@@ -9,7 +10,8 @@ using System.Collections.Generic;
 
 namespace admin.Controllers
 {
-    public class BlogController : AuthorizationController
+    [Authorization]
+    public class BlogController : MyController
     {
         private readonly IDbOperator<Article> articleRepository;
         private readonly IDbOperator<Comment> commentRepository;
