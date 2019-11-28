@@ -19,7 +19,7 @@ namespace DataContext.DbConfig
         {
             DbContextOptionsBuilder<ArticleDbContext> optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
             optionBuilder.UseMySQL(articleConnection);
-            using ArticleDbContext context = new ArticleDbContext(optionBuilder.Options);
+            ArticleDbContext context = new ArticleDbContext(optionBuilder.Options);
             context.Database.EnsureCreatedAsync();
             return context;
         }
