@@ -1,4 +1,5 @@
-﻿using DataContext.DbOperator;
+﻿using DataContext.CacheOperator;
+using DataContext.DbOperator;
 using DataContext.Models;
 using Infrastructure.common;
 using Microsoft.AspNetCore.Http;
@@ -14,25 +15,38 @@ namespace coreHome.Controllers
         private readonly IDbOperator<Article> articleRepository;
         private readonly IDbOperator<Comment> commentRepository;
         private readonly IDbOperator<Tag> tagRepository;
+        private readonly ICacheOperator<Article> articleCache;
         private readonly int pageSize = 5;
 
         public BlogController(IDbOperator<Article> articleOperator,
             IDbOperator<Comment> commentOperator,
-            IDbOperator<Tag> tagOperator)
+            IDbOperator<Tag> tagOperator,
+            ICacheOperator<Article> cacheOperator)
         {
             articleRepository = articleOperator;
             commentRepository = commentOperator;
             tagRepository = tagOperator;
+            articleCache = cacheOperator;
         }
 
         public IActionResult Index(int index)
         {
-            //获取页面起始页和结束页
-            index = PageManager.GetStartPageIndex(index, articleRepository.Count(), pageSize);
-            ViewBag.LastPage = PageManager.GetLastPageIndex(articleRepository.Count(), pageSize);
+            List<Article> articles = new List<Article>();
 
-            List<Article> articles = articleRepository.Find(i => i.Title != null, index, pageSize);
-            articles.ForEach(i => i.Tags = tagRepository.Find(j => j.ArticleID == i.ArticleID, 0, tagRepository.Count()));
+            string cacheKey = "index" + index;
+            articles = articleCache.GetList(cacheKey);
+
+            if (articles == null)
+            {
+                //获取页面起始页和结束页
+                index = PageManager.GetStartPageIndex(index, articleRepository.Count(), pageSize);
+                ViewBag.LastPage = PageManager.GetLastPageIndex(articleRepository.Count(), pageSize);
+
+                articles = articleRepository.Find(i => i.Title != null, index, pageSize);
+                articles.ForEach(i => i.Tags = tagRepository.Find(j => j.ArticleID == i.ArticleID, 0, tagRepository.Count()));
+
+                articleCache.AddList(cacheKey, articles);
+            }
 
             GetTagList();
 

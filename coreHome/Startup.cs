@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DataContext.DbOperator;
 using DataContext.Models;
+using DataContext.CacheOperator;
 
 namespace coreHome
 {
@@ -34,6 +35,9 @@ namespace coreHome
             services.AddTransient<IDbOperator<Comment>, CommentDbOperator>();
             services.AddTransient<IDbOperator<Article>, ArticleDbOperator>();
             services.AddTransient<IDbOperator<Tag>, TagDbOperator>();
+
+            //缓存服务
+            services.AddTransient<ICacheOperator<Article>, ArticleCacheOperator>();
         }
 
         //配置HTTP请求
