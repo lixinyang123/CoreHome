@@ -19,14 +19,14 @@ namespace DataContext.DbConfig
         {
             DbContextOptionsBuilder<ArticleDbContext> optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
             optionBuilder.UseMySQL(articleConnection);
-            ArticleDbContext context = new ArticleDbContext(optionBuilder.Options);
+            using ArticleDbContext context = new ArticleDbContext(optionBuilder.Options);
             context.Database.EnsureCreatedAsync();
             return context;
         }
 
         public IDatabase CreateArticleCacheContext()
         {
-            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(redisConnection);
+            using ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(redisConnection);
             return redis.GetDatabase();
         }
 
