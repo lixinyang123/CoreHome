@@ -1,9 +1,9 @@
 ﻿using DataContext.DbConfig;
 using DataContext.Models;
 using StackExchange.Redis;
-using System;
-using System.Text.Json;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Linq;
 
 namespace DataContext.CacheOperator
 {
@@ -46,7 +46,7 @@ namespace DataContext.CacheOperator
             {
                 articles.Add(JsonSerializer.Deserialize<Article>(i));
             });
-            return articles;
+            return articles.OrderByDescending(i => i.ID).ToList();
         }
     }
 }
