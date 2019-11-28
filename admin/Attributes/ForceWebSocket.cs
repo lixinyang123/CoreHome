@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace admin.Attributes
 {
-    public class ForceWebSocket : ActionFilterAttribute
+    public sealed class ForceWebSocket : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
