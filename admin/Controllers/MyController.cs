@@ -32,7 +32,7 @@ namespace admin.Controllers
                 //开发者模式不进行身份验证
                 if (attribute.AttributeType.Equals(typeof(Authorization)) && !environment.IsDevelopment())
                 {
-                    Authorization(context);
+                    IdentityAuthorization(context);
                 }
             }
 
@@ -42,7 +42,7 @@ namespace admin.Controllers
         /// <summary>
         /// 身份验证
         /// </summary>
-        public void Authorization(ActionExecutingContext context)
+        public void IdentityAuthorization(ActionExecutingContext context)
         {
             ISession session = HttpContext.Session;
             try
