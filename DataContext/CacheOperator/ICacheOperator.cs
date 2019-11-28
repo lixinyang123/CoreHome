@@ -23,5 +23,16 @@ namespace DataContext.CacheOperator
         /// 读取缓存列表
         /// </summary>
         public List<CacheModel> GetList(string key);
+
+        /// <summary>
+        /// 删除指定Key
+        /// </summary>
+        public void DelKey(string key);
+
+        /// <summary>
+        /// 清空指定数据库
+        /// </summary>
+        public void DelAllKeys();
+
     }
 }

@@ -12,7 +12,7 @@ namespace DataContext.DbConfig
         public DbConfigurator()
         {
             articleConnection = "server=localhost;user id=root;password=lxy15937905153;database=articles";
-            redisConnection = "localhost,DefaultDatabase=0";
+            redisConnection = "localhost";
         }
 
         public ArticleDbContext CreateArticleDbContext()
@@ -24,10 +24,9 @@ namespace DataContext.DbConfig
             return context;
         }
 
-        public IDatabase CreateArticleCacheContext()
+        public ConnectionMultiplexer CreateCacheContext()
         {
-            using ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(redisConnection);
-            return redis.GetDatabase();
+            return ConnectionMultiplexer.Connect(redisConnection);
         }
 
     }

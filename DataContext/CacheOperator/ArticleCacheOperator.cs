@@ -9,11 +9,18 @@ namespace DataContext.CacheOperator
 {
     public class ArticleCacheOperator : ICacheOperator<Article>
     {
-        public IDatabase database;
+        private readonly ConnectionMultiplexer redis;
+        private readonly IDatabase database;
 
         public ArticleCacheOperator()
         {
-            database = new DbConfigurator().CreateArticleCacheContext();
+            redis = new DbConfigurator().CreateCacheContext();
+            database = redis.GetDatabase(0);
+        }
+
+        ~ArticleCacheOperator()
+        {
+            redis.Dispose();
         }
 
         /// <summary>
@@ -34,6 +41,7 @@ namespace DataContext.CacheOperator
         /// <param name="list">value</param>
         public void AddList(string key, List<Article> list)
         {
+            DelKey(key);
             list.ForEach(i =>
             {
                 string jsonStr = JsonSerializer.Serialize(i);
@@ -49,7 +57,11 @@ namespace DataContext.CacheOperator
         public Article GetModel(string key)
         {
             string jsonStr = database.StringGet(key);
-            return JsonSerializer.Deserialize<Article>(jsonStr);
+            if(jsonStr!=null)
+            {
+                return JsonSerializer.Deserialize<Article>(jsonStr);
+            }
+            return null;
         }
 
         /// <summary>
@@ -59,14 +71,17 @@ namespace DataContext.CacheOperator
         /// <returns>value</returns>
         public List<Article> GetList(string key)
         {
-            RedisValue[] values = database.ListRange(key);
-            List<RedisValue> list = new List<RedisValue>(values);
-            List<Article> articles = new List<Article>();
-            list.ForEach(i =>
+            List<RedisValue> list = new List<RedisValue>(database.ListRange(key));
+            if(list.Count!=0)
             {
-                articles.Add(JsonSerializer.Deserialize<Article>(i));
-            });
-            return articles.OrderByDescending(i => i.ID).ToList();
+                List<Article> articles = new List<Article>();
+                list.ForEach(i =>
+                {
+                    articles.Add(JsonSerializer.Deserialize<Article>(i));
+                });
+                return articles.OrderByDescending(i => i.ID).ToList();
+            }
+            return null;
         }
 
         /// <summary>
@@ -76,6 +91,14 @@ namespace DataContext.CacheOperator
         public void DelKey(string key)
         {
             database.KeyDelete(key);
+        }
+
+        /// <summary>
+        /// 清空数据库
+        /// </summary>
+        public void DelAllKeys()
+        {
+            database.Execute("flushall");
         }
     }
 }
