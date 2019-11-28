@@ -18,7 +18,7 @@ namespace admin.Controllers
 
         private readonly IPusher<WebSocket> pusher;
 
-        public OverviewController(IMemoryCache _cache, IWebHostEnvironment env) : base(_cache,env)
+        public OverviewController(IMemoryCache _cache, IWebHostEnvironment env) : base(_cache, env)
         {
             pusher = new WebSocketPusher();
         }
