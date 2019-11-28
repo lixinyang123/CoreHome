@@ -30,7 +30,7 @@ namespace admin.Controllers
             foreach (var attribute in attributes)
             {
                 //开发者模式不进行身份验证
-                if (attribute.AttributeType.Equals(typeof(Authorization)) && environment.IsDevelopment())
+                if (attribute.AttributeType.Equals(typeof(Authorization)) && !environment.IsDevelopment())
                 {
                     Authorization(context);
                 }
