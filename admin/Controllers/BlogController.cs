@@ -36,6 +36,7 @@ namespace admin.Controllers
             return View(articles);
         }
 
+        [ServiceFilter(typeof(DataChanged))]
         public IActionResult UploadArticle()
         {
             if (Request.Method == "POST")
@@ -66,6 +67,7 @@ namespace admin.Controllers
             }
         }
 
+        [ServiceFilter(typeof(DataChanged))]
         public IActionResult DeleteArticle(string articleID)
         {
             //删除博客
@@ -78,6 +80,7 @@ namespace admin.Controllers
             return RedirectToAction("index");
         }
 
+        [ServiceFilter(typeof(DataChanged))]
         public IActionResult ModifyArticle([FromForm]Article newArticle)
         {
             if (Request.Method == "POST")
@@ -109,6 +112,7 @@ namespace admin.Controllers
             return View(comments);
         }
 
+        [ServiceFilter(typeof(DataChanged))]
         public IActionResult DeleteComment(string articleID, string commentID)
         {
             commentRepository.Delete(commentID);

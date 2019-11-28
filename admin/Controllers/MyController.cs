@@ -29,6 +29,7 @@ namespace admin.Controllers
             var attributes = type.CustomAttributes;
             foreach (var attribute in attributes)
             {
+                //身份验证
                 //开发者模式不进行身份验证
                 if (attribute.AttributeType.Equals(typeof(Authorization)) && !environment.IsDevelopment())
                 {

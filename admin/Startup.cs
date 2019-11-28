@@ -1,4 +1,6 @@
-﻿using DataContext.DbOperator;
+﻿using admin.Attributes;
+using DataContext.CacheOperator;
+using DataContext.DbOperator;
 using DataContext.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +41,12 @@ namespace admin
             services.AddTransient<IDbOperator<Article>, ArticleDbOperator>();
             services.AddTransient<IDbOperator<Comment>, CommentDbOperator>();
             services.AddTransient<IDbOperator<Tag>, TagDbOperator>();
+
+            //缓存服务
+            services.AddTransient<ICacheOperator<Article>, ArticleCacheOperator>();
+
+            //注册缓存过滤器
+            services.AddScoped<DataChanged>();
         }
 
         // 配置应用服务
