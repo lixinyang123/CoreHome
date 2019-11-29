@@ -18,5 +18,11 @@ namespace admin.Attributes
             articleCache.DelAllKeys();
             base.OnActionExecuting(context);
         }
+
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            articleCache.DelAllKeys();
+            base.OnActionExecuted(context);
+        }
     }
 }
