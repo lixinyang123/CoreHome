@@ -13,16 +13,19 @@ namespace coreHome.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IWebHostEnvironment environment;
         private readonly VerificationCodeHelper verificationHelper;
 
         public HomeController(IWebHostEnvironment env)
         {
+            environment = env;
             verificationHelper = new VerificationCodeHelper();
-            SearchEngineService.PushToBaidu(env.WebRootPath);
         }
 
         public IActionResult Index()
         {
+            SearchEngineService.PushToBaidu(environment.WebRootPath);
+
             ViewBag.Title = "LLLXY";
             string lastTime = Request.Cookies["lastTime"];
 
