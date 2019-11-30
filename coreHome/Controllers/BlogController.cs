@@ -36,12 +36,12 @@ namespace coreHome.Controllers
             string cacheKey = "index" + index;
             articles = articleCache.GetList(cacheKey);
 
+            //获取页面起始页和结束页
+            index = PageManager.GetStartPageIndex(index, articleRepository.Count(), pageSize);
+            ViewBag.LastPage = PageManager.GetLastPageIndex(articleRepository.Count(), pageSize);
+
             if (articles == null)
             {
-                //获取页面起始页和结束页
-                index = PageManager.GetStartPageIndex(index, articleRepository.Count(), pageSize);
-                ViewBag.LastPage = PageManager.GetLastPageIndex(articleRepository.Count(), pageSize);
-
                 articles = articleRepository.Find(i => i.Title != null, index, pageSize);
                 articles.ForEach(i => i.Tags = tagRepository.Find(j => j.ArticleID == i.ArticleID, 0, tagRepository.Count()));
 
