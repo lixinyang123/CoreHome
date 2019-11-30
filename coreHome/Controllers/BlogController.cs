@@ -44,7 +44,6 @@ namespace coreHome.Controllers
             {
                 articles = articleRepository.Find(i => i.Title != null, index, pageSize);
                 articles.ForEach(i => i.Tags = tagRepository.Find(j => j.ArticleID == i.ArticleID, 0, tagRepository.Count()));
-
                 articleCache.AddList(cacheKey, articles);
             }
 
