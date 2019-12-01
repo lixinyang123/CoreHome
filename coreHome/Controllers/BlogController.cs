@@ -31,10 +31,8 @@ namespace coreHome.Controllers
 
         public IActionResult Index(int index)
         {
-            List<Article> articles = new List<Article>();
-
             string cacheKey = "index" + index;
-            articles = articleCache.GetList(cacheKey);
+            List<Article> articles = articleCache.GetList(cacheKey);
 
             //获取页面起始页和结束页
             index = PageManager.GetStartPageIndex(index, articleRepository.Count(), pageSize);
@@ -61,7 +59,14 @@ namespace coreHome.Controllers
 
         public IActionResult Search(string keyword, int index)
         {
-            List<Article> articles = articleRepository.Find(i => i.Title.ToLower().Contains(keyword.ToLower()), 0, articleRepository.Count());
+            string cacheKey = "Search" + keyword + index;
+            List<Article> articles = articleCache.GetList(cacheKey);
+
+            if(articles==null)
+            {
+                articles = articleRepository.Find(i => i.Title.ToLower().Contains(keyword.ToLower()), 0, articleRepository.Count());
+                articleCache.AddList(cacheKey, articles);
+            }
 
             index = PageManager.GetStartPageIndex(index, articles.Count, pageSize);
             ViewBag.LastPage = PageManager.GetLastPageIndex(articles.Count, pageSize);
@@ -81,20 +86,26 @@ namespace coreHome.Controllers
 
         public IActionResult TagList(string tagName, int index)
         {
+            string cacheKey = "TagList" + tagName + index;
+            List<Article> articles = articleCache.GetList(cacheKey);
+
             List<Tag> tags = tagRepository.Find(i => i.TagName.ToLower() == tagName.ToLower(), index, pageSize);
 
             //获取页面起始页和结束页
             index = PageManager.GetStartPageIndex(index, tags.Count, pageSize);
             ViewBag.LastPage = PageManager.GetLastPageIndex(tags.Count, pageSize);
-
             tags = tags.Skip(index * pageSize).Take(pageSize).ToList();
 
-            List<Article> articles = new List<Article>();
-            foreach (Tag tag in tags)
+            if (articles == null)
             {
-                Article article = articleRepository.Find(tag.ArticleID);
-                article.Tags = tagRepository.Find(i => i.ArticleID == article.ArticleID, 0, tagRepository.Count());
-                articles.Add(article);
+                articles = new List<Article>();
+                foreach (Tag tag in tags)
+                {
+                    Article article = articleRepository.Find(tag.ArticleID);
+                    article.Tags = tagRepository.Find(i => i.ArticleID == article.ArticleID, 0, tagRepository.Count());
+                    articles.Add(article);
+                }
+                articleCache.AddList(cacheKey, articles);
             }
 
             GetTagList();
