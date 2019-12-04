@@ -3,27 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <Content Remove="bundleconfig.json" />
-    <Content Remove="wwwroot\js\bgm\Index.min.js" />
-    <Content Remove="wwwroot\js\overview\down.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\css\theme\index.min.css" />
-    <_ContentIncludedByDefault Remove="wwwroot\js\bgm\Index.min.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\js\overview\down.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="bundleconfig.json" />
-    <None Include="wwwroot\js\bgm\Index.min.js" />
-    <None Include="wwwroot\js\overview\down.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
