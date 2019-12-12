@@ -6,5 +6,5 @@
     hljs.initHighlighting();
     hljs.initLineNumbersOnLoad();
 
-    mdObj.parentElement.removeChild(mdObj);
+    mdObj.remove();
 }
