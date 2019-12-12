@@ -35,8 +35,9 @@ namespace coreHome.Controllers
             List<Article> articles = articleCache.GetList(cacheKey);
 
             //获取页面起始页和结束页
-            index = PageManager.GetStartPageIndex(index, articleRepository.Count(), pageSize);
-            ViewBag.LastPage = PageManager.GetLastPageIndex(articleRepository.Count(), pageSize);
+            int count = articleRepository.Count();
+            index = PageManager.GetStartPageIndex(index, count, pageSize);
+            ViewBag.LastPage = PageManager.GetLastPageIndex(count, pageSize);
 
             if (articles == null)
             {
@@ -62,7 +63,7 @@ namespace coreHome.Controllers
             string cacheKey = "Search" + keyword + index;
             List<Article> articles = articleCache.GetList(cacheKey);
 
-            if(articles==null)
+            if (articles == null)
             {
                 articles = articleRepository.Find(i => i.Title.ToLower().Contains(keyword.ToLower()), 0, articleRepository.Count());
                 articleCache.AddList(cacheKey, articles);
