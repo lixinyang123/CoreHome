@@ -1,7 +1,10 @@
 ﻿function initPage() {
-    var md = document.getElementById("md").value;
+    var mdObj = document.getElementById("md")
+    var md = mdObj.value;
     document.getElementById('detail').innerHTML = marked(md);
 
     hljs.initHighlighting();
     hljs.initLineNumbersOnLoad();
+
+    mdObj.parentElement.removeChild(mdObj);
 }
