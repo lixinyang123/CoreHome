@@ -32,12 +32,12 @@ namespace coreHome
             services.AddControllersWithViews();
 
             //数据库服务
-            services.AddTransient<IDbOperator<Comment>, CommentDbOperator>();
-            services.AddTransient<IDbOperator<Article>, ArticleDbOperator>();
-            services.AddTransient<IDbOperator<Tag>, TagDbOperator>();
+            services.AddSingleton<IDbOperator<Comment>, CommentDbOperator>();
+            services.AddSingleton<IDbOperator<Article>, ArticleDbOperator>();
+            services.AddSingleton<IDbOperator<Tag>, TagDbOperator>();
 
             //缓存服务
-            services.AddTransient<ICacheOperator<Article>, ArticleCacheOperator>();
+            services.AddSingleton<ICacheOperator<Article>, ArticleCacheOperator>();
         }
 
         //配置HTTP请求

@@ -38,15 +38,15 @@ namespace admin
             services.AddControllersWithViews();
 
             //数据库服务
-            services.AddTransient<IDbOperator<Article>, ArticleDbOperator>();
-            services.AddTransient<IDbOperator<Comment>, CommentDbOperator>();
-            services.AddTransient<IDbOperator<Tag>, TagDbOperator>();
+            services.AddSingleton<IDbOperator<Article>, ArticleDbOperator>();
+            services.AddSingleton<IDbOperator<Comment>, CommentDbOperator>();
+            services.AddSingleton<IDbOperator<Tag>, TagDbOperator>();
 
             //缓存服务
-            services.AddTransient<ICacheOperator<Article>, ArticleCacheOperator>();
+            services.AddSingleton<ICacheOperator<Article>, ArticleCacheOperator>();
 
             //注册缓存过滤器
-            services.AddScoped<DataChanged>();
+            services.AddSingleton<DataChanged>();
         }
 
         // 配置应用服务

@@ -6,21 +6,26 @@ namespace DataContext.DbConfig
 {
     public class DbConfigurator
     {
-        private readonly string articleConnection;
-        private readonly string redisConnection;
+        private readonly string articleConnection = "server=localhost;user id=root;password=lxy15937905153;database=articles";
+        private readonly string redisConnection = "localhost";
+
+        private readonly ArticleDbContext context;
 
         public DbConfigurator()
         {
-            articleConnection = "server=localhost;user id=root;password=lxy15937905153;database=articles";
-            redisConnection = "localhost";
-        }
-
-        public ArticleDbContext CreateArticleDbContext()
-        {
             DbContextOptionsBuilder<ArticleDbContext> optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
             optionBuilder.UseMySQL(articleConnection);
-            ArticleDbContext context = new ArticleDbContext(optionBuilder.Options);
+            context = new ArticleDbContext(optionBuilder.Options);
             context.Database.EnsureCreatedAsync();
+        }
+
+        ~DbConfigurator()
+        {
+            context.Dispose();
+        }
+
+        public ArticleDbContext GetArticleDbContext()
+        {
             return context;
         }
 

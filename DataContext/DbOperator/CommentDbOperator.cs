@@ -22,7 +22,7 @@ namespace DataContext.DbOperator
         /// <param name="t"></param>
         public void Add(Comment t)
         {
-            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            ArticleDbContext context = configurator.GetArticleDbContext();
             context.Comment.Add(t);
             context.SaveChanges();
         }
@@ -33,7 +33,7 @@ namespace DataContext.DbOperator
         /// <returns></returns>
         public int Count()
         {
-            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            ArticleDbContext context = configurator.GetArticleDbContext();
             return context.Comment.Count();
         }
 
@@ -43,7 +43,7 @@ namespace DataContext.DbOperator
         /// <param name="commentID">评论ID</param>
         public void Delete(string commentID)
         {
-            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            ArticleDbContext context = configurator.GetArticleDbContext();
             context.Comment.Remove(Find(commentID));
             context.SaveChanges();
         }
@@ -55,7 +55,7 @@ namespace DataContext.DbOperator
         /// <returns>评论实体</returns>
         public Comment Find(string commentID)
         {
-            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            ArticleDbContext context = configurator.GetArticleDbContext();
             Comment comment = context.Comment.Single(i => i.CommentID == commentID);
             return comment;
         }
@@ -69,7 +69,7 @@ namespace DataContext.DbOperator
         /// <returns></returns>
         public List<Comment> Find(Func<Comment, bool> func, int start, int count)
         {
-            using ArticleDbContext context = configurator.CreateArticleDbContext();
+            ArticleDbContext context = configurator.GetArticleDbContext();
             List<Comment> comments = context.Comment.Where(func).OrderByDescending(i => i.ID).ToList();
             return comments;
         }
