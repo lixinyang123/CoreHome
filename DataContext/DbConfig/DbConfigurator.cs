@@ -18,7 +18,7 @@ namespace DataContext.DbConfig
             context.Dispose();
         }
 
-        public static ArticleDbContext GetArticleDbContext()
+        public static ArticleDbContext CreateArticleDbContext()
         {
             if (context == null)
             {
