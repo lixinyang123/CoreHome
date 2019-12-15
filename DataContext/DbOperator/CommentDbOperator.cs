@@ -9,20 +9,13 @@ namespace DataContext.DbOperator
 {
     public class CommentDbOperator : IDbOperator<Comment>
     {
-        private readonly DbConfigurator configurator;
-
-        public CommentDbOperator()
-        {
-            configurator = new DbConfigurator();
-        }
-
         /// <summary>
         /// 新增评论
         /// </summary>
         /// <param name="t"></param>
         public void Add(Comment t)
         {
-            ArticleDbContext context = configurator.GetArticleDbContext();
+            ArticleDbContext context = DbConfigurator.GetArticleDbContext();
             context.Comment.Add(t);
             context.SaveChanges();
         }
@@ -33,7 +26,7 @@ namespace DataContext.DbOperator
         /// <returns></returns>
         public int Count()
         {
-            ArticleDbContext context = configurator.GetArticleDbContext();
+            ArticleDbContext context = DbConfigurator.GetArticleDbContext();
             return context.Comment.Count();
         }
 
@@ -43,7 +36,7 @@ namespace DataContext.DbOperator
         /// <param name="commentID">评论ID</param>
         public void Delete(string commentID)
         {
-            ArticleDbContext context = configurator.GetArticleDbContext();
+            ArticleDbContext context = DbConfigurator.GetArticleDbContext();
             context.Comment.Remove(Find(commentID));
             context.SaveChanges();
         }
@@ -55,7 +48,7 @@ namespace DataContext.DbOperator
         /// <returns>评论实体</returns>
         public Comment Find(string commentID)
         {
-            ArticleDbContext context = configurator.GetArticleDbContext();
+            ArticleDbContext context = DbConfigurator.GetArticleDbContext();
             Comment comment = context.Comment.Single(i => i.CommentID == commentID);
             return comment;
         }
@@ -69,7 +62,7 @@ namespace DataContext.DbOperator
         /// <returns></returns>
         public List<Comment> Find(Func<Comment, bool> func, int start, int count)
         {
-            ArticleDbContext context = configurator.GetArticleDbContext();
+            ArticleDbContext context = DbConfigurator.GetArticleDbContext();
             List<Comment> comments = context.Comment.Where(func).OrderByDescending(i => i.ID).ToList();
             return comments;
         }

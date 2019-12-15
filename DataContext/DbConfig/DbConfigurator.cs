@@ -6,30 +6,31 @@ namespace DataContext.DbConfig
 {
     public class DbConfigurator
     {
-        private readonly string articleConnection = "server=localhost;user id=root;password=lxy15937905153;database=articles";
-        private readonly string redisConnection = "localhost";
+        private const string articleConnection = "server=localhost;user id=root;password=lxy15937905153;database=articles";
+        private const string redisConnection = "localhost";
 
-        private readonly ArticleDbContext context;
+        private static ArticleDbContext context = null;
 
-        public DbConfigurator()
-        {
-            DbContextOptionsBuilder<ArticleDbContext> optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
-            optionBuilder.UseMySQL(articleConnection);
-            context = new ArticleDbContext(optionBuilder.Options);
-            context.Database.EnsureCreatedAsync();
-        }
+        private DbConfigurator() { }
 
         ~DbConfigurator()
         {
             context.Dispose();
         }
 
-        public ArticleDbContext GetArticleDbContext()
+        public static ArticleDbContext GetArticleDbContext()
         {
+            if (context == null)
+            {
+                DbContextOptionsBuilder<ArticleDbContext> optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
+                optionBuilder.UseMySQL(articleConnection);
+                context = new ArticleDbContext(optionBuilder.Options);
+                context.Database.EnsureCreatedAsync();
+            }
             return context;
         }
 
-        public ConnectionMultiplexer CreateCacheContext()
+        public static ConnectionMultiplexer CreateCacheContext()
         {
             return ConnectionMultiplexer.Connect(redisConnection);
         }

@@ -14,7 +14,7 @@ namespace DataContext.CacheOperator
 
         public ArticleCacheOperator()
         {
-            redis = new DbConfigurator().CreateCacheContext();
+            redis = DbConfigurator.CreateCacheContext();
             database = redis.GetDatabase(0);
         }
 
