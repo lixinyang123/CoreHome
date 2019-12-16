@@ -15,7 +15,7 @@ namespace DataContext.DbOperator
         /// <param name="article">文章对象</param>
         public void Add(Article article)
         {
-            ArticleDbContext context = DbConfigurator.CreateArticleDbContext();
+            ArticleDbContext context = DbConfigurator.DbContext;
             context.Article.Add(article);
             context.SaveChanges();
         }
@@ -26,7 +26,7 @@ namespace DataContext.DbOperator
         /// <param name="id">文章id</param>
         public void Delete(string id)
         {
-            ArticleDbContext context = DbConfigurator.CreateArticleDbContext();
+            ArticleDbContext context = DbConfigurator.DbContext;
             context.Article.Remove(Find(id));
             context.SaveChanges();
         }
@@ -38,7 +38,7 @@ namespace DataContext.DbOperator
         /// <param name="newArticle">修改后的博客</param>
         public void Modify(Article newArticle)
         {
-            ArticleDbContext context = DbConfigurator.CreateArticleDbContext();
+            ArticleDbContext context = DbConfigurator.DbContext;
             //将新实体的修改进行插入
             context.Article.Update(newArticle);
             context.SaveChanges();
@@ -51,7 +51,7 @@ namespace DataContext.DbOperator
         /// <returns>文章对象</returns>
         public Article Find(string id)
         {
-            ArticleDbContext context = DbConfigurator.CreateArticleDbContext();
+            ArticleDbContext context = DbConfigurator.DbContext;
             Article article = context.Article.Single(i => i.ArticleID == id);
             return article;
         }
@@ -65,7 +65,7 @@ namespace DataContext.DbOperator
         public List<Article> Find(Func<Article, bool> func, int index, int pageSize)
         {
             int limit = index * pageSize;
-            ArticleDbContext context = DbConfigurator.CreateArticleDbContext();
+            ArticleDbContext context = DbConfigurator.DbContext;
             int count = Count() - limit;
             return context.Article.OrderByDescending(i => i.ID).Where(func).Skip(limit).Take(count > 5 ? pageSize : count).ToList();
         }
@@ -76,7 +76,7 @@ namespace DataContext.DbOperator
         /// <returns>文章数量</returns>
         public int Count()
         {
-            ArticleDbContext context = DbConfigurator.CreateArticleDbContext();
+            ArticleDbContext context = DbConfigurator.DbContext;
             return context.Article.Count();
         }
 

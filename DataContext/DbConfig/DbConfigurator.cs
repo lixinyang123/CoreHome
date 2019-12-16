@@ -20,25 +20,47 @@ namespace DataContext.DbConfig
             cacheContext.Dispose();
         }
 
-        public static ArticleDbContext CreateArticleDbContext()
+        public static void InitConfigurator()
         {
-            if (dbContext == null)
-            {
-                DbContextOptionsBuilder<ArticleDbContext> optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
-                optionBuilder.UseMySQL(articleConnection);
-                dbContext = new ArticleDbContext(optionBuilder.Options);
-                dbContext.Database.EnsureCreatedAsync();
-            }
-            return dbContext;
+            InitDbContext();
+            InitCacheContext();
         }
 
-        public static ConnectionMultiplexer CreateCacheContext()
+        private static void InitDbContext()
         {
-            if (cacheContext == null)
+            DbContextOptionsBuilder<ArticleDbContext> optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
+            optionBuilder.UseMySQL(articleConnection);
+            dbContext = new ArticleDbContext(optionBuilder.Options);
+            dbContext.Database.EnsureCreatedAsync();
+        }
+
+        private static void InitCacheContext()
+        {
+            cacheContext = ConnectionMultiplexer.Connect(redisConnection);
+        }
+
+        public static ArticleDbContext DbContext
+        {
+            get
             {
-                cacheContext = ConnectionMultiplexer.Connect(redisConnection);
+                if (dbContext == null)
+                {
+                    InitDbContext();
+                }
+                return dbContext;
             }
-            return cacheContext;
+        }
+
+        public static ConnectionMultiplexer CacheContext
+        {
+            get
+            {
+                if (cacheContext == null)
+                {
+                    InitCacheContext();
+                }
+                return cacheContext;
+            }
         }
 
     }

@@ -9,18 +9,11 @@ namespace DataContext.CacheOperator
 {
     public class ArticleCacheOperator : ICacheOperator<Article>
     {
-        private readonly ConnectionMultiplexer redis;
         private readonly IDatabase database;
 
         public ArticleCacheOperator()
         {
-            redis = DbConfigurator.CreateCacheContext();
-            database = redis.GetDatabase(0);
-        }
-
-        ~ArticleCacheOperator()
-        {
-            redis.Dispose();
+            database = DbConfigurator.CacheContext.GetDatabase(0);
         }
 
         /// <summary>

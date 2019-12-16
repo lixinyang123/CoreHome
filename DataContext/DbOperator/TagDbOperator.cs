@@ -15,14 +15,14 @@ namespace DataContext.DbOperator
         /// <param name="t">标签记录</param>
         public void Add(Tag t)
         {
-            ArticleDbContext dbContext = DbConfigurator.CreateArticleDbContext();
+            ArticleDbContext dbContext = DbConfigurator.DbContext;
             dbContext.Tag.Add(t);
             dbContext.SaveChanges();
         }
 
         public int Count()
         {
-            ArticleDbContext dbContext = DbConfigurator.CreateArticleDbContext();
+            ArticleDbContext dbContext = DbConfigurator.DbContext;
             return dbContext.Tag.Count();
         }
 
@@ -32,7 +32,7 @@ namespace DataContext.DbOperator
         /// <param name="articleID"></param>
         public void Delete(string articleID)
         {
-            ArticleDbContext dbContext = DbConfigurator.CreateArticleDbContext();
+            ArticleDbContext dbContext = DbConfigurator.DbContext;
             List<Tag> tags = dbContext.Tag.Where(i => i.ArticleID == articleID).ToList();
             for (int i = 0; i < tags.Count; i++)
             {
@@ -55,7 +55,7 @@ namespace DataContext.DbOperator
         /// <returns>标签列表</returns>
         public List<Tag> Find(Func<Tag, bool> func, int start, int count)
         {
-            ArticleDbContext dbContext = DbConfigurator.CreateArticleDbContext();
+            ArticleDbContext dbContext = DbConfigurator.DbContext;
             return dbContext.Tag.Where(func).OrderByDescending(i => i.ID).ToList();
         }
 
