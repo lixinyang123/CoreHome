@@ -32,8 +32,8 @@ namespace coreHome
             services.AddControllersWithViews();
 
             //数据库服务
-            services.AddSingleton<IDbOperator<Article>, ArticleDbOperator>();
             services.AddSingleton<IDbOperator<Comment>, CommentDbOperator>();
+            services.AddSingleton<IDbOperator<Article>, ArticleDbOperator>();
             services.AddSingleton<IDbOperator<Tag>, TagDbOperator>();
 
             //缓存服务
