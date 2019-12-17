@@ -48,5 +48,12 @@ function CookieExist(cookieName) {
 if (!CookieExist(".AspNet.Consent")) {
     setTimeout(LoadAnimation, 1000);
 }
+
+player.addEventListener('ended', function () {
+    var src = document.getElementById("player").src;
+    var newSrc = src + "&" + Math.floor(Math.random() * 10);
+    document.getElementById("player").src = newSrc;
+});
+
 Rotate();
 
