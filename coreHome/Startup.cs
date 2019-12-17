@@ -43,6 +43,9 @@ namespace coreHome
         //配置HTTP请求
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //预热efcore
+            app.ApplicationServices.GetService<IDbOperator<Article>>();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -52,6 +52,9 @@ namespace admin
         // 配置应用服务
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //预热efcore
+            app.ApplicationServices.GetService<IDbOperator<Article>>();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
