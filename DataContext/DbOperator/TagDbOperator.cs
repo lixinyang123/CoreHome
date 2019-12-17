@@ -9,21 +9,26 @@ namespace DataContext.DbOperator
 {
     public class TagDbOperator : IDbOperator<Tag>
     {
+        private readonly ArticleDbContext context;
+
+        public TagDbOperator()
+        {
+            context = DbConfigurator.DbContext;
+        }
+
         /// <summary>
         /// 新增标签记录
         /// </summary>
         /// <param name="t">标签记录</param>
         public void Add(Tag t)
         {
-            ArticleDbContext dbContext = DbConfigurator.DbContext;
-            dbContext.Tag.Add(t);
-            dbContext.SaveChanges();
+            context.Tag.Add(t);
+            context.SaveChanges();
         }
 
         public int Count()
         {
-            ArticleDbContext dbContext = DbConfigurator.DbContext;
-            return dbContext.Tag.Count();
+            return context.Tag.Count();
         }
 
         /// <summary>
@@ -32,13 +37,12 @@ namespace DataContext.DbOperator
         /// <param name="articleID"></param>
         public void Delete(string articleID)
         {
-            ArticleDbContext dbContext = DbConfigurator.DbContext;
-            List<Tag> tags = dbContext.Tag.Where(i => i.ArticleID == articleID).ToList();
+            List<Tag> tags = context.Tag.Where(i => i.ArticleID == articleID).ToList();
             for (int i = 0; i < tags.Count; i++)
             {
-                dbContext.Remove(tags[i]);
+                context.Remove(tags[i]);
             }
-            dbContext.SaveChanges();
+            context.SaveChanges();
         }
 
         public Tag Find(string id)
@@ -55,8 +59,7 @@ namespace DataContext.DbOperator
         /// <returns>标签列表</returns>
         public List<Tag> Find(Func<Tag, bool> func, int start, int count)
         {
-            ArticleDbContext dbContext = DbConfigurator.DbContext;
-            return dbContext.Tag.Where(func).OrderByDescending(i => i.ID).ToList();
+            return context.Tag.Where(func).OrderByDescending(i => i.ID).ToList();
         }
 
         public void Modify(Tag newModel)
