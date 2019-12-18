@@ -4,6 +4,7 @@
 }
 
 <div>
+    <script type="text/javascript" src="~/lib/ckeditor4/ckeditor.js"></script>
     <script type="text/javascript" src="~/js/blog/shared.min.js"></script>
 
     <h2>Upload Article</h2>
@@ -38,16 +39,18 @@
         <img id="coverViewer" style="width:80%;" hidden />
 
         @*博客内容*@
-        <div class="form-group">
-            <label>Article Content</label>
-            <input id="content" name="content" type="hidden" class="data" />
-            <textarea id="editcontent" class="form-control" rows="10"></textarea>
-        </div>
+    <div class="form-group">
+        <label>Article Content</label>
+        <input id="content" name="content" type="hidden" class="data" />
+        <div id="editor"></div>
+    </div>
 
         <input id="submit" type="submit" hidden />
     </form>
 
     <button class="btn btn-info" onclick="upload()">Submit</button>
+
+    <script>CKEDITOR.replace("editor");</script>
 
 </div>
 

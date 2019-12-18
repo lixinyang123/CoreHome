@@ -43,8 +43,8 @@ namespace DataContext.DbOperator
         /// <param name="newArticle">修改后的博客</param>
         public void Modify(Article newArticle)
         {
-            //将新实体的修改进行插入
-            context.Article.Update(newArticle);
+            Delete(newArticle.ArticleID);
+            Add(newArticle);
             context.SaveChanges();
         }
 

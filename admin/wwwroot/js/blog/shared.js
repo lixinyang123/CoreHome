@@ -1,9 +1,6 @@
 ﻿function initData() {
     document.getElementById("overview").value = document.getElementById("editoverview").value;
-    document.getElementById("content").value = document.getElementById("editcontent").value;
-    try {
-        document.getElementById("comment").value = document.getElementById("editcomment").value;
-    } catch (err) { }
+    document.getElementById("content").value = CKEDITOR.instances.editor.getData();
 }
 
 function checkData() {
