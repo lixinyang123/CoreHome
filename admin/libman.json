@@ -3,8 +3,8 @@
   "defaultProvider": "unpkg",
   "libraries": [
     {
-      "library": "@ckeditor/ckeditor5-build-classic@16.0.0",
-      "destination": "wwwroot/lib/ckeditor/ckeditor5-build-classic/"
+      "library": "ckeditor4@4.13.1",
+      "destination": "wwwroot/lib/ckeditor4/"
     }
   ]
 }
