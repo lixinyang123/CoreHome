@@ -52,7 +52,7 @@
         <div class="form-group">
             <label>Article Content</label>
             <input id="content" name="content" type="hidden" class="data" />
-            <div id="editor">@Model.Content</div>
+            <div id="editor">@Html.Raw(Model.Content)</div>
         </div>
 
         <input id="submit" type="submit" hidden />
@@ -62,10 +62,6 @@
 
     <script>
         CKEDITOR.replace("editor");
-        CKEDITOR.on('instanceReady', ()=>{
-            var body = document.getElementsByTagName("iframe")[0].contentDocument.body;
-            body.innerHTML = body.innerText;
-        });
     </script>
 </div>
 
