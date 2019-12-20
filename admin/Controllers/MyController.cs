@@ -1,6 +1,5 @@
 ﻿using admin.Attributes;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Memory;
@@ -26,8 +25,8 @@ namespace admin.Controllers
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             Type type = context.Controller.GetType();
-            var attributes = type.CustomAttributes;
-            foreach (var attribute in attributes)
+            System.Collections.Generic.IEnumerable<System.Reflection.CustomAttributeData> attributes = type.CustomAttributes;
+            foreach (System.Reflection.CustomAttributeData attribute in attributes)
             {
                 //身份验证
                 //开发者模式不进行身份验证
@@ -45,15 +44,14 @@ namespace admin.Controllers
         /// </summary>
         public void IdentityAuthorization(ActionExecutingContext context)
         {
-            ISession session = HttpContext.Session;
             try
             {
-                string sessionStr = session.GetString("accessToken");
+                string tokenStr = Request.Cookies["accessToken"];
 
                 string cacheKey = Request.Cookies["user"];
                 string cacheStr = cache.Get<string>(cacheKey);
 
-                if (sessionStr != cacheStr || sessionStr == null || cacheStr == null)
+                if (tokenStr != cacheStr || tokenStr == null || cacheStr == null)
                 {
                     throw new Exception("AuthenticationException");
                 }
@@ -61,7 +59,7 @@ namespace admin.Controllers
             catch (Exception)
             {
                 //验证访问令牌失败直接撤销管理员权限
-                session.Remove("accessToken");
+                Response.Cookies.Delete("accessToken");
                 context.Result = Redirect("/Admin");
             }
         }

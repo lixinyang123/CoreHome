@@ -21,7 +21,7 @@ namespace admin.Controllers
         public async Task<IActionResult> Index()
         {
             //有管理员权限的话直接跳转的Overview验证访问令牌
-            if (HttpContext.Session.TryGetValue("accessToken", out byte[] value))
+            if (Request.Cookies.TryGetValue("accessToken",out _))
             {
                 return Redirect("/Admin/Overview");
             }
@@ -33,7 +33,10 @@ namespace admin.Controllers
         public IActionResult Login()
         {
             string cacheKey = Guid.NewGuid().ToString();
-            Response.Cookies.Append("user", cacheKey);
+            Response.Cookies.Append("user", cacheKey, new CookieOptions()
+            {
+                Expires = DateTimeOffset.Now.AddHours(24)
+            });
 
             //随机生成密码
             string password = Guid.NewGuid().ToString().Substring(0, 6);
@@ -66,9 +69,12 @@ namespace admin.Controllers
             {
                 //生成访问令牌
                 string accessToken = Guid.NewGuid().ToString();
+
                 //颁发访问令牌
-                ISession session = HttpContext.Session;
-                session.SetString("accessToken", accessToken);
+                Response.Cookies.Append("accessToken", accessToken, new CookieOptions()
+                {
+                    Expires = DateTimeOffset.Now.AddHours(2)
+                });
 
                 //服务端维持两小时的状态保持
                 cache.Set(cacheKey, accessToken, DateTimeOffset.Now.AddHours(2));

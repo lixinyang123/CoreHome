@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace admin
 {
@@ -31,11 +30,6 @@ namespace admin
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //设置session过期时间
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromHours(2);
-            });
             services.AddControllersWithViews();
 
             //数据库服务
@@ -68,7 +62,6 @@ namespace admin
                 app.UseHsts();
             }
 
-            app.UseSession();
             app.UseWebSockets();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
