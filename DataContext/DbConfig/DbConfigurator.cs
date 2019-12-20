@@ -6,8 +6,8 @@ namespace DataContext.DbConfig
 {
     public class DbConfigurator
     {
-        private const string dbConnectionString = "server=localhost;user id=root;password=lxy15937905153;database=articles";
-        private const string redisConnectionString = "localhost";
+        private static string DbConnectionString { get; set; }
+        private static string RedisConnectionStrin { get; set; }
 
         private static ArticleDbContext dbContext = null;
         private static ConnectionMultiplexer cacheContext = null;
@@ -20,16 +20,34 @@ namespace DataContext.DbConfig
             cacheContext.Dispose();
         }
 
+        public static void Init(string dbConnectionStr,string redisConnectionStr)
+        {
+            DbConnectionString = dbConnectionStr;
+            RedisConnectionStrin = redisConnectionStr;
+            InitDbContext();
+            InitCacheContext();
+        }
+
+        private static void InitDbContext()
+        {
+            DbContextOptionsBuilder<ArticleDbContext> optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
+            optionBuilder.UseMySQL(DbConnectionString);
+            dbContext = new ArticleDbContext(optionBuilder.Options);
+            dbContext.Database.EnsureCreatedAsync();
+        }
+
+        private static void InitCacheContext()
+        {
+            cacheContext = ConnectionMultiplexer.Connect(RedisConnectionStrin);
+        }
+
         public static ArticleDbContext DbContext
         {
             get
             {
                 if (dbContext == null)
                 {
-                    DbContextOptionsBuilder<ArticleDbContext> optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
-                    optionBuilder.UseMySQL(dbConnectionString);
-                    dbContext = new ArticleDbContext(optionBuilder.Options);
-                    dbContext.Database.EnsureCreatedAsync();
+                    InitDbContext();
                 }
                 return dbContext;
             }
@@ -41,7 +59,7 @@ namespace DataContext.DbConfig
             {
                 if (cacheContext == null)
                 {
-                    cacheContext = ConnectionMultiplexer.Connect(redisConnectionString);
+                    InitCacheContext();
                 }
                 return cacheContext;
             }

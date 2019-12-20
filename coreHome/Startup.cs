@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using DataContext.DbOperator;
 using DataContext.Models;
 using DataContext.CacheOperator;
+using DataContext.DbConfig;
 
 namespace coreHome
 {
@@ -43,8 +44,10 @@ namespace coreHome
         //配置HTTP请求
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //预热efcore
-            app.ApplicationServices.GetService<IDbOperator<Article>>();
+              //初始化并预热efcore
+            DbConfigurator.Init(
+                Configuration.GetConnectionString("DbConnectionString"), 
+                Configuration.GetConnectionString("RedisConnectionStrin"));
 
             if (env.IsDevelopment())
             {

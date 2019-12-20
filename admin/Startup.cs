@@ -1,5 +1,6 @@
 ﻿using admin.Attributes;
 using DataContext.CacheOperator;
+using DataContext.DbConfig;
 using DataContext.DbOperator;
 using DataContext.Models;
 using Microsoft.AspNetCore.Builder;
@@ -52,8 +53,10 @@ namespace admin
         // 配置应用服务
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //预热efcore
-            app.ApplicationServices.GetService<IDbOperator<Article>>();
+            //初始化并预热efcore
+            DbConfigurator.Init(
+                Configuration.GetConnectionString("DbConnectionString"),
+                Configuration.GetConnectionString("RedisConnectionStrin"));
 
             if (env.IsDevelopment())
             {
