@@ -9,10 +9,21 @@
 }
 
 function fromUrl(bgmType) {
+
     var currentUrl = document.getElementById("currentUrl").value;
     var url = prompt("请输入url", currentUrl);
+
+    var reqUrl = "/Admin/Bgm/SetBgmType?bgmType=" + bgmType;
+
     if (url != null && url != "") {
-        window.location.href = "/Admin/Bgm/SetBgmType?bgmType=" + bgmType + "&url=" + url;
+        $.ajax({
+            type: 'POST',
+            url: reqUrl,
+            data: { url: url },
+            success: function () {
+                window.location.reload();
+            }
+        });
     }
 }
 

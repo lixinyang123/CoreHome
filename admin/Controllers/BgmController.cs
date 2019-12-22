@@ -41,7 +41,7 @@ namespace admin.Controllers
                     break;
 
                 case BgmType.Web:
-                    bgm.Url = Request.Query["url"];
+                    bgm.Url = Request.Form["url"];
                     break;
             }
 
