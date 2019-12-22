@@ -24,16 +24,27 @@ namespace admin.Controllers
 
         public IActionResult SetBgmType(int bgmType)
         {
-            Bgm bgm = new Bgm();
-            bgm.BgmType = (BgmType)bgmType;
-            if(bgm.BgmType == BgmType.Single)
+            Bgm bgm = new Bgm()
             {
-                List<string> musicList = BgmManager.GetBgmList();
-                if (musicList.Count > 0)
-                {
-                    bgm.DefaultMusic = musicList[0];
-                }
+                BgmType = (BgmType)bgmType
+            };
+
+            //特殊处理的类别
+            switch (bgm.BgmType)
+            {
+                case BgmType.Single:
+                    List<string> musicList = BgmManager.GetBgmList();
+                    if (musicList.Count > 0)
+                    {
+                        bgm.DefaultMusic = musicList[0];
+                    }
+                    break;
+
+                case BgmType.Web:
+                    bgm.Url = Request.Query["url"];
+                    break;
             }
+
             BgmManager.Bgm = bgm;
             return RedirectToAction("index");
         }
@@ -63,7 +74,7 @@ namespace admin.Controllers
 
         public IActionResult Play(string musicName)
         {
-            var fullPath = BgmManager.bgmPath + musicName;
+            string fullPath = BgmManager.bgmPath + musicName;
             byte[] buffer = System.IO.File.ReadAllBytes(fullPath);
             return File(buffer, "audio/mpeg");
         }

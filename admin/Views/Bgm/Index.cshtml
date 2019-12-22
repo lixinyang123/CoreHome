@@ -18,25 +18,32 @@
         <h3>BgmType</h3>
         <br />
         <div class="row">
-            @{ 
-                Bgm bgmType = ViewBag.Bgm;
+            @{
+                Bgm bgm = ViewBag.Bgm;
             }
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="/Admin/Bgm/SetBgmType?bgmType=@Convert.ToInt32(BgmType.None)">
-                    <input name="bgmType" type="radio" @if (bgmType.BgmType == BgmType.None) { Write("checked"); }/>
+                    <input name="bgmType" type="radio" @if (bgm.BgmType == BgmType.None) { Write("checked"); } />
                     <strong>None</strong>
                 </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="/Admin/Bgm/SetBgmType?bgmType=@Convert.ToInt32(BgmType.Single)">
-                    <input name="bgmType" type="radio" @if (bgmType.BgmType == BgmType.Single) { Write("checked"); }/>
+                    <input name="bgmType" type="radio" @if (bgm.BgmType == BgmType.Single) { Write("checked"); } />
                     <strong>Single</strong>
                 </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="/Admin/Bgm/SetBgmType?bgmType=@Convert.ToInt32(BgmType.Random)">
-                    <input name="bgmType" type="radio" @if (bgmType.BgmType == BgmType.Random) { Write("checked"); }/>
+                    <input name="bgmType" type="radio" @if (bgm.BgmType == BgmType.Random) { Write("checked"); } />
                     <strong>Random</strong>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="javascript:void()" onclick="fromUrl(@Convert.ToInt32(BgmType.Web))">
+                    <input name="bgmType" type="radio" @if (bgm.BgmType == BgmType.Web) { Write("checked"); } />
+                    <input id="currentUrl" type="hidden" value="@bgm.Url"/>
+                    <strong>Web</strong>
                 </a>
             </div>
         </div>
