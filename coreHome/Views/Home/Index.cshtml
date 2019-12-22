@@ -199,7 +199,20 @@
             </div>
         </div>
 
-        <audio id="player" src="/Home/Bgm?bgmType=@Convert.ToInt32(BgmManager.Bgm.BgmType)" autoplay></audio>
+        @{ 
+            string src = string.Empty;
+            Bgm bgm = BgmManager.Bgm;
+            if (bgm.BgmType == BgmType.Web)
+            {
+                src = bgm.Url;
+            }
+            else
+            {
+                src = "/Home/Bgm?bgmType=" + Convert.ToInt32(BgmManager.Bgm.BgmType);
+            }
+        }
+
+        <audio id="player" src="@src" autoplay></audio>
 
         <!-- Main -->
         <script src="~/js/home/index.min.js"></script>
