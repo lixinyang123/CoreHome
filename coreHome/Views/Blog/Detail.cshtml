@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="~/lib/HighLightJS/css/default.css" />
         <script src="~/lib/HighLightJS/js/highlight.min.js"></script>
         <script src="~/lib/HighLightJS/js/highlightjs-line-numbers.min.js"></script>
+        <script src="~/js/blog/detail.min.js"></script>
 
         <!-- 文章列表 -->
         <div id="main">
@@ -49,11 +50,11 @@
             </article>
 
             <!--评论模块-->
-            <input name="id" type="hidden" value="@Model.ArticleID" />
+            <input id="articleid" name="id" type="hidden" value="@Model.ArticleID" />
             <!--评论输入框-->
             <div id="detail" class="control-group">
                 <div class="controls">
-                    <textarea id="detail" name="detail" rows="3" maxlength="150" class="form-control" placeholder="评论"></textarea>
+                    <textarea id="message" name="message" rows="3" maxlength="150" class="form-control" placeholder="评论"></textarea>
                 </div>
 
                 <div class="pull-right">
@@ -61,7 +62,7 @@
                     <input id="verfyInput" name="code" type="text" class="form-control" placeholder="请输入验证码">
 
                     <!--提交按钮-->
-                    <button id="btn_submit" class="btn btn-primary">提交</button>
+                    <button id="btn_submit" class="btn btn-primary" onclick="submit()">提交</button>
                 </div>
             </div>
 

@@ -1,24 +1,26 @@
 ﻿function submit() {
 
-    var contact = document.getElementById("detail").value;
-    var title = document.getElementById("verfyInput").value;
+    var id = document.getElementById("articleid").value;
+    var detail = document.getElementById("message").value;
+    var code = document.getElementById("verfyInput").value;
 
     var postData = {
-
-        verificationCode: verificationCode
+        id: id,
+        detail: detail,
+        code: code
     };
 
     console.log(postData);
 
     $.ajax({
         type: 'POST',
-        url: "/FeedBack/Index",
+        url: "/Blog/Comment",
         data: postData,
         success: function () {
-            window.location.href = "/Home/Message?msg=感谢您的反馈，开发者会尽快答复&url=/Feedback";
+            window.location.href = "/Home/Message?msg=评论成功&url=/Blog/Detail?articleID=" + id;
         },
-        error: function () {
-            alert("验证码错误");
+        error: function (err) {
+            alert(JSON.parse(err.responseText).detail);
             document.getElementById("verfyImg").click();
         }
     });

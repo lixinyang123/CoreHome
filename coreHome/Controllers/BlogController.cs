@@ -141,7 +141,7 @@ namespace coreHome.Controllers
         public IActionResult Comment([FromForm]string id, [FromForm]string detail, [FromForm]string code)
         {
             ISession session = HttpContext.Session;
-            string str = session.GetString("Verification");
+            string str = session.GetString("VerificationCode");
 
             if (!string.IsNullOrEmpty(code) && str == code.ToLower())
             {
@@ -156,11 +156,11 @@ namespace coreHome.Controllers
                     };
 
                     commentRepository.Add(comment);
-                    return Redirect("/Home/Message?msg=评论成功&url=/Blog/Detail?articleID=" + id);
+                    return Ok();
                 }
-                return Redirect("/Home/Message?msg=评论不能为空&url=/Blog/Detail?articleID=" + id);
+                return ValidationProblem("内容不能为空");
             }
-            return Redirect("/Home/Message?msg=验证码错误&url=/Blog/Detail?articleID=" + id);
+            return ValidationProblem("验证码错误");
         }
 
         public void GetTagList()
