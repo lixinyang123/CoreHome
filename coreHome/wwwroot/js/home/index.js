@@ -50,9 +50,9 @@ if (!CookieExist(".AspNet.Consent")) {
 }
 
 player.addEventListener('ended', function () {
-    var src = document.getElementById("player").src;
-    var newSrc = src + "&" + Math.floor(Math.random() * 10);
-    document.getElementById("player").src = newSrc;
+    setTimeout(() => {
+        document.getElementById("player").play();
+    }, 1000);
 });
 
 Rotate();
