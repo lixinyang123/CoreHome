@@ -44,11 +44,10 @@ namespace coreHome.Controllers
                 catch (Exception) { }
             }
 
-            CookieOptions options = new CookieOptions
+            Response.Cookies.Append("lastTime", now.ToString("yyyy/MM/dd hh:mm:ss"), new CookieOptions()
             {
                 Expires = DateTime.Now.AddDays(30)
-            };
-            Response.Cookies.Append("lastTime", now.ToString("yyyy/MM/dd hh:mm:ss"), options);
+            });
             return View();
         }
 
@@ -70,13 +69,13 @@ namespace coreHome.Controllers
         {
             BgmType type = (BgmType)bgmType;
 
-            if(type == BgmType.None)
+            if (type == BgmType.None)
             {
                 return Accepted();
             }
             else if (type == BgmType.Single)
             {
-                var fullPath = BgmManager.bgmPath + BgmManager.Bgm.DefaultMusic;
+                string fullPath = BgmManager.bgmPath + BgmManager.Bgm.DefaultMusic;
                 if (System.IO.File.Exists(fullPath))
                 {
                     byte[] buffer = System.IO.File.ReadAllBytes(fullPath);
@@ -88,11 +87,11 @@ namespace coreHome.Controllers
                     return Accepted();
                 }
             }
-            else if(type==BgmType.Random)
+            else if (type == BgmType.Random)
             {
                 List<string> musicList = BgmManager.GetBgmList();
                 int random = new Random().Next(0, musicList.Count);
-                var fullPath = BgmManager.bgmPath + musicList[random];
+                string fullPath = BgmManager.bgmPath + musicList[random];
                 byte[] buffer = System.IO.File.ReadAllBytes(fullPath);
                 return File(buffer, "audio/mpeg");
             }

@@ -1,13 +1,9 @@
-﻿@using Microsoft.AspNetCore.Http.Features
-
+﻿
 @{
-    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
-    var showBanner = !consentFeature?.CanTrack ?? false;
-    var cookieString = consentFeature?.CreateConsentCookie();
-    var now = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
+    bool showBanner = Context.Request.Cookies.TryGetValue("CookiePolicy", out _);
 }
 
-@if (showBanner)
+@if (!showBanner)
 {
         <nav id="cookieConsent" class="navbar-fixed-bottom" role="alert" style="background-color: rgba(255,255,255,0.8);">
             <div class="container">
@@ -20,35 +16,27 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <strong class="navbar-text">
-                        允许此站点使用 Cookie 进行分析、显示个性化内容？
+                        此站点使用 Cookie 进行分析、显示个性化内容
                     </strong>
                     <div class="navbar-right">
                         <a asp-controller="Home" asp-action="Privacy" class="btn btn-info navbar-btn">了解更多</a>
-                        <button id="btn_accept" type="button" class="btn btn-default navbar-btn" data-cookie-string="@cookieString" time="@now">同意</button>
+                        <button id="btn_accept" type="button" class="btn btn-default navbar-btn" onclick="agree()">确定</button>
                     </div>
                 </div>
             </div>
         </nav>
+
         <script>
-            
-            (function () {
-                document.querySelector("#cookieConsent button[data-cookie-string]").addEventListener("click", function (el) {
-                    document.cookie = el.target.dataset.cookieString;
-                    document.querySelector("#cookieConsent").classList.add("hidden");
-
-                    var time = document.getElementById("btn_accept").getAttribute("time");
-                    setCookie("lastTime", time);
-                    window.location.reload();
-                }, false);
-            })();
-
-            function setCookie(name,value)
-            {
-                var Days = 1;
-                var exp = new Date();
-                exp.setTime(exp.getTime() + Days*24*60*60*1000);
-                document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+            function agree() {
+                document.getElementById("cookieConsent").classList.add("hidden");
+                setCookie("CookiePolicy", "agree", 1);
             }
 
+            function setCookie(name,value,days)
+            {
+                var exp = new Date();
+                exp.setTime(exp.getTime() + days*24*60*60*1000);
+                document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+            }
         </script>
 }

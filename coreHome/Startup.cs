@@ -60,7 +60,6 @@ namespace coreHome
             }
 
             app.UseHttpsRedirection();
-            app.UseCookiePolicy();
             app.UseSession();
             app.UseStaticFiles();
             app.UseRouting();
