@@ -120,11 +120,11 @@ namespace coreHome.Controllers
 
         public IActionResult Detail(string articleID)
         {
-            Article article = articleRepository.Find(articleID);
-            article.Comments = commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count());
-            article.Tags = tagRepository.Find(i => i.ArticleID == articleID, 0, tagRepository.Count());
-            if (article != null)
+            try
             {
+                Article article = articleRepository.Find(articleID);
+                article.Comments = commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count());
+                article.Tags = tagRepository.Find(i => i.ArticleID == articleID, 0, tagRepository.Count());
                 CookieOptions options = new CookieOptions
                 {
                     Expires = DateTime.Now.AddDays(7)
@@ -132,9 +132,9 @@ namespace coreHome.Controllers
                 Response.Cookies.Append("lastRead", articleID, options);
                 return View(article);
             }
-            else
+            catch (Exception)
             {
-                return Content("没有此文章");
+                return Redirect("/Home/Message?msg=文章消失了&url=/Blog");
             }
         }
 
