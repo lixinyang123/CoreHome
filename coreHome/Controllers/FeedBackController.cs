@@ -16,7 +16,7 @@ namespace coreHome.Controllers
                 string str = session.GetString("VerificationCode");
                 string code = Request.Form["VerificationCode"];
 
-                if (code != null && code != string.Empty && str == code.ToLower())
+                if (!string.IsNullOrEmpty(code) && str == code.ToLower())
                 {
                     string contact = Request.Form["contact"];
                     string title = Request.Form["title"];

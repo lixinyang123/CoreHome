@@ -23,6 +23,7 @@
         },
         error: function () {
             alert("验证码错误");
+            document.getElementById("verfyImg").click();
         }
     });
 }
