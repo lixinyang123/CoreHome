@@ -8,8 +8,8 @@
         <!-- 文章列表 -->
         <div id="main">
 
-            <h1 style="text-align:center;">类别：@ViewBag.Warning</h1>
-            <h1 style="text-align:center;">第 @(ViewBag.CurrentIndex + 1) 页 / 共 @ViewBag.LastPage 页</h1>
+            <h1 class="text-center"><a asp-controller="Blog" asp-action="Index">✘</a>类别：@ViewBag.Warning</h1>
+            <h1 class="text-center">第 @(ViewBag.CurrentIndex + 1) 页 / 共 @ViewBag.LastPage 页</h1>
 
             <div>
                 <div class="col-md-2">
