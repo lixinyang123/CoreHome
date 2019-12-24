@@ -1,14 +1,10 @@
 ﻿function submit() {
 
-    var contact = document.getElementById("contact").value;
-    var title = document.getElementById("title").value;
-    var message = document.getElementById("message").value;
-    var verificationCode = document.getElementById("verificationCode").value;
+    var contact = document.getElementById("detail").value;
+    var title = document.getElementById("verfyInput").value;
 
     var postData = {
-        contact: contact,
-        title: title,
-        message: message,
+
         verificationCode: verificationCode
     };
 

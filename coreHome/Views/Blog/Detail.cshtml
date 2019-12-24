@@ -49,23 +49,21 @@
             </article>
 
             <!--评论模块-->
-            <form method="post" asp-controller="Blog" asp-action="Comment">
-                <input name="id" type="hidden" value="@Model.ArticleID" />
-                <!--评论输入框-->
-                <div id="detail" class="control-group">
-                    <div class="controls">
-                        <textarea name="detail" rows="3" maxlength="150" class="form-control" placeholder="评论"></textarea>
-                    </div>
-
-                    <div class="pull-right">
-                        <img id="verfyImg" onclick="getVerfyCode('verfyImg')" src="/Home/VerificationCode" class="img-thumbnail">
-                        <input id="verfyInput" name="code" type="text" class="form-control" placeholder="请输入验证码">
-
-                        <!--提交按钮-->
-                        <button id="btn_submit" type="submit" class="btn btn-primary">提交</button>
-                    </div>
+            <input name="id" type="hidden" value="@Model.ArticleID" />
+            <!--评论输入框-->
+            <div id="detail" class="control-group">
+                <div class="controls">
+                    <textarea id="detail" name="detail" rows="3" maxlength="150" class="form-control" placeholder="评论"></textarea>
                 </div>
-            </form>
+
+                <div class="pull-right">
+                    <img id="verfyImg" onclick="getVerfyCode('verfyImg')" src="/Home/VerificationCode" class="img-thumbnail">
+                    <input id="verfyInput" name="code" type="text" class="form-control" placeholder="请输入验证码">
+
+                    <!--提交按钮-->
+                    <button id="btn_submit" class="btn btn-primary">提交</button>
+                </div>
+            </div>
 
             <!--评论列表-->
             <div id="comment">

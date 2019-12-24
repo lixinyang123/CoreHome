@@ -6,7 +6,7 @@ namespace coreHome.Controllers
 {
     public class FeedBackController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index([FromForm]string verificationCode)
         {
             ViewBag.Title = "反馈中心";
 
@@ -14,9 +14,8 @@ namespace coreHome.Controllers
             {
                 ISession session = HttpContext.Session;
                 string str = session.GetString("VerificationCode");
-                string code = Request.Form["VerificationCode"];
 
-                if (!string.IsNullOrEmpty(code) && str == code.ToLower())
+                if (!string.IsNullOrEmpty(verificationCode) && str == verificationCode.ToLower())
                 {
                     string contact = Request.Form["contact"];
                     string title = Request.Form["title"];
