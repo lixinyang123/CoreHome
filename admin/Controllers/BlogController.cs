@@ -70,12 +70,12 @@ namespace admin.Controllers
         [ServiceFilter(typeof(DataChanged))]
         public IActionResult DeleteArticle(string articleID)
         {
-            //删除博客
-            articleRepository.Delete(articleID);
             //删除此博客的所有评论
             commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count()).ForEach(j => commentRepository.Delete(j.CommentID));
             //删除此博客所有标签
             tagRepository.Delete(articleID);
+            //删除博客
+            articleRepository.Delete(articleID);
 
             return RedirectToAction("index");
         }
