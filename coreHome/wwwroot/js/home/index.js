@@ -45,7 +45,7 @@ function CookieExist(cookieName) {
 }
 
 //=============Initializa================
-if (!CookieExist(".AspNet.Consent")) {
+if (!CookieExist("CookiePolicy")) {
     setTimeout(LoadAnimation, 1000);
 }
 
