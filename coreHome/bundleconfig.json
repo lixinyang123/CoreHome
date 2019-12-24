@@ -58,5 +58,11 @@
     "inputFiles": [
       "wwwroot/js/blog/shared.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/feedback/index.min.js",
+    "inputFiles": [
+      "wwwroot/js/feedback/index.js"
+    ]
   }
 ]

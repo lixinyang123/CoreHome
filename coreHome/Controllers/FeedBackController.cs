@@ -13,20 +13,20 @@ namespace coreHome.Controllers
             if (Request.Method == "POST")
             {
                 ISession session = HttpContext.Session;
-                string str = session.GetString("Verification");
-                string code = Request.Form["code"];
+                string str = session.GetString("VerificationCode");
+                string code = Request.Form["VerificationCode"];
 
                 if (code != null && code != string.Empty && str == code.ToLower())
                 {
                     string contact = Request.Form["contact"];
                     string title = Request.Form["title"];
-                    string detail = Request.Form["detail"];
+                    string detail = Request.Form["message"];
 
                     NotifyService.PushNotify(title + $"[{contact}]", detail);
 
-                    return Redirect("/Home/Message?msg=感谢您的反馈，开发者会尽快答复&url=/Feedback");
+                    return Ok();
                 }
-                return Redirect("/Home/Message?msg=验证码错误&url=/Feedback");
+                return ValidationProblem("验证码错误");
             }
             return View();
         }

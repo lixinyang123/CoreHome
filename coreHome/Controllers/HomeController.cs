@@ -116,7 +116,7 @@ namespace coreHome.Controllers
         public IActionResult VerificationCode()
         {
             ISession session = HttpContext.Session;
-            session.SetString("Verification", verificationHelper.VerificationCode);
+            session.SetString("VerificationCode", verificationHelper.VerificationCode);
             return File(verificationHelper.VerificationImage, "image/png");
         }
 
