@@ -4,65 +4,30 @@ using StackExchange.Redis;
 
 namespace DataContext.DbConfig
 {
-    public class DbConfigurator
+    public static class DbConfigurator
     {
         private static string DbConnectionString { get; set; }
         private static string RedisConnectionStrin { get; set; }
 
-        private static ArticleDbContext dbContext = null;
-        private static ConnectionMultiplexer cacheContext = null;
-
-        private DbConfigurator() { }
-
-        ~DbConfigurator()
-        {
-            dbContext.Dispose();
-            cacheContext.Dispose();
-        }
-
-        public static void Init(string dbConnectionStr,string redisConnectionStr)
+        public static void Init(string dbConnectionStr, string redisConnectionStr)
         {
             DbConnectionString = dbConnectionStr;
             RedisConnectionStrin = redisConnectionStr;
-            InitDbContext();
-            InitCacheContext();
+            GetDbContext().Database.EnsureCreatedAsync();
         }
 
-        private static void InitDbContext()
+        public static ArticleDbContext GetDbContext()
         {
             DbContextOptionsBuilder<ArticleDbContext> optionBuilder = new DbContextOptionsBuilder<ArticleDbContext>();
             optionBuilder.UseMySQL(DbConnectionString);
-            dbContext = new ArticleDbContext(optionBuilder.Options);
-            dbContext.Database.EnsureCreatedAsync();
+            ArticleDbContext dbContext = new ArticleDbContext(optionBuilder.Options);
+            return dbContext;
         }
 
-        private static void InitCacheContext()
+        public static ConnectionMultiplexer GetCacheContext()
         {
-            cacheContext = ConnectionMultiplexer.Connect(RedisConnectionStrin);
-        }
-
-        public static ArticleDbContext DbContext
-        {
-            get
-            {
-                if (dbContext == null)
-                {
-                    InitDbContext();
-                }
-                return dbContext;
-            }
-        }
-
-        public static ConnectionMultiplexer CacheContext
-        {
-            get
-            {
-                if (cacheContext == null)
-                {
-                    InitCacheContext();
-                }
-                return cacheContext;
-            }
+            ConnectionMultiplexer cacheContext = ConnectionMultiplexer.Connect(RedisConnectionStrin);
+            return cacheContext;
         }
 
     }

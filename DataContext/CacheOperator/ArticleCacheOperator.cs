@@ -13,7 +13,7 @@ namespace DataContext.CacheOperator
 
         public ArticleCacheOperator()
         {
-            database = DbConfigurator.CacheContext.GetDatabase(0);
+            database = DbConfigurator.GetCacheContext().GetDatabase(0);
         }
 
         /// <summary>

@@ -9,19 +9,13 @@ namespace DataContext.DbOperator
 {
     public class CommentDbOperator : IDbOperator<Comment>
     {
-        private readonly ArticleDbContext context;
-
-        public CommentDbOperator()
-        {
-            context = DbConfigurator.DbContext;
-        }
-
         /// <summary>
         /// 新增评论
         /// </summary>
         /// <param name="t"></param>
         public void Add(Comment t)
         {
+            using ArticleDbContext context = DbConfigurator.GetDbContext();
             context.Comment.Add(t);
             context.SaveChanges();
         }
@@ -32,6 +26,7 @@ namespace DataContext.DbOperator
         /// <returns></returns>
         public int Count()
         {
+            using ArticleDbContext context = DbConfigurator.GetDbContext();
             return context.Comment.Count();
         }
 
@@ -41,6 +36,7 @@ namespace DataContext.DbOperator
         /// <param name="commentID">评论ID</param>
         public void Delete(string commentID)
         {
+            using ArticleDbContext context = DbConfigurator.GetDbContext();
             context.Comment.Remove(Find(commentID));
             context.SaveChanges();
         }
@@ -52,6 +48,7 @@ namespace DataContext.DbOperator
         /// <returns>评论实体</returns>
         public Comment Find(string commentID)
         {
+            using ArticleDbContext context = DbConfigurator.GetDbContext();
             Comment comment = context.Comment.Single(i => i.CommentID == commentID);
             return comment;
         }
@@ -65,6 +62,7 @@ namespace DataContext.DbOperator
         /// <returns></returns>
         public List<Comment> Find(Func<Comment, bool> func, int start, int count)
         {
+            using ArticleDbContext context = DbConfigurator.GetDbContext();
             List<Comment> comments = context.Comment.Where(func).OrderByDescending(i => i.ID).ToList();
             return comments;
         }
