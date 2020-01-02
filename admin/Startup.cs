@@ -1,14 +1,15 @@
 ﻿using admin.Attributes;
-using DataContext.CacheOperator;
-using DataContext.DbConfig;
-using DataContext.DbOperator;
-using DataContext.Models;
+using CoreHome.Data.DatabaseContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Pomelo.EntityFrameworkCore.MySql.Storage;
+using System;
 
 namespace admin
 {
@@ -32,26 +33,20 @@ namespace admin
 
             services.AddControllersWithViews();
 
-            //数据库服务
-            services.AddSingleton<IDbOperator<Article>, ArticleDbOperator>();
-            services.AddSingleton<IDbOperator<Comment>, CommentDbOperator>();
-            services.AddSingleton<IDbOperator<Tag>, TagDbOperator>();
 
-            //缓存服务
-            services.AddSingleton<ICacheOperator<Article>, ArticleCacheOperator>();
+            services.AddDbContext<ArticleDbContext>(options =>
+            {
+                options.UseMySql(Configuration.GetConnectionString("ArticleDb"), mySqlOptions =>
+                {
+                    mySqlOptions.ServerVersion(new ServerVersion(new Version(8, 0, 18), ServerType.MySql));
+                });
+            });
 
-            //注册缓存过滤器
-            services.AddSingleton<DataChanged>();
         }
 
         // 配置应用服务
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //初始化并预热efcore
-            DbConfigurator.Init(
-                Configuration.GetConnectionString("DbConnectionString"),
-                Configuration.GetConnectionString("RedisConnectionStrin"));
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

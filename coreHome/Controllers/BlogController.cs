@@ -1,9 +1,9 @@
-﻿using DataContext.CacheOperator;
-using DataContext.DbOperator;
-using DataContext.Models;
+﻿using CoreHome.Data.DatabaseContext;
+using CoreHome.Data.Model;
 using Infrastructure.common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,39 +12,23 @@ namespace coreHome.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly IDbOperator<Article> articleRepository;
-        private readonly IDbOperator<Comment> commentRepository;
-        private readonly IDbOperator<Tag> tagRepository;
-        private readonly ICacheOperator<Article> articleCache;
         private readonly int pageSize = 5;
+        private readonly ArticleDbContext articleDbContext;
 
-        public BlogController(IDbOperator<Article> articleOperator,
-            IDbOperator<Comment> commentOperator,
-            IDbOperator<Tag> tagOperator,
-            ICacheOperator<Article> cacheOperator)
+        public BlogController(ArticleDbContext articleDbContext)
         {
-            articleRepository = articleOperator;
-            commentRepository = commentOperator;
-            tagRepository = tagOperator;
-            articleCache = cacheOperator;
+            this.articleDbContext = articleDbContext;
         }
 
         public IActionResult Index(int index)
         {
-            string cacheKey = "index" + index;
-            List<Article> articles = articleCache.GetList(cacheKey);
-
             //获取页面起始页和结束页
-            int count = articleRepository.Count();
+            int count = articleDbContext.Articles.Count();
             index = PageManager.GetStartPageIndex(index, count, pageSize);
             ViewBag.LastPage = PageManager.GetLastPageIndex(count, pageSize);
 
-            if (articles == null)
-            {
-                articles = articleRepository.Find(i => i.Title != null, index, pageSize);
-                articles.ForEach(i => i.Tags = tagRepository.Find(j => j.ArticleID == i.ArticleID, 0, tagRepository.Count()));
-                articleCache.AddList(cacheKey, articles);
-            }
+
+            List<Article> articles = articleDbContext.Articles.Include(i => i.ArticleTags).Skip(index).Take(pageSize).ToList();
 
             GetTagList();
 
@@ -60,20 +44,9 @@ namespace coreHome.Controllers
 
         public IActionResult Search(string keyword, int index)
         {
-            string cacheKey = "Search" + keyword + index;
-            List<Article> articles = articleCache.GetList(cacheKey);
+            index = PageManager.GetStartPageIndex(index, articleDbContext.Articles.Count(), pageSize);
 
-            if (articles == null)
-            {
-                articles = articleRepository.Find(i => i.Title.ToLower().Contains(keyword.ToLower()), 0, articleRepository.Count());
-                articleCache.AddList(cacheKey, articles);
-            }
-
-            index = PageManager.GetStartPageIndex(index, articles.Count, pageSize);
-            ViewBag.LastPage = PageManager.GetLastPageIndex(articles.Count, pageSize);
-
-            articles = articles.Skip(index * pageSize).Take(pageSize).ToList();
-            articles.ForEach(i => i.Tags = tagRepository.Find(j => j.ArticleID == i.ArticleID, 0, tagRepository.Count()));
+            List<Article> articles = articleDbContext.Articles.Include(i => i.ArticleTags).ThenInclude(i => i.Tag).Where(i => i.Title.Contains(keyword)).Skip(index).Take(pageSize).ToList();
 
             GetTagList();
 
@@ -87,27 +60,17 @@ namespace coreHome.Controllers
 
         public IActionResult TagList(string tagName, int index)
         {
-            string cacheKey = "TagList" + tagName + index;
-            List<Article> articles = articleCache.GetList(cacheKey);
-
-            List<Tag> tags = tagRepository.Find(i => i.TagName.ToLower() == tagName.ToLower(), index, pageSize);
+            Tag tag = articleDbContext.Tags.Include(i => i.ArticleTags).ThenInclude(i => i.Article).SingleOrDefault(i => i.TagName == tagName);
 
             //获取页面起始页和结束页
-            index = PageManager.GetStartPageIndex(index, tags.Count, pageSize);
-            ViewBag.LastPage = PageManager.GetLastPageIndex(tags.Count, pageSize);
-            tags = tags.Skip(index * pageSize).Take(pageSize).ToList();
+            index = PageManager.GetStartPageIndex(index, tag.ArticleTags.Count, pageSize);
+            ViewBag.LastPage = PageManager.GetLastPageIndex(tag.ArticleTags.Count, pageSize);
 
-            if (articles == null)
+            List<Article> articles = new List<Article>();
+            tag.ArticleTags.ForEach(i =>
             {
-                articles = new List<Article>();
-                foreach (Tag tag in tags)
-                {
-                    Article article = articleRepository.Find(tag.ArticleID);
-                    article.Tags = tagRepository.Find(i => i.ArticleID == article.ArticleID, 0, tagRepository.Count());
-                    articles.Add(article);
-                }
-                articleCache.AddList(cacheKey, articles);
-            }
+                articles.Add(i.Article);
+            });
 
             GetTagList();
 
@@ -122,9 +85,8 @@ namespace coreHome.Controllers
         {
             try
             {
-                Article article = articleRepository.Find(articleID);
-                article.Comments = commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count());
-                article.Tags = tagRepository.Find(i => i.ArticleID == articleID, 0, tagRepository.Count());
+                Article article = articleDbContext.Articles.Include(i => i.Comments).Include(i => i.ArticleTags).ThenInclude(i => i.Tag).Single(i => i.ArticleCode == articleID);
+
                 CookieOptions options = new CookieOptions
                 {
                     Expires = DateTime.Now.AddDays(7)
@@ -149,13 +111,12 @@ namespace coreHome.Controllers
                 {
                     Comment comment = new Comment()
                     {
-                        CommentID = Guid.NewGuid().ToString(),
-                        Time = DateTime.Now.ToString(),
+                        Time = DateTime.Now,
                         Detail = detail,
-                        ArticleID = id
                     };
 
-                    commentRepository.Add(comment);
+                    articleDbContext.Articles.Include(i=>i.Comments).Single(i => i.ArticleCode == id).Comments.Add(comment);
+                    articleDbContext.SaveChanges();
                     return Ok();
                 }
                 return ValidationProblem("内容不能为空");
@@ -165,7 +126,7 @@ namespace coreHome.Controllers
 
         public void GetTagList()
         {
-            List<Tag> tags = tagRepository.Find(i => i.ArticleID != null, 0, tagRepository.Count());
+            List<Tag> tags = articleDbContext.Tags.ToList();
             List<string> tagList = new List<string>();
             tags.ForEach(i =>
             {

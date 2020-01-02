@@ -19,10 +19,10 @@
         @foreach (var comment in Model)
         {
             <tr>
-                <td>@comment.CommentID</td>
+                <td>@comment.Id</td>
                 <td>@comment.Time</td>
                 <td>@comment.Detail</td>
-                <td><a href="/Admin/Blog/DeleteComment?articleID=@ViewBag.ArticleID&commentID=@comment.CommentID">Delete</a></td>
+                <td><a href="/Admin/Blog/DeleteComment?articleID=@ViewBag.ArticleID&commentID=@comment.Id">Delete</a></td>
             </tr>
         }
 

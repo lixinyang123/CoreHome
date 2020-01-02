@@ -1,4 +1,4 @@
-﻿using DataContext.Models;
+﻿using CoreHome.Data.Model;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

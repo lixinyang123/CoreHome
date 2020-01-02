@@ -1,4 +1,4 @@
-﻿@model DataContext.Models.Article
+﻿@model CoreHome.Data.Model.Article
 
 <div>
     <div id="wrapper">
@@ -21,9 +21,9 @@
                         <h2 id="title">@Model.Title</h2>
                         <!--标签-->
                         <p>
-                            @foreach (var tag in Model.Tags)
+                            @foreach (var articleTag in Model.ArticleTags)
                             {
-                                var tagStr = "#" + tag.TagName;
+                                var tagStr = "#" + articleTag.Tag.TagName;
                                 <a class="footerlink"><u>@tagStr</u></a>
                             }
                         </p>
@@ -43,14 +43,14 @@
                 </header>
 
                 <!--封面-->
-                <a class="image featured" style="max-height:300px;"><img src="@Model.Cover" style="width:100%;" /></a>
+                <a class="image featured" style="max-height:300px;"><img src="@Model.CoverUrl" style="width:100%;" /></a>
                 <!--内容-->
                 <div id="detail" class="container">@Html.Raw(Model.Content)</div>
 
             </article>
 
             <!--评论模块-->
-            <input id="articleid" name="id" type="hidden" value="@Model.ArticleID" />
+            <input id="articleid" name="id" type="hidden" value="@Model.ArticleCode" />
             <!--评论输入框-->
             <div class="control-group">
                 <div class="controls">

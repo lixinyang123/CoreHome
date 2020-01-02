@@ -1,4 +1,4 @@
-﻿namespace DataContext.Models
+﻿namespace CoreHome.Data.Model
 {
     public class ErrorViewModel
     {

@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using CoreHome.Data.DatabaseContext;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using DataContext.DbOperator;
-using DataContext.Models;
-using DataContext.CacheOperator;
-using DataContext.DbConfig;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Pomelo.EntityFrameworkCore.MySql.Storage;
+using System;
 
 namespace coreHome
 {
@@ -32,23 +33,18 @@ namespace coreHome
             services.AddSession();
             services.AddControllersWithViews();
 
-            //数据库服务
-            services.AddSingleton<IDbOperator<Comment>, CommentDbOperator>();
-            services.AddSingleton<IDbOperator<Article>, ArticleDbOperator>();
-            services.AddSingleton<IDbOperator<Tag>, TagDbOperator>();
-
-            //缓存服务
-            services.AddSingleton<ICacheOperator<Article>, ArticleCacheOperator>();
+            services.AddDbContext<ArticleDbContext>(options =>
+            {
+                options.UseMySql(Configuration.GetConnectionString("ArticleDb"), mySqlOptions =>
+                {
+                    mySqlOptions.ServerVersion(new ServerVersion(new Version(8, 0, 18), ServerType.MySql));
+                });
+            });
         }
 
         //配置HTTP请求
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-              //初始化并预热efcore
-            DbConfigurator.Init(
-                Configuration.GetConnectionString("DbConnectionString"), 
-                Configuration.GetConnectionString("RedisConnectionStrin"));
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -1,63 +1,67 @@
 ﻿using admin.Attributes;
-using DataContext.DbOperator;
-using DataContext.Models;
-using Infrastructure.common;
+using CoreHome.Data.DatabaseContext;
+using CoreHome.Data.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace admin.Controllers
 {
     [Authorization]
     public class BlogController : MyController
     {
-        private readonly IDbOperator<Article> articleRepository;
-        private readonly IDbOperator<Comment> commentRepository;
-        private readonly IDbOperator<Tag> tagRepository;
-        private readonly int pageSize = 20;
+        private readonly ArticleDbContext articleDbContext;
 
         public BlogController(IMemoryCache _cache,
-            IDbOperator<Article> articleOperator,
-            IDbOperator<Comment> commentOperator,
-            IDbOperator<Tag> tagOperator,
+            ArticleDbContext articleDbContext,
             IWebHostEnvironment env) : base(_cache, env)
         {
-            articleRepository = articleOperator;
-            commentRepository = commentOperator;
-            tagRepository = tagOperator;
+            this.articleDbContext = articleDbContext;
         }
 
-        public IActionResult Index(int index)
+        public IActionResult Index()
         {
-            index = PageManager.GetStartPageIndex(index, articleRepository.Count(), pageSize);
-            List<Article> articles = articleRepository.Find(i => i.Title != null, index, pageSize);
+            List<Article> articles = articleDbContext.Articles.Include(i => i.ArticleTags).ThenInclude(i => i.Tag).ToList();
             return View(articles);
         }
 
-        [ServiceFilter(typeof(DataChanged))]
         public IActionResult UploadArticle()
         {
             if (Request.Method == "POST")
             {
+                List<ArticleTag> articleTags = new List<ArticleTag>();
+                List<string> tags = new List<string>(Request.Form["tag"].ToString().TrimStart('#').Split("#"));
+                tags.ForEach(i =>
+                {
+                    Tag tag = articleDbContext.Tags.SingleOrDefault(x => x.TagName == i);
+                    if (tag == null)
+                    {
+                        articleTags.Add(new ArticleTag() { Tag = new Tag() { TagName = i } });
+                    }
+                    else
+                    {
+                        articleTags.Add(new ArticleTag() { TagId = tag.Id });
+                    }
+                });
+
                 //添加博客记录
                 Article article = new Article()
                 {
-                    ArticleID = Guid.NewGuid().ToString(),
+                    ArticleCode = Guid.NewGuid().ToString(),
                     Title = Request.Form["title"],
-                    Time = DateTime.Now.ToString("yyyy/MM/dd"),
-                    Cover = Request.Form["cover"],
+                    Time = DateTime.Now,
+                    CoverUrl = Request.Form["cover"],
                     Overview = Request.Form["overview"],
-                    Content = Request.Form["content"]
+                    Content = Request.Form["content"],
+                    ArticleTags = articleTags
                 };
-                articleRepository.Add(article);
 
-                //添加博客标签记录
-                new List<string>(Request.Form["tag"].ToString().TrimStart('#').Split("#")).ForEach(i =>
-                {
-                    tagRepository.Add(new Tag() { ArticleID = article.ArticleID, TagName = i });
-                });
+                articleDbContext.Articles.Add(article);
+                articleDbContext.SaveChanges();
 
                 return RedirectToAction("index");
             }
@@ -67,40 +71,57 @@ namespace admin.Controllers
             }
         }
 
-        [ServiceFilter(typeof(DataChanged))]
         public IActionResult DeleteArticle(string articleID)
         {
-            //删除此博客的所有评论
-            commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count()).ForEach(j => commentRepository.Delete(j.CommentID));
-            //删除此博客所有标签
-            tagRepository.Delete(articleID);
-            //删除博客
-            articleRepository.Delete(articleID);
+            Article article = articleDbContext.Articles.SingleOrDefault(i => i.ArticleCode == articleID);
+            articleDbContext.Articles.Remove(article);
+            articleDbContext.SaveChanges();
 
+            RemoveNoArticleTags();
             return RedirectToAction("index");
         }
 
-        [ServiceFilter(typeof(DataChanged))]
         public IActionResult ModifyArticle([FromForm]Article newArticle)
         {
             if (Request.Method == "POST")
             {
-                articleRepository.Modify(newArticle);
+                //删除旧标签
+                List<ArticleTag> oldTag = articleDbContext.ArticleTags.Where(i => i.ArticleId == newArticle.Id).ToList();
+                oldTag.ForEach(i => articleDbContext.ArticleTags.Remove(i));
 
-                //修改博客标签记录（删除旧记录重新添加）
-                tagRepository.Delete(newArticle.ArticleID);
-                new List<string>(Request.Form["tag"].ToString().TrimStart('#').Split("#")).ForEach(i =>
+                List<ArticleTag> articleTags = new List<ArticleTag>();
+                List<string> tags = new List<string>(Request.Form["tag"].ToString().TrimStart('#').Split("#"));
+                tags.ForEach(i =>
                 {
-                    tagRepository.Add(new Tag() { ArticleID = newArticle.ArticleID, TagName = i });
+                    Tag tag = articleDbContext.Tags.SingleOrDefault(x => x.TagName == i);
+                    if (tag == null)
+                    {
+                        articleDbContext.ArticleTags.Add(new ArticleTag
+                        {
+                            ArticleId = newArticle.Id,
+                            Tag = new Tag() { TagName = i }
+                        });
+                    }
+                    else
+                    {
+                        articleDbContext.ArticleTags.Add(new ArticleTag()
+                        { 
+                            ArticleId = newArticle.Id,
+                            TagId = tag.Id
+                        });
+                    }
                 });
 
+                articleDbContext.Articles.Update(newArticle);
+                articleDbContext.SaveChanges();
+
+                RemoveNoArticleTags();
                 return RedirectToAction("index");
             }
             else
             {
                 string articleID = Request.Query["articleID"];
-                Article article = articleRepository.Find(articleID);
-                article.Tags = tagRepository.Find(i => i.ArticleID == article.ArticleID, 0, tagRepository.Count());
+                Article article = articleDbContext.Articles.Include(i => i.ArticleTags).ThenInclude(i => i.Tag).SingleOrDefault(i => i.ArticleCode == articleID);
                 return View(article);
             }
         }
@@ -108,15 +129,24 @@ namespace admin.Controllers
         public IActionResult Comment(string articleID)
         {
             ViewBag.ArticleID = articleID;
-            List<Comment> comments = commentRepository.Find(i => i.ArticleID == articleID, 0, commentRepository.Count());
+            List<Comment> comments = articleDbContext.Comments.Where(i => i.Article.ArticleCode == articleID).ToList();
             return View(comments);
         }
 
-        [ServiceFilter(typeof(DataChanged))]
-        public IActionResult DeleteComment(string articleID, string commentID)
+        public IActionResult DeleteComment(string articleID, int commentID)
         {
-            commentRepository.Delete(commentID);
+            Comment comment = articleDbContext.Comments.Single(i => i.Id == commentID);
+            articleDbContext.Comments.Remove(comment);
+            articleDbContext.SaveChanges();
             return Redirect("/Admin/Blog/Comment?articleID=" + articleID);
+        }
+
+        private void RemoveNoArticleTags()
+        {
+            //移除无博客的Tag
+            List<Tag> noArticleTag = articleDbContext.Tags.Where(i => i.ArticleTags.Count == 0).ToList();
+            noArticleTag.ForEach(i => articleDbContext.Tags.Remove(i));
+            articleDbContext.SaveChanges();
         }
 
     }

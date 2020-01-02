@@ -13,8 +13,8 @@
 
     <form method="post" asp-controller="Blog" asp-action="ModifyArticle">
 
-        <input name="id" type="hidden" value="@Model.ID" />
-        <input name="articleID" type="hidden" value="@Model.ArticleID" />
+        <input name="id" type="hidden" value="@Model.Id" />
+        <input name="articleCode" type="hidden" value="@Model.ArticleCode" />
         <input name="time" type="hidden" value="@Model.Time" />
 
         @*博客标题*@
@@ -28,7 +28,7 @@
             <label>Article Tag</label>
             @{ 
                 string tagStr = string.Empty;
-                Model.Tags.ForEach(i => tagStr += "#" + i.TagName);
+                Model.ArticleTags.ForEach(i => tagStr += "#" + i.Tag.TagName);
             }
             <input name="tag" type="text" class="form-control data" placeholder="Tag" value="@tagStr">
         </div>
@@ -43,10 +43,10 @@
         @*博客封面*@
         <div class="form-group">
             <label>Cover File</label>
-            <input id="cover" name="cover" type="text" class="form-control datadata" placeholder="link of cover" onchange="viewCover()" value="@Model.Cover" />
+            <input id="cover" name="CoverUrl" type="text" class="form-control datadata" placeholder="link of cover" onchange="viewCover()" value="@Model.CoverUrl" />
         </div>
 
-        <img id="coverViewer" style="width:80%;" src="@Model.Cover" />
+        <img id="coverViewer" style="width:80%;" src="@Model.CoverUrl" />
 
         @*博客内容*@
         <div class="form-group">
