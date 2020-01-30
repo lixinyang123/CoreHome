@@ -1,20 +1,16 @@
-﻿using admin.Attributes;
+﻿using CoreHome.Admin.Filter;
 using Infrastructure.common;
 using Infrastructure.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 using System.Collections.Generic;
 using System.IO;
 
-namespace admin.Controllers
+namespace CoreHome.Admin.Controllers
 {
-    [Authorization]
-    public class BgmController : MyController
+    [TypeFilter(typeof(AuthorizationFilter))]
+    public class BgmController : Controller
     {
-        public BgmController(IMemoryCache _cache, IWebHostEnvironment env) : base(_cache, env) { }
-
         public IActionResult Index()
         {
             List<string> musics = BgmManager.GetBgmList();

@@ -1,17 +1,16 @@
-﻿using admin.Attributes;
-using admin.Models;
-using Microsoft.AspNetCore.Hosting;
+﻿using CoreHome.Admin.Attributes;
+using CoreHome.Admin.Filter;
+using CoreHome.Admin.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
 
-namespace admin.Controllers
+namespace CoreHome.Admin.Controllers
 {
-    [Authorization]
-    public class OverviewController : MyController
+    [TypeFilter(typeof(AuthorizationFilter))]
+    public class OverviewController : Controller
     {
         private static byte[] data;
 
@@ -19,7 +18,7 @@ namespace admin.Controllers
 
         private readonly IPusher<WebSocket> pusher;
 
-        public OverviewController(IMemoryCache _cache, IWebHostEnvironment env) : base(_cache, env)
+        public OverviewController()
         {
             pusher = new WebSocketPusher();
         }

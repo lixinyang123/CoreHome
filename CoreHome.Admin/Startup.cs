@@ -1,5 +1,4 @@
-﻿using admin.Attributes;
-using CoreHome.Data.DatabaseContext;
+﻿using CoreHome.Data.DatabaseContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,7 +31,6 @@ namespace admin
             });
 
             services.AddControllersWithViews();
-
 
             services.AddDbContext<ArticleDbContext>(options =>
             {

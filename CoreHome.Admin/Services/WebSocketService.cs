@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace admin.Services
+namespace CoreHome.Admin.Services
 {
     public static class WebSocketService
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace admin.Attributes
+namespace CoreHome.Admin.Attributes
 {
     public sealed class NoCache : ActionFilterAttribute
     {

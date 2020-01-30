@@ -1,19 +1,15 @@
-﻿using System.IO;
-using admin.Attributes;
+﻿using CoreHome.Admin.Filter;
 using Infrastructure.common;
 using Infrastructure.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
+using System.IO;
 
-namespace admin.Controllers
+namespace CoreHome.Admin.Controllers
 {
-    [Authorization]
-    public class ThemeController : MyController
+    [TypeFilter(typeof(AuthorizationFilter))]
+    public class ThemeController : Controller
     {
-        public ThemeController(IMemoryCache _cache, IWebHostEnvironment env) : base(_cache, env) { }
-
         public IActionResult Index()
         {
             Theme theme = ThemeManager.Theme;
@@ -21,7 +17,7 @@ namespace admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult ChangeTheme(int themeType,int backgroundType)
+        public IActionResult ChangeTheme(int themeType, int backgroundType)
         {
             Theme theme = new Theme()
             {

@@ -1,24 +1,20 @@
-﻿using admin.Attributes;
+﻿using CoreHome.Admin.Filter;
 using CoreHome.Data.DatabaseContext;
 using CoreHome.Data.Model;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace admin.Controllers
+namespace CoreHome.Admin.Controllers
 {
-    [Authorization]
-    public class BlogController : MyController
+    [TypeFilter(typeof(AuthorizationFilter))]
+    public class BlogController : Controller
     {
         private readonly ArticleDbContext articleDbContext;
 
-        public BlogController(IMemoryCache _cache,
-            ArticleDbContext articleDbContext,
-            IWebHostEnvironment env) : base(_cache, env)
+        public BlogController(ArticleDbContext articleDbContext)
         {
             this.articleDbContext = articleDbContext;
         }
@@ -105,7 +101,7 @@ namespace admin.Controllers
                     else
                     {
                         articleDbContext.ArticleTags.Add(new ArticleTag()
-                        { 
+                        {
                             ArticleId = newArticle.Id,
                             TagId = tag.Id
                         });

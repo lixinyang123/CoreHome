@@ -1,9 +1,9 @@
-﻿using admin.Services;
+﻿using CoreHome.Admin.Services;
 using Microsoft.AspNetCore.Http;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
 
-namespace admin.Models
+namespace CoreHome.Admin.Models
 {
     public class WebSocketPusher : IPusher<WebSocket>
     {
