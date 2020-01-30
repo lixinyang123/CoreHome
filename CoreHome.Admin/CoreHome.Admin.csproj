@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
       <PrivateAssets>all</PrivateAssets>
@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoreHome.Data\CoreHome.Data.csproj" />
-    <ProjectReference Include="..\Infrastructure\CoreHome.Infrastructure.csproj" />
+    <ProjectReference Include="..\CoreHome.Infrastructure\CoreHome.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
