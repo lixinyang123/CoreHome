@@ -58,7 +58,7 @@ namespace CoreHome.Admin.Controllers
         public IActionResult Logout()
         {
             Response.Cookies.Delete("accessToken");
-            return RedirectToAction("Index");
+            return Content("Logout");
         }
 
         public IActionResult VerfyPassword([FromForm]string pwd)
