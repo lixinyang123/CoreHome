@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Memory;
@@ -42,6 +43,13 @@ namespace CoreHome.Admin.Filter
                 {
                     throw new Exception("AuthenticationException");
                 }
+
+                //延长访问期限
+                context.HttpContext.Response.Cookies.Append("accessToken", tokenStr, new CookieOptions()
+                {
+                    Expires = DateTimeOffset.Now.AddHours(2)
+                });
+                cache.Set(cacheKey, tokenStr, DateTimeOffset.Now.AddHours(2));
             }
             catch (Exception)
             {
