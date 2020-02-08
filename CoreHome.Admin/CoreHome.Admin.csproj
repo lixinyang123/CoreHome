@@ -17,4 +17,9 @@
     <ProjectReference Include="..\CoreHome.Infrastructure\CoreHome.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\bootstrap\dist\css\" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
+  </ItemGroup>
+
 </Project>
