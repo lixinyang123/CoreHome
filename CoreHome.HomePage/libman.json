@@ -11,11 +11,7 @@
     },
     {
       "library": "bootstrap@3.3.7",
-      "destination": "wwwroot/lib/bootstrap/",
-      "files": [
-        "dist/css/bootstrap.min.css",
-        "dist/js/bootstrap.min.js"
-      ]
+      "destination": "wwwroot/lib/bootstrap/"
     },
     {
       "library": "darkreader@4.7.15",

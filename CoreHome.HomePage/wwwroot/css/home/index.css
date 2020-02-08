@@ -27,6 +27,7 @@ h1, h2, h3 {
     position: relative;
     height: 600px;
     width: 100%;
+    line-height: 1.7;
 }
 
 #colorbg {
