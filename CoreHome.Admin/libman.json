@@ -20,6 +20,13 @@
         "dist/css/bootstrap.min.css",
         "dist/js/bootstrap.min.js"
       ]
+    },
+    {
+      "library": "chart.js@2.9.3",
+      "destination": "wwwroot/lib/chart.js/",
+      "files": [
+        "dist/Chart.min.js"
+      ]
     }
   ]
 }
