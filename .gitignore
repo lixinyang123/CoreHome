@@ -339,4 +339,8 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
+# 前端库
 lib
+
+# vscode配置
+.vscode
