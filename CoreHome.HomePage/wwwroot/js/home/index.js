@@ -28,7 +28,15 @@ function fullHeight() {
 			$('.js-fullheight').css('height', $(window).height());
 		});
 	}
-};
+}
+
+function addLinkTarget() {
+    document.querySelectorAll(".fh5co-blog").forEach(ele => {
+        ele.querySelectorAll("a").forEach(link => {
+            link.setAttribute("target", "_blank");
+        });
+    });
+}
 
 //============MoveOperation================
 
@@ -48,7 +56,7 @@ function moveToDC() {
 var angle = 0;
 
 function Rotate() {
-    var logo = document.getElementById("user");
+    var logo = document.getElementById("profile-thumb");
     logo.style.transform = "rotate(" + (angle) + "deg)";
     angle += 0.2;
     setTimeout(Rotate, 0.1);
@@ -87,7 +95,8 @@ player.addEventListener('ended', function () {
 });
 
 function init() {
-	fullHeight();
+    fullHeight();
+    addLinkTarget();
 	Rotate();
 }
 

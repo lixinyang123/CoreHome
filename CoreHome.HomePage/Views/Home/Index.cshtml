@@ -5,8 +5,8 @@
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/home/index.min.css" />
 
-    <div id="page">
-        <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner">
+    <div>
+        <header class="fh5co-cover js-fullheight">
 
             @switch (ThemeManager.Theme.BackgroundType)
             {
@@ -38,8 +38,8 @@
                     <div class="col-md-8 col-md-offset-2 text-center">
                         <div class="display-t js-fullheight">
 
-                            <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
-                                <img id="user" class="profile-thumb" src="https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/user.jpg" />
+                            <div class="display-tc js-fullheight">
+                                <img id="profile-thumb" src="https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/user.jpg" />
                                 <h1><span>@ViewBag.Title</span></h1>
                                 <h2>.Net Developer</h2>
                                 <h3><span>QQ：837685961</span></h3>
@@ -62,31 +62,25 @@
             <div class="container">
 
                 <!--Title-->
-                <div class="row animate-box">
-                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                <div class="row">
+                    <div class="text-center fh5co-heading">
                         <h2>Download Center</h2>
-                        <p></p>
                     </div>
                 </div>
 
                 <!--MainApp-->
                 <div class="row">
-                    <div class="fh5co-blog animate-box">
+                    <div class="fh5co-blog">
                         <div class="blog_imgbox">
-                            <a class="blog-bg" style="background-image:url(https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/chaoxing.jpg);" href="https://www.lanzous.com/i71mkpa" target="_blank"></a>
+                            <a class="blog-bg" style="background-image:url(https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/chaoxing.jpg);" href="https://www.lanzous.com/i71mkpa" ></a>
                         </div>
                         <div class="blog-text">
                             <h3>超星尔雅刷课</h3>
-                            <p>超星尔雅（学习通）刷课软件，支持自动播放，后台播放，自动答题，自动跳转功能 （支持windows10版本>=17110 .NET Framework>=4.6.2）, 兼容版本使用Chromium内核（兼容windows7，但功能有阉割），如果<strong><u>遇到问题</u></strong>请尝试兼容版本 .</p>
+                            <p  class="detail">超星尔雅（学习通）刷课软件，支持自动播放，后台播放，自动答题，自动跳转功能 （支持windows10版本>=17110 .NET Framework>=4.6.2）, 兼容版本使用Chromium内核（兼容windows7，但功能有阉割），如果<strong><u>遇到问题</u></strong>请尝试兼容版本 .</p>
                             <ul class="stuff">
                                 <li>
-                                    <a href='ms-windows-store://pdp/?ProductId=9N0DM5C6NZLH'>
-                                        <img src='https://assets.windowsphone.com/42e5aa4a-f19a-4205-9191-a97105ed7663/Chinese_Simplified_get-it-from-MS_InvariantCulture_Default.png' alt='Chinese badge' style='width: 110px; height: 40px;' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.lanzous.com/i71mkpa" target="_blank">下载<span style="color:orange;">新版</span>安装包<i class="icon-arrow-right22"></i></a>
-                                    <a href="https://www.lanzous.com/i76cm0h" target="_blank">下载<span style="color:orange;">兼容</span>版本<i class="icon-arrow-right22"></i></a>                                
+                                    <a href="https://www.lanzous.com/i71mkpa" >下载<span style="color:orange;">新版</span>安装包<i class="icon-arrow-right22"></i></a>
+                                    <a href="https://www.lanzous.com/i76cm0h" >下载<span style="color:orange;">兼容</span>版本<i class="icon-arrow-right22"></i></a>                                
                                 </li>
                             </ul>
                         </div>
@@ -97,36 +91,31 @@
                 <div class="row">
 
                     <div class="col-md-8">
-                        <div class="fh5co-blog animate-box">
+                        <div class="fh5co-blog ">
                             <div class="blog_imgbox">
-                                <a class="blog-bg" style="background-image:url(https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/translator.jpg);" href="https://github.com/lixinyang123/Translator" target="_blank"></a>
+                                <a class="blog-bg" style="background-image:url(https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/translator.jpg);" href="https://github.com/lixinyang123/Translator" ></a>
                             </div>
                             <div class="blog-text">
                                 <h3>Translator</h3>
                                 <p class="detail">Linux平台的第三方有道词典（不再提供打包版本，需要自己下载源码打包）</p>
                                 <ul class="stuff">
-                                    <li><a href="https://github.com/lixinyang123/Translator" target="_blank">下载源码<i class="icon-arrow-right22"></i></a></li>
+                                    <li><a href="https://github.com/lixinyang123/Translator" >下载源码<i class="icon-arrow-right22"></i></a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <div class="fh5co-blog animate-box">
+                        <div class="fh5co-blog">
                             <div class="blog_imgbox">
-                                <a class="blog-bg" style="background-image:url(https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/createjt.jpg);" href="https://www.microsoft.com/zh-cn/p/假条生成器/9p2dg3tb2ts3" target="_blank"></a>
+                                <a class="blog-bg" style="background-image:url(https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/createjt.jpg);" href="https://www.microsoft.com/zh-cn/p/假条生成器/9p2dg3tb2ts3" ></a>
                             </div>
                             <div class="blog-text">
                                 <h3>假条生成器</h3>
-                                <p class="detail">选择日期生成工院假条（不支持外校）.
-                                    <br />
-                                    <br />
-                                    <a href='ms-windows-store://pdp/?ProductId=9P2DG3TB2TS3'>
-                                        <img src='https://assets.windowsphone.com/42e5aa4a-f19a-4205-9191-a97105ed7663/Chinese_Simplified_get-it-from-MS_InvariantCulture_Default.png' alt='Chinese badge' style='width: 110px; height: 40px;' />
-                                    </a>
+                                <p class="detail">选择日期生成工院假条（不支持外校）.</p>
                                 <ul class="stuff">
                                     <li>
-                                        <a href="https://www.microsoft.com/zh-cn/p/假条生成器/9p2dg3tb2ts3" target="_blank">了解更多<i class="icon-arrow-right22"></i></a>
+                                        <a href="https://www.microsoft.com/zh-cn/p/假条生成器/9p2dg3tb2ts3" >了解更多<i class="icon-arrow-right22"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -136,22 +125,21 @@
                 </div>
 
                 <!--Title-->
-                <div class="row animate-box">
-                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                <div class="row">
+                    <div class="text-center fh5co-heading">
                         <h2>Web Apps</h2>
-                        <p></p>
                     </div>
                 </div>
 
                 <!--MainApp-->
                 <div class="row">
-                    <div class="fh5co-blog animate-box">
+                    <div class="fh5co-blog ">
                         <div class="blog_imgbox">
                             <a class="blog-bg" style="background-image:url(https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/codeonline.jpg);" href="javascript:void()"></a>
                         </div>
                         <div class="blog-text">
                             <h3>CodeOnline</h3>
-                            <p>Docker+CodeServer驱动的在线开发平台 .</p>
+                            <p class="detail">Docker+CodeServer驱动的在线开发平台 .</p>
                             <ul class="stuff">
                                 <li><a href="javascript:void()">暂时下线<i class="icon-arrow-right22"></i></a></li>
                             </ul>
@@ -163,30 +151,30 @@
                 <div class="row">
 
                     <div class="col-md-8">
-                        <div class="fh5co-blog animate-box">
+                        <div class="fh5co-blog ">
                             <div class="blog_imgbox">
-                                <a class="blog-bg" style="background-image:url(https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/parsedcm.jpg)" href="https://www.lllxy.net/parsedcm" target="_blank"></a>
+                                <a class="blog-bg" style="background-image:url(https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/parsedcm.jpg)" href="https://www.lllxy.net/parsedcm" ></a>
                             </div>
                             <div class="blog-text">
                                 <h3>ParseDCM</h3>
                                 <p class="detail">在线的Dicom解析器，暂不支持无损格式解析.</p>
                                 <ul class="stuff">
-                                    <li><a href="https://www.lllxy.net/parsedcm" target="_blank">访问网站<i class="icon-arrow-right22"></i></a></li>
+                                    <li><a href="https://www.lllxy.net/parsedcm" >访问网站<i class="icon-arrow-right22"></i></a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <div class="fh5co-blog animate-box">
+                        <div class="fh5co-blog ">
                             <div class="blog_imgbox">
-                                <a class="blog-bg" style="background-image:url(https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/tiku.jpg);" href="https://www.lllxy.net/cxtk" target="_blank"></a>
+                                <a class="blog-bg" style="background-image:url(https://lllxy.oss-cn-shenzhen.aliyuncs.com/coreHome/tiku.jpg);" href="https://www.lllxy.net/cxtk" ></a>
                             </div>
                             <div class="blog-text">
                                 <h3>题库查询系统</h3>
-                                <p class="detail">超星尔雅题库查询系统，你可以在这里查找习题答案.</p>
+                                <p class="detail">超星尔雅题库查询系统.</p>
                                 <ul class="stuff">
-                                    <li><a href="https://www.lllxy.net/cxtk" target="_blank">了解更多<i class="icon-arrow-right22"></i></a></li>
+                                    <li><a href="https://www.lllxy.net/cxtk" >了解更多<i class="icon-arrow-right22"></i></a></li>
                                 </ul>
                             </div>
                         </div>
