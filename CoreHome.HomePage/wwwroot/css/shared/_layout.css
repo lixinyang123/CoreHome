@@ -9,40 +9,16 @@
 body {
     font-weight: 400;
     font-size: 16px;
-    color: #666;
     background-color: whitesmoke;
     padding-top: 50px;
     display: flex;
-    min-height: 100vh;
     flex-direction: column;
 }
 
-a {
-    color: #FF9000;
-    -webkit-transition: 0.5s;
-    -o-transition: 0.5s;
-    transition: 0.5s;
-}
-
-a:hover, a:active, a:focus {
+a:hover {
     color: #FF9000;
     outline: none;
     text-decoration: none;
-}
-
-::-moz-selection {
-    color: #fff;
-    background: #FF9000;
-}
-
-::selection {
-    color: #fff;
-    background: #FF9000;
-}
-
-.fh5co-footer {
-    padding: 50px 0;
-    width: 100%;
 }
 
 .gototop {
@@ -50,16 +26,11 @@ a:hover, a:active, a:focus {
     bottom: 20px;
     right: 20px;
     z-index: 999;
-    opacity: 0;
     visibility: hidden;
-    -webkit-transition: 0.5s;
-    -o-transition: 0.5s;
-    transition: 0.5s;
     cursor: pointer;
 }
 
 .gototop.active {
-    opacity: 1;
     visibility: visible;
 }
 
@@ -70,24 +41,12 @@ a:hover, a:active, a:focus {
     background: orange;
     color: #fff;
     text-align: center;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
     border-radius: 50%;
 }
 
 .gototop a i {
-    height: 50px;
-    display: table-cell;
     vertical-align: middle;
-}
-
-.gototop a:hover, .gototop a:active, .gototop a:focus {
-    text-decoration: none;
-    outline: none;
-}
-
-#content {
-    flex: 1; /* 1代表最大 */
+    font-weight: bold;
 }
 
 #footer {
@@ -97,12 +56,6 @@ a:hover, a:active, a:focus {
 
 ::-webkit-scrollbar {
     display: none;
-}
-
-.logo-link {
-    font-size: smaller;
-    color: #727272;
-    font-weight: bold;
 }
 
 .footerlink {
