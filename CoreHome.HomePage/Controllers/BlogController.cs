@@ -39,6 +39,7 @@ namespace coreHome.Controllers
 
             ViewBag.CurrentIndex = index;
             ViewBag.LastRead = Request.Cookies["lastRead"];
+            ViewBag.Pagination = "Index";
             return View(articles);
         }
 
@@ -47,6 +48,7 @@ namespace coreHome.Controllers
             index = PageManager.GetStartPageIndex(index, articleDbContext.Articles.Count(), pageSize);
 
             List<Article> articles = articleDbContext.Articles.Include(i => i.ArticleTags).ThenInclude(i => i.Tag).Where(i => i.Title.Contains(keyword)).Skip(index).Take(pageSize).ToList();
+            ViewBag.LastPage = PageManager.GetLastPageIndex(articles.Count, pageSize);
 
             GetTagList();
 
@@ -54,8 +56,8 @@ namespace coreHome.Controllers
 
             ViewBag.CurrentIndex = index;
             ViewBag.LastRead = Request.Cookies["lastRead"];
-
-            return View(articles);
+            ViewBag.Pagination = "Search";
+            return View("index", articles);
         }
 
         public IActionResult TagList(string tagName, int index)
@@ -78,7 +80,8 @@ namespace coreHome.Controllers
 
             ViewBag.CurrentIndex = index;
             ViewBag.LastRead = Request.Cookies["lastRead"];
-            return View(articles);
+            ViewBag.Pagination = "TagList";
+            return View("index", articles);
         }
 
         public IActionResult Detail(string articleID)

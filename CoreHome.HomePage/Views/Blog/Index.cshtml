@@ -81,20 +81,27 @@
         <div class="text-center">
             <h1>第 @(ViewBag.CurrentIndex + 1) 页 / 共 @ViewBag.LastPage 页</h1>
             <ul class="actions pagination">
-                @{ 
+                @{
                     int previousPage = ViewBag.CurrentIndex - 1;
                     int nextPage = ViewBag.CurrentIndex + 1;
-                    if (nextPage > ViewBag.LastPage-1)
+                    if (nextPage > ViewBag.LastPage - 1)
                     {
-                        nextPage = ViewBag.LastPage-1;
+                        nextPage = ViewBag.LastPage - 1;
                     }
                     if (previousPage < 0)
                     {
                         previousPage = 0;
                     }
+
+                    ViewDataDictionary dictionary = new ViewDataDictionary(ViewData);
+                    dictionary.Clear();
+                    dictionary.Add("warning", ViewBag.Warning);
+                    dictionary.Add("nextPage", nextPage);
+                    dictionary.Add("previousPage", previousPage);
+
                 }
-                <li class="btn_changepage"><button onclick="window.location.href='/blog?index=@previousPage';" class="btn btn-default navbar-btn">上一页</button></li>
-                <li class="btn_changepage"><button onclick="window.location.href='/blog?index=@nextPage';" class="btn btn-default navbar-btn">下一页</button></li>
+
+                @await Html.PartialAsync($"../Pagination/{ViewBag.Pagination}.cshtml", dictionary)
             </ul>
         </div>
 
