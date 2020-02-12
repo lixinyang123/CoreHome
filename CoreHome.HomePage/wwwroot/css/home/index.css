@@ -174,12 +174,6 @@
     transition: 0.3s;
 }
 
-@media screen and (max-width: 768px) {
-    .fh5co-blog .blog-text {
-        padding: 10px;
-    }
-}
-
 .fh5co-blog .blog-text h3 {
     font-size: 24px;
     margin-bottom: 20px;
