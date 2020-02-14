@@ -158,10 +158,11 @@
     background-repeat: no-repeat;
     position: relative;
     height: 300px;
+    transition: transform 0.2s ease-out;
 }
 
 .fh5co-blog .blog-bg:hover {
-    transform: scale(1.1);
+    transform: scale(1.07);
 }
 
 .fh5co-blog .blog-text {
