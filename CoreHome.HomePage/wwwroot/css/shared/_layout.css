@@ -42,9 +42,11 @@ a:hover {
     color: #fff;
     text-align: center;
     border-radius: 50%;
+    text-decoration: none;
 }
 
 .gototop a i {
+    display: table-cell;
     vertical-align: middle;
     font-weight: bold;
 }
@@ -60,5 +62,10 @@ a:hover {
 
 .footerlink {
     color: #727272;
+    font-weight: bold;
+}
+
+.highLightFooterLink {
+    color: orange;
     font-weight: bold;
 }
