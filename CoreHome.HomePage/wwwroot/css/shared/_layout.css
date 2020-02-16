@@ -12,11 +12,16 @@ body {
     background-color: whitesmoke;
     padding-top: 50px;
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
 }
 
+a {
+    color: orange;
+}
+
 a:hover {
-    color: #FF9000;
+    color: orange;
     outline: none;
     text-decoration: none;
 }
@@ -49,6 +54,10 @@ a:hover {
     display: table-cell;
     vertical-align: middle;
     font-weight: bold;
+}
+
+#content {
+    flex: 1;
 }
 
 #footer {
