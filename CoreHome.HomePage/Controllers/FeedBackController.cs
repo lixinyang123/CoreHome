@@ -8,8 +8,6 @@ namespace coreHome.Controllers
     {
         public IActionResult Index([FromForm]string verificationCode)
         {
-            ViewBag.Title = "反馈中心";
-
             if (Request.Method == "POST")
             {
                 ISession session = HttpContext.Session;
