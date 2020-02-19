@@ -30,23 +30,27 @@ function fullHeight() {
 	}
 }
 
-fullHeight();
-
 function MoveTop()
 {
 	window.scrollTo(0, 0);
 }
 
-$(window).scroll(function () {
-    var $win = $(window);
-    if ($win.scrollTop() > 200) {
-        $('.js-top').addClass('active');
-    } else {
-        $('.js-top').removeClass('active');
-    }
-});
-
 //GetVerfyCode
 function getVerfyCode(id) {
     document.getElementById(id).src = "/Home/VerificationCode?" + Math.random();
 }
+
+function init() {
+	$(window).scroll(function () {
+		var $win = $(window);
+		if ($win.scrollTop() > 200) {
+			$('.js-top').addClass('active');
+		} else {
+			$('.js-top').removeClass('active');
+		}
+	});
+	window.onresize = fullHeight;
+	fullHeight();
+}
+
+init();

@@ -18,4 +18,9 @@
     <ProjectReference Include="..\CoreHome.Infrastructure\CoreHome.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\blog\" />
+    <Folder Include="wwwroot\js\blog\" />
+  </ItemGroup>
+
 </Project>

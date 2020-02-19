@@ -1,113 +1,12 @@
-﻿@model List<Article>
+﻿
+<div style="background-color: whitesmoke; height:100%;">
+    <br />
+    <br />
+    <br />
 
-<div id="wrapper">
-
-    <link rel="stylesheet" href="~/css/blog/shared.min.css" />
-    <script src="~/js/blog/shared.min.js"></script>
-
-    <!-- 文章列表 -->
-    <div id="main">
-
-        <div class="text-center">
-            <h1>我们正在设计全新的博客页面</h1>
-            <h1>尽情期待</h1>
-            <h1>第 @(ViewBag.CurrentIndex + 1) 页 / 共 @ViewBag.LastPage 页</h1>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2">
-                <input id="keyword" type="text" placeholder="Search" class="form-control" onkeydown="keyDown()"/>
-                <br />
-                <div class="post taglist" style="text-align:center;">
-                    <h4>Top Tag</h4>
-                    @if (ViewBag.Tags.Count == 0)
-                    {
-                        <h3>Nothing</h3>
-                    }
-                    @foreach (string tag in ViewBag.Tags)
-                    {
-                        <a class="footerlink"  href="/Blog/TagList?tagName=@tag"><u>#@tag</u></a>
-                    }
-                </div>
-            </div>
-
-            <div class="col-md-10 articlelist">
-
-                @foreach (Article article in Model)
-                {
-                    <!-- 文章 -->
-                    <article class="post">
-                        <header>
-                            <div class="title">
-                                <!--标题-->
-                                <h2>@article.Title</h2>
-                                <!--标签-->
-                                <p>
-                                    @foreach (var articleTag in article.ArticleTags)
-                                    {
-                                        var tagStr = "#" + articleTag.Tag.TagName;
-                                        <a class="footerlink" href="/Blog/TagList?tagName=@articleTag.Tag.TagName"><u>@tagStr</u></a>
-                                    }
-                                </p>
-                                <!--简述-->
-                                <h3>@article.Overview</h3>
-                            </div>
-                            <div class="meta">
-                                <h2 class="published">
-                                    @article.Time
-                                </h2>
-                                <a href="#" class="author">
-                                    <h2 class="name">LLLXY</h2>
-                                    <img src="/favicon.ico" />
-                                </a>
-                            </div>
-                        </header>
-                        <!--封面-->
-                        <a class="image featured" style="max-height:300px;" href="/Blog/Detail?articleid=@article.ArticleCode">
-                            <img src="@article.CoverUrl" style="width:100%;" />
-                        </a>
-                        <div>
-                            <ul class="actions">
-                                <li><a href="/Blog/Detail?articleid=@article.ArticleCode">查看全文</a></li>
-                                @if (ViewBag.LastRead == article.ArticleCode)
-                                {
-                                    <li class="lastReadTag">上次阅读</li>
-                                }
-                            </ul>
-                        </div>
-                    </article>
-                }
-            </div>
-        </div>
-
-        <!-- 页面导航 -->
-        <div class="text-center">
-            <h1>第 @(ViewBag.CurrentIndex + 1) 页 / 共 @ViewBag.LastPage 页</h1>
-            <ul class="actions pagination">
-                @{
-                    int previousPage = ViewBag.CurrentIndex - 1;
-                    int nextPage = ViewBag.CurrentIndex + 1;
-                    if (nextPage > ViewBag.LastPage - 1)
-                    {
-                        nextPage = ViewBag.LastPage - 1;
-                    }
-                    if (previousPage < 0)
-                    {
-                        previousPage = 0;
-                    }
-
-                    ViewDataDictionary dictionary = new ViewDataDictionary(ViewData);
-                    dictionary.Clear();
-                    dictionary.Add("warning", ViewBag.Warning);
-                    dictionary.Add("nextPage", nextPage);
-                    dictionary.Add("previousPage", previousPage);
-
-                }
-
-                @await Html.PartialAsync($"../Pagination/{ViewBag.Pagination}.cshtml", dictionary)
-            </ul>
-        </div>
-
+    <div class="text-center">
+        <h1>博客已停用</h1>
+        <h1>我们正在设计全新的博客页面</h1>
+        <h1>尽情期待</h1>
     </div>
-
 </div>
