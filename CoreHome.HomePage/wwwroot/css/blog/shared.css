@@ -12,7 +12,7 @@ ul {
 }
 
 body {
-    background: #f4f4f4;
+    background-color: whitesmoke;
 }
 
 @media screen and (max-width: 1680px) {
