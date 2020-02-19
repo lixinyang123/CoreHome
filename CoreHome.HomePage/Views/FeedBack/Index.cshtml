@@ -2,70 +2,39 @@
     <script src="~/js/feedback/index.min.js"></script>
     <link href="~/css/feedback/index.min.css" rel="stylesheet" />
 
-    <section>
-        <div class="container">
-            <div class="section-header">
-                <h1 class="text-center">反馈中心</h1>
-                <p class="text-center wow fadeInDown"><strong>请描述软件使用过程中出现的问题</strong></p>
+    <div class="container text-center">
+        <h1>反馈中心</h1>
+        <p><strong>请描述软件使用过程中出现的问题</strong></p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <p><strong>联系开发者</strong></p>
+                <p>LLLXY</p>
+                <p>QQ： 837685961</p>
+                <p>Email：<a href="mailto:lixinyangemil@outlook.com">lixinyangemil@outlook.com</a></p>
             </div>
-        </div>
-    </section>
 
+            <div class="col-md-8">
+                <input id="contact" name="contact" class="form-control feedInfo" type="text" placeholder="你的联系方式（Enail/QQ）" />
+                <input id="title" name="title" class="form-control feedInfo" type="text" placeholder="标题" />
+                <textarea id="message" name="message" class="form-control feedInfo" rows="10" cols="100" placeholder="问题描述" maxlength="999" style="resize:none"></textarea>
 
-    <section>
+                <ul class="list-inline float-lg-right">
+                    <li class="list-inline-item">
+                        <img id="verfyImg" onclick="getVerfyCode('verfyImg')" src="/Home/VerificationCode"/>
+                    </li>
+                    <li class="list-inline-item">
+                        <input id="verificationCode" name="VerificationCode" type="text" class="form-control" placeholder="请输入验证码"/>
+                    </li>
+                    <li class="list-inline-item">
+                        <button id="btn_submit" class="btn btn-outline-primary" onclick="submit()">提交</button>
+                    </li>
+                </ul>
 
-        <div class="container-wrapper">
-            <div class="container contact-info">
-                <div class="row">
-                    <div class="col-sm-4 col-md-4">
-                        <div class="contact-form">
-                            <h4><strong>联系开发者</strong></h4>
-
-                            <div>
-                                <h4>LLLXY</h4>
-                                <h5>QQ： 837685961</h5>
-                                <h5 title="Email">Email：
-                                    <a href="mailto:lixinyangemil@outlook.com">lixinyangemil@outlook.com</a>
-                                </h5>
-                                <br />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8 col-md-8">
-                        <div class="contact-form">
-                            <div class="control-group">
-                                <div class="controls">
-                                    <input id="contact" name="contact" type="text" class="form-control" placeholder="你的联系方式（Enail/QQ）" />
-                                    <p class="help-block"></p>
-                                </div>
-                            </div>
-
-                            <div class="control-group">
-                                <div class="controls">
-                                    <input id="title" name="title" type="text" class="form-control" placeholder="标题" />
-                                </div>
-                            </div>
-
-                            <div id="detail" class="control-group">
-                                <div class="controls">
-                                    <textarea id="message" name="message" rows="10" cols="100" class="form-control" placeholder="问题描述" maxlength="999" style="resize:none"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="pull-right">
-                                <img id="verfyImg" onclick="getVerfyCode('verfyImg')" src="/Home/VerificationCode" class="img-thumbnail">
-                                <input id="verificationCode" name="VerificationCode" type="text" class="form-control" placeholder="请输入验证码">
-
-                                <!--提交按钮-->
-                                <button id="btn_submit" class="btn btn-primary" onclick="submit()">提交</button>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
             </div>
-        </div>
-    </section>
 
+        </div>
+    </div>
 </div>

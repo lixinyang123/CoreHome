@@ -5,22 +5,25 @@
 
 @if (!showBanner)
 {
-        <nav id="cookieConsent" class="navbar-fixed-bottom" role="alert" style="background-color: rgba(255,255,255,0.8);">
+        <nav id="cookieConsent" class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom" style="opacity: 0.8;">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span>展开</span>
-                    </button>
-                    <span class="navbar-brand"><strong>隐私策略</strong></span>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <strong class="navbar-text">
-                        此站点使用 Cookie 进行分析、显示个性化内容
-                    </strong>
-                    <div class="navbar-right">
-                        <a asp-controller="Home" asp-action="Privacy" class="btn btn-info navbar-btn">了解更多</a>
-                        <button id="btn_accept" type="button" class="btn btn-default navbar-btn" onclick="agree()">确定</button>
+                <strong class="navbar-brand">
+                    隐私策略
+                </strong>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cookieConsent">
+                    <span>展开</span>
+                </button>
+                <div class="collapse navbar-collapse" id="cookieConsent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <strong>
+                                此站点使用 Cookie 进行分析、显示个性化内容
+                            </strong>
+                        </li>
+                    </ul>
+                    <div class="form-inline my-2 my-lg-0">
+                        <a asp-controller="Home" asp-action="Privacy" class="btn btn-outline-primary mr-sm-2">了解更多</a>
+                        <button id="btn_accept" type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="agree()">确定</button>
                     </div>
                 </div>
             </div>
@@ -28,7 +31,7 @@
 
         <script>
             function agree() {
-                document.getElementById("cookieConsent").classList.add("hidden");
+                document.getElementById("cookieConsent").classList.add("invisible");
                 setCookie("CookiePolicy", "agree", 1);
             }
 

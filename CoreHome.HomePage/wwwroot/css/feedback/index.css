@@ -1,36 +1,11 @@
 #home {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     height: 100%;
-    font-weight: 400;
-    line-height: 26px;
     background-color: whitesmoke;
 }
 
-#title{
-    font-weight:bold;
-}
-
-#detail{
-    margin-top:10px;
-    margin-bottom:10px;
-}
-
-#verfyImg {
-    float: left;
-    height: 40px;
-}
-
-#verificationCode {
-    margin-left: 5px;
-    border-radius: 5px;
-    width: 200px;
-    height: 40px;
-    float: left;
-}
-
-#btn_submit {
-    float: left;
-    margin-top: 4px;
-    margin: 4px 0 0 10px;
+.feedInfo {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
