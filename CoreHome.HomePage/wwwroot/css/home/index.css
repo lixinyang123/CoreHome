@@ -10,6 +10,17 @@
     width: 200px;
     margin-bottom: 30px;
     border-radius: 50%;
+    animation: rotation 10s linear infinite;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 #colorbg {
