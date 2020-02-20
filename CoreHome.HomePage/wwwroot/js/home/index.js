@@ -28,6 +28,7 @@ function init() {
             document.getElementById("player").play();
         }, 1000);
     });
+    document.getElementById("player").play();
     addLinkTarget();
 }
 
