@@ -21,17 +21,17 @@
                 <input id="title" name="title" class="form-control feedInfo" type="text" placeholder="标题" />
                 <textarea id="message" name="message" class="form-control feedInfo" rows="10" cols="100" placeholder="问题描述" maxlength="999" style="resize:none"></textarea>
 
-                <ul class="list-inline float-lg-right">
-                    <li class="list-inline-item">
-                        <img id="verfyImg" onclick="getVerfyCode('verfyImg')" src="/Home/VerificationCode"/>
-                    </li>
-                    <li class="list-inline-item">
-                        <input id="verificationCode" name="VerificationCode" type="text" class="form-control" placeholder="请输入验证码"/>
-                    </li>
-                    <li class="list-inline-item">
-                        <button id="btn_submit" class="btn btn-outline-primary" onclick="submit()">提交</button>
-                    </li>
-                </ul>
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group">
+                            <img id="verfyImg" onclick="getVerfyCode('verfyImg')" src="/Home/VerificationCode" />
+                            <input id="verificationCode" name="VerificationCode" type="text" class="form-control" placeholder="验证码" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button id="btn_submit" class="btn btn-success float-right" onclick="submit()">提交</button>
+                    </div>
+                </div>
 
             </div>
 

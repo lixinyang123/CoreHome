@@ -8,4 +8,14 @@
 .feedInfo {
     margin-top: 10px;
     margin-bottom: 10px;
+    border-radius: 0;
+}
+
+#verfyImg, #verificationCode, #btn_submit {
+    height: 40px;
+    border-radius: 0;
+}
+
+#verificationCode {
+    max-width: 110px;
 }
