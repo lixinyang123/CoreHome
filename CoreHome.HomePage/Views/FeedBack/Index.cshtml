@@ -1,9 +1,10 @@
-﻿<div id="home">
-    <script src="~/js/feedback/index.min.js"></script>
+﻿@model CoreHome.HomePage.ViewModels.Feedback
+
+<div id="home">
     <link href="~/css/feedback/index.min.css" rel="stylesheet" />
 
     <div class="container text-center">
-        <h1>反馈中心</h1>
+        <h1>@ViewBag.Warning</h1>
         <p><strong>请描述软件使用过程中出现的问题</strong></p>
     </div>
 
@@ -17,22 +18,25 @@
             </div>
 
             <div class="col-md-8">
-                <input id="contact" name="contact" class="form-control feedInfo" type="text" placeholder="你的联系方式（Enail/QQ）" />
-                <input id="title" name="title" class="form-control feedInfo" type="text" placeholder="标题" />
-                <textarea id="message" name="message" class="form-control feedInfo" rows="10" cols="100" placeholder="问题描述" maxlength="999" style="resize:none"></textarea>
+                <form asp-controller="Feedback" asp-action="Index" method="post">
 
-                <div class="row">
-                    <div class="col">
-                        <div class="input-group">
-                            <img id="verfyImg" onclick="getVerfyCode('verfyImg')" src="/Home/VerificationCode" />
-                            <input id="verificationCode" name="VerificationCode" type="text" class="form-control" placeholder="验证码" />
+                    <input asp-for="Contact" class="form-control feedInfo" type="text" placeholder="你的联系方式（Enail/QQ）" />
+                    <input asp-for="Title" class="form-control feedInfo" type="text" placeholder="标题" />
+                    <textarea asp-for="Content" class="form-control feedInfo" rows="10" cols="100" placeholder="问题描述" maxlength="999" style="resize:none"></textarea>
+                
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group">
+                                <img id="verfyImg" onclick="getVerfyCode(this)" src="/Home/VerificationCode" />
+                                <input id="verificationCode" asp-for="VerificationCode" type="text" class="form-control" placeholder="验证码" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input id="btn_submit" type="submit" class="btn btn-success float-right" value="提交" />
                         </div>
                     </div>
-                    <div class="col">
-                        <button id="btn_submit" class="btn btn-success float-right" onclick="submit()">提交</button>
-                    </div>
-                </div>
 
+                </form>
             </div>
 
         </div>

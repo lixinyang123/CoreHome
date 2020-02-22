@@ -36,8 +36,8 @@ function MoveTop()
 }
 
 //GetVerfyCode
-function getVerfyCode(id) {
-    document.getElementById(id).src = "/Home/VerificationCode?" + Math.random();
+function getVerfyCode(img) {
+	img.src = "/Home/VerificationCode?" + Math.random();
 }
 
 function init() {

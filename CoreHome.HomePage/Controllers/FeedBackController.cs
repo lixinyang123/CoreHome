@@ -1,31 +1,37 @@
-﻿using Infrastructure.Services;
+﻿using CoreHome.HomePage.ViewModels;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace coreHome.Controllers
 {
-    public class FeedBackController : Controller
+    public class FeedbackController : Controller
     {
-        public IActionResult Index([FromForm]string verificationCode)
+        public IActionResult Index()
         {
-            if (Request.Method == "POST")
-            {
-                ISession session = HttpContext.Session;
-                string str = session.GetString("VerificationCode");
-
-                if (!string.IsNullOrEmpty(verificationCode) && str == verificationCode.ToLower())
-                {
-                    string contact = Request.Form["contact"];
-                    string title = Request.Form["title"];
-                    string detail = Request.Form["message"];
-
-                    NotifyService.PushNotify(title + $"[{contact}]", detail);
-
-                    return Ok();
-                }
-                return ValidationProblem("验证码错误");
-            }
+            ViewBag.Warning = "反馈中心";
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index([FromForm]Feedback feedback)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Warning = "请完善反馈信息";
+                return View(feedback);
+            }
+
+            string str = HttpContext.Session.GetString("VerificationCode");
+            if (str == feedback.VerificationCode.ToLower())
+            {
+                NotifyService.PushNotify(feedback.Title + $"[{feedback.Contact}]", feedback.Content);
+                ViewBag.Warning = "感谢您的反馈，开发者会尽快答复";
+                return View();
+            }
+
+            ViewBag.Warning = "验证码错误";
+            return View(feedback);
         }
     }
 }

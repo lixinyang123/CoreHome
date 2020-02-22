@@ -16,6 +16,10 @@
     border-radius: 0;
 }
 
+#verfyImg {
+    cursor: pointer;
+}
+
 #verificationCode {
     max-width: 110px;
 }
