@@ -3,7 +3,7 @@ using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace coreHome.Controllers
+namespace CoreHome.HomePage.Controllers
 {
     public class FeedbackController : Controller
     {

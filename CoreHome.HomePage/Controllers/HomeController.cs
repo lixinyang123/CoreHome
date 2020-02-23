@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Diagnostics;
 
-namespace coreHome.Controllers
+namespace CoreHome.HomePage.Controllers
 {
     public class HomeController : Controller
     {

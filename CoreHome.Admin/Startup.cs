@@ -11,7 +11,7 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Pomelo.EntityFrameworkCore.MySql.Storage;
 using System;
 
-namespace admin
+namespace CoreHome.Admin
 {
     public class Startup
     {
