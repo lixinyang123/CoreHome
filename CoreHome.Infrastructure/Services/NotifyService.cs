@@ -2,11 +2,11 @@
 
 namespace Infrastructure.Services
 {
-    public static class NotifyService
+    public class NotifyService
     {
-        private static readonly string sckey = "SCU53487T3f2525ad756287352c78dbff72f9f6525d0463b66ac44";
+        private readonly string sckey = "SCU53487T3f2525ad756287352c78dbff72f9f6525d0463b66ac44";
 
-        public static void PushNotify(string text, string desp)
+        public void PushNotify(string text, string desp)
         {
             string url = $" https://sc.ftqq.com/{sckey}.send?text={text}&desp={desp}";
 

@@ -1,12 +1,9 @@
 ﻿using CoreHome.Data.Model;
-using Infrastructure.common;
-using Infrastructure.Models;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace coreHome.Controllers
@@ -14,17 +11,17 @@ namespace coreHome.Controllers
     public class HomeController : Controller
     {
         private readonly IWebHostEnvironment environment;
-        private readonly VerificationCodeHelper verificationHelper;
+        private readonly SearchEngineService searchEngineService;
 
-        public HomeController(IWebHostEnvironment env)
+        public HomeController(IWebHostEnvironment env, SearchEngineService searchEngineService)
         {
             environment = env;
-            verificationHelper = new VerificationCodeHelper();
+            this.searchEngineService = searchEngineService;
         }
 
         public IActionResult Index()
         {
-            SearchEngineService.PushToBaidu(environment.WebRootPath);
+            searchEngineService.PushToBaidu(environment.WebRootPath);
 
             ViewBag.Title = "LLLXY";
             string lastTime = Request.Cookies["lastTime"];
@@ -51,73 +48,9 @@ namespace coreHome.Controllers
             return View();
         }
 
-        public IActionResult Background()
-        {
-            if (System.IO.File.Exists(ThemeManager.backgroundUrl))
-            {
-                byte[] buffer = System.IO.File.ReadAllBytes(ThemeManager.backgroundUrl);
-                return File(buffer, "image/png");
-            }
-            else
-            {
-                ThemeManager.Theme = new Theme();
-                return NotFound();
-            }
-        }
-
-        public IActionResult Bgm(int bgmType)
-        {
-            BgmType type = (BgmType)bgmType;
-
-            if (type == BgmType.None)
-            {
-                return Accepted();
-            }
-            else if (type == BgmType.Single)
-            {
-                string fullPath = BgmManager.bgmPath + BgmManager.Bgm.DefaultMusic;
-                if (System.IO.File.Exists(fullPath))
-                {
-                    byte[] buffer = System.IO.File.ReadAllBytes(fullPath);
-                    return File(buffer, "audio/mpeg");
-                }
-                else
-                {
-                    BgmManager.Bgm = new Bgm();
-                    return Accepted();
-                }
-            }
-            else if (type == BgmType.Random)
-            {
-                List<string> musicList = BgmManager.GetBgmList();
-                int random = new Random().Next(0, musicList.Count);
-                string fullPath = BgmManager.bgmPath + musicList[random];
-                byte[] buffer = System.IO.File.ReadAllBytes(fullPath);
-                return File(buffer, "audio/mpeg");
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
-
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        public IActionResult Message(string msg, string url)
-        {
-            ViewBag.Msg = msg;
-            ViewBag.Url = url;
-            return View();
-        }
-
-        public IActionResult VerificationCode()
-        {
-            ISession session = HttpContext.Session;
-            session.SetString("VerificationCode", verificationHelper.VerificationCode.ToLower());
-            return File(verificationHelper.VerificationImage, "image/png");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

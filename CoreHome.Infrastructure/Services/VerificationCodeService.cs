@@ -2,14 +2,14 @@
 using System.Drawing;
 using System.IO;
 
-namespace Infrastructure.common
+namespace Infrastructure.Services
 {
-    public class VerificationCodeHelper
+    public class VerificationCodeService
     {
         public string VerificationCode { get; set; }
         public byte[] VerificationImage { get; set; }
 
-        public VerificationCodeHelper()
+        public VerificationCodeService()
         {
             CreateCode();
             CreateImage();

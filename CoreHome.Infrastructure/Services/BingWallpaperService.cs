@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Services
 {
-    public static class BingWallpaperService
+    public class BingWallpaperService
     {
-        public static async Task<string> GetUrl()
+        public async Task<string> GetUrl()
         {
             string url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
             using HttpClient httpClient = new HttpClient();

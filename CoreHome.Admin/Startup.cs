@@ -1,4 +1,5 @@
 ﻿using CoreHome.Data.DatabaseContext;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +41,8 @@ namespace admin
                 });
             });
 
+            services.AddSingleton<BingWallpaperService>();
+            services.AddSingleton<NotifyService>();
         }
 
         // 配置应用服务

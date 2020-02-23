@@ -12,21 +12,21 @@ namespace CoreHome.Admin.Controllers
     public class HomeController : Controller
     {
         private readonly IMemoryCache cache;
+        private readonly NotifyService notifyService;
 
-        public HomeController(IMemoryCache _cache)
+        public HomeController(IMemoryCache cache,NotifyService notifyService)
         {
-            cache = _cache;
+            this.cache = cache;
+            this.notifyService = notifyService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             //有管理员权限的话直接跳转的Overview验证访问令牌
             if (Request.Cookies.TryGetValue("accessToken", out _))
             {
                 return Redirect("/Admin/Overview");
             }
-
-            ViewBag.picUrl = await BingWallpaperService.GetUrl();
             return View();
         }
 
@@ -46,7 +46,7 @@ namespace CoreHome.Admin.Controllers
             try
             {
                 //发送密码到手机
-                NotifyService.PushNotify("CoreHome", "VerifyCode：" + password);
+                notifyService.PushNotify("CoreHome", "VerifyCode：" + password);
                 return Content("验证码已经发送");
             }
             catch (Exception)

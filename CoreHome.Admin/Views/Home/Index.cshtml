@@ -15,7 +15,7 @@
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="~/js/home/index.min.js"></script>
 </head>
-<body style="background-image:url('@ViewBag.picUrl');">
+<body style="background-image:url('@await BingWallpaperService.GetUrl()');">
 
     <div id="content" class="center-block">
 

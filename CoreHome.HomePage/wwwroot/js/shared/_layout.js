@@ -37,7 +37,7 @@ function MoveTop()
 
 //GetVerfyCode
 function getVerfyCode(img) {
-	img.src = "/Home/VerificationCode?" + Math.random();
+	img.src = "/Service/VerificationCode?" + Math.random();
 }
 
 function init() {

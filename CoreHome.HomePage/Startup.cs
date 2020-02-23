@@ -1,4 +1,5 @@
 ﻿using CoreHome.Data.DatabaseContext;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +41,11 @@ namespace coreHome
                     mySqlOptions.ServerVersion(new ServerVersion(new Version(8, 0, 18), ServerType.MySql));
                 });
             });
+
+            services.AddScoped<VerificationCodeService>();
+            services.AddSingleton<BingWallpaperService>();
+            services.AddSingleton<NotifyService>();
+            services.AddSingleton<SearchEngineService>();
         }
 
         //配置HTTP请求

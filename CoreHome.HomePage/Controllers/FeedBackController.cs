@@ -7,6 +7,13 @@ namespace coreHome.Controllers
 {
     public class FeedbackController : Controller
     {
+        private readonly NotifyService notifyService;
+
+        public FeedbackController(NotifyService notifyService)
+        {
+            this.notifyService = notifyService;
+        }
+
         public IActionResult Index()
         {
             ViewBag.Warning = "反馈中心";
@@ -25,7 +32,7 @@ namespace coreHome.Controllers
             string str = HttpContext.Session.GetString("VerificationCode");
             if (str == feedback.VerificationCode.ToLower())
             {
-                NotifyService.PushNotify(feedback.Title + $"[{feedback.Contact}]", feedback.Content);
+                notifyService.PushNotify(feedback.Title + $"[{feedback.Contact}]", feedback.Content);
                 ViewBag.Warning = "感谢您的反馈，开发者会尽快答复";
                 return View();
             }
