@@ -5,14 +5,12 @@
 
 @if (!showBanner)
 {
-        <nav id="cookieConsent" class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom" style="opacity: 0.8;">
+        <nav id="cookieConsent" class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
             <div class="container">
                 <strong class="navbar-brand">
                     隐私策略
                 </strong>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cookieConsent">
-                    <span>展开</span>
-                </button>
+                <button class="btn" data-toggle="collapse" data-target="#cookieConsent">展开</button>
                 <div class="collapse navbar-collapse" id="cookieConsent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -22,8 +20,8 @@
                         </li>
                     </ul>
                     <div class="form-inline my-2 my-lg-0">
-                        <a asp-controller="Home" asp-action="Privacy" class="btn btn-outline-primary mr-sm-2">了解更多</a>
-                        <button id="btn_accept" type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="agree()">确定</button>
+                        <a asp-controller="Home" asp-action="Privacy" class="btn btn-primary mr-sm-2">了解更多</a>
+                        <button id="btn_accept" type="button" class="btn btn-success my-2 my-sm-0" onclick="agree()">确定</button>
                     </div>
                 </div>
             </div>
