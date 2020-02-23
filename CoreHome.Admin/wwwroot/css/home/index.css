@@ -9,7 +9,6 @@
     background-color: white;
     vertical-align: middle;
     opacity: 0.9;
-    border-radius: 12px;
 }
 
 #user {
@@ -27,4 +26,8 @@ form {
 
 footer{
     margin-top:20px;
+}
+
+.btn {
+    border-radius: 0;
 }
