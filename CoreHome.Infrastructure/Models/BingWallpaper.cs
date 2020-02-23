@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Models
+﻿namespace CoreHome.Infrastructure.Models
 {
     public class BingWallpaper
     {

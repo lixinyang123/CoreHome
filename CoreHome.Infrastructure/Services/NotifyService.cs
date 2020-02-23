@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace Infrastructure.Services
+namespace CoreHome.Infrastructure.Services
 {
     public class NotifyService
     {

@@ -1,9 +1,9 @@
-﻿using Infrastructure.Models;
+﻿using CoreHome.Infrastructure.Models;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Services
+namespace CoreHome.Infrastructure.Services
 {
     public class BingWallpaperService
     {

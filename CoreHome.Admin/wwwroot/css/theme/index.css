@@ -6,3 +6,11 @@
 label{
     font-weight:bold;
 }
+
+.section{
+    margin-bottom: 40px;
+}
+
+.card{
+    border-radius: 0;
+}

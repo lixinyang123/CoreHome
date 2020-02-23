@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.IO;
 
-namespace Infrastructure.Services
+namespace CoreHome.Infrastructure.Services
 {
     public class VerificationCodeService
     {

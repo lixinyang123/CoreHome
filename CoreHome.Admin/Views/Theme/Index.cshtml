@@ -1,14 +1,13 @@
-﻿@model Infrastructure.Models.Theme
+﻿@model CoreHome.Infrastructure.Models.Theme
 
 <link rel="stylesheet" href="~/css/theme/index.min.css" />
 <script src="~/js/theme/index.min.js"></script>
 <h1>Theme</h1>
 
 <div class="container">
-    <form method="post" asp-controller="Theme" asp-action="ChangeTheme" enctype="multipart/form-data">
+    <form asp-controller="Theme" asp-action="Index" method="post">
 
-        <div>
-            <br />
+        <div class="row section">
             <h3>ThemeType</h3>
             <div class="row no-gutters">
 
@@ -16,7 +15,7 @@
                     <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="changeTheme('auto')">
                             <label><input class="ThemeType" id="auto" type="radio" name="ThemeType" value="0" 
-                                          @if (Model.ThemeType == Infrastructure.Models.ThemeType.Auto) { Write("checked"); }/> Auto
+                                          @if (Model.ThemeType == ThemeType.Auto) { Write("checked"); }/> Auto
                             </label>
                             <br />
                             <img src="~/img/themetype-auto.jpg" class="img-rounded" />
@@ -28,7 +27,7 @@
                     <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="changeTheme('white')">
                             <label><input class="ThemeType" id="white" type="radio" name="ThemeType" value="1" 
-                                          @if (Model.ThemeType == Infrastructure.Models.ThemeType.White) { Write("checked"); }/> White
+                                          @if (Model.ThemeType == ThemeType.White) { Write("checked"); }/> White
                             </label>
                             <br />
                             <img src="~/img/themetype-white.jpg" class="img-rounded" />
@@ -40,7 +39,7 @@
                     <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="changeTheme('black')">
                             <label><input class="ThemeType" id="black" type="radio" name="ThemeType" value="2" 
-                                          @if (Model.ThemeType == Infrastructure.Models.ThemeType.Black) { Write("checked"); }/> Black
+                                          @if (Model.ThemeType == ThemeType.Black) { Write("checked"); }/> Black
                             </label>
                             <br />
                             <img src="~/img/themetype-black.jpg" class="img-rounded" />
@@ -51,8 +50,7 @@
             </div>
         </div>
 
-        <div>
-            <br />
+        <div class="row section">
             <h3>BackgroundType</h3>
             <div class="row no-gutters">
 
@@ -60,7 +58,7 @@
                     <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="changeBackground('color')">
                             <label><input class="BackgroundType" id="color" type="radio" name="BackgroundType" value="0" 
-                                          @if (Model.BackgroundType == Infrastructure.Models.BackgroundType.Color) { Write("checked"); }/> Color
+                                          @if (Model.BackgroundType == BackgroundType.Color) { Write("checked"); }/> Color
                             </label>
                             <br />
                             <img src="~/img/backgroundtype-color.jpg" class="img-rounded" />
@@ -70,23 +68,9 @@
 
                 <div class="col-md-4 mt-3">
                     <div class="card mb-2 tests-card h-100">
-                        <div class="card-body" onclick="selectImage()">
-                            <label>
-                                <input class="BackgroundType" id="image" type="radio" name="BackgroundType" value="1"
-                                       @if (Model.BackgroundType == Infrastructure.Models.BackgroundType.Image) { Write("checked"); } /> Image
-                            </label>
-                            <br />
-                            <img src="~/img/backgroundtype-image.jpg" class="img-rounded" />
-                        </div>
-                        <input id="backgroundImage" type="file" name="background" hidden />
-                    </div>
-                </div>
-
-                <div class="col-md-4 mt-3">
-                    <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="changeBackground('bing')">
-                            <label><input class="BackgroundType" id="bing" type="radio" name="BackgroundType" value="2" 
-                                          @if (Model.BackgroundType == Infrastructure.Models.BackgroundType.Bing) { Write("checked"); }/> Bing
+                            <label><input class="BackgroundType" id="bing" type="radio" name="BackgroundType" value="1" 
+                                          @if (Model.BackgroundType == BackgroundType.Bing) { Write("checked"); }/> Bing
                             </label>
                             <br />
                             <img src="~/img/backgroundtype-bing.jpg" class="img-rounded" />
@@ -97,10 +81,8 @@
 
         </div>
 
-        <div>
-            <br />
+        <div class="row section">
             <button class="btn btn-primary" onclick="apply_onclick()">Apply</button>
-            <input id="submit" type="submit" hidden/>
         </div>
 
     </form>

@@ -7,15 +7,10 @@
     <div>
         <header class="fh5co-cover js-fullheight">
 
-            @switch (ThemeManager.Theme.BackgroundType)
+            @switch (ThemeService.Theme.BackgroundType)
             {
                 case BackgroundType.Color:
                     <div id="colorbg"></div>
-                    break;
-
-                case BackgroundType.Image:
-                    <div style="background-image:url('/Service/Background'); width:100%; height:100%;
-                    position:absolute; background-size:cover; bottom:0; left:0;"></div>
                     break;
 
                 case BackgroundType.Bing:
@@ -184,19 +179,11 @@
         </div>
 
         @{
-            string src = string.Empty;
-            Bgm bgm = BgmManager.Bgm;
-            if (bgm.BgmType == BgmType.Web)
+            if (ThemeService.Theme.MusicUrl != null)
             {
-                src = bgm.Url;
-            }
-            else
-            {
-                src = "/Service/Bgm?bgmType=" + Convert.ToInt32(BgmManager.Bgm.BgmType);
+                <audio id="player" src="@ThemeService.Theme.MusicUrl"></audio>
             }
         }
-
-        <audio id="player" src="@src"></audio>
 
         <!-- Main -->
         <script src="~/js/home/index.min.js"></script>

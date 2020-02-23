@@ -1,11 +1,10 @@
 ﻿using CoreHome.Data.Model;
-using Infrastructure.Services;
+using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace CoreHome.Admin.Controllers
 {
@@ -14,7 +13,7 @@ namespace CoreHome.Admin.Controllers
         private readonly IMemoryCache cache;
         private readonly NotifyService notifyService;
 
-        public HomeController(IMemoryCache cache,NotifyService notifyService)
+        public HomeController(IMemoryCache cache, NotifyService notifyService)
         {
             this.cache = cache;
             this.notifyService = notifyService;

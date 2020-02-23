@@ -1,5 +1,5 @@
 ﻿using CoreHome.Data.DatabaseContext;
-using Infrastructure.Services;
+using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -46,6 +46,7 @@ namespace coreHome
             services.AddSingleton<BingWallpaperService>();
             services.AddSingleton<NotifyService>();
             services.AddSingleton<SearchEngineService>();
+            services.AddSingleton<ThemeService>();
         }
 
         //配置HTTP请求

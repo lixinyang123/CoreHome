@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Text;
 
-namespace Infrastructure.Services
+namespace CoreHome.Infrastructure.Services
 {
     public class SearchEngineService
     {

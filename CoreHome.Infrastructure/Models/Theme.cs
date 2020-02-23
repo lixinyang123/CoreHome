@@ -1,11 +1,14 @@
-namespace Infrastructure.Models
+namespace CoreHome.Infrastructure.Models
 {
     public enum ThemeType { Auto, White, Black }
-    public enum BackgroundType { Color, Image, Bing }
+    public enum BackgroundType { Color,  Bing }
 
     public class Theme
     {
-        public ThemeType ThemeType { get; set; } = ThemeType.Auto;
-        public BackgroundType BackgroundType { get; set; } = BackgroundType.Color;
+        public ThemeType ThemeType { get; set; }
+
+        public BackgroundType BackgroundType { get; set; }
+
+        public string MusicUrl { get; set; }
     }
 }
