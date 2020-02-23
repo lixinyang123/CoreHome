@@ -20,15 +20,22 @@ function moveToDC() {
     }
 }
 
+
+function playMusic() {
+    try {
+        player.addEventListener('ended', function () {
+            setTimeout(() => {
+                document.getElementById("player").play();
+            }, 1000);
+        });
+        document.getElementById("player").play();
+    } catch () {}
+}
+
 //=============Initializa================
 
 function init() {
-    player.addEventListener('ended', function () {
-        setTimeout(() => {
-            document.getElementById("player").play();
-        }, 1000);
-    });
-    document.getElementById("player").play();
+    playMusic();
     addLinkTarget();
 }
 
