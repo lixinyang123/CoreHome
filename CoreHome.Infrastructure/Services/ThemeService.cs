@@ -9,24 +9,25 @@ namespace CoreHome.Infrastructure.Services
         private const string configPath = @"C:/Server/CoreHome/";
         private const string configFile = configPath + "Theme.json";
 
-        private Theme theme;
-
         public Theme Theme
         {
             get
             {
-                return theme;
+                return JsonSerializer.Deserialize<Theme>(File.ReadAllText(configFile));
             }
             set
             {
-                theme = value;
-                Directory.CreateDirectory(configPath);
-                File.WriteAllText(configFile, JsonSerializer.Serialize(theme));
+                File.WriteAllText(configFile, JsonSerializer.Serialize(value));
             }
         }
 
         public ThemeService()
         {
+            if (!Directory.Exists(configPath))
+            {
+                Directory.CreateDirectory(configPath);
+            }
+
             if (!File.Exists(configFile))
             {
                 Theme = new Theme()
@@ -35,10 +36,6 @@ namespace CoreHome.Infrastructure.Services
                     BackgroundType = BackgroundType.Color,
                     MusicUrl = null
                 };
-            }
-            else
-            {
-                Theme = JsonSerializer.Deserialize<Theme>(File.ReadAllText(configFile));
             }
         }
 
