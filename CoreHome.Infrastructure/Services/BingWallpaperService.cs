@@ -1,4 +1,5 @@
 ﻿using CoreHome.Infrastructure.Models;
+using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -9,11 +10,18 @@ namespace CoreHome.Infrastructure.Services
     {
         public async Task<string> GetUrl()
         {
-            string url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
-            using HttpClient httpClient = new HttpClient();
-            string jsonStr = await httpClient.GetStringAsync(url);
-            BingWallpaper wallpaper = JsonSerializer.Deserialize<BingWallpaper>(jsonStr);
-            return "https://cn.bing.com" + wallpaper.images[0].url;
+            try
+            {
+                string url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
+                using HttpClient httpClient = new HttpClient();
+                string jsonStr = await httpClient.GetStringAsync(url);
+                BingWallpaper wallpaper = JsonSerializer.Deserialize<BingWallpaper>(jsonStr);
+                return "https://cn.bing.com" + wallpaper.images[0].url;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }
