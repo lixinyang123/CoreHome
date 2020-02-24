@@ -28,9 +28,9 @@ namespace CoreHome.Data.DatabaseContext
                 .HasForeignKey(i => i.TagId);
 
             modelBuilder.Entity<Article>()
-                .HasOne(i => i.Categories)
+                .HasOne(i => i.Category)
                 .WithMany(i => i.Articles)
-                .HasForeignKey(i => i.CategoriesId);
+                .HasForeignKey(i => i.CategoryId);
 
         }
 

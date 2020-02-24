@@ -13,9 +13,9 @@ namespace CoreHome.Data.Model
 
         public DateTime Time { get; set; }
 
-        public int CategoriesId { get; set; }
+        public int CategoryId { get; set; }
 
-        public Categories Categories { get; set; }
+        public Category Category { get; set; }
 
         public List<ArticleTag> ArticleTags { get; set; }
 

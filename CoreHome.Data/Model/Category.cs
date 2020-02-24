@@ -2,7 +2,7 @@
 
 namespace CoreHome.Data.Model
 {
-    public class Categories
+    public class Category
     {
         public int Id { get; set; }
 
