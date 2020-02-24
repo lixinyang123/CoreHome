@@ -1,6 +1,5 @@
 ﻿body {
     margin-top: 50px;
-    margin-bottom: 60px;
 }
 
 #content {
@@ -10,4 +9,24 @@
 
 .btn {
     border-radius: 0;
+}
+
+nav, footer {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+footer ul {
+    padding: 0;
+    list-style: none;
+}
+
+footer ul li {
+    display: inline-block;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+footer ul a {
+    font-weight: 600;
+    color: #495057;
 }
