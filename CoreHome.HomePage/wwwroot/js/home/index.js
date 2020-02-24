@@ -29,7 +29,7 @@ function playMusic() {
             }, 1000);
         });
         document.getElementById("player").play();
-    } catch () {}
+    } catch (e) {}
 }
 
 //=============Initializa================
