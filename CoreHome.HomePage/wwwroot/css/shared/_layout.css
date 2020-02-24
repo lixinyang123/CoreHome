@@ -11,8 +11,8 @@ body {
     background-color: whitesmoke;
 }
 
-nav, footer {
-    box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.15);
+nav {
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
 }
 
 footer ul {
