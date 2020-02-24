@@ -26,6 +26,12 @@ namespace CoreHome.Data.DatabaseContext
                 .HasOne(i => i.Tag)
                 .WithMany(i => i.ArticleTags)
                 .HasForeignKey(i => i.TagId);
+
+            modelBuilder.Entity<Article>()
+                .HasOne(i => i.Categories)
+                .WithMany(i => i.Articles)
+                .HasForeignKey(i => i.CategoriesId);
+
         }
 
         public DbSet<Article> Articles { get; set; }

@@ -13,5 +13,7 @@ namespace CoreHome.Data.Model
         public int ArticleId { get; set; }
 
         public Article Article { get; set; }
+
+        public int CommentId { get; set; }
     }
 }

@@ -13,6 +13,10 @@ namespace CoreHome.Data.Model
 
         public DateTime Time { get; set; }
 
+        public int CategoriesId { get; set; }
+
+        public Categories Categories { get; set; }
+
         public List<ArticleTag> ArticleTags { get; set; }
 
         public string Overview { get; set; }
