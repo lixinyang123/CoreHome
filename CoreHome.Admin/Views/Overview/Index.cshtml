@@ -1,8 +1,8 @@
-﻿
-<h1 class="display-4">@DateTime.Now.ToString("yyyy年MM月dd日") Welcome</h1>
-<p>Access from <code>@Context.Connection.RemoteIpAddress.ToString()</code><span class="badge badge-secondary ml-2" id="spanStatus">Idle</span></p>
+﻿<div class="container">
 
-<div class="container">
+    <h1 class="display-4">@DateTime.Now.ToString("yyyy年MM月dd日") Welcome</h1>
+    <p>Access from <code>@Context.Connection.RemoteIpAddress.ToString()</code><span class="badge badge-secondary ml-2" id="spanStatus">Idle</span></p>
+
     <div class="row no-gutters">
 
         <div class="col-md-6 mt-3">
@@ -38,9 +38,8 @@
             </div>
         </div>
     </div>
-</div>
-<div class="container mt-4" id="functions">
-    <div class="row no-gutters">
+
+    <div class="row no-gutters mt-4">
         <div class="col-sm-12 px-1">
             <div class="card mb-2 tests-card">
                 <div class="card-body">
@@ -58,15 +57,15 @@
             </div>
         </div>
     </div>
+
+    <script src="~/lib/chart.js/dist/Chart.min.js"></script>
+
+    <script src="~/js/overview/down.min.js"></script>
+    <script src="~/js/overview/http.min.js"></script>
+    <script src="~/js/overview/site.min.js"></script>
+    <script src="~/js/overview/ws.min.js"></script>
+
+    <script>
+        window.onload = setTimeout(startAll, 1000);
+    </script>
 </div>
-
-<script src="~/lib/chart.js/dist/Chart.min.js"></script>
-
-<script src="~/js/overview/down.min.js"></script>
-<script src="~/js/overview/http.min.js"></script>
-<script src="~/js/overview/site.min.js"></script>
-<script src="~/js/overview/ws.min.js"></script>
-
-<script>
-    window.onload = setTimeout(startAll, 1000);
-</script>
