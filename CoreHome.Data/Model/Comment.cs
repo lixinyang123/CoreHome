@@ -14,6 +14,5 @@ namespace CoreHome.Data.Model
 
         public Article Article { get; set; }
 
-        public int CommentId { get; set; }
     }
 }
