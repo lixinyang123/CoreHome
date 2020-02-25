@@ -1,5 +1,5 @@
-﻿using CoreHome.Data.Model;
-using CoreHome.Infrastructure.Services;
+﻿using CoreHome.Infrastructure.Services;
+using CoreHome.Infrastructure.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
