@@ -8,10 +8,5 @@ namespace CoreHome.HomePage.Controllers
         {
             return View();
         }
-
-        public IActionResult Test()
-        {
-            return View();
-        }
     }
 }
