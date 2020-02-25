@@ -20,6 +20,7 @@ namespace CoreHome.Admin.ViewModels
         [Display(Name = "概述")]
         public string Overview { get; set; }
 
+        [Url]
         [Display(Name = "封面")]
         public string CoverUrl { get; set; }
 
