@@ -5,24 +5,25 @@
     <hr />
 
     <form asp-action="Upload" method="post">
-        <label asp-for="Title"></label>
+        <label asp-for="Title"></label>*
         <input asp-for="Title" type="text" class="form-control" />
 
-        <label asp-for="CategoryName"></label>
+        <label asp-for="CategoryName"></label>*
         <input asp-for="CategoryName" type="text" class="form-control" />
 
-        <label asp-for="ArticleTags"></label>
-        <input asp-for="ArticleTags" type="text" class="form-control" />
+        <label asp-for="TagStr"></label>*<label>（标签之间用 "#" 隔开）</label>
+        <input asp-for="TagStr" type="text" class="form-control" />
 
-        <label asp-for="Overview"></label>
+        <label asp-for="Overview"></label>*
         <input asp-for="Overview" type="text" class="form-control" />
 
         <label asp-for="CoverUrl"></label>
         <input asp-for="CoverUrl" type="text" class="form-control" />
 
-        <label asp-for="Content"></label>
-        <input asp-for="Content" type="text" class="form-control" />
+        <label asp-for="Content"></label>*
+        <textarea asp-for="Content" class="form-control" rows="10" cols="100" placeholder="博客内容"></textarea>
 
+        <hr />
         <input type="submit" value="提交" class="btn btn-success" />
     </form>
 </div>

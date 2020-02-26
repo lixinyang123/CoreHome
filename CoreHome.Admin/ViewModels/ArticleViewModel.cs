@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CoreHome.Admin.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoreHome.Admin.ViewModels
 {
@@ -14,7 +15,7 @@ namespace CoreHome.Admin.ViewModels
 
         [Required]
         [Display(Name = "标签")]
-        public string ArticleTags { get; set; }
+        public string TagStr { get; set; }
 
         [Required]
         [Display(Name = "概述")]

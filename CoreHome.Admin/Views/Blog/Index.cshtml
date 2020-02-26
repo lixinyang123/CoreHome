@@ -1,12 +1,32 @@
 ﻿@model List<Article>
 
-<h1>Index</h1>
+<div class="container">
 
-<a asp-action="Upload">上传博客</a>
+    <h1>Index</h1>
 
-<ul>
-    @for(var i = 0; i < Model.Count; i++)
-    {
-        <li>@Model[i].Title</li>
-    }
-</ul>
+    <a asp-action="Upload" class="btn btn-primary">上传博客</a>
+    <br />
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">ArticleCode</th>
+            <th scope="col">ArticleTitle</th>
+            <th scope="col">Modify</th>
+            <th scope="col">Delete</th>
+            </tr>
+        </thead>
+          <tbody>
+              @for (var i = 0; i < Model.Count; i++)
+              {
+                    <tr>
+                        <th scope="row">@Model[i].ArticleCode</th>
+                        <td>@Model[i].Title</td>
+                        <td><a asp-action="Modify" asp-route-articleCode="@Model[i].ArticleCode">Modify</a></td>
+                        <td><a asp-action="Delete" asp-route-articleCode="@Model[i].ArticleCode">Delete</a></td>
+                    </tr>
+              }
+          </tbody>
+    </table>
+
+</div>
