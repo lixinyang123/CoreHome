@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace CoreHome.Infrastructure.Models
 {
     public enum ThemeType { Auto, White, Black }
@@ -9,6 +11,7 @@ namespace CoreHome.Infrastructure.Models
 
         public BackgroundType BackgroundType { get; set; }
 
+        [Url]
         public string MusicUrl { get; set; }
     }
 }

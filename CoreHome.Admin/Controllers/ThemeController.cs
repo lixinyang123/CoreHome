@@ -17,15 +17,17 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Index()
         {
-            Theme theme = themeService.Theme;
-            return View(theme);
+            return View(themeService.Theme);
         }
 
         [HttpPost]
         public IActionResult Index(Theme theme)
         {
-            themeService.Theme = theme;
-            return View(theme);
+            if (ModelState.IsValid)
+            {
+                themeService.Theme = theme;
+            }
+            return View(themeService.Theme);
         }
 
     }

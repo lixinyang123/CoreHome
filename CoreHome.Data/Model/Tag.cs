@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoreHome.Data.Model
 {
@@ -6,6 +7,7 @@ namespace CoreHome.Data.Model
     {
         public int Id { get; set; }
 
+        [Required]
         public string TagName { get; set; }
 
         public List<ArticleTag> ArticleTags { get; set; }

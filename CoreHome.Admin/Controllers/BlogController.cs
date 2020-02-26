@@ -30,7 +30,14 @@ namespace CoreHome.Admin.Controllers
         [HttpPost]
         public IActionResult Upload(ArticleViewModel articleViewModel)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(articleViewModel);
+            }
+
+
+
+            return RedirectToAction("Index");
         }
     }
 }
