@@ -1,10 +1,12 @@
-﻿using CoreHome.Admin.Attributes;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace CoreHome.Admin.ViewModels
 {
     public class ArticleViewModel
     {
+        public Guid ArticleCode { get; set; }
+
         [Required]
         [Display(Name = "标题")]
         public string Title { get; set; }

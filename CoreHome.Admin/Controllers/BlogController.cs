@@ -26,6 +26,7 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Upload()
         {
+            ViewBag.Action = "Upload";
             return View("Editor", new ArticleViewModel());
         }
 
@@ -51,12 +52,18 @@ namespace CoreHome.Admin.Controllers
                 }
             });
 
+            Category category = articleDbContext.Categories.SingleOrDefault(i => i.CategoriesName == articleViewModel.CategoryName);
+            if (category == null)
+            {
+                category = new Category() { CategoriesName = articleViewModel.CategoryName };
+            }
+
             articleDbContext.Articles.Add(new Article()
             {
                 ArticleCode = Guid.NewGuid(),
                 Title = articleViewModel.Title,
                 Time = DateTime.Now,
-                Category = new Category() { CategoriesName = articleViewModel.CategoryName },
+                Category = category,
                 ArticleTags = articleTags,
                 Overview = articleViewModel.Overview,
                 CoverUrl = articleViewModel.CoverUrl,
@@ -70,6 +77,8 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Modify(Guid articleCode)
         {
+            ViewBag.Action = "Modify";
+
             Article article = articleDbContext.Articles.Include(i=>i.Category).Include(i => i.ArticleTags).ThenInclude(i => i.Tag).SingleOrDefault(i => i.ArticleCode == articleCode);
             if (article == null)
             {
@@ -93,6 +102,50 @@ namespace CoreHome.Admin.Controllers
             };
 
             return View("Editor", articleViewModel);
+        }
+
+
+        [HttpPost]
+        public IActionResult Modify(ArticleViewModel articleViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Editor", articleViewModel);
+            }
+
+            Article article = articleDbContext.Articles.Include(i => i.Category).SingleOrDefault(i => i.ArticleCode == articleViewModel.ArticleCode);
+            List<ArticleTag> articleTags = new List<ArticleTag>();
+            new List<string>(articleViewModel.TagStr.Split("#").Distinct()).ForEach(i =>
+            {
+                Tag tag = articleDbContext.Tags.SingleOrDefault(tag => tag.TagName == i);
+                if (tag == null)
+                {
+                    articleTags.Add(new ArticleTag() { Tag = new Tag() { TagName = i } });
+                }
+                else
+                {
+                    articleTags.Add(new ArticleTag() { TagId = tag.Id });
+                }
+            });
+
+            Category category = articleDbContext.Categories.SingleOrDefault(i => i.CategoriesName == articleViewModel.CategoryName);
+            if (category == null)
+            {
+                category = new Category() { CategoriesName = articleViewModel.CategoryName };
+            }
+
+            article.Title = articleViewModel.Title;
+            article.Category = category;
+            article.ArticleTags = articleTags;
+            article.Overview = articleViewModel.Overview;
+            article.CoverUrl = articleViewModel.CoverUrl;
+            article.Content = articleViewModel.Content;
+
+            articleDbContext.SaveChanges();
+
+            RemoveNoArticleCategory();
+            RemoveNoArticleTags();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Delete(Guid articleCode)
