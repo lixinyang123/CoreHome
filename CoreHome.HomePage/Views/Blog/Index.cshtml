@@ -1,61 +1,58 @@
-﻿
+﻿@model List<Article>
+
 @{
     ViewData["Title"] = "Blog";
 }
 
+<link rel="stylesheet" href="~/css/blog/index.min.css" />
+
 <div class="container mt-4 mb-5">
-    <div class="row">
+    <div class="row post">
 
         <aside class="col-lg-3 d-none d-lg-block">
-            <selection>
-                <div class="card">
-                    <div class="card-header">Top Tags</div>
-                    <div class="card-body">
-                        <div class="toptags-list">
-                            <a>ASP.NET</a>
-                            <a>.NET Core</a>
-                            <a>UWP</a>
-                            <a>WPF</a>
-                            <a>WinForms</a>
-                            <a>Windows 10</a>
-                            <a>Visual Studio</a>
-                            <a>IIS</a>
-                        </div>
-                    </div>
-                </div>
-            </selection>
 
-            <selection>
-                <div class="card">
-                    <div class="card-header">All Categories</div>
-                    <div class="list-group list-group-flush">
-                        <a class="list-group-item list-group-item-action">ASP.NET</a>
-                        <a class="list-group-item list-group-item-action">.NET Core</a>
-                        <a class="list-group-item list-group-item-action">UWP</a>
-                        <a class="list-group-item list-group-item-action">WPF</a>
-                        <a class="list-group-item list-group-item-action">WinForms</a>
-                        <a class="list-group-item list-group-item-action">Windows 10</a>
-                        <a class="list-group-item list-group-item-action">Visual Studio</a>
-                        <a class="list-group-item list-group-item-action">IIS</a>
-                    </div>
-                </div>
-            </selection>
+            @await Component.InvokeAsync("TopTags")
+            <br />
+            @await Component.InvokeAsync("Categories")
+
         </aside>
 
         <selection class="col-lg-9 col-md-12">
-            <h3 class="h3-cat-list">All Posts</h3>
+            <h2>All Posts</h2>
             <hr />
 
-            <article>
-                <p class="date"></p>
-                <h4>Title</h4>
-                <p>qweqwrqewrrrrrrrrrrrrrrrrrrffffffffffffffffffffffffffffffffffffff</p>
-                <div class="post-tags">
+            <div id="postdiv">
 
-                </div>
-            </article>
-            <div class="mb-4 d-none d-md-block"></div>
-            <hr class="d-none d-md-block" />
+                @if (Model.Count == 0)
+                {
+                    <h2 id="waring">There's nothing here.</h2>
+                }
+                else
+                {
+                    @for (var i = 0; i < Model.Count; i++)
+                    {
+                            <article>
+                                <a class="articleTitle">@Model[i].Title</a>
+                                <p class="date">@Model[i].Time.ToString("yyyy/MM/dd")</p>
+                                <p>@Model[i].Overview</p>
+                                <div class="post-tags">
+                                    @{
+                                        var articleTags = Model[i].ArticleTags;
+                                    }
+
+                                    @for (var j = 0; j < articleTags.Count; j++)
+                                    {
+                                        <a class="btn btn-primary">@articleTags[j].Tag.TagName</a>
+                                    }
+                                </div>
+                            </article>
+                            <div class="mb-4 d-none d-md-block"></div>
+                            <hr class="d-none d-md-block" />
+                    }
+                }
+            </div>
+
+            @await Component.InvokeAsync("Pagination")
 
         </selection>
 

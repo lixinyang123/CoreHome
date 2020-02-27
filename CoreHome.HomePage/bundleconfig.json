@@ -64,5 +64,11 @@
     "inputFiles": [
       "wwwroot/js/feedback/index.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/blog/index.min.css",
+    "inputFiles": [
+      "wwwroot/css/blog/index.css"
+    ]
   }
 ]
