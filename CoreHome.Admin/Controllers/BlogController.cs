@@ -52,7 +52,9 @@ namespace CoreHome.Admin.Controllers
                 }
             });
 
-            Category category = articleDbContext.Categories.SingleOrDefault(i => i.CategoriesName == articleViewModel.CategoryName);
+            Category category = articleDbContext.Categories
+                .SingleOrDefault(i => i.CategoriesName == articleViewModel.CategoryName);
+
             if (category == null)
             {
                 category = new Category() { CategoriesName = articleViewModel.CategoryName };
@@ -79,7 +81,11 @@ namespace CoreHome.Admin.Controllers
         {
             ViewBag.Action = "Modify";
 
-            Article article = articleDbContext.Articles.Include(i=>i.Category).Include(i => i.ArticleTags).ThenInclude(i => i.Tag).SingleOrDefault(i => i.ArticleCode == articleCode);
+            Article article = articleDbContext.Articles.Include(i=>i.Category)
+                .Include(i => i.ArticleTags)
+                .ThenInclude(i => i.Tag)
+                .SingleOrDefault(i => i.ArticleCode == articleCode);
+
             if (article == null)
             {
                 return RedirectToAction("Index");
@@ -113,7 +119,9 @@ namespace CoreHome.Admin.Controllers
                 return View("Editor", articleViewModel);
             }
 
-            Article article = articleDbContext.Articles.Include(i => i.Category).Include(i => i.ArticleTags).SingleOrDefault(i => i.ArticleCode == articleViewModel.ArticleCode);
+            Article article = articleDbContext.Articles.Include(i => i.Category)
+                .Include(i => i.ArticleTags)
+                .SingleOrDefault(i => i.ArticleCode == articleViewModel.ArticleCode);
 
             List<ArticleTag> articleTags = new List<ArticleTag>();
             new List<string>(articleViewModel.TagStr.Split("#").Distinct()).ForEach(i =>
@@ -151,7 +159,10 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Delete(Guid articleCode)
         {
-            Article article = articleDbContext.Articles.Include(i=>i.Comments).Include(i=>i.ArticleTags).SingleOrDefault(i => i.ArticleCode == articleCode);
+            Article article = articleDbContext.Articles.Include(i=>i.Comments)
+                .Include(i=>i.ArticleTags)
+                .SingleOrDefault(i => i.ArticleCode == articleCode);
+
             if (article != null)
             {
                 articleDbContext.Remove(article);
