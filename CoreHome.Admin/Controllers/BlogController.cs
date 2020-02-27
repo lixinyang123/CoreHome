@@ -113,7 +113,8 @@ namespace CoreHome.Admin.Controllers
                 return View("Editor", articleViewModel);
             }
 
-            Article article = articleDbContext.Articles.Include(i => i.Category).SingleOrDefault(i => i.ArticleCode == articleViewModel.ArticleCode);
+            Article article = articleDbContext.Articles.Include(i => i.Category).Include(i => i.ArticleTags).SingleOrDefault(i => i.ArticleCode == articleViewModel.ArticleCode);
+
             List<ArticleTag> articleTags = new List<ArticleTag>();
             new List<string>(articleViewModel.TagStr.Split("#").Distinct()).ForEach(i =>
             {
