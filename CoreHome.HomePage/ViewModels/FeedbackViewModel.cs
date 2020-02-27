@@ -2,7 +2,7 @@
 
 namespace CoreHome.HomePage.ViewModels
 {
-    public class Feedback
+    public class FeedbackViewModel
     {
         [Required]
         [Display(Name = "联系方式")]

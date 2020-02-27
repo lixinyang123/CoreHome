@@ -68,7 +68,7 @@ footer ul a {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: orangered;
+    background-color: orange;
 }
 
 ::-webkit-scrollbar-track{
@@ -77,4 +77,10 @@ footer ul a {
 
 .btn{
     border-radius: 0;
+}
+
+#search {
+    border-radius: 0;
+    border: 0;
+    background-color: white;
 }

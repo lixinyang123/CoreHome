@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreHome.HomePage.Components
 {
-    public class PaginationViewComponent : ViewComponent
+    public class NavbarViewComponent : ViewComponent
     {
         private readonly ArticleDbContext articleDbContext;
 
-        public PaginationViewComponent(ArticleDbContext articleDbContext)
+        public NavbarViewComponent(ArticleDbContext articleDbContext)
         {
             this.articleDbContext = articleDbContext;
         }
 
-        public IViewComponentResult Invoke(int index)
+        public IViewComponentResult Invoke()
         {
-            return View(index);
+            return View();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace CoreHome.HomePage.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index([FromForm]Feedback feedback)
+        public IActionResult Index([FromForm]FeedbackViewModel feedback)
         {
             if (!ModelState.IsValid)
             {

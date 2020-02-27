@@ -17,14 +17,17 @@ namespace CoreHome.HomePage.Controllers
             this.articleDbContext = articleDbContext;
         }
 
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(int index = 1)
         {
-            List<Article> articles = articleDbContext.Articles.OrderBy(i => i.Id)
+            List<Article> articles = articleDbContext.Articles
+                .OrderByDescending(i => i.Id)
                 .Include(i => i.Category)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
-                .Skip((page - 1) * pageSize)
+                .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToList();
+
+            ViewBag.Index = index;
 
             return View(articles);
         }

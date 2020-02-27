@@ -36,27 +36,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index">LLLXY</a>
-            <button class="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Blog" asp-action="Index">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="FeedBack" asp-action="Index">FeedBack</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    @await Component.InvokeAsync("Navbar")
 
     <div id="content">
         @RenderBody()
