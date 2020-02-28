@@ -4,17 +4,19 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Collections.Generic;
 using CoreHome.Data.Model;
+using Microsoft.Extensions.Configuration;
 
 namespace CoreHome.HomePage.Controllers
 {
     public class BlogController : Controller
     {
         private readonly ArticleDbContext articleDbContext;
-        private const int pageSize = 7;
+        private readonly int pageSize;
 
-        public BlogController(ArticleDbContext articleDbContext)
+        public BlogController(ArticleDbContext articleDbContext,IConfiguration configuration)
         {
             this.articleDbContext = articleDbContext;
+            pageSize = configuration.GetValue<int>("PageSize");
         }
 
         public IActionResult Index(int index = 1)

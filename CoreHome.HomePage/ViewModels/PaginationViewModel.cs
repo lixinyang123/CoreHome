@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CoreHome.HomePage.ViewModels
+﻿namespace CoreHome.HomePage.ViewModels
 {
     public class PaginationViewModel
     {
+        public int CurrentIndex { get; set; }
+
+        /// <summary>
+        /// 总页数
+        /// </summary>
+        public int PageCount { get; set; }
+
+        public int MaxLength { get; set; }
     }
 }

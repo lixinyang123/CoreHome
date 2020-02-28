@@ -8,13 +8,13 @@
 
                 @if (Model.Count == 0)
                 {
-                    <a class="btn btn-success">There's nothing here.</a>
+                    <a class="btn btn-primary">There's nothing here.</a>
                 }
                 else
                 {
                     @for (var i = 0; i < Model.Count; i++)
                     {
-                        <a class="btn btn-success">@Model[i].TagName</a>
+                        <a class="btn btn-primary">@Model[i].TagName</a>
                     }
                 }
 
