@@ -61,7 +61,7 @@
                 </header>
 
                 <section class="post-content clearfix markdown">
-                    @Model.Content
+                    <input value="@Model.Content" type="hidden" />
                 </section>
 
                 <hr class="post-header-hr">
@@ -103,7 +103,9 @@
                                 {
                                     <li class="list-group-item">
                                         <p class="text-muted">@Model.Comments[i].Time</p>
-                                        <p class="markdown">@Model.Comments[i].Detail</p>
+                                        <p class="markdown">
+                                            <input value="@Model.Comments[i].Detail" type="hidden" />
+                                        </p>
                                     </li>
                                 }
                             }
@@ -117,7 +119,7 @@
 
         <script>
             document.querySelectorAll(".markdown").forEach(element => {
-                element.innerHTML = marked(element.innerText);
+                element.innerHTML = marked(element.children[0].value);
             });
         </script>
     </div>
