@@ -56,7 +56,7 @@ namespace CoreHome.HomePage.Controllers
             return View(articles);
         }
 
-        /// <param name="id">标签名称</param>
+        /// <param name="id">博客标签</param>
         public IActionResult Tags(string id)
         {
             List<ArticleTag> articleTags = articleDbContext.ArticleTags
@@ -72,6 +72,12 @@ namespace CoreHome.HomePage.Controllers
             ViewBag.Warning = id;
 
             return View("Index", articles);
+        }
+
+        /// <param name="id">博客类别</param>
+        public IActionResult Categories(string id)
+        {
+            return View("Index");
         }
     }
 }
