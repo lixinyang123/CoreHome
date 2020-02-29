@@ -46,13 +46,13 @@ namespace CoreHome.HomePage.Controllers
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToList();
 
-            ViewBag.Warning = "All Posts";
             ViewBag.Pagination = new PaginationViewModel()
             {
                 CurrentIndex = index,
                 PageCount = pageCount
             };
 
+            ViewBag.Warning = "All Posts";
             return View(articles);
         }
 
@@ -70,14 +70,21 @@ namespace CoreHome.HomePage.Controllers
             articleTags.ForEach(i => articles.Add(i.Article));
 
             ViewBag.Warning = id;
-
             return View("Index", articles);
         }
 
         /// <param name="id">博客类别</param>
         public IActionResult Categories(string id)
         {
-            return View("Index");
+            List<Article> articles = articleDbContext.Articles
+                .OrderByDescending(i => i.Id)
+                .Include(i => i.ArticleTags)
+                .ThenInclude(i => i.Tag)
+                .Where(i => i.Category.CategoriesName == id)
+                .ToList();
+
+            ViewBag.Warning = id;
+            return View("Index", articles);
         }
     }
 }
