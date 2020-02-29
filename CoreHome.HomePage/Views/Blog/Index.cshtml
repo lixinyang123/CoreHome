@@ -18,7 +18,7 @@
         </aside>
 
         <selection class="col-lg-9 col-md-12">
-            <h2>All Posts</h2>
+            <h2>@ViewBag.Warning</h2>
             <hr />
 
             <div id="postdiv">
@@ -42,7 +42,9 @@
 
                                     @for (var j = 0; j < articleTags.Count; j++)
                                     {
-                                        <a class="btn btn-primary">@articleTags[j].Tag.TagName</a>
+                                            <a class="btn btn-primary" asp-action="Tags" asp-route-id="@articleTags[j].Tag.TagName">
+                                                @articleTags[j].Tag.TagName
+                                            </a>
                                     }
                                 </div>
                             </article>
@@ -52,7 +54,10 @@
                 }
             </div>
 
-            @await Component.InvokeAsync("Pagination", ViewBag.Index)
+            @if (ViewBag.Pagination != null)
+            {
+                <partial name="Pagination" model="@ViewBag.Pagination"/>
+            }
 
         </selection>
 

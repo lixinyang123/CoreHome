@@ -8,7 +8,5 @@
         /// 总页数
         /// </summary>
         public int PageCount { get; set; }
-
-        public int MaxLength { get; set; }
     }
 }

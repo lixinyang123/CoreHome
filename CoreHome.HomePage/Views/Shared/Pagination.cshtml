@@ -15,7 +15,9 @@
                 skip -= rightLossCount;
             }
 
-            while (indexs.Count < Model.MaxLength)
+            var maxLength = Model.PageCount < 5 ? Model.PageCount : 5;
+
+            while (indexs.Count < maxLength)
             {
                 int index = Model.CurrentIndex + skip;
                 if (index > 0)

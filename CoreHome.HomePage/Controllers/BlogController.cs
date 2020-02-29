@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Collections.Generic;
 using CoreHome.Data.Model;
+using CoreHome.HomePage.ViewModels;
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace CoreHome.HomePage.Controllers
 {
@@ -19,8 +21,29 @@ namespace CoreHome.HomePage.Controllers
             pageSize = configuration.GetValue<int>("PageSize");
         }
 
+        //矫正页码
+        //页码<1时留在第一页
+        //页码>总页数时留在最后一页
+        private int CorrectIndex(int index, int pageCount)
+        {
+            if (index < 1)
+            {
+                index = 1;
+            }
+            if (index > pageCount)
+            {
+                index = pageCount;
+            }
+            return index;
+        }
+
+        /// <param name="index">页面索引</param>
         public IActionResult Index(int index = 1)
         {
+            //博客总页数
+            int pageCount = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(articleDbContext.Articles.Count()) / pageSize));
+            index = CorrectIndex(index, pageCount);
+
             List<Article> articles = articleDbContext.Articles
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.Category)
@@ -29,9 +52,32 @@ namespace CoreHome.HomePage.Controllers
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToList();
 
-            ViewBag.Index = index;
+            ViewBag.Warning = "All Posts";
+            ViewBag.Pagination = new PaginationViewModel()
+            {
+                CurrentIndex = index,
+                PageCount = pageCount
+            };
 
             return View(articles);
+        }
+
+        /// <param name="id">标签名称</param>
+        public IActionResult Tags(string id)
+        {
+            List<ArticleTag> articleTags = articleDbContext.ArticleTags
+                .OrderByDescending(i => i.Article.Id)
+                .Include(i => i.Article)
+                .ThenInclude(i => i.ArticleTags)
+                .ThenInclude(i => i.Tag)
+                .Where(i => i.Tag.TagName == id).ToList();
+
+            List<Article> articles = new List<Article>();
+            articleTags.ForEach(i => articles.Add(i.Article));
+
+            ViewBag.Warning = id;
+
+            return View("Index", articles);
         }
     }
 }
