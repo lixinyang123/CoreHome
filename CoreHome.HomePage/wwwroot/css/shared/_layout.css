@@ -75,6 +75,19 @@ footer ul a {
     background-color: black;
 }
 
+#verfyImg, #verificationCode, #btn_submit {
+    height: 40px;
+    border-radius: 0;
+}
+
+#verfyImg {
+    cursor: pointer;
+}
+
+#verificationCode {
+    max-width: 110px;
+}
+
 .btn{
     border-radius: 0;
 }

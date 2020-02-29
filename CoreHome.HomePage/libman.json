@@ -328,6 +328,10 @@
         "dist/js/bootstrap.min.js",
         "dist/js/bootstrap.min.js.map"
       ]
+    },
+    {
+      "library": "marked@0.8.0",
+      "destination": "wwwroot/lib/marked/"
     }
   ]
 }

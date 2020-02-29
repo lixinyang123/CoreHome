@@ -102,9 +102,12 @@ namespace CoreHome.HomePage.Controllers
         public IActionResult Detail(Guid id)
         {
             Article article = articleDbContext.Articles
+                .Include(i => i.Category)
+                .Include(i => i.ArticleTags)
+                .ThenInclude(i => i.Tag)
                 .SingleOrDefault(i => i.ArticleCode == id);
 
-            return View();
+            return View(article);
         }
     }
 }

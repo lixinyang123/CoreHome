@@ -10,16 +10,3 @@
     margin-bottom: 10px;
     border-radius: 0;
 }
-
-#verfyImg, #verificationCode, #btn_submit {
-    height: 40px;
-    border-radius: 0;
-}
-
-#verfyImg {
-    cursor: pointer;
-}
-
-#verificationCode {
-    max-width: 110px;
-}

@@ -4,6 +4,8 @@
     ViewData["Title"] = "Detail";
 }
 
+<link rel="stylesheet" href="~/lib/marked/marked.min.js" />
+<link rel="stylesheet" href="~/css/blog/detail.min.css" />
 
 <div class="container mt-4 mb-5">
     <div class="row post">
@@ -17,6 +19,68 @@
         </aside>
 
         <selection class="col-lg-9 col-md-12">
+            <article>
+                <header class="post-header">
+                    <h4 class="post-title">@Model.Title</h4>
+                    <hr class="d-none d-md-block post-header-hr">
+
+                    <div class="d-none d-md-block post-publish-info mb-2">
+                        <strong class="text-muted">
+                            <span>@Model.Time.ToString()</span>
+                            | China Standard Time
+                        </strong>
+                    </div>
+
+                    <p>
+                        @Model.Overview
+                    </p>
+
+                    <div class="hidden-print">
+                        <section class="post-cat-tag-info">
+                            <div class="float-right d-none d-md-block">
+                                <span class="toptags-list toptags-list-sm">
+                                    @for (var i = 0; i < Model.ArticleTags.Count; i++)
+                                    {
+                                        <a class="btn btn-primary" asp-controller="Blog" asp-action="Tags" asp-route-id="@Model.ArticleTags[i].Tag.TagName">
+                                            @Model.ArticleTags[i].Tag.TagName
+                                        </a>
+                                    }
+                                </span>
+                            </div>
+                            <ul class="d-flex flex-row list-unstyled ul-cat-list-desktop mb-0">
+                                <li>
+                                    <a class="btn btn-sm btn-outline-success" asp-controller="Blog" asp-action="Categories" asp-route-id="@Model.Category.CategoriesName">
+                                        @Model.Category.CategoriesName
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+
+                    <hr class="post-header-hr">
+                </header>
+
+                <section class="post-content clearfix">
+                    @Model.Content
+                </section>
+
+                <hr class="post-header-hr">
+            </article>
+
+            <form id="form-comment">
+                <textarea class="form-control" rows="4" placeholder="Your comments (Markdown supported)" maxlength="1024"></textarea>
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group">
+                            <img id="verfyImg" onclick="getVerfyCode(this)" src="/Service/VerificationCode" />
+                            <input id="verificationCode" type="text" class="form-control" placeholder="验证码" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <input id="btn_submit" type="submit" class="btn btn-success float-right" value="提交" />
+                    </div>
+                </div>
+            </form>
 
         </selection>
 
