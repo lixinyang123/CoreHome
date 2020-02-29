@@ -4,8 +4,8 @@
     ViewData["Title"] = "Detail";
 }
 
-<link rel="stylesheet" href="~/lib/marked/marked.min.js" />
 <link rel="stylesheet" href="~/css/blog/detail.min.css" />
+<script src="~/lib/marked/marked.min.js"></script>
 
 <div class="container mt-4 mb-5">
     <div class="row post">
@@ -60,7 +60,7 @@
                     <hr class="post-header-hr">
                 </header>
 
-                <section class="post-content clearfix">
+                <section id="article" class="post-content clearfix">
                     @Model.Content
                 </section>
 
@@ -84,5 +84,9 @@
 
         </selection>
 
+        <script>
+            var md = document.querySelector("#article");
+            md.innerHTML = marked(md.innerText);
+        </script>
     </div>
 </div>
