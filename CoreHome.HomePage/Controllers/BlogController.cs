@@ -22,18 +22,12 @@ namespace CoreHome.HomePage.Controllers
         }
 
         //矫正页码
-        //页码<1时留在第一页
-        //页码>总页数时留在最后一页
         private int CorrectIndex(int index, int pageCount)
         {
-            if (index < 1)
-            {
-                index = 1;
-            }
-            if (index > pageCount)
-            {
-                index = pageCount;
-            }
+            //页码<1时留在第一页
+            index = index < 1 ? 1 : index;
+            //页码>总页数时留在最后一页
+            index = index > pageCount ? pageCount : index;
             return index;
         }
 
