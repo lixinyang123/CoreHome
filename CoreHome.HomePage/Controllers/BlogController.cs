@@ -103,11 +103,17 @@ namespace CoreHome.HomePage.Controllers
         {
             Article article = articleDbContext.Articles
                 .Include(i => i.Category)
+                .Include(i => i.Comments)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .SingleOrDefault(i => i.ArticleCode == id);
 
             return View(article);
+        }
+
+        public IActionResult Comment()
+        {
+            return Ok();
         }
     }
 }

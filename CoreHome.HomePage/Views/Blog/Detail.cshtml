@@ -60,15 +60,15 @@
                     <hr class="post-header-hr">
                 </header>
 
-                <section id="article" class="post-content clearfix">
+                <section class="post-content clearfix markdown">
                     @Model.Content
                 </section>
 
                 <hr class="post-header-hr">
             </article>
 
-            <form id="form-comment">
-                <textarea class="form-control" rows="4" placeholder="Your comments (Markdown supported)" maxlength="1024"></textarea>
+            <form asp-controller="Blog" asp-action="Comment" method="post">
+                <textarea class="form-control" rows="4" placeholder="评论（支持MarkDown）" maxlength="1024"></textarea>
                 <div class="row">
                     <div class="col">
                         <div class="input-group">
@@ -82,11 +82,43 @@
                 </div>
             </form>
 
+            <div id="comments">
+
+                <div class="card comment-item">
+                    <div class="card-header">
+                        <strong>Comments</strong>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+
+                            @if (Model.Comments.Count == 0)
+                            {
+                                <li class="list-group-item">
+                                    <div>这里什么也没有</div>
+                                </li>
+                            }
+                            else
+                            {
+                                for (var i = 0; i < Model.Comments.Count; i++)
+                                {
+                                    <li class="list-group-item">
+                                        <p class="text-muted">@Model.Comments[i].Time</p>
+                                        <p class="markdown">@Model.Comments[i].Detail</p>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
         </selection>
 
         <script>
-            var md = document.querySelector("#article");
-            md.innerHTML = marked(md.innerText);
+            document.querySelectorAll(".markdown").forEach(element => {
+                element.innerHTML = marked(element.innerText);
+            });
         </script>
     </div>
 </div>
