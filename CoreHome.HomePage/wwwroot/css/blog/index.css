@@ -20,17 +20,7 @@ article .articleTitle {
     margin-bottom: 1rem;
 }
 
-.toptags-list a {
-    margin-bottom: 10px;
-    color: white;
-    font-size: small;
-}
-
 .post-tags a {
     color: white;
     font-size: small;
-}
-
-.pagination-container{
-    margin-top: 20px;
 }

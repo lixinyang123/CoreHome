@@ -1,0 +1,24 @@
+﻿@model CoreHome.Data.Model.Article
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+<div class="container mt-4 mb-5">
+    <div class="row post">
+
+        <aside class="col-lg-3 d-none d-lg-block">
+
+            @await Component.InvokeAsync("TopTags")
+            <br />
+            @await Component.InvokeAsync("Categories")
+
+        </aside>
+
+        <selection class="col-lg-9 col-md-12">
+
+        </selection>
+
+    </div>
+</div>

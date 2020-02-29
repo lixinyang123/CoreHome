@@ -98,5 +98,13 @@ namespace CoreHome.HomePage.Controllers
 
             return View("Index", articles);
         }
+
+        public IActionResult Detail(Guid id)
+        {
+            Article article = articleDbContext.Articles
+                .SingleOrDefault(i => i.ArticleCode == id);
+
+            return View();
+        }
     }
 }
