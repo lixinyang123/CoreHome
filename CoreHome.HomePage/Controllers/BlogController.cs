@@ -86,5 +86,17 @@ namespace CoreHome.HomePage.Controllers
             ViewBag.Warning = id;
             return View("Index", articles);
         }
+
+        public IActionResult Search(string keyword)
+        {
+            List<Article> articles = articleDbContext.Articles
+                .OrderByDescending(i => i.Id)
+                .Include(i => i.ArticleTags)
+                .ThenInclude(i => i.Tag)
+                .Where(i => i.Title.ToLower().Contains(keyword.ToLower()))
+                .ToList();
+
+            return View("Index", articles);
+        }
     }
 }
