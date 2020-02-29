@@ -3,10 +3,6 @@
   "defaultProvider": "unpkg",
   "libraries": [
     {
-      "library": "ckeditor4@4.13.1",
-      "destination": "wwwroot/lib/ckeditor4/"
-    },
-    {
       "library": "jquery@3.4.1",
       "destination": "wwwroot/lib/jquery/",
       "files": [
@@ -45,6 +41,10 @@
         "dist/js/bootstrap.min.js",
         "dist/js/bootstrap.min.js.map"
       ]
+    },
+    {
+      "library": "editor.md@1.5.0",
+      "destination": "wwwroot/lib/editor.md/"
     }
   ]
 }
