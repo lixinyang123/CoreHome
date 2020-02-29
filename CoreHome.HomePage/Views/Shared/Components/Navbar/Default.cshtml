@@ -1,4 +1,5 @@
-﻿
+﻿@model List<Category>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" asp-controller="Home" asp-action="Index">LLLXY</a>
@@ -19,10 +20,12 @@
                         Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        @for (var i = 0; i < Model.Count; i++)
+                        {
+                            <a class="dropdown-item" asp-controller="Blog" asp-action="Categories" asp-route-id="@Model[i].CategoriesName">
+                                @Model[i].CategoriesName
+                            </a>
+                        }
                     </div>
                 </li>
 
@@ -39,7 +42,7 @@
                 </li>
             </ul>
 
-            <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline my-2 my-lg-0 disabled">
                 <input id="search" class="form-control" type="search" placeholder="Search">
                 <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
             </form>

@@ -1,5 +1,8 @@
 ﻿using CoreHome.Data.DatabaseContext;
+using CoreHome.Data.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CoreHome.HomePage.Components
 {
@@ -14,7 +17,8 @@ namespace CoreHome.HomePage.Components
 
         public IViewComponentResult Invoke()
         {
-            return View();
+            List<Category> categories = articleDbContext.Categories.ToList();
+            return View(categories);
         }
     }
 }
