@@ -111,7 +111,7 @@ namespace CoreHome.HomePage.Controllers
             return View(article);
         }
 
-        public IActionResult Comment()
+        public IActionResult Comment(string detail)
         {
             return Ok();
         }
