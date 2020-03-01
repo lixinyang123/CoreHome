@@ -99,6 +99,7 @@ namespace CoreHome.Admin.Controllers
 
             ArticleViewModel articleViewModel = new ArticleViewModel()
             {
+                ArticleCode = article.ArticleCode,
                 Title = article.Title,
                 CategoryName = article.Category.CategoriesName,
                 TagStr = tagStr.TrimEnd('#'),
