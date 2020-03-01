@@ -7,6 +7,7 @@ using CoreHome.Data.Model;
 using CoreHome.HomePage.ViewModels;
 using Microsoft.Extensions.Configuration;
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace CoreHome.HomePage.Controllers
 {
@@ -110,12 +111,54 @@ namespace CoreHome.HomePage.Controllers
                 .ThenInclude(i => i.Tag)
                 .SingleOrDefault(i => i.ArticleCode == id);
 
-            return View(article);
+            return View(new DetailViewModel()
+            {
+                Article = article,
+                CommentViewModel = new CommentViewModel()
+            });
         }
 
-        public IActionResult Comment(string detail)
+        [HttpPost]
+        public IActionResult Detail(CommentViewModel viewModel)
         {
-            return Ok();
+            Article article = articleDbContext.Articles
+                   .Include(i => i.Category)
+                   .Include(i => i.Comments)
+                   .Include(i => i.ArticleTags)
+                   .ThenInclude(i => i.Tag)
+                   .SingleOrDefault(i => i.ArticleCode == viewModel.ArticleCode);
+
+            DetailViewModel detailViewModel = new DetailViewModel()
+            {
+                Article = article,
+                CommentViewModel = viewModel
+            };
+
+            if (ModelState.IsValid)
+            {
+                string str = HttpContext.Session.GetString("VerificationCode");
+                if (str == viewModel.VerificationCode.ToLower())
+                {
+                    article.Comments.Add(new Comment()
+                    {
+                        Time = DateTime.Now,
+                        Detail = viewModel.Detail
+                    });
+                    articleDbContext.SaveChanges();
+
+                    detailViewModel.CommentViewModel = new CommentViewModel();
+                    ViewBag.Warning = "评论成功";
+                    return View(detailViewModel);
+                }
+                else
+                {
+                    ViewBag.Warning = "验证码错误";
+                    return View(detailViewModel);
+                }
+            }
+
+            ViewBag.Warning = "请完善评论";
+            return View(detailViewModel);
         }
     }
 }

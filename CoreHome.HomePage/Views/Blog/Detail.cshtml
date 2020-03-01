@@ -1,4 +1,4 @@
-﻿@model CoreHome.Data.Model.Article
+﻿@model CoreHome.HomePage.ViewModels.DetailViewModel
 
 @{
     ViewData["Title"] = "Detail";
@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="~/css/blog/detail.min.css" />
 <script src="~/lib/marked/marked.min.js"></script>
 
+<input id="warning" type="hidden" value="@ViewBag.Warning" />
 <div class="container mt-4 mb-5">
     <div class="row post">
 
@@ -21,36 +22,36 @@
         <selection class="col-lg-9 col-md-12">
             <article>
                 <header class="post-header">
-                    <h4 class="post-title">@Model.Title</h4>
+                    <h4 class="post-title">@Model.Article.Title</h4>
                     <hr class="d-none d-md-block post-header-hr">
 
                     <div class="d-none d-md-block post-publish-info mb-2">
                         <strong class="text-muted">
-                            <span>@Model.Time.ToString()</span>
+                            <span>@Model.Article.Time.ToString()</span>
                             | China Standard Time
                         </strong>
                     </div>
 
                     <p>
-                        @Model.Overview
+                        @Model.Article.Overview
                     </p>
 
                     <div class="hidden-print">
                         <section class="post-cat-tag-info">
                             <div class="float-right d-none d-md-block">
                                 <span class="toptags-list toptags-list-sm">
-                                    @for (var i = 0; i < Model.ArticleTags.Count; i++)
+                                    @for (var i = 0; i < Model.Article.ArticleTags.Count; i++)
                                     {
-                                        <a class="btn btn-primary" asp-controller="Blog" asp-action="Tags" asp-route-id="@Model.ArticleTags[i].Tag.TagName">
-                                            @Model.ArticleTags[i].Tag.TagName
+                                        <a class="btn btn-primary" asp-controller="Blog" asp-action="Tags" asp-route-id="@Model.Article.ArticleTags[i].Tag.TagName">
+                                            @Model.Article.ArticleTags[i].Tag.TagName
                                         </a>
                                     }
                                 </span>
                             </div>
                             <ul class="d-flex flex-row list-unstyled ul-cat-list-desktop mb-0">
                                 <li>
-                                    <a class="btn btn-sm btn-outline-success" asp-controller="Blog" asp-action="Categories" asp-route-id="@Model.Category.CategoriesName">
-                                        @Model.Category.CategoriesName
+                                    <a class="btn btn-sm btn-outline-success" asp-controller="Blog" asp-action="Categories" asp-route-id="@Model.Article.Category.CategoriesName">
+                                        @Model.Article.Category.CategoriesName
                                     </a>
                                 </li>
                             </ul>
@@ -61,19 +62,20 @@
                 </header>
 
                 <section class="post-content clearfix markdown">
-                    <input value="@Model.Content" type="hidden" />
+                    <input value="@Model.Article.Content" type="hidden" />
                 </section>
 
                 <hr class="post-header-hr">
             </article>
 
-            <form asp-controller="Blog" asp-action="Comment" method="post">
-                <textarea class="form-control" rows="4" placeholder="评论（支持MarkDown）" maxlength="1024"></textarea>
+            <form asp-controller="Blog" asp-action="Detail" method="post">
+                <input type="hidden" value="@Model.Article.ArticleCode" name="ArticleCode"/>
+                <textarea class="form-control" rows="4" placeholder="评论（支持MarkDown）" maxlength="1024" name="Detail">@Model.CommentViewModel.Detail</textarea>
                 <div class="row">
                     <div class="col">
                         <div class="input-group">
                             <img id="verfyImg" onclick="getVerfyCode(this)" src="/Service/VerificationCode" />
-                            <input id="verificationCode" type="text" class="form-control" placeholder="验证码" />
+                            <input id="verificationCode" type="text" class="form-control" placeholder="验证码" name="VerificationCode" value="@Model.CommentViewModel.VerificationCode"/>
                         </div>
                     </div>
                     <div class="col">
@@ -91,7 +93,7 @@
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
 
-                            @if (Model.Comments.Count == 0)
+                            @if (Model.Article.Comments.Count == 0)
                             {
                                 <li class="list-group-item">
                                     <div>这里什么也没有</div>
@@ -99,12 +101,12 @@
                             }
                             else
                             {
-                                for (var i = 0; i < Model.Comments.Count; i++)
+                                for (var i = 0; i < Model.Article.Comments.Count; i++)
                                 {
                                     <li class="list-group-item">
-                                        <p class="text-muted">@Model.Comments[i].Time</p>
+                                        <p class="text-muted">@Model.Article.Comments[i].Time</p>
                                         <p class="markdown">
-                                            <input value="@Model.Comments[i].Detail" type="hidden" />
+                                            <input value="@Model.Article.Comments[i].Detail" type="hidden" />
                                         </p>
                                     </li>
                                 }
@@ -121,6 +123,11 @@
             document.querySelectorAll(".markdown").forEach(element => {
                 element.innerHTML = marked(element.children[0].value);
             });
+
+            var warning = document.querySelector("#warning").value;
+            if (warning != "") {
+                alert(warning);
+            }
         </script>
     </div>
 </div>
