@@ -10,11 +10,11 @@
 
                 @if (Model.Count == 0)
                 {
-                    <a class="btn btn-primary">There's nothing here.</a>
+                    <div>There's nothing here.</div>
                 }
                 else
                 {
-                    @for (var i = 0; i < Model.Count; i++)
+                    for (var i = 0; i < Model.Count; i++)
                     {
                         <a class="btn btn-primary" asp-controller="Blog" asp-action="Tags" asp-route-id="@Model[i].TagName">
                             @Model[i].TagName

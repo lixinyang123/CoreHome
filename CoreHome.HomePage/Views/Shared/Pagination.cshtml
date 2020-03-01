@@ -36,7 +36,7 @@
                 </li>
         }
 
-        @if (Model.CurrentIndex != 1)
+        @if (Model.CurrentIndex > 1)
         {
                 <li class="page-item PagedList-skipToNext">
                     <a class="page-link" asp-controller="Blog" asp-action="Index" asp-route-index="@(Model.CurrentIndex-1)" rel="next">&lt;</a>
@@ -59,7 +59,7 @@
                 }
         }
 
-        @if (Model.CurrentIndex != Model.PageCount)
+        @if (Model.CurrentIndex+1 < Model.PageCount)
         {
                 <li class="page-item PagedList-skipToNext">
                     <a class="page-link" asp-controller="Blog" asp-action="Index" asp-route-index="@(Model.CurrentIndex+1)" rel="next">&gt;</a>

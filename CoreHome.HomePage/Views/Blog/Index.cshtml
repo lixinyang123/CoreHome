@@ -29,7 +29,7 @@
                 }
                 else
                 {
-                    @for (var i = 0; i < Model.Count; i++)
+                    for (var i = 0; i < Model.Count; i++)
                     {
                             <article>
                                 <a class="articleTitle" asp-controller="Blog" asp-action="Detail" asp-route-id="@Model[i].ArticleCode">
