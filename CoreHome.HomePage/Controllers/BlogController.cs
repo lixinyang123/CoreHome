@@ -28,6 +28,8 @@ namespace CoreHome.HomePage.Controllers
             index = index < 1 ? 1 : index;
             //页码>总页数时留在最后一页
             index = index > pageCount ? pageCount : index;
+            //如果没有博客时留在第一页
+            index = pageCount == 0 ? 1 : index;
             return index;
         }
 
