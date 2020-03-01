@@ -1,0 +1,43 @@
+﻿@model CoreHome.Data.Model.Article
+
+@{
+    ViewData["Title"] = "Comment";
+}
+
+<script src="~/lib/marked/marked.min.js"></script>
+
+<div class="container">
+    <h1>Comment</h1>
+    <br />
+
+    @if (Model.Comments.Count == 0)
+    {
+        <h2>这里什么也没有</h2>
+    }
+    else
+    {
+        <ul class="list-group list-group-flush">
+            @for (var i = 0; i < Model.Comments.Count; i++)
+            {
+                    <li class="list-group-item">
+                        <div>
+                            <p>
+                                <spsn>@Model.Comments[i].Time.ToString("yy/MM/dd")</spsn>
+                                <a asp-controller="Blog" asp-action="DelComment" asp-route-id="@Model.Comments[i].Id">Delete</a>
+                            </p>
+                            <p class="markdown">
+                                <input value="@Model.Comments[i].Detail" type="hidden" />
+                            </p>
+                        </div>
+                    </li>
+            }
+        </ul>
+    }
+
+    <script>
+        document.querySelectorAll(".markdown").forEach(element => {
+            element.innerHTML = marked(element.children[0].value);
+        });
+    </script>
+</div>
+

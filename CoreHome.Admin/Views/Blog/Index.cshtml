@@ -12,20 +12,23 @@
     <table class="table table-hover">
         <thead>
             <tr>
-            <th scope="col">ArticleCode</th>
-            <th scope="col">ArticleTitle</th>
-            <th scope="col">Modify</th>
-            <th scope="col">Delete</th>
+                <th scope="col">ArticleCode</th>
+                <th scope="col">ArticleTitle</th>
+                <th scope="col">Modify</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
+
           <tbody>
               @for (var i = 0; i < Model.Count; i++)
               {
                     <tr>
                         <th scope="row">@Model[i].ArticleCode</th>
                         <td>@Model[i].Title</td>
-                        <td><a asp-action="Modify" asp-route-articleCode="@Model[i].ArticleCode">Modify</a></td>
-                        <td><a asp-action="Delete" asp-route-articleCode="@Model[i].ArticleCode">Delete</a></td>
+                        <td><a asp-action="Modify" asp-route-id="@Model[i].ArticleCode">Modify</a></td>
+                        <td><a asp-action="Comment" asp-route-id="@Model[i].ArticleCode">Comment</a></td>
+                        <td><a asp-action="Delete" asp-route-id="@Model[i].ArticleCode">Delete</a></td>
                     </tr>
               }
           </tbody>

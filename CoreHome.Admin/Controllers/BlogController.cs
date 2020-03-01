@@ -77,14 +77,14 @@ namespace CoreHome.Admin.Controllers
         }
 
 
-        public IActionResult Modify(Guid articleCode)
+        public IActionResult Modify(Guid id)
         {
             ViewBag.Action = "Modify";
 
             Article article = articleDbContext.Articles.Include(i=>i.Category)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
-                .SingleOrDefault(i => i.ArticleCode == articleCode);
+                .SingleOrDefault(i => i.ArticleCode == id);
 
             if (article == null)
             {
@@ -157,11 +157,11 @@ namespace CoreHome.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(Guid articleCode)
+        public IActionResult Delete(Guid id)
         {
             Article article = articleDbContext.Articles.Include(i=>i.Comments)
                 .Include(i=>i.ArticleTags)
-                .SingleOrDefault(i => i.ArticleCode == articleCode);
+                .SingleOrDefault(i => i.ArticleCode == id);
 
             if (article != null)
             {
@@ -172,6 +172,25 @@ namespace CoreHome.Admin.Controllers
 
                 RemoveNoArticleCategory();
                 RemoveNoArticleTags();
+            }
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Comment(Guid id)
+        {
+            Article article = articleDbContext.Articles
+                .Include(i => i.Comments)
+                .SingleOrDefault(i => i.ArticleCode == id);
+            return View(article);
+        }
+
+        public IActionResult DelComment(int id)
+        {
+            Comment comment = articleDbContext.Comments.SingleOrDefault(i => i.Id == id);
+            if (comment != null)
+            {
+                articleDbContext.Comments.Remove(comment);
+                articleDbContext.SaveChanges();
             }
             return RedirectToAction("Index");
         }
