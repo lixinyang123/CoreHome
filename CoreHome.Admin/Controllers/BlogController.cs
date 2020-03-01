@@ -184,7 +184,7 @@ namespace CoreHome.Admin.Controllers
             return View(article);
         }
 
-        public IActionResult DelComment(int id)
+        public IActionResult DelComment(int id, Guid articleCode)
         {
             Comment comment = articleDbContext.Comments.SingleOrDefault(i => i.Id == id);
             if (comment != null)
@@ -192,7 +192,7 @@ namespace CoreHome.Admin.Controllers
                 articleDbContext.Comments.Remove(comment);
                 articleDbContext.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Comment", new { id = articleCode });
         }
 
         private void RemoveNoArticleCategory()

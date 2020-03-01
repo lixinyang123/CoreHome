@@ -23,7 +23,7 @@
                         <div>
                             <p>
                                 <spsn>@Model.Comments[i].Time.ToString("yy/MM/dd")</spsn>
-                                <a asp-controller="Blog" asp-action="DelComment" asp-route-id="@Model.Comments[i].Id">Delete</a>
+                                <a asp-controller="Blog" asp-action="DelComment" asp-route-id="@Model.Comments[i].Id" asp-route-articleCode="@Model.ArticleCode">Delete</a>
                             </p>
                             <p class="markdown">
                                 <input value="@Model.Comments[i].Detail" type="hidden" />
