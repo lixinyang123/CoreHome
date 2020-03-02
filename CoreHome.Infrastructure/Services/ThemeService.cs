@@ -1,13 +1,14 @@
 ﻿using CoreHome.Infrastructure.Models;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 
 namespace CoreHome.Infrastructure.Services
 {
     public class ThemeService
     {
-        private const string configPath = @"C:/Server/CoreHome/";
-        private const string configFile = configPath + "Theme.json";
+        private readonly string configPath;
+        private readonly string configFile;
 
         public Theme Theme
         {
@@ -23,6 +24,18 @@ namespace CoreHome.Infrastructure.Services
 
         public ThemeService()
         {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                configPath = @"C:/Server/CoreHome/";
+            }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                configPath = @"~/Server/CoreHome/";
+            }
+
+            configFile = configPath + "Theme.json";
+
             if (!Directory.Exists(configPath))
             {
                 Directory.CreateDirectory(configPath);
