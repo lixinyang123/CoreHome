@@ -88,5 +88,11 @@
     "inputFiles": [
       "wwwroot/js/shared/markdownRender.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/tags/index.min.css",
+    "inputFiles": [
+      "wwwroot/css/tags/index.css"
+    ]
   }
 ]

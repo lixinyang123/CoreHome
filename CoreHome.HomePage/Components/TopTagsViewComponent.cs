@@ -17,7 +17,9 @@ namespace CoreHome.HomePage.Components
 
         public IViewComponentResult Invoke()
         {
-            List<Tag> tagList = articleDbContext.Tags.Take(10).ToList();
+            List<Tag> tagList = articleDbContext.Tags
+                .OrderBy(i => i.ArticleTags.Count)
+                .Take(10).ToList();
             return View(tagList);
         }
     }
