@@ -85,35 +85,18 @@
 
             <div id="comments">
 
-                <div class="card comment-item">
-                    <div class="card-header">
-                        <strong>Comments</strong>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
+                @for (var i = 0; i < Model.Article.Comments.Count; i++)
+                {
+                        <div class="card comment-item">
+                            <div class="card-header">
+                                <strong>@Model.Article.Comments[i].Time</strong>
+                            </div>
 
-                            @if (Model.Article.Comments.Count == 0)
-                            {
-                                <li class="list-group-item">
-                                    <div>这里什么也没有</div>
-                                </li>
-                            }
-                            else
-                            {
-                                for (var i = 0; i < Model.Article.Comments.Count; i++)
-                                {
-                                    <li class="list-group-item">
-                                        <p class="text-muted">@Model.Article.Comments[i].Time</p>
-                                        <p class="markdown">
-                                            <textarea hidden>@Model.Article.Comments[i].Detail</textarea>
-                                        </p>
-                                    </li>
-                                }
-                            }
-
-                        </ul>
-                    </div>
-                </div>
+                            <div class="card-body markdown">
+                                <textarea hidden>@Model.Article.Comments[i].Detail</textarea>
+                            </div>
+                        </div>
+                }
 
             </div>
         </selection>

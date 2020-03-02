@@ -5,3 +5,7 @@
 #comments{
     margin-top: 20px;
 }
+
+#comments .comment-item {
+    margin-bottom: 20px;
+}
