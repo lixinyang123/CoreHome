@@ -76,5 +76,11 @@
     "inputFiles": [
       "wwwroot/js/bgm/Index.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/shared/markdownRender.min.js",
+    "inputFiles": [
+      "wwwroot/js/shared/markdownRender.js"
+    ]
   }
 ]

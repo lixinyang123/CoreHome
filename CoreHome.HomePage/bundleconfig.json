@@ -82,5 +82,11 @@
     "inputFiles": [
       "wwwroot/css/blog/detail.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/shared/markdownRender.min.js",
+    "inputFiles": [
+      "wwwroot/js/shared/markdownRender.js"
+    ]
   }
 ]

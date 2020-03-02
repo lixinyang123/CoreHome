@@ -5,7 +5,6 @@
 }
 
 <link rel="stylesheet" href="~/css/blog/detail.min.css" />
-<script src="~/lib/marked/marked.min.js"></script>
 
 <input id="warning" type="hidden" value="@ViewBag.Warning" />
 <div class="container mt-4 mb-5">
@@ -62,7 +61,7 @@
                 </header>
 
                 <section class="post-content clearfix markdown">
-                    <input value="@Model.Article.Content" type="hidden" />
+                    <textarea hidden>@Model.Article.Content</textarea>
                 </section>
 
                 <hr class="post-header-hr">
@@ -106,7 +105,7 @@
                                     <li class="list-group-item">
                                         <p class="text-muted">@Model.Article.Comments[i].Time</p>
                                         <p class="markdown">
-                                            <input value="@Model.Article.Comments[i].Detail" type="hidden" />
+                                            <textarea hidden>@Model.Article.Comments[i].Detail</textarea>
                                         </p>
                                     </li>
                                 }
@@ -119,15 +118,6 @@
             </div>
         </selection>
 
-        <script>
-            document.querySelectorAll(".markdown").forEach(element => {
-                element.innerHTML = marked(element.children[0].value);
-            });
-
-            var warning = document.querySelector("#warning").value;
-            if (warning != "") {
-                alert(warning);
-            }
-        </script>
+        <partial name="MarkdownRender" />
     </div>
 </div>

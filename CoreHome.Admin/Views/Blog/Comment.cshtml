@@ -4,8 +4,6 @@
     ViewData["Title"] = "Comment";
 }
 
-<script src="~/lib/marked/marked.min.js"></script>
-
 <div class="container">
     <h1>Comment</h1>
     <br />
@@ -25,19 +23,16 @@
                                 <spsn>@Model.Comments[i].Time.ToString("yy/MM/dd")</spsn>
                                 <a asp-controller="Blog" asp-action="DelComment" asp-route-id="@Model.Comments[i].Id" asp-route-articleCode="@Model.ArticleCode">Delete</a>
                             </p>
-                            <p class="markdown">
-                                <input value="@Model.Comments[i].Detail" type="hidden" />
-                            </p>
+                            <div class="markdown">
+                                <textarea hidden>@Model.Comments[i].Detail</textarea>
+                            </div>
                         </div>
                     </li>
             }
         </ul>
     }
 
-    <script>
-        document.querySelectorAll(".markdown").forEach(element => {
-            element.innerHTML = marked(element.children[0].value);
-        });
-    </script>
+    <partial name="MarkdownRender" />
+
 </div>
 
