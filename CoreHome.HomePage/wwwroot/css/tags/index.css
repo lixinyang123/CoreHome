@@ -1,4 +1,9 @@
 ﻿
+#by-site-list {
+    padding-left: 0;
+}
+
 #by-site-list li {
     display: inline;
+    vertical-align: middle;
 }
