@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreHome.Data.Migrations
 {
     [DbContext(typeof(ArticleDbContext))]
-    [Migration("20200303140326_Add-Archive")]
+    [Migration("20200303141029_Add-Archive")]
     partial class AddArchive
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,16 +52,11 @@ namespace CoreHome.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("YearId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("MonthId");
-
-                    b.HasIndex("YearId");
 
                     b.ToTable("Articles");
                 });
@@ -172,12 +167,6 @@ namespace CoreHome.Data.Migrations
                     b.HasOne("CoreHome.Data.Model.Month", "Month")
                         .WithMany("Articles")
                         .HasForeignKey("MonthId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CoreHome.Data.Model.Year", "Year")
-                        .WithMany()
-                        .HasForeignKey("YearId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

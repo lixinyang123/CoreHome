@@ -5,6 +5,7 @@ namespace CoreHome.Data.Model
 {
     public class Month
     {
+        [Required]
         public int Value { get; set; }
 
         public int YearId { get; set; }
