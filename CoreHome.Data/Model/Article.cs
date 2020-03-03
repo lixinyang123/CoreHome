@@ -17,6 +17,16 @@ namespace CoreHome.Data.Model
         [Required]
         public DateTime Time { get; set; }
 
+        public int YearId { get; set; }
+
+        [Required]
+        public Year Year { get; set; }
+
+        public int MonthId { get; set; }
+
+        [Required]
+        public Month Month { get; set; }
+
         public int CategoryId { get; set; }
 
         [Required]

@@ -9,10 +9,26 @@ namespace CoreHome.Data.DatabaseContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Comment>()
-                .HasOne(i => i.Article)
-                .WithMany(i => i.Comments)
-                .HasForeignKey(i => i.ArticleId);
+            modelBuilder.Entity<Year>()
+                .HasKey(i => i.Value);
+
+            modelBuilder.Entity<Month>()
+                .HasKey(i => i.Value);
+
+            modelBuilder.Entity<Month>()
+                .HasOne(i => i.Year)
+                .WithMany(i => i.Months)
+                .HasForeignKey(i => i.YearId);
+
+            modelBuilder.Entity<Article>()
+                .HasOne(i => i.Month)
+                .WithMany(i => i.Articles)
+                .HasForeignKey(i => i.MonthId);
+
+            modelBuilder.Entity<Article>()
+                .HasOne(i => i.Category)
+                .WithMany(i => i.Articles)
+                .HasForeignKey(i => i.CategoryId);
 
             modelBuilder.Entity<ArticleTag>()
                 .HasKey(i => new { i.ArticleId, i.TagId });
@@ -27,14 +43,18 @@ namespace CoreHome.Data.DatabaseContext
                 .WithMany(i => i.ArticleTags)
                 .HasForeignKey(i => i.TagId);
 
-            modelBuilder.Entity<Article>()
-                .HasOne(i => i.Category)
-                .WithMany(i => i.Articles)
-                .HasForeignKey(i => i.CategoryId);
+            modelBuilder.Entity<Comment>()
+                .HasOne(i => i.Article)
+                .WithMany(i => i.Comments)
+                .HasForeignKey(i => i.ArticleId);
 
         }
 
         public DbSet<Article> Articles { get; set; }
+
+        public DbSet<Year> Years { get; set; }
+
+        public DbSet<Month> Months { get; set; }
 
         public DbSet<Category> Categories { get; set; }
 
