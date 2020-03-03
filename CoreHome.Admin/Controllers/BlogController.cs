@@ -66,7 +66,7 @@ namespace CoreHome.Admin.Controllers
 
             if (month == null)
             {
-                Year year = articleDbContext.Years.SingleOrDefault(i => i.Value == month.Year.Value);
+                Year year = articleDbContext.Years.SingleOrDefault(i => i.Value == time.Year);
                 if (year == null)
                 {
                     year = new Year() { Value = time.Year };
@@ -215,19 +215,21 @@ namespace CoreHome.Admin.Controllers
             //回收分类
             List<Category> noArticleCategories = articleDbContext.Categories.Where(i => i.Articles.Count == 0).ToList();
             noArticleCategories.ForEach(i => articleDbContext.Categories.Remove(i));
+            articleDbContext.SaveChanges();
 
             //回收标签
             List<Tag> noArticleTag = articleDbContext.Tags.Where(i => i.ArticleTags.Count == 0).ToList();
             noArticleTag.ForEach(i => articleDbContext.Tags.Remove(i));
+            articleDbContext.SaveChanges();
 
             //回收归档月份
             List<Month> months = articleDbContext.Months.Where(i => i.Articles.Count == 0).ToList();
             months.ForEach(i => articleDbContext.Months.Remove(i));
+            articleDbContext.SaveChanges();
 
             //回收归档年份
             List<Year> years = articleDbContext.Years.Where(i => i.Months.Count == 0).ToList();
             years.ForEach(i => articleDbContext.Years.Remove(i));
-
             articleDbContext.SaveChanges();
         }
 
