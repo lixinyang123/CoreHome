@@ -6,4 +6,5 @@
 #by-site-list li {
     display: inline;
     vertical-align: middle;
+    white-space: nowrap;
 }
