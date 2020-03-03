@@ -38,6 +38,8 @@ namespace CoreHome.Admin.Controllers
                 return View("Editor", articleViewModel);
             }
 
+            DateTime time = DateTime.Now;
+
             List<ArticleTag> articleTags = new List<ArticleTag>();
             new List<string>(articleViewModel.TagStr.Split("#").Distinct()).ForEach(i =>
             {
@@ -60,11 +62,25 @@ namespace CoreHome.Admin.Controllers
                 category = new Category() { CategoriesName = articleViewModel.CategoryName };
             }
 
+            Month month = articleDbContext.Months.SingleOrDefault(i => i.Value == time.Month);
+
+            if (month == null)
+            {
+                Year year = articleDbContext.Years.SingleOrDefault(i => i.Value == month.Year.Value);
+                if (year == null)
+                {
+                    year = new Year() { Value = time.Year };
+                }
+
+                month = new Month() { Value = time.Month, Year = year };
+            }
+
             articleDbContext.Articles.Add(new Article()
             {
                 ArticleCode = Guid.NewGuid(),
                 Title = articleViewModel.Title,
-                Time = DateTime.Now,
+                Time = time,
+                Month = month,
                 Category = category,
                 ArticleTags = articleTags,
                 Overview = articleViewModel.Overview,
@@ -153,8 +169,7 @@ namespace CoreHome.Admin.Controllers
 
             articleDbContext.SaveChanges();
 
-            RemoveNoArticleCategory();
-            RemoveNoArticleTags();
+            RecyclingData();
             return RedirectToAction("Index");
         }
 
@@ -171,8 +186,7 @@ namespace CoreHome.Admin.Controllers
                 article.Comments.ForEach(i => articleDbContext.Comments.Remove(i));
                 articleDbContext.SaveChanges();
 
-                RemoveNoArticleCategory();
-                RemoveNoArticleTags();
+                RecyclingData();
             }
             return RedirectToAction("Index");
         }
@@ -196,17 +210,24 @@ namespace CoreHome.Admin.Controllers
             return RedirectToAction("Comment", new { id = articleCode });
         }
 
-        private void RemoveNoArticleCategory()
+        private void RecyclingData()
         {
+            //回收分类
             List<Category> noArticleCategories = articleDbContext.Categories.Where(i => i.Articles.Count == 0).ToList();
             noArticleCategories.ForEach(i => articleDbContext.Categories.Remove(i));
-            articleDbContext.SaveChanges();
-        }
 
-        private void RemoveNoArticleTags()
-        {
+            //回收标签
             List<Tag> noArticleTag = articleDbContext.Tags.Where(i => i.ArticleTags.Count == 0).ToList();
             noArticleTag.ForEach(i => articleDbContext.Tags.Remove(i));
+
+            //回收归档月份
+            List<Month> months = articleDbContext.Months.Where(i => i.Articles.Count == 0).ToList();
+            months.ForEach(i => articleDbContext.Months.Remove(i));
+
+            //回收归档年份
+            List<Year> years = articleDbContext.Years.Where(i => i.Months.Count == 0).ToList();
+            years.ForEach(i => articleDbContext.Years.Remove(i));
+
             articleDbContext.SaveChanges();
         }
 
