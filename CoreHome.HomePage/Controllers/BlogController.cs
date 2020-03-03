@@ -99,6 +99,7 @@ namespace CoreHome.HomePage.Controllers
                 .Where(i => i.Title.ToLower().Contains(keyword.ToLower()))
                 .ToList();
 
+            ViewBag.Warning = keyword;
             return View("Index", articles);
         }
 
