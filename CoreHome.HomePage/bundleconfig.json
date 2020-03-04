@@ -94,5 +94,11 @@
     "inputFiles": [
       "wwwroot/css/tags/index.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/archive/index.min.css",
+    "inputFiles": [
+      "wwwroot/css/archive/index.css"
+    ]
   }
 ]
