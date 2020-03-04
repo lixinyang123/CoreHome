@@ -23,7 +23,7 @@ namespace CoreHome.HomePage.Controllers
                 .ThenInclude(i => i.Articles)
                 .ToList();
 
-            return View();
+            return View(years);
         }
     }
 }

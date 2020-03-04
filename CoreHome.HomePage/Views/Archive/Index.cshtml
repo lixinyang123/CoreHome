@@ -18,39 +18,39 @@
             <h2>Archive Timeline</h2>
             <hr>
             <ul class="timeline">
-                <li class="timeline-event" data-aos="fade-up">
-                    <label class="timeline-event-icon"></label>
-                    <div class="timeline-event-copy">
-                        <p class="timeline-event-thumbnail">April 2016 - Present</p>
-                        <h3>Geil,Danke! GmbH</h3>
-                        <h4>eines Web-Studios</h4>
-                        <p>
-                            <strong>Projektmanagement mit Scrum</strong>
-                            <br>Ständiges Verbessern des agilen Entwicklungsprozesses beispielsweise durch Grunt, Yeoman, GIT, JIRA und BrowserStack.
-                        </p>
-                    </div>
-                </li>
-                <li class="timeline-event aos-init aos-animate" data-aos="fade-up" data-aos-delay=".2">
-                    <label class="timeline-event-icon"></label>
-                    <div class="timeline-event-copy">
-                        <p class="timeline-event-thumbnail">November 2014 - Mars 2016</p>
-                        <h3>Freelancer</h3>
-                        <h4>Designer und Autor</h4>
-                        <p>Konzeption, Design und Produktion von Digitalen Magazinen mit InDesign, der Adobe Digital Publishing Suite und HTML5. Co-Autorin der Fachbücher "Digitales Publizieren für Tablets" und "Adobe Digital Publishing Suite" erschienen im dpunkt.verlag.</p>
-                    </div>
-                </li>
-                <li class="timeline-event aos-init aos-animate" data-aos="fade-up" data-aos-delay=".4">
-                    <label class="timeline-event-icon"></label>
-                    <div class="timeline-event-copy">
-                        <p class="timeline-event-thumbnail">April 2014</p>
-                        <h3>konplan gmbh</h3>
-                        <h4>IT-Consultant</h4>
-                        <p>
-                            <strong>Systemarchitektur, Consulting</strong>
-                            <br>Konzeption und Modellierung von Systemen und APIs für Digital Publishing und Entitlement nach SOA
-                        </p>
-                    </div>
-                </li>
+
+                @for (var i = 0; i < Model.Count; i++)
+                {
+                        <li>
+                            <label class="timeline-icon"></label>
+                            <div class="timeline-info">
+                                <h3>@Model[i].Value</h3>
+                                <hr />
+                                <div class="timeline-body">
+                                    <div class="row">
+
+                                        @{
+                                            List<Month> months = Model[i].Months;
+                                        }
+
+                                        @for (var j = 0; j < months.Count; j++)
+                                        {
+                                                <div class="col-md-6 col-sm-6 col-6 article-month">
+                                                    <span class="badge badge-secondary float-right">@months[j].Articles.Count</span>
+                                                    <a href="/Blog/Archive/@Model[i].Value/@months[j].Value">
+                                                        @System.Globalization.CultureInfo.CreateSpecificCulture("en-GB").DateTimeFormat.GetMonthName(months[j].Value)
+                                                    </a>
+                                                </div>
+                                        }
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+                }
+
+
             </ul>
         </section>
 

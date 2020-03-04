@@ -59,6 +59,20 @@ namespace CoreHome.HomePage.Controllers
             return View(articles);
         }
 
+        /// <param name="id">博客类别</param>
+        public IActionResult Categories(string id)
+        {
+            List<Article> articles = articleDbContext.Articles
+                .OrderByDescending(i => i.Id)
+                .Include(i => i.ArticleTags)
+                .ThenInclude(i => i.Tag)
+                .Where(i => i.Category.CategoriesName == id)
+                .ToList();
+
+            ViewBag.Warning = id;
+            return View("Index", articles);
+        }
+
         /// <param name="id">博客标签</param>
         public IActionResult Tags(string id)
         {
@@ -76,20 +90,21 @@ namespace CoreHome.HomePage.Controllers
             return View("Index", articles);
         }
 
-        /// <param name="id">博客类别</param>
-        public IActionResult Categories(string id)
+        public IActionResult Archive(int id,int para)
         {
-            List<Article> articles = articleDbContext.Articles
-                .OrderByDescending(i => i.Id)
-                .Include(i => i.ArticleTags)
-                .ThenInclude(i => i.Tag)
-                .Where(i => i.Category.CategoriesName == id)
-                .ToList();
+            List<Article> articles = articleDbContext.Months
+                .Include(i=>i.Year)
+                .Include(i => i.Articles)
+                .ThenInclude(i=>i.ArticleTags)
+                .ThenInclude(i=>i.Tag)
+                .SingleOrDefault(i => i.Year.Value == id && i.Value == para)
+                .Articles.ToList();
 
-            ViewBag.Warning = id;
+            ViewBag.Warning = id + "/" + para;
             return View("Index", articles);
         }
 
+        [HttpPost]
         public IActionResult Search(string keyword)
         {
             List<Article> articles = articleDbContext.Articles
