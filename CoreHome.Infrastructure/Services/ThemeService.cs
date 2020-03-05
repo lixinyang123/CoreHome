@@ -31,7 +31,7 @@ namespace CoreHome.Infrastructure.Services
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                configPath = @"~/Server/CoreHome/";
+                configPath = @"/home/Server/CoreHome/";
             }
 
             configFile = configPath + "Theme.json";
