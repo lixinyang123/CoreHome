@@ -23,36 +23,29 @@
 
             <div id="postdiv">
 
-                @if (Model.Count == 0)
+                @for (var i = 0; i < Model.Count; i++)
                 {
-                    <h2 id="waring">There's nothing here.</h2>
-                }
-                else
-                {
-                    for (var i = 0; i < Model.Count; i++)
-                    {
-                            <article>
-                                <a class="articleTitle" asp-controller="Blog" asp-action="Detail" asp-route-id="@Model[i].ArticleCode">
-                                    @Model[i].Title
-                                </a>
-                                <p class="date">@Model[i].Time.ToString("yyyy/MM/dd")</p>
-                                <p>@Model[i].Overview</p>
-                                <div class="post-tags">
-                                    @{
-                                        var articleTags = Model[i].ArticleTags;
-                                    }
+                        <article>
+                            <a class="articleTitle" asp-controller="Blog" asp-action="Detail" asp-route-id="@Model[i].ArticleCode">
+                                @Model[i].Title
+                            </a>
+                            <p class="date">@Model[i].Time.ToString("yyyy/MM/dd")</p>
+                            <p>@Model[i].Overview</p>
+                            <div class="post-tags">
+                                @{
+                                    var articleTags = Model[i].ArticleTags;
+                                }
 
-                                    @for (var j = 0; j < articleTags.Count; j++)
-                                    {
-                                            <a class="btn btn-primary" asp-action="Tags" asp-route-id="@articleTags[j].Tag.TagName">
-                                                @articleTags[j].Tag.TagName
-                                            </a>
-                                    }
-                                </div>
-                            </article>
-                            <div class="mb-4 d-none d-md-block"></div>
-                            <hr class="d-none d-md-block" />
-                    }
+                                @for (var j = 0; j < articleTags.Count; j++)
+                                {
+                                    <a class="btn btn-primary" asp-action="Tags" asp-route-id="@articleTags[j].Tag.TagName">
+                                        @articleTags[j].Tag.TagName
+                                    </a>
+                                }
+                            </div>
+                        </article>
+                        <div class="mb-4 d-none d-md-block"></div>
+                        <hr class="d-none d-md-block" />
                 }
             </div>
 
