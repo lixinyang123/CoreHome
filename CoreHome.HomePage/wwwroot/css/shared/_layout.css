@@ -91,13 +91,3 @@ footer ul a {
 .btn{
     border-radius: 0;
 }
-
-.dropdown-menu{
-    border-radius: 0;
-}
-
-#search {
-    border-radius: 0;
-    border: 0;
-    background-color: white;
-}
