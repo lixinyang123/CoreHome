@@ -69,12 +69,26 @@ namespace CoreHome.Admin
             app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
+            //开发环境添加Admin路由，模拟工作环境的真实路径
+            if (env.IsDevelopment())
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllerRoute(
+                        name: "default",
+                        pattern: "/Admin/{controller=Home}/{action=Index}/{id?}");
+                });
+            }
+            else
+            {
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllerRoute(
+                        name: "default",
+                        pattern: "{controller=Home}/{action=Index}/{id?}");
+                });
+            }
+
         }
     }
 }
