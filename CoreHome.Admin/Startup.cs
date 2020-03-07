@@ -88,7 +88,6 @@ namespace CoreHome.Admin
                         pattern: "{controller=Home}/{action=Index}/{id?}");
                 });
             }
-
         }
     }
 }
