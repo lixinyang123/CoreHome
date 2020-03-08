@@ -1,4 +1,5 @@
-﻿using CoreHome.Admin.ViewModels;
+﻿using CoreHome.Admin.Filter;
+using CoreHome.Admin.ViewModels;
 using CoreHome.Data.DatabaseContext;
 using CoreHome.Data.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ using System.Linq;
 
 namespace CoreHome.Admin.Controllers
 {
+    [TypeFilter(typeof(AuthorizationFilter))]
     public class BlogController : Controller
     {
         private readonly ArticleDbContext articleDbContext;

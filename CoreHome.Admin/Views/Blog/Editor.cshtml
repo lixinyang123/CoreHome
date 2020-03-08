@@ -1,7 +1,5 @@
 ﻿@model CoreHome.Admin.ViewModels.ArticleViewModel
 
-@inject IWebHostEnvironment env
-
 <link rel="stylesheet" href="~/lib/editor.md/css/editormd.min.css" />
 <script src="~/lib/editor.md/editormd.min.js"></script>
 
@@ -33,14 +31,7 @@
             <textarea asp-for="Content" class="form-control" rows="10" cols="100" placeholder="博客内容"></textarea>
         </div>
         <script type="text/javascript">
-            @{ 
-                string editorLib = "/lib/editor.md/lib/";
-                if (!env.IsDevelopment())
-                {
-                    editorLib = "/Admin/lib/editor.md/lib/";
-                }
-            }
-            editormd("test-editor", { width: "100%", height: "700px", path: "@editorLib", emoji: true, htmlDecode: "style,script,iframe" });
+            editormd("test-editor", { width: "100%", height: "700px", path: "/Admin/lib/editor.md/lib/", emoji: true, htmlDecode: "style,script,iframe" });
         </script>
 
         <hr />

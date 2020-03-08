@@ -64,30 +64,18 @@ namespace CoreHome.Admin
                 app.UseHsts();
             }
 
+            app.UsePathBase(new PathString("/Admin"));
             app.UseWebSockets();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
 
-            //开发环境添加Admin路由，模拟工作环境的真实路径
-            if (env.IsDevelopment())
+            app.UseEndpoints(endpoints =>
             {
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllerRoute(
-                        name: "default",
-                        pattern: "/Admin/{controller=Home}/{action=Index}/{id?}");
-                });
-            }
-            else
-            {
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllerRoute(
-                        name: "default",
-                        pattern: "{controller=Home}/{action=Index}/{id?}");
-                });
-            }
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
