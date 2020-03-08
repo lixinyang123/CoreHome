@@ -2,6 +2,8 @@ FROM ubuntu:latest
 
 WORKDIR /home
 
+EXPOSE 80
+
 RUN apt update
 
 RUN apt upgrade -y
@@ -34,4 +36,15 @@ RUN apt install aspnetcore-runtime-3.1 -y
 
 RUN apt install nginx -y
 
+#配置 Nginx
+
+COPY ./default.conf /etc/nginx/sites-enabled/default
+
+RUN nginx -c /etc/nginx/nginx.conf
+
 #复制项目
+
+COPY ./CoreHome.HomePage/bin/Release/netcoreapp3.1/ /home/HomePage
+
+COPY ./CoreHome.Admin/bin/Release/netcoreapp3.1/ /home/Admin
+
