@@ -21,14 +21,14 @@
         </thead>
 
           <tbody>
-              @for (var i = 0; i < Model.Count; i++)
+              @foreach (var article in Model)
               {
                     <tr>
-                        <th scope="row">@Model[i].ArticleCode</th>
-                        <td>@Model[i].Title</td>
-                        <td><a asp-action="Modify" asp-route-id="@Model[i].ArticleCode">Modify</a></td>
-                        <td><a asp-action="Comment" asp-route-id="@Model[i].ArticleCode">Comment</a></td>
-                        <td><a asp-action="Delete" asp-route-id="@Model[i].ArticleCode">Delete</a></td>
+                        <th scope="row">@article.ArticleCode</th>
+                        <td>@article.Title</td>
+                        <td><a asp-action="Modify" asp-route-id="@article.ArticleCode">Modify</a></td>
+                        <td><a asp-action="Comment" asp-route-id="@article.ArticleCode">Comment</a></td>
+                        <td><a asp-action="Delete" asp-route-id="@article.ArticleCode">Delete</a></td>
                     </tr>
               }
           </tbody>

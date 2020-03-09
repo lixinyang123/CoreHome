@@ -23,24 +23,24 @@
 
             <div id="postdiv">
 
-                @for (var i = 0; i < Model.Count; i++)
+                @foreach (var article in Model)
                 {
                         <article>
-                            <a class="articleTitle" asp-controller="Blog" asp-action="Detail" asp-route-id="@Model[i].ArticleCode">
-                                @Model[i].Title
+                            <a class="articleTitle" asp-controller="Blog" asp-action="Detail" asp-route-id="@article.ArticleCode">
+                                @article.Title
                             </a>
-                            <p class="date">@Model[i].Time.ToString("yyyy/MM/dd")</p>
-                            <p>@Model[i].Overview</p>
+                            <p class="date">@article.Time.ToString("yyyy/MM/dd")</p>
+                            <p>@article.Overview</p>
                             <div class="post-tags">
                                 @{
-                                    var articleTags = Model[i].ArticleTags;
+                                    var articleTags = article.ArticleTags;
                                 }
 
-                                @for (var j = 0; j < articleTags.Count; j++)
+                                @foreach (var articleTag in articleTags)
                                 {
-                                    <a class="btn btn-primary" asp-action="Tags" asp-route-id="@articleTags[j].Tag.TagName">
-                                        @articleTags[j].Tag.TagName
-                                    </a>
+                                        <a class="btn btn-primary" asp-action="Tags" asp-route-id="@articleTag.Tag.TagName">
+                                            @articleTag.Tag.TagName
+                                        </a>
                                 }
                             </div>
                         </article>

@@ -13,10 +13,10 @@
             }
             else
             {
-                for (var i = 0; i < Model.Count; i++)
+                foreach (var category in Model)
                 {
-                    <a class="list-group-item list-group-item-action" asp-controller="Blog" asp-action="Categories" asp-route-id="@Model[i].CategoriesName">
-                        @Model[i].CategoriesName
+                    <a class="list-group-item list-group-item-action" asp-controller="Blog" asp-action="Categories" asp-route-id="@category.CategoriesName">
+                        @category.CategoriesName
                     </a>
                 }
             }

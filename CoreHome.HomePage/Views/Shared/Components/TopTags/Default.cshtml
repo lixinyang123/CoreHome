@@ -14,10 +14,10 @@
                 }
                 else
                 {
-                    for (var i = 0; i < Model.Count; i++)
+                    foreach (var tag in Model)
                     {
-                        <a class="btn btn-primary" asp-controller="Blog" asp-action="Tags" asp-route-id="@Model[i].TagName">
-                            @Model[i].TagName
+                        <a class="btn btn-primary" asp-controller="Blog" asp-action="Tags" asp-route-id="@tag.TagName">
+                            @tag.TagName
                         </a>
                     }
                 }

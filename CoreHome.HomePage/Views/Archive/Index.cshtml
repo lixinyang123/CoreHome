@@ -19,26 +19,22 @@
             <hr>
             <ul class="timeline">
 
-                @for (var i = 0; i < Model.Count; i++)
+                @foreach (var year in Model)
                 {
                         <li>
                             <label class="timeline-icon"></label>
                             <div class="timeline-info">
-                                <h3>@Model[i].Value</h3>
+                                <h3>@year.Value</h3>
                                 <hr />
                                 <div class="timeline-body">
                                     <div class="row">
 
-                                        @{
-                                            List<Month> months = Model[i].Months;
-                                        }
-
-                                        @for (var j = 0; j < months.Count; j++)
+                                        @foreach (var month in year.Months)
                                         {
                                                 <div class="col-md-6 col-sm-6 col-6 article-month">
-                                                    <span class="badge badge-secondary float-right">@months[j].Articles.Count</span>
-                                                    <a href="/Blog/Archive/@Model[i].Value/@months[j].Value">
-                                                        @System.Globalization.CultureInfo.CreateSpecificCulture("en-GB").DateTimeFormat.GetMonthName(months[j].Value)
+                                                    <span class="badge badge-secondary float-right">@month.Articles.Count</span>
+                                                    <a href="/Blog/Archive/@year.Value/@month.Value">
+                                                        @System.Globalization.CultureInfo.CreateSpecificCulture("en-GB").DateTimeFormat.GetMonthName(month.Value)
                                                     </a>
                                                 </div>
                                         }

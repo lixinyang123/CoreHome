@@ -39,11 +39,11 @@
                         <section class="post-cat-tag-info">
                             <div class="float-right d-none d-md-block">
                                 <span class="toptags-list toptags-list-sm">
-                                    @for (var i = 0; i < Model.Article.ArticleTags.Count; i++)
+                                    @foreach (var articleTag in Model.Article.ArticleTags)
                                     {
-                                        <a class="btn btn-primary" asp-controller="Blog" asp-action="Tags" asp-route-id="@Model.Article.ArticleTags[i].Tag.TagName">
-                                            @Model.Article.ArticleTags[i].Tag.TagName
-                                        </a>
+                                            <a class="btn btn-primary" asp-controller="Blog" asp-action="Tags" asp-route-id="@articleTag.Tag.TagName">
+                                                @articleTag.Tag.TagName
+                                            </a>
                                     }
                                 </span>
                             </div>
@@ -85,15 +85,15 @@
 
             <div id="comments">
 
-                @for (var i = 0; i < Model.Article.Comments.Count; i++)
+                @foreach (var comment in Model.Article.Comments)
                 {
                         <div class="card comment-item">
                             <div class="card-header">
-                                <strong>@Model.Article.Comments[i].Time</strong>
+                                <strong>@comment.Time</strong>
                             </div>
 
                             <div class="card-body markdown">
-                                <textarea hidden>@Model.Article.Comments[i].Detail</textarea>
+                                <textarea hidden>@comment.Detail</textarea>
                             </div>
                         </div>
                 }

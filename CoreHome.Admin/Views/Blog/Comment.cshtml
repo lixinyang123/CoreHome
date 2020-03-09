@@ -15,16 +15,16 @@
     else
     {
         <ul class="list-group list-group-flush">
-            @for (var i = 0; i < Model.Comments.Count; i++)
+            @foreach (var comment in Model.Comments)
             {
                     <li class="list-group-item">
                         <div>
                             <p>
-                                <spsn>@Model.Comments[i].Time.ToString("yy/MM/dd")</spsn>
-                                <a asp-controller="Blog" asp-action="DelComment" asp-route-id="@Model.Comments[i].Id" asp-route-articleCode="@Model.ArticleCode">Delete</a>
+                                <spsn>@comment.Time.ToString("yy/MM/dd")</spsn>
+                                <a asp-controller="Blog" asp-action="DelComment" asp-route-id="@comment.Id" asp-route-articleCode="@Model.ArticleCode">Delete</a>
                             </p>
                             <div class="markdown">
-                                <textarea hidden>@Model.Comments[i].Detail</textarea>
+                                <textarea hidden>@comment.Detail</textarea>
                             </div>
                         </div>
                     </li>

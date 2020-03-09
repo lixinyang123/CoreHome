@@ -19,12 +19,12 @@
             <hr>
             <ol id="by-site-list">
 
-                @for (var i = 0; i < Model.Count; i++)
+                @foreach (var tag in Model)
                 {
-                    double fontSize = 1 + Model[i].ArticleTags.Count * 0.2;
+                    double fontSize = 1 + tag.ArticleTags.Count * 0.2;
 
                         <li style="font-size: @(fontSize)em;">
-                            <a asp-controller="Blog" asp-action="Tags" asp-route-id="@Model[i].TagName">@Model[i].TagName</a>
+                            <a asp-controller="Blog" asp-action="Tags" asp-route-id="@tag.TagName">@tag.TagName</a>
                         </li>
                 }
             </ol>
