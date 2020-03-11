@@ -55,7 +55,7 @@ namespace CoreHome.Admin.Filter
             {
                 //验证访问令牌失败直接撤销管理员权限
                 context.HttpContext.Response.Cookies.Delete("accessToken");
-                context.Result = new ObjectResult("Permission denied");
+                context.Result = new RedirectToActionResult("Index", "Home", null);
             }
         }
 
