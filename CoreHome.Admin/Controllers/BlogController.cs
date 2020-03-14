@@ -2,10 +2,13 @@
 using CoreHome.Admin.ViewModels;
 using CoreHome.Data.DatabaseContext;
 using CoreHome.Data.Model;
+using CoreHome.Infrastructure.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace CoreHome.Admin.Controllers
@@ -14,10 +17,12 @@ namespace CoreHome.Admin.Controllers
     public class BlogController : Controller
     {
         private readonly ArticleDbContext articleDbContext;
+        private readonly OssService ossService;
 
-        public BlogController(ArticleDbContext articleDbContext)
+        public BlogController(ArticleDbContext articleDbContext, OssService ossService)
         {
             this.articleDbContext = articleDbContext;
+            this.ossService = ossService;
         }
 
         public IActionResult Index()
@@ -99,7 +104,7 @@ namespace CoreHome.Admin.Controllers
         {
             ViewBag.Action = "Modify";
 
-            Article article = articleDbContext.Articles.Include(i=>i.Category)
+            Article article = articleDbContext.Articles.Include(i => i.Category)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .SingleOrDefault(i => i.ArticleCode == id);
@@ -177,8 +182,8 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Delete(Guid id)
         {
-            Article article = articleDbContext.Articles.Include(i=>i.Comments)
-                .Include(i=>i.ArticleTags)
+            Article article = articleDbContext.Articles.Include(i => i.Comments)
+                .Include(i => i.ArticleTags)
                 .SingleOrDefault(i => i.ArticleCode == id);
 
             if (article != null)
@@ -210,6 +215,22 @@ namespace CoreHome.Admin.Controllers
                 articleDbContext.SaveChanges();
             }
             return RedirectToAction("Comment", new { id = articleCode });
+        }
+
+        [HttpPost]
+        public IActionResult UploadPic()
+        {
+            IFormFile file = HttpContext.Request.Form.Files["editormd-image-file"];
+            using Stream stream = file.OpenReadStream();
+            try
+            {
+                string uri = ossService.UploadBlogPic(file.FileName, stream);
+                return Json(new { success = 1, message = "上传成功", url = uri });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = 0, message = "上传失败" + ex.ToString(), url = string.Empty });
+            }
         }
 
         private void RecyclingData()

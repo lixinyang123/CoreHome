@@ -31,7 +31,16 @@
             <textarea asp-for="Content" class="form-control" rows="10" cols="100" placeholder="博客内容"></textarea>
         </div>
         <script type="text/javascript">
-            editormd("test-editor", { width: "100%", height: "700px", path: "/Admin/lib/editor.md/lib/", emoji: true, htmlDecode: "style,script,iframe" });
+            editormd("test-editor", {
+                width: "100%",
+                height: "700px",
+                path: "/Admin/lib/editor.md/lib/",
+                emoji: true,
+                imageUpload: true,
+                imageFormats: ["jpg","png"],
+                imageUploadURL : "/Admin/Blog/UploadPic",
+                htmlDecode: "style,script,iframe"
+            });
         </script>
 
         <hr />

@@ -44,6 +44,7 @@ namespace CoreHome.Admin
             services.AddSingleton<BingWallpaperService>();
             services.AddSingleton<NotifyService>();
             services.AddSingleton<ThemeService>();
+            services.AddSingleton<OssService>();
         }
 
         // 配置应用服务
