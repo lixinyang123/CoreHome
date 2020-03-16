@@ -107,6 +107,11 @@ namespace CoreHome.HomePage.Controllers
         [HttpPost]
         public IActionResult Search(string keyword)
         {
+            if (keyword == null)
+            {
+                return RedirectToAction("Index");
+            }
+
             List<Article> articles = articleDbContext.Articles
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.ArticleTags)

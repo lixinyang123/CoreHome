@@ -1,8 +1,9 @@
-﻿.dropdown-menu {
-    border-radius: 0;
+﻿form {
+    border-radius: 3px;
+    background-color: rgba(140, 140, 140, 0.2);
 }
 
-#search {
-    border-radius: 0;
+#keyword  {
+    color: white;
     border: 0;
 }
