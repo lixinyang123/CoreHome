@@ -1,9 +1,9 @@
-﻿form {
+﻿#Search {
     border-radius: 3px;
     background-color: rgba(140, 140, 140, 0.2);
 }
 
-#keyword  {
+#Search input {
     color: white;
     border: 0;
 }
