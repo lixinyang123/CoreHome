@@ -44,9 +44,9 @@ namespace CoreHome.HomePage
 
             services.AddScoped<VerificationCodeService>();
             services.AddSingleton<BingWallpaperService>();
-            services.AddSingleton<NotifyService>();
             services.AddSingleton<SearchEngineService>();
             services.AddSingleton<ThemeService>();
+            services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
         }
 
         //配置HTTP请求

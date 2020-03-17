@@ -1,4 +1,5 @@
 ﻿using CoreHome.Data.DatabaseContext;
+using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,9 +43,9 @@ namespace CoreHome.Admin
             });
 
             services.AddSingleton<BingWallpaperService>();
-            services.AddSingleton<NotifyService>();
             services.AddSingleton<ThemeService>();
-            services.AddSingleton<OssService>();
+            services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
+            services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
         }
 
         // 配置应用服务
