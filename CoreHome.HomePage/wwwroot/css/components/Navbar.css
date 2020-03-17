@@ -1,9 +1,9 @@
 ﻿#Search {
     border-radius: 3px;
-    background-color: rgba(140, 140, 140, 0.2);
 }
 
 #Search input {
     color: white;
     border: 0;
+    background-color: rgba(140, 140, 140, 0.2);
 }
