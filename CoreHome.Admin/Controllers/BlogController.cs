@@ -27,7 +27,7 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Article> articles = articleDbContext.Articles.ToList();
+            List<Article> articles = articleDbContext.Articles.OrderByDescending(i => i.Id).ToList();
             return View(articles);
         }
 
