@@ -12,6 +12,10 @@ RUN apt upgrade -y
 
 RUN apt install wget -y
 
+#安装 libgdiplus
+
+RUN apt install libgdiplus -y
+
 #安装Mysql
 
 RUN apt install mysql-server -y
@@ -48,3 +52,6 @@ COPY ./CoreHome.HomePage/bin/Release/netcoreapp3.1/ /home/HomePage
 
 COPY ./CoreHome.Admin/bin/Release/netcoreapp3.1/ /home/Admin
 
+# ./CoreHome.HomePage --urls="http://*:5000"
+
+# ./CoreHome.Admin --urls="http://*:5001"
