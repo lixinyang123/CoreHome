@@ -47,9 +47,9 @@ namespace CoreHome.Admin.Filter
                 //延长访问期限
                 context.HttpContext.Response.Cookies.Append("accessToken", tokenStr, new CookieOptions()
                 {
-                    Expires = DateTimeOffset.Now.AddHours(2)
+                    Expires = DateTimeOffset.Now.AddHours(10)
                 });
-                cache.Set(cacheKey, tokenStr, DateTimeOffset.Now.AddHours(2));
+                cache.Set(cacheKey, tokenStr, DateTimeOffset.Now.AddHours(10));
             }
             catch (Exception)
             {

@@ -78,11 +78,11 @@ namespace CoreHome.Admin.Controllers
                 //颁发访问令牌
                 Response.Cookies.Append("accessToken", accessToken, new CookieOptions()
                 {
-                    Expires = DateTimeOffset.Now.AddHours(2)
+                    Expires = DateTimeOffset.Now.AddHours(10)
                 });
 
                 //服务端维持两小时的状态保持
-                cache.Set(cacheKey, accessToken, DateTimeOffset.Now.AddHours(2));
+                cache.Set(cacheKey, accessToken, DateTimeOffset.Now.AddHours(10));
 
                 //重定向到仪表盘
                 return Redirect("/Admin/Overview");
