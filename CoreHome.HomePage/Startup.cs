@@ -47,6 +47,11 @@ namespace CoreHome.HomePage
             services.AddSingleton<SearchEngineService>();
             services.AddSingleton<ThemeService>();
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
+
+            services.Configure<CookieOptions>(config =>
+            {
+                config.SameSite = SameSiteMode.Strict;
+            });
         }
 
         //配置HTTP请求
@@ -68,6 +73,16 @@ namespace CoreHome.HomePage
             }
 
             app.UseHttpsRedirection();
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+                context.Response.Headers.Add("Content-Security-Policy", "script-src 'self' 'unsafe-inline';");
+                context.Response.Headers.Add("Referrer-Policy", "no-referrer-when-downgrade");
+                context.Response.Headers.Add("Feature-Policy", "autoplay 'self'; notifications 'self';");
+                await next.Invoke();
+            });
+
             app.UseSession();
             app.UseStaticFiles();
             app.UseRouting();
