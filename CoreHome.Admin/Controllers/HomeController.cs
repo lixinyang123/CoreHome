@@ -1,4 +1,5 @@
-﻿using CoreHome.Infrastructure.Services;
+﻿using CoreHome.Admin.Services;
+using CoreHome.Infrastructure.Services;
 using CoreHome.Infrastructure.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,13 @@ namespace CoreHome.Admin.Controllers
     {
         private readonly IMemoryCache cache;
         private readonly NotifyService notifyService;
+        private readonly SecurityService securityService;
 
-        public HomeController(IMemoryCache cache, NotifyService notifyService)
+        public HomeController(IMemoryCache cache, NotifyService notifyService, SecurityService securityService)
         {
             this.cache = cache;
             this.notifyService = notifyService;
+            this.securityService = securityService;
         }
 
         public IActionResult Index()
@@ -57,10 +60,10 @@ namespace CoreHome.Admin.Controllers
         public IActionResult Logout()
         {
             Response.Cookies.Delete("accessToken");
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult VerfyPassword([FromForm]string pwd)
+        public IActionResult VerifyPassword([FromForm]string pwd)
         {
             string cacheKey = null, password = null;
             try
@@ -72,17 +75,11 @@ namespace CoreHome.Admin.Controllers
 
             if (pwd == password && pwd != null && password != null)
             {
-                //生成访问令牌
-                string accessToken = Guid.NewGuid().ToString();
-
                 //颁发访问令牌
-                Response.Cookies.Append("accessToken", accessToken, new CookieOptions()
+                Response.Cookies.Append("accessToken", securityService.Encryptor(cacheKey), new CookieOptions()
                 {
                     Expires = DateTimeOffset.Now.AddHours(10)
                 });
-
-                //服务端维持两小时的状态保持
-                cache.Set(cacheKey, accessToken, DateTimeOffset.Now.AddHours(10));
 
                 //重定向到仪表盘
                 return Redirect("/Admin/Overview");

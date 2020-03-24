@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using CoreHome.Admin.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Hosting;
 using System;
 
@@ -10,18 +10,18 @@ namespace CoreHome.Admin.Filter
 {
     public class AuthorizationFilter : IAuthorizationFilter
     {
-        public readonly IMemoryCache cache;
         private readonly IWebHostEnvironment environment;
+        private readonly SecurityService securityService;
 
-        public AuthorizationFilter(IMemoryCache cache, IWebHostEnvironment environment)
+        public AuthorizationFilter(IWebHostEnvironment environment, SecurityService securityService)
         {
-            this.cache = cache;
             this.environment = environment;
+            this.securityService = securityService;
         }
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            if (!environment.IsDevelopment())
+            if (environment.IsDevelopment())
             {
                 IdentityAuthorization(context);
             }
@@ -35,11 +35,10 @@ namespace CoreHome.Admin.Filter
             try
             {
                 string tokenStr = context.HttpContext.Request.Cookies["accessToken"];
-
                 string cacheKey = context.HttpContext.Request.Cookies["user"];
-                string cacheStr = cache.Get<string>(cacheKey);
+                bool verifyResult = securityService.Decryptor(tokenStr) != cacheKey;
 
-                if (tokenStr != cacheStr || tokenStr == null || cacheStr == null)
+                if (verifyResult || tokenStr == null || cacheKey == null)
                 {
                     throw new Exception("AuthenticationException");
                 }
@@ -49,7 +48,6 @@ namespace CoreHome.Admin.Filter
                 {
                     Expires = DateTimeOffset.Now.AddHours(10)
                 });
-                cache.Set(cacheKey, tokenStr, DateTimeOffset.Now.AddHours(10));
             }
             catch (Exception)
             {

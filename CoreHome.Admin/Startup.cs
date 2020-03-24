@@ -1,4 +1,5 @@
-﻿using CoreHome.Data.DatabaseContext;
+﻿using CoreHome.Admin.Services;
+using CoreHome.Data.DatabaseContext;
 using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
@@ -46,6 +47,7 @@ namespace CoreHome.Admin
             services.AddSingleton<ThemeService>();
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
             services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
+            services.AddSingleton<SecurityService>();
 
             services.Configure<CookieOptions>(config =>
             {
