@@ -16,6 +16,15 @@
     animation: mymove 10s ease infinite;
 }
 
+#imgbg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+}
+
 @keyframes mymove {
     0% {
         background-position: 0% 0%;
