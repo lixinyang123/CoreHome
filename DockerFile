@@ -50,7 +50,7 @@ RUN nginx -c /etc/nginx/nginx.conf
 
 COPY ./CoreHome.HomePage/bin/Debug/netcoreapp3.1/publish/ /home/HomePage
 
-COPY ./CoreHome.HomePage/bin/Debug/netcoreapp3.1/publish/ /home/Admin
+COPY ./CoreHome.Admin/bin/Debug/netcoreapp3.1/publish/ /home/Admin
 
 # ./CoreHome.HomePage --urls="http://*:5000"
 
