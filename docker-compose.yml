@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  corehome.homepage:
+    image: ${DOCKER_REGISTRY-}corehomehomepage
+    build:
+      context: .
+      dockerfile: CoreHome.HomePage/Dockerfile
+
+  corehome.admin:
+    image: ${DOCKER_REGISTRY-}corehomeadmin
+    build:
+      context: .
+      dockerfile: CoreHome.Admin/Dockerfile
+
