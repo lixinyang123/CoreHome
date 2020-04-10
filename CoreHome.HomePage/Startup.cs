@@ -57,6 +57,8 @@ namespace CoreHome.HomePage
         //配置HTTP请求
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ArticleDbContext articleDbContext)
         {
+            articleDbContext.Database.EnsureCreated();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

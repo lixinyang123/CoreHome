@@ -2,13 +2,13 @@ version: '3.4'
 
 services:
 
-  db:
+  database:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: lxy15937905153
-    ports:
-      - "3306:3306"
+    volumes:
+    - db:/var/lib/mysql
 
   corehome.homepage:
     image: ${DOCKER_REGISTRY-}corehomehomepage
@@ -18,8 +18,10 @@ services:
     ports:
       - "5000:80"
     depends_on:
-      - db
+      - database
     restart: always
+    volumes:
+    - server:/home
 
   corehome.admin:
     image: ${DOCKER_REGISTRY-}corehomeadmin
@@ -29,5 +31,11 @@ services:
     ports:
       - "5001:80"
     depends_on:
-      - db
+      - database
     restart: always
+    volumes:
+    - server:/home
+
+volumes:
+  db:
+  server:

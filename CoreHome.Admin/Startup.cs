@@ -56,7 +56,7 @@ namespace CoreHome.Admin
         }
 
         // 配置应用服务
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ArticleDbContext articleDbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
