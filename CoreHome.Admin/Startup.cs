@@ -58,11 +58,6 @@ namespace CoreHome.Admin
         // 配置应用服务
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ArticleDbContext articleDbContext)
         {
-            if (!articleDbContext.Database.CanConnect())
-            {
-                articleDbContext.Database.EnsureCreated();
-            }
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
