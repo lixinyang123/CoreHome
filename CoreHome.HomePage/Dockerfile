@@ -16,10 +16,10 @@ COPY ["CoreHome.Data/CoreHome.Data.csproj", "CoreHome.Data/"]
 RUN dotnet restore "CoreHome.HomePage/CoreHome.HomePage.csproj"
 COPY . .
 WORKDIR "/src/CoreHome.HomePage"
-RUN dotnet build "CoreHome.HomePage.csproj" -c Release -o /app/build
+RUN dotnet build "CoreHome.HomePage.csproj" -c Release -r linux-x64 -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "CoreHome.HomePage.csproj" -c Release -o /app/publish
+RUN dotnet publish "CoreHome.HomePage.csproj" -c Release -r linux-x64 -o /app/publish
 
 FROM base AS final
 WORKDIR /app
