@@ -31,6 +31,10 @@ steps:
     command: 'build'
     projects: './CoreHome.Admin/CoreHome.Admin.csproj'
 
+- task: DockerInstaller@0
+  inputs:
+    dockerVersion: '17.09.0-ce'
+
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Container Registry'
