@@ -21,9 +21,18 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'build'
+    projects: './CoreHome.HomePage/CoreHome.HomePage.csproj'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: './CoreHome.Admin/CoreHome.Admin.csproj'
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Run a Docker Compose command'
