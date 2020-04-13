@@ -17,10 +17,6 @@ steps:
   inputs:
     versionSpec: 
 
-- task: DockerInstaller@0
-  inputs:
-    dockerVersion: '17.09.0-ce'
-
 - task: NuGetCommand@2
   inputs:
     command: 'restore'
@@ -36,8 +32,3 @@ steps:
   inputs:
     command: 'build'
     projects: './CoreHome.Admin/CoreHome.Admin.csproj'
-
-- task: Docker@2
-  inputs:
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
