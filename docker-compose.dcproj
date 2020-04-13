@@ -6,7 +6,7 @@
     <ProjectGuid>3993574f-541e-4d6f-898b-5243a0af3001</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>corehome.homepage</DockerServiceName>
+    <DockerServiceName>corehome</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="default.conf" />
