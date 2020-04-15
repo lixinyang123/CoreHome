@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Pomelo.EntityFrameworkCore.MySql.Storage;
 using System;
+using System.Runtime.InteropServices;
 
 namespace CoreHome.Admin
 {
@@ -68,7 +69,10 @@ namespace CoreHome.Admin
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //Linux使用Nginx反向代理，边缘服务器不启用https
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                app.UseHttpsRedirection();
+
             app.UsePathBase(new PathString("/Admin"));
             app.UseWebSockets();
             app.UseStaticFiles();

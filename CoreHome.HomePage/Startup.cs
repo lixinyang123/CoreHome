@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Pomelo.EntityFrameworkCore.MySql.Storage;
 using System;
+using System.Runtime.InteropServices;
 
 namespace CoreHome.HomePage
 {
@@ -67,7 +68,10 @@ namespace CoreHome.HomePage
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //Linux使用Nginx反向代理，边缘服务器不启用https
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                app.UseHttpsRedirection();
+
             app.UseSession();
             app.UseStaticFiles();
             app.UseRouting();
