@@ -42,12 +42,6 @@ namespace CoreHome.Admin.Filter
                 {
                     throw new Exception("AuthenticationException");
                 }
-
-                //延长访问期限
-                context.HttpContext.Response.Cookies.Append("accessToken", tokenStr, new CookieOptions()
-                {
-                    Expires = DateTimeOffset.Now.AddHours(10)
-                });
             }
             catch (Exception)
             {

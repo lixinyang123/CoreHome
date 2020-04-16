@@ -78,7 +78,7 @@ namespace CoreHome.Admin.Controllers
                 //颁发访问令牌
                 Response.Cookies.Append("accessToken", securityService.Encryptor(cacheKey), new CookieOptions()
                 {
-                    Expires = DateTimeOffset.Now.AddHours(10)
+                    Expires = DateTimeOffset.Now.AddDays(1)
                 });
 
                 //重定向到仪表盘
