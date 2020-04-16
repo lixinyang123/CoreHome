@@ -24,4 +24,4 @@ RUN dotnet publish "CoreHome.HomePage.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CoreHome.HomePage.dll"]
+ENTRYPOINT ["dotnet", "CoreHome.HomePage.dll","urls=http://*"]
