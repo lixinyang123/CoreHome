@@ -114,19 +114,19 @@
         font-size: 34px;
     }
 
-        .display-tc h1 span:before {
-            top: 28px;
-            width: 20px;
-            height: 3px;
-            margin-left: -15px;
-        }
+    .display-tc h1 span:before {
+        top: 28px;
+        width: 20px;
+        height: 3px;
+        margin-left: -15px;
+    }
 
-        .display-tc h1 span:after {
-            top: 28px;
-            width: 20px;
-            height: 3px;
-            margin-right: -15px;
-        }
+    .display-tc h1 span:after {
+        top: 28px;
+        width: 20px;
+        height: 3px;
+        margin-right: -15px;
+    }
 }
 
 .display-tc h2 {
@@ -143,17 +143,15 @@
     transform: scale(1.3);
 }
 
-
-#fh5co-blog {
-    background-color: whitesmoke;
-}
-
-
 .fh5co-heading {
-    margin: 4em auto 4em auto;
+    margin: 50px auto 50px auto;
 }
 
-.fh5co-heading h2 {
+.fh5co-mid-heading {
+    margin: 10px auto 50px auto;
+}
+
+.fh5co-heading h2, .fh5co-mid-heading h2 {
     font-size: 40px;
     line-height: 1.5;
     color: #000;

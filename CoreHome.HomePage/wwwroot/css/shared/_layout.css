@@ -8,11 +8,14 @@ body {
 
 #content {
     flex: 1;
-    background-color: whitesmoke;
 }
 
 nav {
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+footer{
+    background-color: whitesmoke;
 }
 
 footer ul {
