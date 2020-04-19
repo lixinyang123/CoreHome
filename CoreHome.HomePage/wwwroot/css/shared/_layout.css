@@ -71,7 +71,7 @@ footer ul a {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: orange;
+    background-color: darkgray;
 }
 
 ::-webkit-scrollbar-track{
