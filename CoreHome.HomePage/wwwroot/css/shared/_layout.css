@@ -14,24 +14,23 @@ nav {
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
 }
 
-footer{
+footer {
     background-color: whitesmoke;
 }
 
-footer ul {
-    padding: 0;
-    list-style: none;
-}
-
-footer ul li {
-    display: inline-block;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-}
-
-footer ul a {
+footer .title {
     font-weight: 600;
-    color: #495057;
+    color: #616161;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #616161;
+}
+
+#footerInfo {
+    padding-top: 30px;
+    padding-bottom: 0;
 }
 
 .gototop {

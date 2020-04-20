@@ -42,17 +42,51 @@
         @RenderBody()
     </div>
 
-    <footer class="bd-footer text-muted text-center">
-        <div class="container-fluid p-3 p-md-5">
-            <ul class="bd-footer-links">
-                <li><a asp-controller="/Admin" asp-action="Index" target="_blank">Admin</a></li>
-                <li><a href="https://github.com/lixinyang123" target="_blank">Github</a></li>
-                <li><a asp-controller="/Home" asp-action="Privacy" target="_blank">Privacy</a></li>
-                <li><a href="/Home">About</a></li>
-            </ul>
-            <p>Designed and Developed by <strong>LLLXY</strong> ❤ Powered by <a href="https://dotnet.microsoft.com/" target="_blank">.NET Core</a> 3.1.3</p>
-            <p>&copy; 2020 - LLLXY   <a href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP备18041216号-2</a></p>
+    <!--footer-->
+    <footer class="bd-footer text-muted">
+
+        <div class="container" id="footerInfo">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <p class="title">What's new</p>
+                    <p><a target="blank" href="https://conchbrain.club/">ConchBrain</a></p>
+                </div>
+
+                <div class="col-md-3">
+                    <p class="title">FriendLinks</p>
+                    <p><a target="blank" href="https://lindexi.gitee.io/">林德熙</a></p>
+                    <p><a target="blank" href="https://www.ccczg.site/">CCCZG</a></p>
+                </div>
+
+                <div class="col-md-3">
+                    <p class="title">About</p>
+                    <p><a target="blank" href="https://github.com/ConchBrainClub">GitHub</a></p>
+                    <p><a target="blank" href="https://weibo.com/u/5032216997">微博</a></p>
+                </div>
+
+                <div class="col-md-3">
+                    <p class="title">Others</p>
+                    <p><a target="blank" asp-controller="Home" asp-action="Privacy">Privacy&Cookie</a></p>
+                    <p><a target="blank" asp-controller="Admin" asp-action="Index">Admin</a></p>
+                </div>
+
+            </div>
         </div>
+
+        <div class="container-fluid p-3 p-md-5 text-center">
+            <p>
+                Designed and Developed by
+                <a href="javascript:void(0)"><strong>LLLXY</strong></a>
+                ❤ Powered by
+                <a href="https://dotnet.microsoft.com/" target="_blank"><strong>.NET Core</strong></a> 3.1.3
+            </p>
+            <p>
+                &copy; 2020 - LLLXY   
+                <a href="http://www.beian.miit.gov.cn/" target="_blank"><strong>豫ICP备18041216号-2</strong></a>
+            </p>
+        </div>
+
     </footer>
 
     <partial name="_CookieConsentPartial" />
