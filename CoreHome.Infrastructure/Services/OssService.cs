@@ -1,5 +1,6 @@
 ﻿using Aliyun.OSS;
 using CoreHome.Infrastructure.Models;
+using System.Collections.Generic;
 using System.IO;
 
 namespace CoreHome.Infrastructure.Services
@@ -7,18 +8,35 @@ namespace CoreHome.Infrastructure.Services
     public class OssService
     {
         private readonly OssClient client;
-        private readonly string bucketName;
+        private readonly OssConfig config;
 
         public OssService(OssConfig config)
         {
             client = new OssClient(config.EndPoint, config.AccessKeyId, config.AccessKeySecret);
-            bucketName = config.BucketName;
+            this.config = config;
         }
 
         public string UploadBlogPic(string fileName, Stream stream)
         {
-            client.PutObject(bucketName, $"CoreHome/Blogs/" + fileName, stream);
-            return $"https://lllxy.oss-cn-shenzhen.aliyuncs.com/CoreHome/Blogs/{fileName}";
+            string path = "CoreHome/Blogs/";
+            client.PutObject(config.BucketName, path + fileName, stream);
+            return config.BucketDomain + path + fileName;
+        }
+
+        public List<string> GetMusics()
+        {
+            string path = "CoreHome/Musics/";
+            ObjectListing listing = client.ListObjects(config.BucketName, path);
+
+            List<string> musics = new List<string>();
+            foreach (OssObjectSummary item in listing.ObjectSummaries)
+            {
+                if (item.Key != path)
+                {
+                    musics.Add(config.BucketDomain + item.Key);
+                }
+            }
+            return musics;
         }
 
     }
