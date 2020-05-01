@@ -18,7 +18,7 @@
                     <div id="imgbg" style="background-image:url('@await BingWallpaperService.GetUrl()');"></div>
                     break;
 
-                @*case BackgroundType.Video:
+                    @*case BackgroundType.Video:
                     var videoSrc = @"";
                     <video style="width:100%; height:100%; object-fit:cover; position:absolute; bottom:0; left:0;"
                     src="@videoSrc" autoplay loop></video>
@@ -51,7 +51,7 @@
             </div>
         </header>
 
-        
+
         <div class="container">
 
             <!--Title-->
@@ -176,14 +176,8 @@
             </div>
 
         </div>
-        
 
-        @{
-            if (ThemeService.Theme.MusicUrl != null)
-            {
-                <audio id="player" src="@ThemeService.Theme.MusicUrl"></audio>
-            }
-        }
+        <audio id="player" src="/Service/BackgroundMusic"></audio>
 
         <!-- Main -->
         <script src="~/js/home/index.min.js"></script>

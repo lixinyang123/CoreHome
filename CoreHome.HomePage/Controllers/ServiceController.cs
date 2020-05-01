@@ -10,11 +10,13 @@ namespace CoreHome.HomePage.Controllers
     {
         private readonly VerificationCodeService verificationHelper;
         private readonly OssService ossService;
+        private readonly ThemeService themeService;
 
-        public ServiceController(VerificationCodeService verificationHelper, OssService ossService)
+        public ServiceController(VerificationCodeService verificationHelper, OssService ossService, ThemeService themeService)
         {
             this.verificationHelper = verificationHelper;
             this.ossService = ossService;
+            this.themeService = themeService;
         }
 
         public IActionResult VerificationCode()
@@ -26,9 +28,13 @@ namespace CoreHome.HomePage.Controllers
 
         public IActionResult BackgroundMusic()
         {
+            if (themeService.Theme.MusicUrl != null)
+            {
+                return Redirect(themeService.Theme.MusicUrl);
+            }
             List<string> musics = ossService.GetMusics();
             string music = musics[new Random().Next(musics.Count)];
-            return Content(music);
+            return Redirect(music);
         }
     }
 }
