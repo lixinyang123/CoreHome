@@ -1,4 +1,5 @@
 ﻿using CoreHome.Data.DatabaseContext;
+using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,6 +49,7 @@ namespace CoreHome.HomePage
             services.AddSingleton<SearchEngineService>();
             services.AddSingleton<ThemeService>();
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
+            services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
 
             services.Configure<CookieOptions>(config =>
             {
