@@ -45,6 +45,10 @@
     {
       "library": "editor.md@1.5.0",
       "destination": "wwwroot/lib/editor.md/"
+    },
+    {
+      "library": "open-iconic@1.1.1",
+      "destination": "wwwroot/lib/open-iconic/"
     }
   ]
 }
