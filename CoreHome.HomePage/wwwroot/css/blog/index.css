@@ -1,9 +1,4 @@
-﻿
-#postdiv{
-    min-height: 300px;
-}
-
-#waring {
+﻿#waring {
     text-align: center;
 }
 
@@ -15,9 +10,4 @@ article .articleTitle {
     font-size: large;
     font-weight: bold;
     margin-bottom: 1rem;
-}
-
-.post-tags a {
-    color: white;
-    font-size: small;
 }

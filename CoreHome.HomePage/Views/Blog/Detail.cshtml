@@ -8,7 +8,7 @@
 
 <input id="warning" type="hidden" value="@ViewBag.Warning" />
 <div class="container mt-4 mb-5">
-    <div class="row post">
+    <div class="row">
 
         <aside class="col-lg-3 d-none d-lg-block">
 
@@ -20,11 +20,11 @@
 
         <selection class="col-lg-9 col-md-12">
             <article>
-                <header class="post-header">
-                    <h4 class="post-title">@Model.Article.Title</h4>
-                    <hr class="d-none d-md-block post-header-hr">
+                <header>
+                    <h4 class="display-4">@Model.Article.Title</h4>
+                    <hr>
 
-                    <div class="d-md-block post-publish-info mb-2">
+                    <div class="d-md-block mb-2">
                         <strong class="text-muted">
                             <span>@Model.Article.Time.ToString()</span>
                             | China Standard Time
@@ -36,7 +36,7 @@
                     </p>
 
                     <div class="hidden-print">
-                        <section class="post-cat-tag-info">
+                        <section>
                             <div class="float-right d-none d-md-block">
                                 <span class="toptags-list toptags-list-sm">
                                     @foreach (var articleTag in Model.Article.ArticleTags)
@@ -57,14 +57,14 @@
                         </section>
                     </div>
 
-                    <hr class="post-header-hr">
+                    <hr>
                 </header>
 
-                <section class="post-content clearfix markdown">
+                <section class="clearfix markdown">
                     <textarea hidden>@Model.Article.Content</textarea>
                 </section>
 
-                <hr class="post-header-hr">
+                <hr>
             </article>
 
             <form asp-controller="Blog" asp-action="Detail" method="post">
