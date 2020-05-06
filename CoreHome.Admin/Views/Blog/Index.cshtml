@@ -24,7 +24,7 @@
               @foreach (var article in Model)
               {
                     <tr>
-                        <th scope="row">@article.ArticleCode</th>
+                        <th scope="row">@article.ArticleCode.ToString().Substring(0,6)</th>
                         <td>@article.Title</td>
                         <td><a asp-action="Modify" asp-route-id="@article.ArticleCode">Modify</a></td>
                         <td><a asp-action="Comment" asp-route-id="@article.ArticleCode">Comment</a></td>
