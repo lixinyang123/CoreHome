@@ -38,7 +38,7 @@
 
                                 @foreach (var articleTag in articleTags)
                                 {
-                                        <a class="btn btn-primary" asp-action="Tags" asp-route-id="@articleTag.Tag.TagName">
+                                        <a class="btn btn-primary mb-1" asp-action="Tags" asp-route-id="@articleTag.Tag.TagName">
                                             @articleTag.Tag.TagName
                                         </a>
                                 }
