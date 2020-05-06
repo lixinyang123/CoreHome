@@ -38,7 +38,7 @@
                     <div class="hidden-print">
                         <section>
                             <div class="float-right d-none d-md-block">
-                                <span class="toptags-list toptags-list-sm">
+                                <span class="toptags-list">
                                     @foreach (var articleTag in Model.Article.ArticleTags)
                                     {
                                             <a class="btn btn-primary" asp-controller="Blog" asp-action="Tags" asp-route-id="@articleTag.Tag.TagName">
