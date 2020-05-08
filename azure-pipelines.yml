@@ -29,3 +29,15 @@ steps:
   inputs:
     command: 'build'
     projects: './CoreHome.Admin/CoreHome.Admin.csproj'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    workingDirectory: './CoreHome.HomePage'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    workingDirectory: './CoreHome.Admin'
