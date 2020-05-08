@@ -21,6 +21,7 @@ namespace CoreHome.HomePage.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.PageTitle = "Home";
             searchEngineService.PushToBaidu(environment.WebRootPath);
 
             ViewBag.Title = "LLLXY";
@@ -50,12 +51,14 @@ namespace CoreHome.HomePage.Controllers
 
         public IActionResult Privacy()
         {
+            ViewBag.PageTitle = "Privacy";
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            ViewBag.PageTitle = "Error";
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }

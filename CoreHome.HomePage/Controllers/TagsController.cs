@@ -18,6 +18,8 @@ namespace CoreHome.HomePage.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.PageTitle = "Tags";
+
             List<Tag> tags = articleDbContext.Tags.Include(i => i.ArticleTags).ToList();
             ViewBag.ArticleCount = articleDbContext.Articles.Count();
             return View(tags);

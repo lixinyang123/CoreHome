@@ -15,9 +15,11 @@ namespace CoreHome.HomePage.Controllers
         {
             this.articleDbContext = articleDbContext;
         }
-        
+
         public IActionResult Index()
         {
+            ViewBag.PageTitle = "Archive";
+
             List<Year> years = articleDbContext.Years
                 .Include(i => i.Months)
                 .ThenInclude(i => i.Articles)

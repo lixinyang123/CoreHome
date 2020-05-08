@@ -16,6 +16,8 @@ namespace CoreHome.HomePage.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.PageTitle = "Feedback";
+
             ViewBag.Warning = "反馈中心";
             return View();
         }
@@ -23,6 +25,8 @@ namespace CoreHome.HomePage.Controllers
         [HttpPost]
         public IActionResult Index([FromForm]FeedbackViewModel feedback)
         {
+            ViewBag.PageTitle = "Feedback";
+
             if (!ModelState.IsValid)
             {
                 ViewBag.Warning = "请完善反馈信息";

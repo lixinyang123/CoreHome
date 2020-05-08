@@ -1,13 +1,13 @@
 ﻿using CoreHome.Data.DatabaseContext;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Collections.Generic;
 using CoreHome.Data.Model;
 using CoreHome.HomePage.ViewModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
-using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CoreHome.HomePage.Controllers
 {
@@ -16,7 +16,7 @@ namespace CoreHome.HomePage.Controllers
         private readonly ArticleDbContext articleDbContext;
         private readonly int pageSize;
 
-        public BlogController(ArticleDbContext articleDbContext,IConfiguration configuration)
+        public BlogController(ArticleDbContext articleDbContext, IConfiguration configuration)
         {
             this.articleDbContext = articleDbContext;
             pageSize = configuration.GetValue<int>("PageSize");
@@ -37,6 +37,8 @@ namespace CoreHome.HomePage.Controllers
         /// <param name="index">页面索引</param>
         public IActionResult Index(int index = 1)
         {
+            ViewBag.PageTitle = "Blogs";
+
             //博客总页数
             int pageCount = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(articleDbContext.Articles.Count()) / pageSize));
             index = CorrectIndex(index, pageCount);
@@ -62,6 +64,8 @@ namespace CoreHome.HomePage.Controllers
         /// <param name="id">博客类别</param>
         public IActionResult Categories(string id)
         {
+            ViewBag.PageTitle = id;
+
             List<Article> articles = articleDbContext.Articles
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.ArticleTags)
@@ -76,6 +80,8 @@ namespace CoreHome.HomePage.Controllers
         /// <param name="id">博客标签</param>
         public IActionResult Tags(string id)
         {
+            ViewBag.PageTitle = id;
+
             List<ArticleTag> articleTags = articleDbContext.ArticleTags
                 .OrderByDescending(i => i.Article.Id)
                 .Include(i => i.Article)
@@ -90,23 +96,28 @@ namespace CoreHome.HomePage.Controllers
             return View("Index", articles);
         }
 
-        public IActionResult Archive(int id,int para)
+        public IActionResult Archive(int id, int para)
         {
+            string date = $"{id}/{para}";
+            ViewBag.PageTitle = date;
+
             List<Article> articles = articleDbContext.Months
-                .Include(i=>i.Year)
+                .Include(i => i.Year)
                 .Include(i => i.Articles)
-                .ThenInclude(i=>i.ArticleTags)
-                .ThenInclude(i=>i.Tag)
+                .ThenInclude(i => i.ArticleTags)
+                .ThenInclude(i => i.Tag)
                 .SingleOrDefault(i => i.Year.Value == id && i.Value == para)
                 .Articles.ToList();
 
-            ViewBag.Warning = id + "/" + para;
+            ViewBag.Warning = date;
             return View("Index", articles);
         }
 
         [HttpPost]
         public IActionResult Search(string keyword)
         {
+            ViewBag.PageTitle = keyword;
+
             if (keyword == null)
             {
                 return RedirectToAction("Index");
@@ -132,6 +143,8 @@ namespace CoreHome.HomePage.Controllers
                 .ThenInclude(i => i.Tag)
                 .SingleOrDefault(i => i.ArticleCode == id);
 
+            ViewBag.PageTitle = article.Title;
+
             return View(new DetailViewModel()
             {
                 Article = article,
@@ -148,6 +161,8 @@ namespace CoreHome.HomePage.Controllers
                    .Include(i => i.ArticleTags)
                    .ThenInclude(i => i.Tag)
                    .SingleOrDefault(i => i.ArticleCode == viewModel.ArticleCode);
+
+            ViewBag.PageTitle = article.Title;
 
             DetailViewModel detailViewModel = new DetailViewModel()
             {
