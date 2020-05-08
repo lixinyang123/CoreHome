@@ -27,12 +27,16 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.PageTitle = "Blogs";
+
             List<Article> articles = articleDbContext.Articles.OrderByDescending(i => i.Id).ToList();
             return View(articles);
         }
 
         public IActionResult Upload()
         {
+            ViewBag.PageTitle = "Upload";
+
             ViewBag.Action = "Upload";
             return View("Editor", new ArticleViewModel());
         }
@@ -40,6 +44,8 @@ namespace CoreHome.Admin.Controllers
         [HttpPost]
         public IActionResult Upload(ArticleViewModel articleViewModel)
         {
+            ViewBag.PageTitle = "Upload";
+
             if (!ModelState.IsValid)
             {
                 return View("Editor", articleViewModel);
@@ -108,6 +114,8 @@ namespace CoreHome.Admin.Controllers
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .SingleOrDefault(i => i.ArticleCode == id);
+
+            ViewBag.PageTitle = article.Title;
 
             if (article == null)
             {
@@ -200,6 +208,8 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Comment(Guid id)
         {
+            ViewBag.PageTitle = "Comment";
+
             Article article = articleDbContext.Articles
                 .Include(i => i.Comments)
                 .SingleOrDefault(i => i.ArticleCode == id);

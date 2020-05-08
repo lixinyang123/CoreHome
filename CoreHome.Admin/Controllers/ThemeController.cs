@@ -17,12 +17,16 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.PageTitle = "Theme";
+
             return View(themeService.Theme);
         }
 
         [HttpPost]
         public IActionResult Index(Theme theme)
         {
+            ViewBag.PageTitle = "Theme";
+
             if (ModelState.IsValid)
             {
                 themeService.Theme = theme;

@@ -23,6 +23,12 @@ namespace CoreHome.Admin.Controllers
             pusher = new WebSocketPusher();
         }
 
+        public IActionResult Index()
+        {
+            ViewBag.PageTitle = "Overview";
+            return View();
+        }
+
         private static byte[] GetData()
         {
             if (data == null)
@@ -34,11 +40,6 @@ namespace CoreHome.Admin.Controllers
                 }
             }
             return data;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         [NoCache]
