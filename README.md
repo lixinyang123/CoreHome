@@ -1,6 +1,6 @@
 # CoreHome
 
-[![Build Status](https://dev.azure.com/lixinyang/CoreHome-Build/_apis/build/status/lixinyang123.CoreHome?branchName=master)](https://dev.azure.com/lixinyang/CoreHome-Build/_build/latest?definitionId=4&branchName=master)
+[![Build Status](https://dev.azure.com/lixinyang/CoreHome-Build/_apis/build/status/lixinyang123.CoreHome)](https://dev.azure.com/lixinyang/CoreHome-Build/_build/latest?definitionId=4&branchName=master)
 
 [![BCH compliance](https://bettercodehub.com/edge/badge/lixinyang123/CoreHome?branch=master)](https://bettercodehub.com/)
 
