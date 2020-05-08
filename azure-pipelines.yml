@@ -41,3 +41,9 @@ steps:
     command: 'publish'
     publishWebProjects: true
     workingDirectory: './CoreHome.Admin'
+
+- task: IISWebAppDeploymentOnMachineGroup@0
+  inputs:
+    WebSiteName: 'www.lllxy.net'
+    VirtualApplication: 'Home'
+    Package: '$(System.DefaultWorkingDirectory)\**\*.zip'
