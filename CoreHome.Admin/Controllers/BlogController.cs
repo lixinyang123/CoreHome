@@ -108,8 +108,6 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Modify(Guid id)
         {
-            ViewBag.Action = "Modify";
-
             Article article = articleDbContext.Articles.Include(i => i.Category)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
@@ -139,6 +137,7 @@ namespace CoreHome.Admin.Controllers
                 Content = article.Content
             };
 
+            ViewBag.Action = "Modify";
             return View("Editor", articleViewModel);
         }
 
@@ -154,6 +153,8 @@ namespace CoreHome.Admin.Controllers
             Article article = articleDbContext.Articles.Include(i => i.Category)
                 .Include(i => i.ArticleTags)
                 .SingleOrDefault(i => i.ArticleCode == articleViewModel.ArticleCode);
+
+            ViewBag.PageTitle = article.Title;
 
             List<ArticleTag> articleTags = new List<ArticleTag>();
             new List<string>(articleViewModel.TagStr.Split("#").Distinct()).ForEach(i =>
@@ -185,7 +186,9 @@ namespace CoreHome.Admin.Controllers
             articleDbContext.SaveChanges();
 
             RecyclingData();
-            return RedirectToAction("Index");
+
+            ViewBag.Action = "Modify";
+            return View("Editor", articleViewModel);
         }
 
         public IActionResult Delete(Guid id)
