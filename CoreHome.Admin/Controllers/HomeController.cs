@@ -63,6 +63,7 @@ namespace CoreHome.Admin.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpPost]
         public IActionResult VerifyPassword([FromForm]string pwd)
         {
             string cacheKey = null, password = null;
