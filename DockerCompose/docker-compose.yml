@@ -13,11 +13,8 @@ services:
   corehome.homepage:
     image: ${DOCKER_REGISTRY-}corehomehomepage
     build:
-      context: .
+      context: ../
       dockerfile: CoreHome.HomePage/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://*:80
     depends_on:
       - database
     restart: always
@@ -27,11 +24,8 @@ services:
   corehome.admin:
     image: ${DOCKER_REGISTRY-}corehomeadmin
     build:
-      context: .
+      context: ../
       dockerfile: CoreHome.Admin/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://*:80
     depends_on:
       - database
     restart: always

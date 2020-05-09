@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreHome.Infrastructure", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreHome.Data", "CoreHome.Data\CoreHome.Data.csproj", "{36BAD07F-9631-44D1-8B85-1E8B7A0ECBD5}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3993574F-541E-4D6F-898B-5243A0AF3001}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "DockerCompose\docker-compose.dcproj", "{3993574F-541E-4D6F-898B-5243A0AF3001}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
