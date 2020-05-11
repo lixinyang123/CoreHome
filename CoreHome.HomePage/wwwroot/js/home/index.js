@@ -21,20 +21,25 @@ function moveToDC() {
 }
 
 
+var musicSrc = undefined;
+
 function playMusic() {
+    var player = document.getElementById("player");
     try {
-        player.addEventListener('ended', function () {
+        player.addEventListener('ended', () => {
             setTimeout(() => {
-                document.getElementById("player").play();
+                player.src = musicSrc + "?" + Math.random();
+                player.play();
             }, 1000);
         });
-        document.getElementById("player").play();
+        player.play();
     } catch (e) {}
 }
 
 //=============Initializa================
 
 function init() {
+    musicSrc = document.getElementById("player").src;
     playMusic();
     addLinkTarget();
 }
