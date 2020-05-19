@@ -7,20 +7,6 @@ function addLinkTarget() {
     });
 }
 
-//============MoveOperation================
-
-function moveToDC() {
-    var current = document.scrollingElement.scrollTop;
-    current += 10;
-    document.scrollingElement.scrollTop = current;
-    timer = setTimeout(moveToDC, 0.1);
-
-    if (document.scrollingElement.scrollTop > 810) {
-        clearTimeout(timer);
-    }
-}
-
-
 var musicSrc = undefined;
 
 function playMusic() {

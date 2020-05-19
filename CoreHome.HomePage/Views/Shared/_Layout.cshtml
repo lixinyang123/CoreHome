@@ -86,11 +86,11 @@
             <p>
                 Designed and Developed by
                 <a href="javascript:void(0)"><strong>LLLXY</strong></a>
-                ❤ Powered by
+                <span id="EasterEggs">❤</span> Powered by
                 <a href="https://dotnet.microsoft.com/" target="_blank"><strong>.NET Core</strong></a> 3.1.4
             </p>
             <p>
-                &copy; 2020 - LLLXY   
+                &copy; 2020 - LLLXY
                 <a href="http://www.beian.miit.gov.cn/" target="_blank"><strong>豫ICP备18041216号-2</strong></a>
             </p>
         </div>
@@ -103,8 +103,49 @@
         <a onclick="MoveTop()"><i>TOP</i></a>
     </div>
 
+    <!--EasterEggs(Snowfall)-->
+    <div class="wrap"></div>
+    <style>
+        .snowfall-flakes:before {
+            content: "";
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 10px;
+            height: 16px;
+            transform: rotate(-45deg);
+            background-color: red;
+            border-radius: 5px 5px 1px 1px;
+        }
+
+        .snowfall-flakes:after {
+            content: "";
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 10px;
+            height: 16px;
+            transform: translateX(4.3px) rotate(45deg);
+            background-color: red;
+            border-radius: 5px 5px 1px 1px;
+        }
+    </style>
+
     <!-- Main -->
     <script type="text/javascript" src="~/js/shared/_layout.min.js"></script>
+
+    <!--EasterEggs(click #EasterEggs)-->
+    <script src="https://cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js"></script>
+    <script>
+        var ee = document.getElementById("EasterEggs");
+        ee.style.cursor = "pointer";
+        ee.onclick = () => {
+            $(document).snowfall({ flakeCount: 100, maxSpeed: 5 });
+            document.querySelector("#profile-thumb").src = "https://lllxy.oss-cn-shenzhen.aliyuncs.com/CoreHome/Images/f.jpg";
+            document.querySelector("#content > div > div > header > div.container > div > div > div > div > h1 > span").innerText = "f j h ❤ ～";
+            MoveTop();
+        }
+    </script>
 
 </body>
 </html>
