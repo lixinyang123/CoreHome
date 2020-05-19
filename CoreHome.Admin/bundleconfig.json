@@ -6,27 +6,9 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/css/shared/_layout.min.css",
-    "inputFiles": [
-      "wwwroot/css/shared/_layout.css"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/css/home/index.min.css",
     "inputFiles": [
       "wwwroot/css/home/index.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/css/blog/index.min.css",
-    "inputFiles": [
-      "wwwroot/css/blog/index.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/blog/shared.min.js",
-    "inputFiles": [
-      "wwwroot/js/blog/shared.js"
     ]
   },
   {
@@ -63,18 +45,6 @@
     "outputFileName": "wwwroot/js/theme/index.min.js",
     "inputFiles": [
       "wwwroot/js/theme/index.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/css/bgm/index.min.css",
-    "inputFiles": [
-      "wwwroot/css/bgm/index.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/bgm/Index.min.js",
-    "inputFiles": [
-      "wwwroot/js/bgm/Index.js"
     ]
   },
   {

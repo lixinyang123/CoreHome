@@ -1,11 +1,5 @@
 [
   {
-    "outputFileName": "wwwroot/lib/HighLightJS/js/highlightjs-line-numbers.min.js",
-    "inputFiles": [
-      "wwwroot/lib/HighLightJS/js/highlightjs-line-numbers.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/js/shared/_layout.min.js",
     "inputFiles": [
       "wwwroot/js/shared/_layout.js"
@@ -15,12 +9,6 @@
     "outputFileName": "wwwroot/js/home/index.min.js",
     "inputFiles": [
       "wwwroot/js/home/index.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/blog/detail.min.js",
-    "inputFiles": [
-      "wwwroot/js/blog/detail.js"
     ]
   },
   {
@@ -42,27 +30,9 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/css/blog/shared.min.css",
-    "inputFiles": [
-      "wwwroot/css/blog/shared.css"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/lib/darkreader/darkreader.min.js",
     "inputFiles": [
       "wwwroot/lib/darkreader/darkreader.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/blog/shared.min.js",
-    "inputFiles": [
-      "wwwroot/js/blog/shared.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/feedback/index.min.js",
-    "inputFiles": [
-      "wwwroot/js/feedback/index.js"
     ]
   },
   {
@@ -72,15 +42,15 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/css/components/toptags.min.css",
-    "inputFiles": [
-      "wwwroot/css/components/toptags.css"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/css/blog/detail.min.css",
     "inputFiles": [
       "wwwroot/css/blog/detail.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/components/toptags.min.css",
+    "inputFiles": [
+      "wwwroot/css/components/toptags.css"
     ]
   },
   {
