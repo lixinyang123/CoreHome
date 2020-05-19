@@ -23,10 +23,11 @@ var isMobile = {
 function fullHeight() {
 
 	if (!isMobile.any()) {
-		$('.js-fullheight').css('height', $(window).height());
-		$(window).resize(function () {
-			$('.js-fullheight').css('height', $(window).height());
-		});
+		var list = document.getElementsByClassName("js-fullheight");
+
+		for (var i = 0; i < list.length; i++) {
+			list[i].style.height = window.innerHeight + "px";
+		}
 	}
 }
 
@@ -35,20 +36,23 @@ function MoveTop()
 	window.scrollTo(0, 0);
 }
 
-//GetVerfyCode
+//=============GetVerfyCode=============
+
 function getVerfyCode(img) {
 	img.src = "/Service/VerificationCode?" + Math.random();
 }
 
+//=============Initializa================
+
 function init() {
-	$(window).scroll(function () {
-		var $win = $(window);
-		if ($win.scrollTop() > 200) {
-			$('.js-top').addClass('active');
-		} else {
-			$('.js-top').removeClass('active');
+	window.onscroll = () => {
+		if (window.scrollY > 200) {
+			document.querySelector(".js-top").classList.add("active");
 		}
-	});
+		else {
+			document.querySelector(".js-top").classList.remove("active");
+        }
+    }
 	window.onresize = fullHeight;
 	fullHeight();
 }

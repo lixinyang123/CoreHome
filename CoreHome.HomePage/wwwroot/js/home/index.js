@@ -38,10 +38,10 @@ function playMusic() {
 
 //=============Initializa================
 
-function init() {
+function initHome() {
     musicSrc = document.getElementById("player").src;
     playMusic();
     addLinkTarget();
 }
 
-init();
+initHome();
