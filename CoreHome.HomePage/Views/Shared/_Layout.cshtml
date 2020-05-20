@@ -103,55 +103,8 @@
         <a onclick="MoveTop()"><i>TOP</i></a>
     </div>
 
-    <!--EasterEggs(Snowfall)-->
-    <div class="wrap"></div>
-    <style>
-        .snowfall-flakes:before {
-            content: "";
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            width: 10px;
-            height: 16px;
-            transform: rotate(-45deg);
-            background-color: red;
-            border-radius: 5px 5px 1px 1px;
-        }
-
-        .snowfall-flakes:after {
-            content: "";
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            width: 10px;
-            height: 16px;
-            transform: translateX(4.3px) rotate(45deg);
-            background-color: red;
-            border-radius: 5px 5px 1px 1px;
-        }
-    </style>
-
     <!-- Main -->
     <script type="text/javascript" src="~/js/shared/_layout.min.js"></script>
-
-    <!--EasterEggs(click #EasterEggs)-->
-    <script src="https://cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js"></script>
-    <script>
-        var ee = document.getElementById("EasterEggs");
-        var msc = document.querySelector("#player");
-        ee.style.cursor = "pointer";
-        ee.onclick = () => {
-            $(document).snowfall({ flakeCount: 100, maxSpeed: 5 });
-            document.querySelector("#profile-thumb").src = "https://lllxy.oss-cn-shenzhen.aliyuncs.com/CoreHome/Images/f.jpg";
-            document.querySelector("#content > div > div > header > div.container > div > div > div > div > h1 > span").innerText = "f j h ❤ ～";
-            document.querySelector("#content > div > div > header > div.container > div > div > div > div > h2").innerText = "520 ~~";
-            document.querySelector("#content > div > div > header > div.container > div > div > div > div > h3:nth-child(4) > span").innerText = "🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹";
-            document.querySelector("#content > div > div > header > div.container > div > div > div > div > h3:nth-child(6) > span").innerText = "2020/5/20";
-            msc.src = "https://lllxy.oss-cn-shenzhen.aliyuncs.com/CoreHome/530b_0453_0259_daf5b6d486393fef95e653f0705c3bd3.mp3";
-            msc.play();
-            MoveTop();
-        }
-    </script>
 
 </body>
 </html>
