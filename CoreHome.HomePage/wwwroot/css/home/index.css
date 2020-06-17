@@ -155,7 +155,7 @@
     width: 100%;
     float: left;
     margin-bottom: 40px;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0,0,0,0.12);
 }
 
 .fh5co-blog:hover{
