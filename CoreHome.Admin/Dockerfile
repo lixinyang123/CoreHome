@@ -5,8 +5,6 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-RUN dotnet tool install -g Microsoft.Web.LibraryManager.Cli
-
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["CoreHome.Admin/CoreHome.Admin.csproj", "CoreHome.Admin/"]
@@ -15,7 +13,6 @@ COPY ["CoreHome.Data/CoreHome.Data.csproj", "CoreHome.Data/"]
 RUN dotnet restore "CoreHome.Admin/CoreHome.Admin.csproj"
 COPY . .
 WORKDIR "/src/CoreHome.Admin"
-RUN libman restore
 RUN dotnet build "CoreHome.Admin.csproj" -c Release -o /app/build
 
 FROM build AS publish
