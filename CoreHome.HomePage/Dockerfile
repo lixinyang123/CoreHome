@@ -5,7 +5,6 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-RUN dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 RUN apt update
 RUN apt install libgdiplus -y
 
@@ -17,7 +16,6 @@ COPY ["CoreHome.Data/CoreHome.Data.csproj", "CoreHome.Data/"]
 RUN dotnet restore "CoreHome.HomePage/CoreHome.HomePage.csproj"
 COPY . .
 WORKDIR "/src/CoreHome.HomePage"
-RUN libman restore
 RUN dotnet build "CoreHome.HomePage.csproj" -c Release -o /app/build
 
 FROM build AS publish
