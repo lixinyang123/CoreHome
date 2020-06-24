@@ -8,20 +8,35 @@ namespace CoreHome.Infrastructure.Services
 {
     public class BingWallpaperService
     {
+        private string urlCache;
+        private int lastDay;
+
         public async Task<string> GetUrl()
         {
-            try
+            int nowDay = DateTime.Now.Day;
+            if (nowDay != lastDay)
             {
-                string url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
-                using HttpClient httpClient = new HttpClient();
-                string jsonStr = await httpClient.GetStringAsync(url);
-                BingWallpaper wallpaper = JsonSerializer.Deserialize<BingWallpaper>(jsonStr);
-                return "https://cn.bing.com" + wallpaper.images[0].url;
+                try
+                {
+                    string url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
+                    using HttpClient httpClient = new HttpClient();
+                    string jsonStr = await httpClient.GetStringAsync(url);
+                    BingWallpaper wallpaper = JsonSerializer.Deserialize<BingWallpaper>(jsonStr);
+
+                    urlCache = "https://cn.bing.com" + wallpaper.images[0].url;
+                    lastDay = nowDay;
+                    return urlCache;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
-            catch (Exception)
+            else
             {
-                return null;
+                return urlCache;
             }
+            
         }
     }
 }
