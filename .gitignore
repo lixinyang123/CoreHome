@@ -346,5 +346,5 @@ lib
 .vscode
 
 # 压缩文件
-.min.js
-.min.css
+*.min.js
+*.min.css
