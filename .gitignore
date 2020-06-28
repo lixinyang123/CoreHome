@@ -344,3 +344,7 @@ lib
 
 # vscode配置
 .vscode
+
+# 压缩文件
+.min.js
+.min.css
