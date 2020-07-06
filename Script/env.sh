@@ -1,15 +1,3 @@
-a=`uname  -a`
+curl https://dotnet.microsoft.com/download/dotnet-core/scripts/v1/dotnet-install.sh|bash
 
-b="Darwin"
-c="Centos"
-d="Ubuntu"
-
-if [[ $a =~ $b ]];then
-    echo "mac"
-elif [[ $a =~ $c ]];then
-    echo "centos"
-elif [[ $a =~ $d ]];then
-    echo "ubuntu"
-else
-    echo $a
-fi
+dotnet tool install -g Microsoft.Web.LibraryManager.Cli
