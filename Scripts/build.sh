@@ -10,11 +10,12 @@ rm packages-microsoft-prod.deb
 
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 
+echo Start building CoreHome.HomePage....
 cd ../CoreHome.HomePage
 libman restore
+dotnet build
 
+echo Start building CoreHome.Admin....
 cd ../CoreHome.Admin
 libman restore
-
-cd ..
 dotnet build
