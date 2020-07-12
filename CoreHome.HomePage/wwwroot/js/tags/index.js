@@ -13,9 +13,8 @@ function getAllTags() {
 
 function showTags() {
     WordCloud(document.getElementById('allTags'), {
-        gridSize: 18,
+        gridSize: 20,
         weightFactor: 3,
-        fontFamily: 'Finger Paint, cursive, sans-serif',
         hover: window.drawBox,
         click: function (item) {
             window.location.href = "/Blog/Tags/" + item[0];
