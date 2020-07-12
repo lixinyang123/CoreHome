@@ -33,17 +33,7 @@
 
                             <div class="display-tc">
                                 <img id="profile-thumb" src="https://lllxy.oss-cn-shenzhen.aliyuncs.com/CoreHome/Images/user.jpg" />
-                                <h1>
-                                    <span>
-                                        @if (ViewBag.Title!=null) {
-                                            @UserInfo.Name
-                                        }
-                                        else
-                                        {
-                                            @ViewBag.Title
-                                        }
-                                    </span>
-                                </h1>
+                                <h1><span>@ViewBag.Title</span></h1>
                                 <h2>@UserInfo.Info</h2>
                                 <h3><span>QQ：@UserInfo.QQ</span></h3>
                                 <br />

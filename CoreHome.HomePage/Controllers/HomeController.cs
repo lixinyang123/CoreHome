@@ -1,4 +1,5 @@
-﻿using CoreHome.Infrastructure.Services;
+﻿using CoreHome.Infrastructure.Models;
+using CoreHome.Infrastructure.Services;
 using CoreHome.Infrastructure.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,11 +13,14 @@ namespace CoreHome.HomePage.Controllers
     {
         private readonly IWebHostEnvironment environment;
         private readonly SearchEngineService searchEngineService;
+        private readonly UserInfo userInfo;
 
-        public HomeController(IWebHostEnvironment env, SearchEngineService searchEngineService)
+
+        public HomeController(IWebHostEnvironment environment, SearchEngineService searchEngineService, UserInfo userInfo)
         {
-            environment = env;
+            this.environment = environment;
             this.searchEngineService = searchEngineService;
+            this.userInfo = userInfo;
         }
 
         public IActionResult Index()
@@ -24,7 +28,7 @@ namespace CoreHome.HomePage.Controllers
             ViewBag.PageTitle = "Home";
             searchEngineService.PushToBaidu(environment.WebRootPath);
 
-            ViewBag.Title = null;
+            ViewBag.Title = userInfo.Name;
             string lastTime = Request.Cookies["lastTime"];
 
             DateTime now = DateTime.Now;
