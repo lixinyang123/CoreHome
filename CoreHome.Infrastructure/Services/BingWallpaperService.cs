@@ -36,7 +36,7 @@ namespace CoreHome.Infrastructure.Services
             {
                 return urlCache;
             }
-            
+
         }
     }
 }

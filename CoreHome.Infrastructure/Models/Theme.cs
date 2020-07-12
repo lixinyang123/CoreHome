@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace CoreHome.Infrastructure.Models
 {
     public enum ThemeType { Auto, White, Black }
-    public enum BackgroundType { Color,  Bing }
+    public enum BackgroundType { Color, Bing }
 
     public class Theme
     {

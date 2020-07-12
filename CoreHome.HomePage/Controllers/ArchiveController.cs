@@ -1,9 +1,9 @@
 ﻿using CoreHome.Data.DatabaseContext;
+using CoreHome.Data.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Collections.Generic;
-using CoreHome.Data.Model;
+using System.Linq;
 
 namespace CoreHome.HomePage.Controllers
 {

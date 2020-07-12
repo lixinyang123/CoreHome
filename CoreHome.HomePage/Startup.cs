@@ -50,6 +50,7 @@ namespace CoreHome.HomePage
             services.AddSingleton<ThemeService>();
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
             services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
+            services.AddSingleton(Configuration.GetSection("UserInfo").Get<UserInfo>());
 
             services.Configure<CookieOptions>(config =>
             {
@@ -58,7 +59,7 @@ namespace CoreHome.HomePage
         }
 
         //配置HTTP请求
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

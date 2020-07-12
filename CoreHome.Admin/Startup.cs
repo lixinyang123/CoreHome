@@ -48,6 +48,7 @@ namespace CoreHome.Admin
             services.AddSingleton<ThemeService>();
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
             services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
+            services.AddSingleton(Configuration.GetSection("UserInfo").Get<UserInfo>());
             services.AddSingleton<SecurityService>();
 
             services.Configure<CookieOptions>(config =>
@@ -57,7 +58,7 @@ namespace CoreHome.Admin
         }
 
         // 配置应用服务
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

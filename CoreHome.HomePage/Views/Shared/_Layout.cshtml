@@ -14,7 +14,7 @@
     <meta property="og:site_name" content="LLLXY" />
     <meta property="og:image" content="https://lllxy.oss-cn-shenzhen.aliyuncs.com/CoreHome/Images/user.jpg" />
 
-    <title>@ViewBag.PageTitle | LLLXY</title>
+    <title>@ViewBag.PageTitle | @UserInfo.Name</title>
 
     <link rel="shortcut icon" href="~/favicon.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -85,12 +85,12 @@
         <div class="container-fluid p-3 p-md-5 text-center">
             <p>
                 Designed and Developed by
-                <a href="javascript:void(0)"><strong>LLLXY</strong></a>
+                <a href="https://www.lllxy.net/"><strong>LLLXY</strong></a>
                 ❤ Powered by
                 <a href="https://dotnet.microsoft.com/" target="_blank"><strong>.NET Core</strong></a> 3.1.5
             </p>
             <p>
-                &copy; 2020 - LLLXY
+                &copy; 2020 - @UserInfo.Name
                 <a href="http://www.beian.miit.gov.cn/" target="_blank"><strong>豫ICP备18041216号-2</strong></a>
             </p>
         </div>

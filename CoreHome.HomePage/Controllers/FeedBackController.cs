@@ -23,7 +23,7 @@ namespace CoreHome.HomePage.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index([FromForm]FeedbackViewModel feedback)
+        public IActionResult Index([FromForm] FeedbackViewModel feedback)
         {
             ViewBag.PageTitle = "Feedback";
 

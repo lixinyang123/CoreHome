@@ -24,7 +24,7 @@ namespace CoreHome.HomePage.Controllers
             ViewBag.PageTitle = "Home";
             searchEngineService.PushToBaidu(environment.WebRootPath);
 
-            ViewBag.Title = "LLLXY";
+            ViewBag.Title = null;
             string lastTime = Request.Cookies["lastTime"];
 
             DateTime now = DateTime.Now;

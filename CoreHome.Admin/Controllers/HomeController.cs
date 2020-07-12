@@ -64,7 +64,7 @@ namespace CoreHome.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult VerifyPassword([FromForm]string pwd)
+        public IActionResult VerifyPassword([FromForm] string pwd)
         {
             string cacheKey = null, password = null;
             try
