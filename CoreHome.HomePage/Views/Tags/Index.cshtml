@@ -1,6 +1,8 @@
 ﻿@model List<Tag>
 
 <link rel="stylesheet" href="~/css/tags/index.min.css" />
+<script type="text/javascript" src="~/js/tags/index.min.js"></script>
+<script type="text/javascript" src="~/lib/wordcloud/src/wordcloud2.min.js"></script>
 
 <div class="container mt-4 mb-5">
     <div class="row">
@@ -17,19 +19,9 @@
 
             <h2 class="display-4">All Tags</h2>
             <hr>
-            <ol id="by-site-list">
-
-                @foreach (var tag in Model)
-                {
-                    double fontSize = 1 + Math.Pow(tag.ArticleTags.Count,2) * 0.2;
-
-                    <li style="font-size: @(fontSize)em;">
-                        <a asp-controller="Blog" asp-action="Tags" asp-route-id="@tag.TagName">@tag.TagName</a>
-                    </li>
-                }
-            </ol>
+            <div id="allTags"></div>
+            <script>getAllTags();</script>
 
         </section>
-
     </div>
 </div>

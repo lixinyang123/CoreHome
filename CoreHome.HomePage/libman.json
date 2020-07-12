@@ -45,6 +45,10 @@
     {
       "library": "editor.md@1.5.0",
       "destination": "wwwroot/lib/editor.md/"
+    },
+    {
+      "library": "wordcloud@1.1.1",
+      "destination": "wwwroot/lib/wordcloud/"
     }
   ]
 }

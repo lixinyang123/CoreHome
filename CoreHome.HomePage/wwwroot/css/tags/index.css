@@ -1,11 +1,8 @@
-﻿
-#by-site-list {
-    padding-left: 0;
+﻿#allTags{
+    width: 100%;
+    min-height: 500px;
 }
 
-#by-site-list li {
-    display: inline;
-    vertical-align: middle;
-    white-space: nowrap;
-    margin-right: 7px;
+#allTags span {
+    cursor: pointer;
 }

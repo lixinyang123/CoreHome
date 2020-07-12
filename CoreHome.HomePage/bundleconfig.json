@@ -76,5 +76,17 @@
     "inputFiles": [
       "wwwroot/css/components/Navbar.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/wordcloud/src/wordcloud2.min.js",
+    "inputFiles": [
+      "wwwroot/lib/wordcloud/src/wordcloud2.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/tags/index.min.js",
+    "inputFiles": [
+      "wwwroot/js/tags/index.js"
+    ]
   }
 ]
