@@ -31,16 +31,3 @@ function initHome() {
 }
 
 initHome();
-
-//============Snowfall EasterEggs==========
-document.onreadystatechange = () => {
-    document.getElementById("EasterEggs").addEventListener("click", () => {
-        $(document).snowfall({ flakeCount: 100, maxSpeed: 5 });
-        document.querySelector("#profile-thumb").src = "https://lllxy.oss-cn-shenzhen.aliyuncs.com/CoreHome/Images/f.jpg";
-        document.querySelector("#content > div > div > header > div.container > div > div > div > div > h1 > span").innerText = "f j h";
-        document.querySelector("#content > div > div:nth-child(4) > header > div.container > div > div > div > div > h2").innerText = "宝贝爱你嗷❤~";
-        document.querySelector("#content > div > div:nth-child(4) > header > div.container > div > div > div > div > h3:nth-child(4) > span").innerText = "🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹"
-        document.querySelector("#content > div > div:nth-child(4) > header > div.container > div > div > div > div > h3:nth-child(6) > span").innerText = "🎉🎉🎉🎉🎉🎉🎉🎉🎉";
-        MoveTop();
-    });
-}

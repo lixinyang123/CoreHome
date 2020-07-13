@@ -227,33 +227,3 @@
 .detail {
     margin-bottom: 20px;
 }
-
-/*=============================Snowfall EasterEggs==============================*/
-
-#EasterEggs {
-    cursor: pointer;
-}
-
-.snowfall-flakes:before {
-    content: "";
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 10px;
-    height: 16px;
-    transform: rotate(-45deg);
-    background-color: red;
-    border-radius: 5px 5px 1px 1px;
-}
-
-.snowfall-flakes:after {
-    content: "";
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 10px;
-    height: 16px;
-    transform: translateX(4.3px) rotate(45deg);
-    background-color: red;
-    border-radius: 5px 5px 1px 1px;
-}
