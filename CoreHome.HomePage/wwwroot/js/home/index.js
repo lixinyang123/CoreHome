@@ -22,23 +22,12 @@ function playMusic() {
     } catch (e) {}
 }
 
-function showLogo() {
-    console.log(`
-          ____               _   _
-         / ___|___  _ __ ___| | | | ___  _ __ ___   ___
-        | |   / _ \| '__/ _ \ |_| |/ _ \| '_ \` _ \ / _ \
-        | |__| (_) | | |  __/  _  | (_) | | | | | |  __/
-         \____\___/|_|  \___|_| |_|\___/|_| |_| |_|\___|
-    `);
-}
-
 //=============Initializa================
 
 function initHome() {
     musicSrc = document.getElementById("player").src;
     playMusic();
     addLinkTarget();
-    showLogo();
 }
 
 initHome();
