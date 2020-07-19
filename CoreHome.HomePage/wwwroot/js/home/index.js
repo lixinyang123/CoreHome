@@ -10,7 +10,7 @@ function addLinkTarget() {
 var musicSrc = undefined;
 
 function playMusic() {
-    var player = document.getElementById("player");
+    var player = document.querySelector("#player");
     try {
         player.addEventListener('ended', () => {
             setTimeout(() => {
@@ -25,7 +25,7 @@ function playMusic() {
 //=============Initializa================
 
 function initHome() {
-    musicSrc = document.getElementById("player").src;
+    musicSrc = document.querySelector("#player").src;
     playMusic();
     addLinkTarget();
 }
