@@ -48,16 +48,16 @@ rm packages-microsoft-prod.deb
 
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 
-echo ====================================
-echo + Start building CoreHome.HomePage +
-echo ====================================
+echo ===================================
+echo + Start publish CoreHome.HomePage +
+echo ===================================
 cd ../CoreHome.HomePage
 libman restore
 dotnet publish
 
-echo =================================
-echo + Start building CoreHome.Admin +
-echo =================================
+echo ================================
+echo + Start publish CoreHome.Admin +
+echo ================================
 cd ../CoreHome.Admin
 libman restore
 dotnet publish
