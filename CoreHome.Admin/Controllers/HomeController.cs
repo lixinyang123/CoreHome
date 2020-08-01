@@ -37,7 +37,7 @@ namespace CoreHome.Admin.Controllers
             string cacheKey = Guid.NewGuid().ToString();
             Response.Cookies.Append("user", cacheKey, new CookieOptions()
             {
-                Expires = DateTimeOffset.Now.AddHours(24)
+                Expires = DateTimeOffset.Now.AddDays(1)
             });
 
             //随机生成密码
