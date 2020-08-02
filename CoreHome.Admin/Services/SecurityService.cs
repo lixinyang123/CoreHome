@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -7,12 +9,48 @@ namespace CoreHome.Admin.Services
     public class SecurityService
     {
         private readonly RijndaelManaged rijndaelManaged;
+        private readonly string configPath;
+        private readonly string configFile;
+
+        private string Key
+        {
+            get
+            {
+                return File.ReadAllText(configFile);
+            }
+            set
+            {
+                File.WriteAllText(configFile, value);
+            }
+        }
 
         public SecurityService()
         {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                configPath = @"C:/Server/CoreHome/";
+            }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                configPath = @"/home/Server/CoreHome/";
+            }
+
+            configFile = configPath + "key.txt";
+
+            if (!Directory.Exists(configPath))
+            {
+                Directory.CreateDirectory(configPath);
+            }
+
+            if (!File.Exists(configFile))
+            {
+                Key = Guid.NewGuid().ToString().Replace("-", "");
+            }
+
             rijndaelManaged = new RijndaelManaged
             {
-                Key = Encoding.UTF8.GetBytes(Guid.NewGuid().ToString().Replace("-", "")),
+                Key = Encoding.UTF8.GetBytes(Key),
                 Mode = CipherMode.ECB,
                 Padding = PaddingMode.PKCS7
             };
