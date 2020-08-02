@@ -48,6 +48,7 @@ namespace CoreHome.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewBag.Action = "Upload";
                 return View("Editor", articleViewModel);
             }
 
