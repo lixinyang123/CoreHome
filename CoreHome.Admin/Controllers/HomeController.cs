@@ -77,7 +77,7 @@ namespace CoreHome.Admin.Controllers
             if (pwd == password && pwd != null && password != null)
             {
                 //颁发访问令牌
-                Response.Cookies.Append("accessToken", securityService.Encryptor(cacheKey), new CookieOptions()
+                Response.Cookies.Append("accessToken", securityService.Encrypt(cacheKey), new CookieOptions()
                 {
                     Expires = DateTimeOffset.Now.AddDays(1)
                 });

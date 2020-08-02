@@ -6,51 +6,38 @@ namespace CoreHome.Admin.Services
 {
     public class SecurityService
     {
-        private readonly Aes aes;
+        private readonly RijndaelManaged rijndaelManaged;
 
         public SecurityService()
         {
-            aes = Aes.Create();
-            aes.Key = GetAesKey(Encoding.UTF8.GetBytes(Guid.NewGuid().ToString()));
-        }
-
-        ~SecurityService()
-        {
-            aes.Dispose();
-        }
-
-        private byte[] GetAesKey(byte[] keyArray)
-        {
-            byte[] newArray = new byte[16];
-            if (keyArray.Length < 16)
+            rijndaelManaged = new RijndaelManaged
             {
-                for (int i = 0; i < newArray.Length; i++)
-                {
-                    if (i >= keyArray.Length)
-                    {
-                        newArray[i] = 0;
-                    }
-                    else
-                    {
-                        newArray[i] = keyArray[i];
-                    }
-                }
-            }
-            return newArray;
+                Key = Encoding.UTF8.GetBytes(Guid.NewGuid().ToString().Replace("-", "")),
+                Mode = CipherMode.ECB,
+                Padding = PaddingMode.PKCS7
+            };
         }
 
-        public string Encryptor(string content)
+        public string Encrypt(string str)
         {
-            byte[] buffer = Encoding.UTF8.GetBytes(content);
-            byte[] result = aes.CreateEncryptor().TransformFinalBlock(buffer, 0, buffer.Length);
-            return Convert.ToBase64String(result);
+            if (string.IsNullOrEmpty(str)) return null;
+            byte[] toEncryptArray = Encoding.UTF8.GetBytes(str);
+
+            ICryptoTransform cTransform = rijndaelManaged.CreateEncryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+
+            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
         }
 
-        public string Decryptor(string content)
+        public string Decrypt(string str)
         {
-            byte[] buffer = Convert.FromBase64String(content);
-            byte[] result = aes.CreateDecryptor().TransformFinalBlock(buffer, 0, buffer.Length);
-            return Encoding.UTF8.GetString(result);
+            if (string.IsNullOrEmpty(str)) return null;
+            byte[] toEncryptArray = Convert.FromBase64String(str);
+
+            ICryptoTransform cTransform = rijndaelManaged.CreateDecryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+
+            return Encoding.UTF8.GetString(resultArray);
         }
 
     }
