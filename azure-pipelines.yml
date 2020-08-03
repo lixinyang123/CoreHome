@@ -15,19 +15,3 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
-
-- task: Docker@2
-  inputs:
-    command: 'build'
-    Dockerfile: '**/CoreHome.HomePage/Dockerfile'
-
-- task: Docker@2
-  inputs:
-    command: 'build'
-    Dockerfile: '**/CoreHome.Admin/Dockerfile'
-
-- task: DockerCompose@0
-  inputs:
-    containerregistrytype: 'Container Registry'
-    dockerComposeFile: '**/DockerCompose/docker-compose.yml'
-    action: 'Run a Docker Compose command'
