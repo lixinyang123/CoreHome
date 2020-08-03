@@ -16,7 +16,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'custom'
-    custom: 'dotnet tool install -g Microsoft.Web.LibraryManager.Cli'
+    custom: 'tool install -g Microsoft.Web.LibraryManager.Cli'
 
 - task: CmdLine@2
   inputs:
