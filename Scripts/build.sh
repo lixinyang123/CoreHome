@@ -1,3 +1,7 @@
+echo =========================
+echo + Configure Environment +
+echo =========================
+
 sudo apt update
 
 sudo apt install libgdiplus mysql-server nginx -y
