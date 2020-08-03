@@ -13,10 +13,8 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'custom'
-    custom: 'tool install -g Microsoft.Web.LibraryManager.Cli'
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
 
 - task: CmdLine@2
   inputs:
@@ -31,7 +29,3 @@ steps:
   inputs:
     script: 'libman restore'
     workingDirectory: './CoreHome.Admin'
-
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
-
