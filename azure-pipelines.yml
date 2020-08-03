@@ -16,16 +16,18 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-- task: CmdLine@2
+- task: Docker@2
   inputs:
-    script: 'dotnet tool install -g Microsoft.Web.LibraryManager.Cli'
+    command: 'build'
+    Dockerfile: '**/CoreHome.HomePage/Dockerfile'
 
-- task: CmdLine@2
+- task: Docker@2
   inputs:
-    script: 'libman restore'
-    workingDirectory: './CoreHome.HomePage'
+    command: 'build'
+    Dockerfile: '**/CoreHome.Admin/Dockerfile'
 
-- task: CmdLine@2
+- task: DockerCompose@0
   inputs:
-    script: 'libman restore'
-    workingDirectory: './CoreHome.Admin'
+    containerregistrytype: 'Container Registry'
+    dockerComposeFile: '**/DockerCompose/docker-compose.yml'
+    action: 'Run a Docker Compose command'
