@@ -18,14 +18,14 @@ namespace CoreHome.Infrastructure.Services
 
         public string UploadBlogPic(string fileName, Stream stream)
         {
-            string path = "CoreHome/Blogs/";
+            string path = "blogs/";
             client.PutObject(config.BucketName, path + fileName, stream);
             return config.BucketDomain + path + fileName;
         }
 
         public List<string> GetMusics()
         {
-            string path = "CoreHome/Musics/";
+            string path = "musics/";
             ObjectListing listing = client.ListObjects(config.BucketName, path);
 
             List<string> musics = new List<string>();
