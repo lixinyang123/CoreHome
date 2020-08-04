@@ -4,6 +4,7 @@ using CoreHome.Infrastructure.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Diagnostics;
 
@@ -14,12 +15,17 @@ namespace CoreHome.Admin.Controllers
         private readonly IMemoryCache cache;
         private readonly NotifyService notifyService;
         private readonly SecurityService securityService;
+        private readonly IConfiguration configuration;
 
-        public HomeController(IMemoryCache cache, NotifyService notifyService, SecurityService securityService)
+        public HomeController(IMemoryCache cache, 
+            NotifyService notifyService, 
+            SecurityService securityService,
+            IConfiguration configuration)
         {
             this.cache = cache;
             this.notifyService = notifyService;
             this.securityService = securityService;
+            this.configuration = configuration;
         }
 
         public IActionResult Index()
@@ -74,7 +80,10 @@ namespace CoreHome.Admin.Controllers
             }
             catch (Exception) { }
 
-            if (pwd == password && pwd != null && password != null)
+            var verifyAdminPwd = pwd == configuration.GetValue<string>("AdminPassword");
+            var verifyDynamicPwd = pwd == password && pwd != null && password != null;
+
+            if (verifyAdminPwd || verifyDynamicPwd)
             {
                 //颁发访问令牌
                 Response.Cookies.Append("accessToken", securityService.Encrypt(cacheKey), new CookieOptions()
