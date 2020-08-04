@@ -5,6 +5,8 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 RUN apt update
 RUN apt install libgdiplus -y
 
