@@ -1,6 +1,7 @@
 ﻿using CoreHome.Data.DatabaseContext;
 using CoreHome.Data.Model;
 using CoreHome.HomePage.ViewModels;
+using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +15,13 @@ namespace CoreHome.HomePage.Controllers
     public class BlogController : Controller
     {
         private readonly ArticleDbContext articleDbContext;
+        private readonly NotifyService notifyService;
         private readonly int pageSize;
 
-        public BlogController(ArticleDbContext articleDbContext, IConfiguration configuration)
+        public BlogController(ArticleDbContext articleDbContext, IConfiguration configuration, NotifyService notifyService)
         {
             this.articleDbContext = articleDbContext;
+            this.notifyService = notifyService;
             pageSize = configuration.GetValue<int>("PageSize");
         }
 
@@ -181,6 +184,9 @@ namespace CoreHome.HomePage.Controllers
                         Detail = viewModel.Detail
                     });
                     articleDbContext.SaveChanges();
+
+                    //评论通知
+                    notifyService.PushNotify("New Commit", viewModel.Detail);
 
                     detailViewModel.CommentViewModel = new CommentViewModel();
                     ViewBag.Warning = "评论成功";
