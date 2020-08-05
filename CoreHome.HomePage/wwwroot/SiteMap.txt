@@ -1,6 +1,5 @@
-﻿https://www.lllxy.net/
-https://www.lllxy.net/Blog
-https://www.lllxy.net/Tags
-https://www.lllxy.net/Archive
-https://www.lllxy.net/FeedBack
-https://付京华.我爱你/
+﻿https://www.example.com/
+https://www.example.com/Blog
+https://www.example.com/Tags
+https://www.example.com/Archive
+https://www.example.com/FeedBack
