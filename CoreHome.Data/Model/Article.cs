@@ -32,9 +32,6 @@ namespace CoreHome.Data.Model
         [Required]
         public string Overview { get; set; }
 
-        [Url]
-        public string CoverUrl { get; set; }
-
         [Required]
         public string Content { get; set; }
 

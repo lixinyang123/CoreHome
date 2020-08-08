@@ -98,7 +98,6 @@ namespace CoreHome.Admin.Controllers
                 Category = category,
                 ArticleTags = articleTags,
                 Overview = articleViewModel.Overview,
-                CoverUrl = articleViewModel.CoverUrl,
                 Content = articleViewModel.Content
             });
 
@@ -134,7 +133,6 @@ namespace CoreHome.Admin.Controllers
                 CategoryName = article.Category.CategoriesName,
                 TagStr = tagStr.TrimEnd('#'),
                 Overview = article.Overview,
-                CoverUrl = article.CoverUrl,
                 Content = article.Content
             };
 
@@ -181,7 +179,6 @@ namespace CoreHome.Admin.Controllers
             article.Category = category;
             article.ArticleTags = articleTags;
             article.Overview = articleViewModel.Overview;
-            article.CoverUrl = articleViewModel.CoverUrl;
             article.Content = articleViewModel.Content;
 
             articleDbContext.SaveChanges();
