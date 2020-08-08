@@ -12,14 +12,18 @@ function getAllTags() {
 }
 
 function showTags() {
-    WordCloud(document.getElementById('allTags'), {
-        gridSize: 20,
-        weightFactor: 3,
-        hover: window.drawBox,
-        click: function (item) {
-            window.location.href = "/Blog/Tags/" + item[0];
-        },
-        backgroundColor: 'white',
-        list: allTags
-    });
+    if (allTags.length > 0) {
+        var wordcloud = document.querySelector("#allTags");
+        wordcloud.style.minHeight = "500px";
+        WordCloud(wordcloud, {
+            gridSize: 20,
+            weightFactor: 3,
+            hover: window.drawBox,
+            click: function (item) {
+                window.location.href = "/Blog/Tags/" + item[0];
+            },
+            backgroundColor: 'white',
+            list: allTags
+        });
+    }
 }
