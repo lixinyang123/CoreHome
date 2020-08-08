@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreHome.Data.Migrations
 {
     [DbContext(typeof(ArticleDbContext))]
-    [Migration("20200303141029_Add-Archive")]
-    partial class AddArchive
+    [Migration("20200808090852_initialize")]
+    partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("CoreHome.Data.Model.Article", b =>
@@ -33,9 +33,6 @@ namespace CoreHome.Data.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CoverUrl")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("MonthId")

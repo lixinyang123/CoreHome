@@ -14,7 +14,7 @@ namespace CoreHome.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("CoreHome.Data.Model.Article", b =>
@@ -31,9 +31,6 @@ namespace CoreHome.Data.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CoverUrl")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("MonthId")

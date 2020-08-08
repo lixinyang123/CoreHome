@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
 namespace CoreHome.Data.Migrations
 {
-    public partial class Init : Migration
+    public partial class initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,6 +35,37 @@ namespace CoreHome.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Years",
+                columns: table => new
+                {
+                    Value = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Years", x => x.Value);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Months",
+                columns: table => new
+                {
+                    Value = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    YearId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Months", x => x.Value);
+                    table.ForeignKey(
+                        name: "FK_Months_Years_YearId",
+                        column: x => x.YearId,
+                        principalTable: "Years",
+                        principalColumn: "Value",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Articles",
                 columns: table => new
                 {
@@ -43,9 +74,9 @@ namespace CoreHome.Data.Migrations
                     ArticleCode = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: false),
                     Time = table.Column<DateTime>(nullable: false),
+                    MonthId = table.Column<int>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
                     Overview = table.Column<string>(nullable: false),
-                    CoverUrl = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -56,6 +87,12 @@ namespace CoreHome.Data.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Articles_Months_MonthId",
+                        column: x => x.MonthId,
+                        principalTable: "Months",
+                        principalColumn: "Value",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -110,6 +147,11 @@ namespace CoreHome.Data.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Articles_MonthId",
+                table: "Articles",
+                column: "MonthId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ArticleTags_TagId",
                 table: "ArticleTags",
                 column: "TagId");
@@ -118,6 +160,11 @@ namespace CoreHome.Data.Migrations
                 name: "IX_Comments_ArticleId",
                 table: "Comments",
                 column: "ArticleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Months_YearId",
+                table: "Months",
+                column: "YearId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -136,6 +183,12 @@ namespace CoreHome.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Months");
+
+            migrationBuilder.DropTable(
+                name: "Years");
         }
     }
 }
