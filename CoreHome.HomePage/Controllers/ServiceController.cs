@@ -28,9 +28,9 @@ namespace CoreHome.HomePage.Controllers
 
         public IActionResult BackgroundMusic()
         {
-            if (themeService.Theme.MusicUrl != null)
+            if (themeService.Config.MusicUrl != null)
             {
-                return Redirect(themeService.Theme.MusicUrl);
+                return Redirect(themeService.Config.MusicUrl);
             }
             List<string> musics = ossService.GetMusics();
             string music = musics[new Random().Next(musics.Count)];

@@ -19,7 +19,7 @@ namespace CoreHome.Admin.Controllers
         {
             ViewBag.PageTitle = "Theme";
 
-            return View(themeService.Theme);
+            return View(themeService.Config);
         }
 
         [HttpPost]
@@ -29,9 +29,9 @@ namespace CoreHome.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                themeService.Theme = theme;
+                themeService.Config = theme;
             }
-            return View(themeService.Theme);
+            return View(themeService.Config);
         }
 
     }

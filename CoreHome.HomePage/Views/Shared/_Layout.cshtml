@@ -24,7 +24,7 @@
     <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
 
-    @switch (ThemeService.Theme.ThemeType)
+    @switch (ThemeService.Config.ThemeType)
     {
         case ThemeType.Auto:
             @if (DateTime.Now.Hour > 18 || DateTime.Now.Hour < 7)

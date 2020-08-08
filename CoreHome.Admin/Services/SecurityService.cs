@@ -1,56 +1,19 @@
-﻿using System;
-using System.IO;
-using System.Runtime.InteropServices;
+﻿using CoreHome.Infrastructure.Models;
+using System;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace CoreHome.Admin.Services
 {
-    public class SecurityService
+    public class SecurityService : StaticConfig<string>
     {
         private readonly RijndaelManaged rijndaelManaged;
-        private readonly string configPath;
-        private readonly string configFile;
 
-        private string Key
+        public SecurityService() : base("key.txt", Guid.NewGuid().ToString().Replace("-", ""))
         {
-            get
-            {
-                return File.ReadAllText(configFile);
-            }
-            set
-            {
-                File.WriteAllText(configFile, value);
-            }
-        }
-
-        public SecurityService()
-        {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                configPath = @"C:/Server/CoreHome/";
-            }
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                configPath = @"/home/Server/CoreHome/";
-            }
-
-            configFile = configPath + "key.txt";
-
-            if (!Directory.Exists(configPath))
-            {
-                Directory.CreateDirectory(configPath);
-            }
-
-            if (!File.Exists(configFile))
-            {
-                Key = Guid.NewGuid().ToString().Replace("-", "");
-            }
-
             rijndaelManaged = new RijndaelManaged
             {
-                Key = Encoding.UTF8.GetBytes(Key),
+                Key = Encoding.UTF8.GetBytes(Config),
                 Mode = CipherMode.ECB,
                 Padding = PaddingMode.PKCS7
             };
