@@ -44,6 +44,7 @@ namespace CoreHome.Admin
                 });
             });
 
+            services.AddSingleton<HomePageService>();
             services.AddSingleton<BingWallpaperService>();
             services.AddSingleton<ThemeService>();
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
