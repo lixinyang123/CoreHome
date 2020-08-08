@@ -32,7 +32,7 @@ namespace CoreHome.HomePage.Controllers
                 wordClouds.Add(new List<string>()
                 {
                     {tag.TagName },
-                    {(tag.ArticleTags.Count*10).ToString() }
+                    {(tag.ArticleTags.Count*8).ToString() }
                 });
             }
             return Json(wordClouds);
