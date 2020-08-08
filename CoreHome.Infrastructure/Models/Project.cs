@@ -1,13 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CoreHome.HomePage.ViewModels
+namespace CoreHome.Infrastructure.Models
 {
-    public class HomePageViewModel
-    {
-        public List<Project> Categories { get; set; }
-    }
-
     public class Project
     {
         [Required]
@@ -23,6 +18,6 @@ namespace CoreHome.HomePage.ViewModels
         public string Link { get; set; }
 
         [Required]
-        public Dictionary<string,string> Tips { get; set; }
+        public Dictionary<string, string> Tips { get; set; }
     }
 }

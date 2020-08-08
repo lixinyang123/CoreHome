@@ -1,8 +1,8 @@
-﻿using CoreHome.HomePage.ViewModels;
-using CoreHome.Infrastructure.Models;
+﻿using CoreHome.Infrastructure.Models;
+using CoreHome.Infrastructure.ViewModels;
 using System.Collections.Generic;
 
-namespace CoreHome.HomePage.Services
+namespace CoreHome.Infrastructure.Services
 {
     public class HomePageService : StaticConfig<HomePageViewModel>
     {

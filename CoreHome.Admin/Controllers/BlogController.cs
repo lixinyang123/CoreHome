@@ -27,7 +27,7 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.PageTitle = "Blogs";
+            ViewBag.PageTitle = "Blog";
 
             List<Article> articles = articleDbContext.Articles.OrderByDescending(i => i.Id).ToList();
             return View(articles);
