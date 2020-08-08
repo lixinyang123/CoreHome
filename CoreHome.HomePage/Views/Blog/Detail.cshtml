@@ -74,11 +74,11 @@
                     <div class="col">
                         <div class="input-group">
                             <img id="verfyImg" onclick="getVerfyCode(this)" src="/Service/VerificationCode" />
-                            <input id="verificationCode" type="text" class="form-control" placeholder="验证码" name="VerificationCode" value="@Model.CommentViewModel.VerificationCode"/>
+                            <input id="verificationCode" type="text" autocomplete="off" class="form-control" placeholder="验证码" name="VerificationCode" value="@Model.CommentViewModel.VerificationCode"/>
                         </div>
                     </div>
                     <div class="col">
-                        <input id="btn_submit" type="submit" autocomplete="off" class="btn btn-success float-right" value="提交" />
+                        <input id="btn_submit" type="submit" class="btn btn-success float-right" value="提交" />
                     </div>
                 </div>
             </form>
