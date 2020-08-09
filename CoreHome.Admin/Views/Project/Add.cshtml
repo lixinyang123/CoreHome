@@ -1,0 +1,30 @@
+﻿@model Project
+
+<div class="container">
+    <h1 class="display-4">AddProject</h1>
+    <hr />
+
+    <form asp-controller="Project" asp-action="Add" method="post">
+
+        <label asp-for="Size"></label>*
+        <input asp-for="Size" type="text" autocomplete="off" class="form-control" />
+
+        <label asp-for="Name"></label>*
+        <input asp-for="Name" type="text" autocomplete="off" class="form-control" />
+
+        <label asp-for="Detail"></label>*
+        <input asp-for="Detail" type="text" autocomplete="off" class="form-control" />
+
+        <label asp-for="CoverUrl"></label>*
+        <input asp-for="CoverUrl" type="text" autocomplete="off" class="form-control" />
+
+        <label asp-for="Link"></label>*
+        <input asp-for="Link" type="text" autocomplete="off" class="form-control" />
+
+        <label asp-for="Tip"></label>*
+        <input asp-for="Tip" type="text" autocomplete="off" class="form-control" />
+
+        <hr />
+        <input type="submit" value="提交" class="btn btn-success" />
+    </form>
+</div>

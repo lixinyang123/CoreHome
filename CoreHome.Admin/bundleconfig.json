@@ -52,5 +52,11 @@
     "inputFiles": [
       "wwwroot/js/shared/markdownRender.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/components/project.min.css",
+    "inputFiles": [
+      "wwwroot/css/components/project.css"
+    ]
   }
 ]

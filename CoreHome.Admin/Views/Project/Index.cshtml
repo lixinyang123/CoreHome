@@ -1,7 +1,32 @@
-﻿@model HomePageViewModel
+﻿@model List<Project>
 
 <div class="container">
 
     <h1 class="display-4">Project</h1>
+    <br />
+    <a asp-controller="Project" asp-action="Add" class="btn btn-primary">添加项目</a>
+    <br />
+    <hr />
 
+    <div id="projectList">
+        @foreach (var project in Model)
+        {
+            switch (project.Size)
+            {
+                case ProjectSize.Big:
+                    <div class="row">
+                        @await Component.InvokeAsync("Project", project)
+                    </div>
+                    break;
+
+                case ProjectSize.Middle:
+
+                    break;
+
+                case ProjectSize.Small:
+
+                    break;
+            }
+        }
+    </div>
 </div>

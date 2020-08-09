@@ -1,15 +1,10 @@
 ﻿using CoreHome.Infrastructure.Models;
-using CoreHome.Infrastructure.ViewModels;
 using System.Collections.Generic;
 
 namespace CoreHome.Infrastructure.Services
 {
-    public class HomePageService : StaticConfig<HomePageViewModel>
+    public class HomePageService : StaticConfig<List<Project>>
     {
-        public HomePageService() : base("HomePage.json", new HomePageViewModel()
-        {
-            Categories = new List<Project>()
-        })
-        { }
+        public HomePageService(string fileName, List<Project> initProjects) : base(fileName, initProjects) { }
     }
 }

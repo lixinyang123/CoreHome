@@ -9,7 +9,7 @@ namespace CoreHome.Admin.Services
     {
         private readonly RijndaelManaged rijndaelManaged;
 
-        public SecurityService() : base("key.txt", Guid.NewGuid().ToString().Replace("-", ""))
+        public SecurityService(string fileName, string initKey) : base(fileName, initKey)
         {
             rijndaelManaged = new RijndaelManaged
             {

@@ -47,7 +47,12 @@ namespace CoreHome.HomePage
             services.AddScoped<VerificationCodeService>();
             services.AddSingleton<BingWallpaperService>();
             services.AddSingleton<SearchEngineService>();
-            services.AddSingleton<ThemeService>();
+            services.AddSingleton(new ThemeService("Theme.json", new Theme()
+            {
+                ThemeType = ThemeType.Auto,
+                BackgroundType = BackgroundType.Color,
+                MusicUrl = null
+            }));
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
             services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
             services.AddSingleton(Configuration.GetSection("UserInfo").Get<UserInfo>());
