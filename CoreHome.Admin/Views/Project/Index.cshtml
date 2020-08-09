@@ -15,7 +15,6 @@
 
         @foreach (var project in Model)
         {
-            lastProjectSize = project.Size;
             if (project.Size == ProjectSize.Big)
             {
                 if (lastProjectSize != ProjectSize.Big)
@@ -39,6 +38,7 @@
                     @await Component.InvokeAsync("Project", project)
                 }
             }
+            lastProjectSize = project.Size;
         }
 
         @if (lastProjectSize != ProjectSize.Big)
