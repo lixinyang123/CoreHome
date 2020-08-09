@@ -4,6 +4,7 @@ using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CoreHome.Admin.Controllers
 {
@@ -20,14 +21,14 @@ namespace CoreHome.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.PageTitle = "Project";
-
             return View(homePageService.Config);
         }
 
         public IActionResult Add()
         {
             ViewBag.PageTitle = "Add Project";
-            return View(new Project());
+            ViewBag.Action = "Add";
+            return View("Editor", new Project());
         }
 
         [HttpPost]
@@ -43,26 +44,54 @@ namespace CoreHome.Admin.Controllers
             }
             else
             {
-                return View(project);
+                ViewBag.Action = "Add";
+                return View("Editor", project);
             }
+        }
+
+        public IActionResult Delete(string id)
+        {
+            var index = homePageService.Config.FindIndex(i => i.Id == id);
+            if (index >= 0)
+            {
+                var projects = homePageService.Config;
+                projects.RemoveAt(index);
+                homePageService.Config = projects;
+            }
+            return RedirectToAction("Index");
         }
 
         public IActionResult Edit(string id)
         {
             ViewBag.PageTitle = "Edit Project";
-            Project project = null;
-            homePageService.Config.ForEach((item) =>
-            {
-                if(item.Id == id)
-                {
-                    project = item;
-                }
-            });
-            if(project == null)
+            ViewBag.Action = "Edit";
+            Project project = homePageService.Config.SingleOrDefault(i => i.Id == id);
+            if (project == null)
             {
                 return RedirectToAction("Index");
             }
-            return View("Add", project);
+            return View("Editor", project);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Project project)
+        {
+            if (ModelState.IsValid)
+            {
+                var index = homePageService.Config.FindIndex(i => i.Id == project.Id);
+                if (index >= 0)
+                {
+                    var projects = homePageService.Config;
+                    projects[index] = project;
+                    homePageService.Config = projects;
+                }
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Action = "Edit";
+                return View("Editor", project);
+            }
         }
 
     }

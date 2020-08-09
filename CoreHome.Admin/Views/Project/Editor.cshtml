@@ -4,7 +4,7 @@
     <h1 class="display-4">@ViewBag.PageTitle</h1>
     <hr />
 
-    <form asp-controller="Project" asp-action="Add" method="post">
+    <form asp-controller="Project" asp-action="@ViewBag.Action" method="post">
 
         <label asp-for="Size"></label>*
         <input asp-for="Size" type="text" autocomplete="off" class="form-control" />

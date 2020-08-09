@@ -4,29 +4,46 @@
 
     <h1 class="display-4">Project</h1>
     <br />
-    <a asp-controller="Project" asp-action="Add" class="btn btn-primary">添加项目</a>
+    <a asp-controller="Project" asp-action="Add" class="btn btn-primary">Add Project</a>
     <br />
     <hr />
 
     <div id="projectList">
+        @{
+            var lastProjectSize = ProjectSize.Big;
+        }
+
         @foreach (var project in Model)
         {
-            switch (project.Size)
+            lastProjectSize = project.Size;
+            if (project.Size == ProjectSize.Big)
             {
-                case ProjectSize.Big:
-                    <div class="row">
-                        @await Component.InvokeAsync("Project", project)
-                    </div>
-                    break;
-
-                case ProjectSize.Middle:
-
-                    break;
-
-                case ProjectSize.Small:
-
-                    break;
+                if (lastProjectSize != ProjectSize.Big)
+                {
+                    @Html.Raw("</div>")
+                }
+                <div class="row">
+                    @await Component.InvokeAsync("Project", project)
+                </div>
             }
+            else
+            {
+                if (lastProjectSize != ProjectSize.Big)
+                {
+                    @await Component.InvokeAsync("Project", project)
+                    @Html.Raw("</div>")
+                }
+                else
+                {
+                    @Html.Raw("<div class='row'>")
+                    @await Component.InvokeAsync("Project", project)
+                }
+            }
+        }
+
+        @if (lastProjectSize != ProjectSize.Big)
+        {
+            @Html.Raw("</div>")
         }
     </div>
 </div>
