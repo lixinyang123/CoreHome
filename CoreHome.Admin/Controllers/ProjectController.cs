@@ -26,7 +26,7 @@ namespace CoreHome.Admin.Controllers
 
         public IActionResult Add()
         {
-            ViewBag.PageTitle = "AddProject";
+            ViewBag.PageTitle = "Add Project";
             return View(new Project());
         }
 
@@ -46,5 +46,24 @@ namespace CoreHome.Admin.Controllers
                 return View(project);
             }
         }
+
+        public IActionResult Edit(string id)
+        {
+            ViewBag.PageTitle = "Edit Project";
+            Project project = null;
+            homePageService.Config.ForEach((item) =>
+            {
+                if(item.Id == id)
+                {
+                    project = item;
+                }
+            });
+            if(project == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View("Add", project);
+        }
+
     }
 }
