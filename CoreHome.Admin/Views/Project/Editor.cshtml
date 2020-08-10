@@ -9,15 +9,15 @@
         <label asp-for="Size"></label>*
         <div>
             <div class="form-check form-check-inline">
-                <input name="Size" class="form-check-input" type="radio" value="0" @if (Model.Size == ProjectSize.Big) { Write("checked"); }>
+                <input name="Size" class="form-check-input" type="radio" value="@ProjectSize.Big" @if (Model.Size == ProjectSize.Big) { Write("checked"); }>
                 <label class="form-check-label" for="inlineRadio1">Big</label>
             </div>
             <div class="form-check form-check-inline">
-                <input name="Size" class="form-check-input" type="radio" value="1" @if (Model.Size == ProjectSize.Middle) { Write("checked"); }>
+                <input name="Size" class="form-check-input" type="radio" value="@ProjectSize.Middle" @if (Model.Size == ProjectSize.Middle) { Write("checked"); }>
                 <label class="form-check-label" for="inlineRadio2">Middle</label>
             </div>
             <div class="form-check form-check-inline">
-                <input name="Size" class="form-check-input" type="radio" value="2" @if (Model.Size == ProjectSize.Small) { Write("checked"); }>
+                <input name="Size" class="form-check-input" type="radio" value="@ProjectSize.Small" @if (Model.Size == ProjectSize.Small) { Write("checked"); }>
                 <label class="form-check-label" for="inlineRadio3">Small</label>
             </div>
         </div>

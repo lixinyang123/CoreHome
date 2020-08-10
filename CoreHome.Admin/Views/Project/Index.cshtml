@@ -9,41 +9,13 @@
     <hr />
 
     <div id="projectList">
-        @{
-            var lastProjectSize = ProjectSize.Big;
-        }
 
-        @foreach (var project in homePageService.Config)
-        {
-            if (project.Size == ProjectSize.Big)
+        <div class="row">
+            @foreach (var project in homePageService.Config)
             {
-                if (lastProjectSize != ProjectSize.Big)
-                {
-                    @Html.Raw("</div>")
-                }
-                <div class="row">
-                    @await Component.InvokeAsync("Project", project)
-                </div>
+                @await Component.InvokeAsync("Project", project)
             }
-            else
-            {
-                if (lastProjectSize != ProjectSize.Big)
-                {
-                    @await Component.InvokeAsync("Project", project)
-                    @Html.Raw("</div>")
-                }
-                else
-                {
-                    @Html.Raw("<div class='row'>")
-                    @await Component.InvokeAsync("Project", project)
-                }
-            }
-            lastProjectSize = project.Size;
-        }
+        </div>
 
-        @if (lastProjectSize != ProjectSize.Big)
-        {
-            @Html.Raw("</div>")
-        }
     </div>
 </div>
