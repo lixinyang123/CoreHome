@@ -1,0 +1,74 @@
+﻿.fh5co-blog {
+    width: 100%;
+    float: left;
+    margin-bottom: 40px;
+    border: 1px solid rgba(0,0,0,0.12);
+}
+
+.fh5co-blog:hover {
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+.blog-imgbox {
+    overflow: hidden;
+}
+
+.fh5co-blog .blog-bg {
+    display: block;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 300px;
+    transition: transform 0.2s ease-out;
+}
+
+.fh5co-blog .blog-bg:hover {
+    transform: scale(1.07);
+}
+
+.fh5co-blog .blog-text {
+    position: relative;
+    width: 100%;
+    padding: 30px;
+    float: left;
+    background: #fff;
+    transition: 0.3s;
+}
+
+.fh5co-blog .blog-text h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.fh5co-blog .blog-text .stuff {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+}
+
+.fh5co-blog .blog-text .stuff li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .fh5co-blog .blog-text .stuff li {
+        font-size: 14px;
+    }
+}
+
+.fh5co-blog .blog-text .stuff li:last-child {
+    float: right;
+}
+
+.fh5co-blog .blog-text .stuff li:last-child a {
+    color: #000;
+}
+
+.detail {
+    margin-bottom: 20px;
+}

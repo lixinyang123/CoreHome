@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Pomelo.EntityFrameworkCore.MySql.Storage;
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace CoreHome.HomePage
@@ -47,6 +48,7 @@ namespace CoreHome.HomePage
             services.AddScoped<VerificationCodeService>();
             services.AddSingleton<BingWallpaperService>();
             services.AddSingleton<SearchEngineService>();
+            services.AddSingleton(new HomePageService("Project.json", new List<Project>()));
             services.AddSingleton(new ThemeService("Theme.json", new Theme()
             {
                 ThemeType = ThemeType.Auto,

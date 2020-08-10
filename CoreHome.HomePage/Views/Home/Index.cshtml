@@ -1,4 +1,5 @@
 ﻿@inject BingWallpaperService BingWallpaperService
+@inject HomePageService homePageService
 
 <div>
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet" />
@@ -54,119 +55,52 @@
 
         <div id="program" class="container">
 
-            <!--Title-->
-            <div class="row">
-                <div class="text-center fh5co-heading">
-                    <h2 class="display-4">My Project</h2>
-                </div>
-            </div>
-
-            <!--MainApp-->
-            <div class="row">
-                <div class="fh5co-blog">
-                    <div class="blog_imgbox">
-                        <a class="blog-bg" style="background-image:url(https://corehome.oss-accelerate.aliyuncs.com/images/chaoxing.jpg);" href="https://www.lanzous.com/i71mkpa"></a>
-                    </div>
-                    <div class="blog-text">
-                        <h3>超星尔雅刷课</h3>
-                        <p class="detail">超星尔雅（学习通）刷课软件，支持自动播放，后台播放，自动答题，自动跳转功能 （支持windows10版本>=17110 .NET Framework>=4.6.2）, 兼容版本使用Chromium内核（兼容windows7，但功能有阉割），如果<strong><u>遇到问题</u></strong>请尝试兼容版本 .</p>
-                        <ul class="stuff">
-                            <li>
-                                <a href="https://lanzous.com/i71mkpa">下载<span style="color:orange;">新版</span>安装包<i class="icon-arrow-right22"></i></a>
-                                <a href="https://lanzous.com/i76cm0h">下载<span style="color:orange;">兼容</span>版本<i class="icon-arrow-right22"></i></a>
-                            </li>
-                        </ul>
+            @if (homePageService.Config.Count > 0)
+            {
+                <!--Title-->
+                <div class="row">
+                    <div class="text-center fh5co-heading">
+                        <h2 class="display-4">My Project</h2>
                     </div>
                 </div>
-            </div>
+            }
 
-            <!--AllApp-->
-            <div class="row">
+            @{
+                var lastProjectSize = ProjectSize.Big;
+            }
 
-                <div class="col-md-8">
-                    <div class="fh5co-blog ">
-                        <div class="blog_imgbox">
-                            <a class="blog-bg" style="background-image:url(https://corehome.oss-accelerate.aliyuncs.com/images/translator.jpg);" href="https://github.com/lixinyang123/Translator"></a>
-                        </div>
-                        <div class="blog-text">
-                            <h3>Translator</h3>
-                            <p class="detail">Linux平台的第三方有道词典（源码）</p>
-                            <ul class="stuff">
-                                <li><a href="https://github.com/lixinyang123/Translator">了解更多<i class="icon-arrow-right22"></i></a></li>
-                            </ul>
-                        </div>
+            @foreach (var project in homePageService.Config)
+            {
+                if (project.Size == ProjectSize.Big)
+                {
+                    if (lastProjectSize != ProjectSize.Big)
+                    {
+                        @Html.Raw("</div>")
+                    }
+                    <div class="row">
+                        @await Component.InvokeAsync("Project", project)
                     </div>
-                </div>
+                }
+                else
+                {
+                    if (lastProjectSize != ProjectSize.Big)
+                    {
+                        @await Component.InvokeAsync("Project", project)
+                        @Html.Raw("</div>")
+                    }
+                    else
+                    {
+                        @Html.Raw("<div class='row'>")
+                        @await Component.InvokeAsync("Project", project)
+                    }
+                }
+                lastProjectSize = project.Size;
+            }
 
-                <div class="col-md-4">
-                    <div class="fh5co-blog">
-                        <div class="blog_imgbox">
-                            <a class="blog-bg" style="background-image:url(https://corehome.oss-accelerate.aliyuncs.com/images/createjt.jpg);" href="ms-windows-store://pdp/?ProductId=9P2DG3TB2TS3"></a>
-                        </div>
-                        <div class="blog-text">
-                            <h3>假条生成器</h3>
-                            <p class="detail">选择日期生成工院假条（不支持外校）.</p>
-                            <ul class="stuff">
-                                <li>
-                                    <a href="ms-windows-store://pdp/?ProductId=9P2DG3TB2TS3">微软商店<i class="icon-arrow-right22"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!--MainApp-->
-            <div class="row">
-                <div class="fh5co-blog ">
-                    <div class="blog_imgbox">
-                        <a class="blog-bg" style="background-image:url(https://corehome.oss-accelerate.aliyuncs.com/images/conchbrain.jpg);" href="https://conchbrain.club/"></a>
-                    </div>
-                    <div class="blog-text">
-                        <h3>海螺大脑俱乐部</h3>
-                        <p class="detail">你为什么不问问神奇的魔法海螺呢？</p>
-                        <ul class="stuff">
-                            <li><a href="https://conchbrain.club/" target="blank">访问网站<i class="icon-arrow-right22"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!--AllApp-->
-            <div class="row">
-
-                <div class="col-md-8">
-                    <div class="fh5co-blog ">
-                        <div class="blog_imgbox">
-                            <a class="blog-bg" style="background-image:url(https://corehome.oss-accelerate.aliyuncs.com/images/cloudshell.jpg)" href="http://180.76.232.34/"></a>
-                        </div>
-                        <div class="blog-text">
-                            <h3>CloudShell</h3>
-                            <p class="detail">开箱即用的在线 Linux 环境, 支持8种常用的发行版本 .</p>
-                            <ul class="stuff">
-                                <li><a href="http://180.76.232.34/">访问网站<i class="icon-arrow-right22"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="fh5co-blog ">
-                        <div class="blog_imgbox">
-                            <a class="blog-bg" style="background-image:url(https://corehome.oss-accelerate.aliyuncs.com/images/parsedcm.jpg)" href="https://www.lllxy.net/parsedcm"></a>
-                        </div>
-                        <div class="blog-text">
-                            <h3>ParseDCM</h3>
-                            <p class="detail">在线的Dicom解析器.</p>
-                            <ul class="stuff">
-                                <li><a href="https://www.lllxy.net/parsedcm">访问网站<i class="icon-arrow-right22"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            @if (lastProjectSize != ProjectSize.Big)
+            {
+                @Html.Raw("</div>")
+            }
 
         </div>
 

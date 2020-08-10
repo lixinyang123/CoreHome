@@ -21,7 +21,7 @@ namespace CoreHome.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.PageTitle = "Project";
-            return View(homePageService.Config);
+            return View();
         }
 
         public IActionResult Add()

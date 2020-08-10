@@ -1,4 +1,4 @@
-﻿@model List<Project>
+﻿@inject HomePageService homePageService
 
 <div class="container">
 
@@ -13,7 +13,7 @@
             var lastProjectSize = ProjectSize.Big;
         }
 
-        @foreach (var project in Model)
+        @foreach (var project in homePageService.Config)
         {
             if (project.Size == ProjectSize.Big)
             {
