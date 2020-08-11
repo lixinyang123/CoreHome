@@ -8,39 +8,49 @@
 
     <form asp-controller="Project" asp-action="@ViewBag.Action" method="post">
 
-        <label asp-for="Size"></label>*
-        <div>
-            <div class="form-check form-check-inline">
-                <input name="Size" class="form-check-input" type="radio" value="@ProjectSize.Big" @if (Model.Size == ProjectSize.Big) { Write("checked"); }>
-                <label class="form-check-label" for="inlineRadio1">Big</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input name="Size" class="form-check-input" type="radio" value="@ProjectSize.Middle" @if (Model.Size == ProjectSize.Middle) { Write("checked"); }>
-                <label class="form-check-label" for="inlineRadio2">Middle</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input name="Size" class="form-check-input" type="radio" value="@ProjectSize.Small" @if (Model.Size == ProjectSize.Small) { Write("checked"); }>
-                <label class="form-check-label" for="inlineRadio3">Small</label>
+        <div class="inputRow">
+            <label asp-for="Size"></label>*
+            <div>
+                <div class="form-check form-check-inline">
+                    <input name="Size" class="form-check-input" type="radio" value="@ProjectSize.Big" @if (Model.Size == ProjectSize.Big) { Write("checked"); }>
+                    <label class="form-check-label" for="inlineRadio1">Big</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input name="Size" class="form-check-input" type="radio" value="@ProjectSize.Middle" @if (Model.Size == ProjectSize.Middle) { Write("checked"); }>
+                    <label class="form-check-label" for="inlineRadio2">Middle</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input name="Size" class="form-check-input" type="radio" value="@ProjectSize.Small" @if (Model.Size == ProjectSize.Small) { Write("checked"); }>
+                    <label class="form-check-label" for="inlineRadio3">Small</label>
+                </div>
             </div>
         </div>
-        <br />
 
-        <label asp-for="Name"></label>*
-        <input asp-for="Name" type="text" autocomplete="off" class="form-control" />
+        <div class="inputRow">
+            <label asp-for="Name"></label>*
+            <input asp-for="Name" type="text" autocomplete="off" class="form-control" />
+        </div>
 
-        <label asp-for="Detail"></label>*
-        <input asp-for="Detail" type="text" autocomplete="off" class="form-control" />
+        <div class="inputRow">
+            <label asp-for="Detail"></label>*
+            <input asp-for="Detail" type="text" autocomplete="off" class="form-control" />
+        </div>
 
-        <label asp-for="CoverUrl"></label>*
-        <input asp-for="CoverUrl" type="text" autocomplete="off" class="form-control" />
+        <div class="inputRow">
+            <label asp-for="CoverUrl"></label>*
+            <input asp-for="CoverUrl" type="text" autocomplete="off" class="form-control" />
+        </div>
 
-        <label asp-for="Link"></label>*
-        <input asp-for="Link" type="text" autocomplete="off" class="form-control" />
+        <div class="inputRow">
+            <label asp-for="Link"></label>*
+            <input asp-for="Link" type="text" autocomplete="off" class="form-control" />
+        </div>
 
-        <label asp-for="Tip"></label>*
-        <input asp-for="Tip" type="text" autocomplete="off" class="form-control" />
+        <div class="inputRow">
+            <label asp-for="Tip"></label>*
+            <input asp-for="Tip" type="text" autocomplete="off" class="form-control" />
+        </div>
 
-        <hr />
-        <input type="submit" value="提交" class="btn btn-success" />
+        <input type="submit" value="Submit" class="btn btn-success" />
     </form>
 </div>

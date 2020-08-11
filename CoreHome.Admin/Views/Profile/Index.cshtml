@@ -25,26 +25,40 @@
     <div>
         <form asp-controller="Profile" asp-action="Index" method="post">
 
-            <label asp-for="Name"></label>*
-            <input asp-for="Name" type="text" autocomplete="off" class="form-control" />
+            <div class="inputRow">
+                <label asp-for="Name"></label>*
+                <input asp-for="Name" type="text" autocomplete="off" class="form-control" />
+            </div>
 
-            <label asp-for="Avatar"></label>*
-            <input asp-for="Avatar" type="text" autocomplete="off" class="form-control" id="avatarUrl" />
+            <div class="inputRow">
+                <label asp-for="Avatar"></label>*
+                <input asp-for="Avatar" type="text" autocomplete="off" class="form-control" id="avatarUrl" />
+            </div>
 
-            <label asp-for="Info"></label>*
-            <input asp-for="Info" type="text" autocomplete="off" class="form-control" />
+            <div class="inputRow">
+                <label asp-for="Info"></label>*
+                <input asp-for="Info" type="text" autocomplete="off" class="form-control" />
+            </div>
 
-            <label asp-for="QQ"></label>*
-            <input asp-for="QQ" type="text" autocomplete="off" class="form-control" />
+            <div class="inputRow">
+                <label asp-for="QQ"></label>*
+                <input asp-for="QQ" type="text" autocomplete="off" class="form-control" />
+            </div>
 
-            <label asp-for="Email"></label>*
-            <input asp-for="Email" type="text" autocomplete="off" class="form-control" />
+            <div class="inputRow">
+                <label asp-for="Email"></label>*
+                <input asp-for="Email" type="text" autocomplete="off" class="form-control" />
+            </div>
 
-            <label asp-for="ICP"></label>*
-            <input asp-for="ICP" type="text" autocomplete="off" class="form-control" />
+            <div class="inputRow">
+                <label asp-for="ICP"></label>*
+                <input asp-for="ICP" type="text" autocomplete="off" class="form-control" />
+            </div>
 
-            <label asp-for="AdminPassword"></label>*
-            <input asp-for="AdminPassword" type="text" autocomplete="off" class="form-control" />
+            <div class="inputRow">
+                <label asp-for="AdminPassword"></label>*
+                <input asp-for="AdminPassword" type="text" autocomplete="off" class="form-control" />
+            </div>
 
             <input id="submit-profile" type="submit" value="Apply" class="btn btn-success" />
 
