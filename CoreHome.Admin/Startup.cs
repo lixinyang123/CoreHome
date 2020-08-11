@@ -46,6 +46,16 @@ namespace CoreHome.Admin
             });
 
             services.AddSingleton<BingWallpaperService>();
+            services.AddSingleton(new UserInfoService("UserInfo.json", new Profile()
+            {
+                Name = "LLLXY",
+                Avatar = "https://corehome.oss-accelerate.aliyuncs.com/images/Avatar.jpg",
+                Info = ".Net Developer",
+                QQ = "837685961",
+                Email = "lixinyangemil@outlook.com",
+                ICP = "豫ICP备18041216号-2",
+                AdminPassword = "123456"
+            }));
             services.AddSingleton(new HomePageService("Project.json", new List<Project>()));
             services.AddSingleton(new ThemeService("Theme.json", new Theme()
             {
@@ -55,7 +65,7 @@ namespace CoreHome.Admin
             }));
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
             services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
-            services.AddSingleton(Configuration.GetSection("UserInfo").Get<UserInfo>());
+            services.AddSingleton(Configuration.GetSection("UserInfo").Get<Profile>());
             services.AddSingleton(new SecurityService("Key.txt", Guid.NewGuid().ToString().Replace("-", "")));
 
             services.Configure<CookieOptions>(config =>

@@ -13,14 +13,14 @@ namespace CoreHome.HomePage.Controllers
     {
         private readonly IWebHostEnvironment environment;
         private readonly SearchEngineService searchEngineService;
-        private readonly UserInfo userInfo;
+        private readonly Profile profile;
 
 
-        public HomeController(IWebHostEnvironment environment, SearchEngineService searchEngineService, UserInfo userInfo)
+        public HomeController(IWebHostEnvironment environment, SearchEngineService searchEngineService, Profile profile)
         {
             this.environment = environment;
             this.searchEngineService = searchEngineService;
-            this.userInfo = userInfo;
+            this.profile = profile;
         }
 
         public IActionResult Index()
@@ -28,7 +28,7 @@ namespace CoreHome.HomePage.Controllers
             ViewBag.PageTitle = "Home";
             searchEngineService.PushToBaidu(environment.WebRootPath);
 
-            ViewBag.Title = userInfo.Name;
+            ViewBag.Title = profile.Name;
             string lastTime = Request.Cookies["lastTime"];
 
             DateTime now = DateTime.Now;

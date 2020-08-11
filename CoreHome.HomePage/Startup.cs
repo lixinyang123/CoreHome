@@ -57,7 +57,7 @@ namespace CoreHome.HomePage
             }));
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
             services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
-            services.AddSingleton(Configuration.GetSection("UserInfo").Get<UserInfo>());
+            services.AddSingleton(Configuration.GetSection("UserInfo").Get<Profile>());
 
             services.Configure<CookieOptions>(config =>
             {

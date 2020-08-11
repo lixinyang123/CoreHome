@@ -28,7 +28,7 @@
         <div class="sidebar">
 
             <div class="top-row pl-4 navbar navbar-dark">
-                <a class="navbar-brand" asp-controller="Overview" asp-action="Index">Admin | @UserInfo.Name</a>
+                <a class="navbar-brand" asp-controller="Overview" asp-action="Index">Admin | @Profile.Name</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -39,6 +39,11 @@
                     <li class="nav-item px-3">
                         <a class="nav-link" asp-controller="Overview" asp-action="Index">
                             <span class="oi oi-home"></span> Overview
+                        </a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" asp-controller="User" asp-action="Index">
+                            <span class="oi oi-person"></span> User
                         </a>
                     </li>
                     <li class="nav-item px-3">

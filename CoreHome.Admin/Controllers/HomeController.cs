@@ -15,17 +15,17 @@ namespace CoreHome.Admin.Controllers
         private readonly IMemoryCache cache;
         private readonly NotifyService notifyService;
         private readonly SecurityService securityService;
-        private readonly IConfiguration configuration;
+        private readonly UserInfoService userInfoService;
 
         public HomeController(IMemoryCache cache, 
             NotifyService notifyService, 
             SecurityService securityService,
-            IConfiguration configuration)
+            UserInfoService userInfoService)
         {
             this.cache = cache;
             this.notifyService = notifyService;
             this.securityService = securityService;
-            this.configuration = configuration;
+            this.userInfoService = userInfoService;
         }
 
         public IActionResult Index()
@@ -80,7 +80,7 @@ namespace CoreHome.Admin.Controllers
             }
             catch (Exception) { }
 
-            var verifyAdminPwd = pwd == configuration.GetValue<string>("AdminPassword");
+            var verifyAdminPwd = pwd == userInfoService.Config.AdminPassword;
             var verifyDynamicPwd = pwd == password && pwd != null && password != null;
 
             if (verifyAdminPwd || verifyDynamicPwd)
