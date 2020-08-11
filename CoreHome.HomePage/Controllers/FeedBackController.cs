@@ -18,7 +18,7 @@ namespace CoreHome.HomePage.Controllers
         {
             ViewBag.PageTitle = "Feedback";
 
-            ViewBag.Warning = "反馈中心";
+            ViewBag.Warning = "Feedback Center";
             return View();
         }
 
@@ -29,7 +29,7 @@ namespace CoreHome.HomePage.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.Warning = "请完善反馈信息";
+                ViewBag.Warning = "Please refine your feedback";
                 return View(feedback);
             }
 
@@ -37,11 +37,11 @@ namespace CoreHome.HomePage.Controllers
             if (str == feedback.VerificationCode.ToLower())
             {
                 notifyService.PushNotify(feedback.Title + $"[{feedback.Contact}]", feedback.Content);
-                ViewBag.Warning = "感谢您的反馈，开发者会尽快答复";
+                ViewBag.Warning = "Thank you for your feedback";
                 return View();
             }
 
-            ViewBag.Warning = "验证码错误";
+            ViewBag.Warning = "The verification code is wrong";
             return View(feedback);
         }
     }

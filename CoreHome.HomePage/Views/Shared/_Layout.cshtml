@@ -14,7 +14,7 @@
     <meta property="og:site_name" content="LLLXY" />
     <meta property="og:image" content="https://lllxy.oss-cn-shenzhen.aliyuncs.com/CoreHome/Images/user.jpg" />
 
-    <title>@ViewBag.PageTitle | @UserInfo.Name</title>
+    <title>@ViewBag.PageTitle | @ProfileService.Config.Name</title>
 
     <link rel="shortcut icon" href="~/favicon.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -91,7 +91,7 @@
                 <a href="https://dotnet.microsoft.com/" target="_blank"><strong>.NET Core</strong></a> 3.1.6
             </p>
             <p>
-                &copy; 2020 - @UserInfo.Name
+                &copy; 2020 - @ProfileService.Config.Name
                 <a href="http://www.beian.miit.gov.cn/" target="_blank"><strong>豫ICP备18041216号-2</strong></a>
             </p>
         </div>

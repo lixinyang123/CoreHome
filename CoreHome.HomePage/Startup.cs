@@ -48,6 +48,16 @@ namespace CoreHome.HomePage
             services.AddScoped<VerificationCodeService>();
             services.AddSingleton<BingWallpaperService>();
             services.AddSingleton<SearchEngineService>();
+            services.AddSingleton(new ProfileService("Profile.json", new Profile()
+            {
+                Name = "LLLXY",
+                Avatar = "https://corehome.oss-accelerate.aliyuncs.com/images/avatar.jpg",
+                Info = ".Net Developer",
+                QQ = "837685961",
+                Email = "lixinyangemil@outlook.com",
+                ICP = "豫ICP备18041216号-2",
+                AdminPassword = "123456"
+            }));
             services.AddSingleton(new HomePageService("Project.json", new List<Project>()));
             services.AddSingleton(new ThemeService("Theme.json", new Theme()
             {
@@ -57,7 +67,6 @@ namespace CoreHome.HomePage
             }));
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
             services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
-            services.AddSingleton(Configuration.GetSection("UserInfo").Get<Profile>());
 
             services.Configure<CookieOptions>(config =>
             {

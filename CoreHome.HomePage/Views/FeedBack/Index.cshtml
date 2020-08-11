@@ -11,28 +11,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <p><strong>联系开发者</strong></p>
-                <p>@UserInfo.Name</p>
-                <p>QQ： @UserInfo.QQ</p>
-                <p>Email：<a href="mailto:lixinyangemil@outlook.com">@UserInfo.Email</a></p>
+                <p><strong>Contact the developer</strong></p>
+                <p>@ProfileService.Config.Name</p>
+                <p>QQ： @ProfileService.Config.QQ</p>
+                <p>Email：<a href="mailto:lixinyangemil@outlook.com">@ProfileService.Config.Email</a></p>
             </div>
 
             <div class="col-md-8">
                 <form asp-controller="Feedback" asp-action="Index" method="post">
 
-                    <input asp-for="Contact" class="form-control feedInfo" type="text" placeholder="你的联系方式（Enail/QQ）" autocomplete="off"/>
-                    <input asp-for="Title" class="form-control feedInfo" type="text" placeholder="标题" autocomplete="off"/>
-                    <textarea asp-for="Content" class="form-control feedInfo" rows="10" cols="100" placeholder="问题描述" maxlength="999"></textarea>
+                    <input asp-for="Contact" class="form-control feedInfo" type="text" placeholder="Your contact details（Enail/QQ）" autocomplete="off"/>
+                    <input asp-for="Title" class="form-control feedInfo" type="text" placeholder="Title" autocomplete="off"/>
+                    <textarea asp-for="Content" class="form-control feedInfo" rows="10" cols="100" placeholder="Description of the problem." maxlength="999"></textarea>
                 
                     <div class="row">
                         <div class="col">
                             <div class="input-group">
                                 <img id="verfyImg" onclick="getVerfyCode(this)" src="/Service/VerificationCode" />
-                                <input id="verificationCode" asp-for="VerificationCode" type="text" autocomplete="off" class="form-control" placeholder="验证码" />
+                                <input id="verificationCode" asp-for="VerificationCode" type="text" autocomplete="off" class="form-control" placeholder="Code" />
                             </div>
                         </div>
                         <div class="col">
-                            <input id="btn_submit" type="submit" class="btn btn-success float-right" value="提交" />
+                            <input id="btn_submit" type="submit" class="btn btn-success float-right" value="Submit" />
                         </div>
                     </div>
 
