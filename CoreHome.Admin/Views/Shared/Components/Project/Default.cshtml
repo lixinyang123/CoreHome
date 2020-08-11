@@ -30,7 +30,7 @@
         </div>
         <div class="blog-text">
             <h3>@Model.Name</h3>
-            <p class="detail">@Model.Detail</p>
+            <p class="detail">@Html.Raw(Model.Detail)</p>
             <ul class="stuff">
                 <li>
                     <a href="@Model.Link" target="_blank">@Model.Tip</a>
