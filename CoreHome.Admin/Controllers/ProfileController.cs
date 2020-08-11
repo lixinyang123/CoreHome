@@ -1,4 +1,5 @@
-﻿using CoreHome.Infrastructure.Models;
+﻿using CoreHome.Admin.Filter;
+using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using System.IO;
 
 namespace CoreHome.Admin.Controllers
 {
+    [TypeFilter(typeof(AuthorizationFilter))]
     public class ProfileController : Controller
     {
         private readonly ProfileService profileService;
