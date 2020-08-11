@@ -1,0 +1,53 @@
+﻿@model Profile
+
+<link rel="stylesheet" href="~/css/profile/index.min.css" />
+<script type="text/javascript" src="~/js/profile/index.min.js"></script>
+
+<div class="container">
+
+    <h1 class="display-4">Profile</h1>
+    <br />
+    <hr />
+
+    <div class="row">
+        <div class="col text-center">
+            <img id="avatar" src="@Model.Avatar" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">
+            <button id="uploading" class="btn btn-primary" onclick="upload()">Upload Avatar</button>
+            <input id="fileSelector" type="file" onchange="uploadAvatar()" hidden />
+        </div>
+    </div>
+
+    <div>
+        <form asp-controller="Profile" asp-action="Index" method="post">
+
+            <label asp-for="Name"></label>*
+            <input asp-for="Name" type="text" autocomplete="off" class="form-control" />
+
+            <label asp-for="Avatar"></label>*
+            <input asp-for="Avatar" type="text" autocomplete="off" class="form-control" id="avatarUrl" />
+
+            <label asp-for="Info"></label>*
+            <input asp-for="Info" type="text" autocomplete="off" class="form-control" />
+
+            <label asp-for="QQ"></label>*
+            <input asp-for="QQ" type="text" autocomplete="off" class="form-control" />
+
+            <label asp-for="Email"></label>*
+            <input asp-for="Email" type="text" autocomplete="off" class="form-control" />
+
+            <label asp-for="ICP"></label>*
+            <input asp-for="ICP" type="text" autocomplete="off" class="form-control" />
+
+            <label asp-for="AdminPassword"></label>*
+            <input asp-for="AdminPassword" type="text" autocomplete="off" class="form-control" />
+
+            <input id="submit-profile" type="submit" value="Apply" class="btn btn-success" />
+
+        </form>
+    </div>
+</div>

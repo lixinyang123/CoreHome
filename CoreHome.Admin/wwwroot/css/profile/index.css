@@ -1,0 +1,10 @@
+﻿#avatar {
+    height: 200px;
+    width: 200px;
+    margin: 20px;
+    border-radius: 50%;
+}
+
+input{
+    margin-bottom: 20px;
+}

@@ -9,29 +9,29 @@ namespace CoreHome.Infrastructure.Models
         public string Id { get; set; }
 
         [Required]
-        [Display(Name = "展示区域大小")]
+        [Display(Name = "Size")]
         public ProjectSize Size { get; set; }
 
         [Required]
-        [Display(Name = "项目名称")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         [Required]
-        [Display(Name = "项目概述")]
+        [Display(Name = "Detail")]
         public string Detail { get; set; }
 
         [Url]
         [Required]
-        [Display(Name = "项目封面链接")]
+        [Display(Name = "CoverUrl")]
         public string CoverUrl { get; set; }
 
         [Url]
         [Required]
-        [Display(Name = "项目链接")]
+        [Display(Name = "Project Href")]
         public string Link { get; set; }
 
         [Required]
-        [Display(Name = "项目提示文本")]
+        [Display(Name = "Tips")]
         public string Tip { get; set; }
     }
 }

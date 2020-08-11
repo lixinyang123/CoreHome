@@ -8,14 +8,10 @@
     <br />
     <hr />
 
-    <div id="projectList">
-
-        <div class="row">
-            @foreach (var project in homePageService.Config)
-            {
-                @await Component.InvokeAsync("Project", project)
-            }
-        </div>
-
+    <div class="row">
+        @foreach (var project in homePageService.Config)
+        {
+            @await Component.InvokeAsync("Project", project)
+        }
     </div>
 </div>

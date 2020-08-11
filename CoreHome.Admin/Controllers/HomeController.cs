@@ -15,12 +15,12 @@ namespace CoreHome.Admin.Controllers
         private readonly IMemoryCache cache;
         private readonly NotifyService notifyService;
         private readonly SecurityService securityService;
-        private readonly UserInfoService userInfoService;
+        private readonly ProfileService userInfoService;
 
         public HomeController(IMemoryCache cache, 
             NotifyService notifyService, 
             SecurityService securityService,
-            UserInfoService userInfoService)
+            ProfileService userInfoService)
         {
             this.cache = cache;
             this.notifyService = notifyService;

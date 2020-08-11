@@ -58,5 +58,17 @@
     "inputFiles": [
       "wwwroot/css/components/project.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/profile/index.min.css",
+    "inputFiles": [
+      "wwwroot/css/profile/index.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/profile/index.min.js",
+    "inputFiles": [
+      "wwwroot/js/profile/index.js"
+    ]
   }
 ]

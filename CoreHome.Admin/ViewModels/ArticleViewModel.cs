@@ -8,27 +8,27 @@ namespace CoreHome.Admin.ViewModels
         public Guid ArticleCode { get; set; }
 
         [Required]
-        [Display(Name = "标题")]
+        [Display(Name = "Title")]
         public string Title { get; set; }
 
         [Required]
-        [Display(Name = "类别")]
+        [Display(Name = "Category")]
         public string CategoryName { get; set; }
 
         [Required]
-        [Display(Name = "标签")]
+        [Display(Name = "Tag")]
         public string TagStr { get; set; }
 
         [Required]
-        [Display(Name = "概述")]
+        [Display(Name = "Overview")]
         public string Overview { get; set; }
 
         [Url]
-        [Display(Name = "封面")]
+        [Display(Name = "CoverUrl")]
         public string CoverUrl { get; set; }
 
         [Required]
-        [Display(Name = "内容")]
+        [Display(Name = "Content")]
         public string Content { get; set; }
 
     }

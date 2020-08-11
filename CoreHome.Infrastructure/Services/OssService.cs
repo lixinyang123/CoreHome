@@ -18,9 +18,9 @@ namespace CoreHome.Infrastructure.Services
 
         public string UploadAvatar(Stream stream)
         {
-            string path = "/images";
-            client.PutObject(config.BucketName, path + "Avatar.jpg", stream);
-            return config.BucketDomain + path + "Avatar.jpg";
+            string path = "images/";
+            client.PutObject(config.BucketName, path + "avatar.jpg", stream);
+            return config.BucketDomain + path + "avatar.jpg";
         }
 
         public string UploadBlogPic(string fileName, Stream stream)
