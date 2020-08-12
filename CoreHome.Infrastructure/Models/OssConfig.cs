@@ -8,6 +8,8 @@
 
         public string AccessKeySecret { get; set; }
 
+        public string BucketName { get; set; }
+
         public string BucketDomain { get; set; }
     }
 }
