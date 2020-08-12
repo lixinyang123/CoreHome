@@ -88,3 +88,14 @@
 .btn {
     border-radius: 0;
 }
+
+#avatar {
+    height: 200px;
+    width: 200px;
+    margin: 20px;
+    border-radius: 50%;
+}
+
+.inputRow {
+    margin-bottom: 20px;
+}

@@ -1,5 +1,11 @@
 [
   {
+    "outputFileName": "wwwroot/css/shared/_layout.min.css",
+    "inputFiles": [
+      "wwwroot/css/shared/_layout.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/js/home/index.min.js",
     "inputFiles": [
       "wwwroot/js/home/index.js"
@@ -57,12 +63,6 @@
     "outputFileName": "wwwroot/css/components/project.min.css",
     "inputFiles": [
       "wwwroot/css/components/project.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/css/profile/index.min.css",
-    "inputFiles": [
-      "wwwroot/css/profile/index.css"
     ]
   },
   {
