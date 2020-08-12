@@ -20,21 +20,21 @@ namespace CoreHome.Infrastructure.Services
         {
             string path = "images/projects/";
             client.PutObject(config.BucketName, path + fileName, stream);
-            return config.BucketDomain + path + fileName;
+            return config.BucketDomainName + path + fileName;
         }
 
         public string UploadAvatar(Stream stream)
         {
             string path = "images/";
             client.PutObject(config.BucketName, path + "avatar.jpg", stream);
-            return config.BucketDomain + path + "avatar.jpg";
+            return config.BucketDomainName + path + "avatar.jpg";
         }
 
         public string UploadBlogPic(string fileName, Stream stream)
         {
             string path = "blogs/";
             client.PutObject(config.BucketName, path + fileName, stream);
-            return config.BucketDomain + path + fileName;
+            return config.BucketDomainName + path + fileName;
         }
 
         public List<string> GetMusics()
@@ -47,7 +47,7 @@ namespace CoreHome.Infrastructure.Services
             {
                 if (item.Key != path)
                 {
-                    musics.Add(config.BucketDomain + item.Key);
+                    musics.Add(config.BucketDomainName + item.Key);
                 }
             }
             return musics;

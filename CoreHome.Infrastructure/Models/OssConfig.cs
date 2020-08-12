@@ -10,6 +10,6 @@
 
         public string BucketName { get; set; }
 
-        public string BucketDomain { get; set; }
+        public string BucketDomainName { get; set; }
     }
 }
