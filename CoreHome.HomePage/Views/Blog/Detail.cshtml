@@ -69,16 +69,16 @@
 
             <form asp-controller="Blog" asp-action="Detail" method="post">
                 <input type="hidden" value="@Model.Article.ArticleCode" name="ArticleCode"/>
-                <textarea class="form-control" rows="4" placeholder="评论（支持MarkDown）" maxlength="1024" name="Detail">@Model.CommentViewModel.Detail</textarea>
+                <textarea class="form-control" rows="4" placeholder="Comments（Support MarkDown）" maxlength="1024" name="Detail">@Model.CommentViewModel.Detail</textarea>
                 <div class="row">
                     <div class="col">
                         <div class="input-group">
                             <img id="verfyImg" onclick="getVerfyCode(this)" src="/Service/VerificationCode" />
-                            <input id="verificationCode" type="text" autocomplete="off" class="form-control" placeholder="验证码" name="VerificationCode" value="@Model.CommentViewModel.VerificationCode"/>
+                            <input id="verificationCode" type="text" autocomplete="off" class="form-control" placeholder="Code" name="VerificationCode" value="@Model.CommentViewModel.VerificationCode"/>
                         </div>
                     </div>
                     <div class="col">
-                        <input id="btn_submit" type="submit" class="btn btn-success float-right" value="提交" />
+                        <input id="btn_submit" type="submit" class="btn btn-success float-right" value="Submit" />
                     </div>
                 </div>
             </form>
