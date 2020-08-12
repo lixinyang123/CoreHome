@@ -17,9 +17,9 @@ namespace CoreHome.Infrastructure.Services
             this.config = config;
         }
 
-        public string UploadProjectCover(string fileName, Stream stream)
+        public string UploadProjCover(string fileName, Stream stream)
         {
-            string path = "images/";
+            string path = "images/projects/";
             client.PutObject(bucketName, path + fileName, stream);
             return config.BucketDomain + path + fileName;
         }

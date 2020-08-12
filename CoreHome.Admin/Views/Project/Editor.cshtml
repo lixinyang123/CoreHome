@@ -1,5 +1,7 @@
 ﻿@model Project
 
+<script type="text/javascript" src="~/js/shared/fileUploader.min.js"></script>
+
 <div class="container">
     <h1 class="display-4">@ViewBag.PageTitle</h1>
     <hr />
@@ -36,7 +38,13 @@
 
         <div class="inputRow">
             <label asp-for="CoverUrl"></label>*
-            <input asp-for="CoverUrl" type="text" autocomplete="off" class="form-control" />
+            <div class="input-group mb-3">
+                <input asp-for="CoverUrl" type="text" autocomplete="off" class="form-control" id="coverUrl"/>
+                <input id="fileSelector" type="file" onchange="uploadProjectCover()" hidden />
+                <div class="input-group-prepend" onclick="upload()">
+                    <span id="uploading" class="input-group-text">Upload Cover</span>
+                </div>
+            </div>
         </div>
 
         <div class="inputRow">

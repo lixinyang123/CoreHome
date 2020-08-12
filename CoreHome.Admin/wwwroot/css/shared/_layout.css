@@ -99,3 +99,7 @@
 .inputRow {
     margin-bottom: 20px;
 }
+
+.input-group-prepend {
+    cursor: pointer;
+}

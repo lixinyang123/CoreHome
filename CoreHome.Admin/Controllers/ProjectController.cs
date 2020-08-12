@@ -1,9 +1,11 @@
 ﻿using CoreHome.Admin.Filter;
 using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace CoreHome.Admin.Controllers
@@ -12,10 +14,12 @@ namespace CoreHome.Admin.Controllers
     public class ProjectController : Controller
     {
         private readonly HomePageService homePageService;
+        private readonly OssService ossService;
 
-        public ProjectController(HomePageService homePageService)
+        public ProjectController(HomePageService homePageService, OssService ossService)
         {
             this.homePageService = homePageService;
+            this.ossService = ossService;
         }
 
         public IActionResult Index()
@@ -91,6 +95,21 @@ namespace CoreHome.Admin.Controllers
             {
                 ViewBag.Action = "Edit";
                 return View("Editor", project);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult UploadCover(IFormFile cover)
+        {
+            using Stream stream = cover.OpenReadStream();
+            try
+            {
+                return Content(ossService.UploadProjCover(cover.FileName, stream));
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                return Content(ex.Message);
             }
         }
 

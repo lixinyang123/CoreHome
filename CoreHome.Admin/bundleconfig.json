@@ -60,15 +60,15 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/css/components/project.min.css",
+    "outputFileName": "wwwroot/js/shared/fileUploader.min.js",
     "inputFiles": [
-      "wwwroot/css/components/project.css"
+      "wwwroot/js/shared/fileUploader.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/js/profile/index.min.js",
+    "outputFileName": "wwwroot/css/components/project.min.css",
     "inputFiles": [
-      "wwwroot/js/profile/index.js"
+      "wwwroot/css/components/project.css"
     ]
   }
 ]
