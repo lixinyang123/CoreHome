@@ -54,7 +54,7 @@ namespace CoreHome.Admin
                 QQ = "837685961",
                 Email = "lixinyangemil@outlook.com",
                 ICP = "豫ICP备18041216号-2",
-                AdminPassword = "123456"
+                AdminPassword = "12345678"
             }));
             services.AddSingleton(new HomePageService("Project.json", new List<Project>()));
             services.AddSingleton(new ThemeService("Theme.json", new Theme()
