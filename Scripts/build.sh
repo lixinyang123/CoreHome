@@ -1,7 +1,3 @@
-echo =========================
-echo + Configure Environment +
-echo =========================
-
 sudo apt update
 
 sudo apt install libgdiplus mysql-server nginx -y
@@ -42,31 +38,23 @@ sudo nginx -s reload
 
 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
 
 sudo apt-get update; \
 	sudo apt-get install -y apt-transport-https && \
 	sudo apt-get update && \
 	sudo apt-get install -y dotnet-sdk-3.1
 
-rm packages-microsoft-prod.deb
-
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 
-echo ===================================
-echo + Start publish CoreHome.HomePage +
-echo ===================================
 cd ../CoreHome.HomePage
-libman restore
+dotnet restore
+~/.dotnet/tools/libman restore
+dotnet build
 dotnet publish -o ../bin/CoreHome/HomePage
 
-echo ================================
-echo + Start publish CoreHome.Admin +
-echo ================================
 cd ../CoreHome.Admin
-libman restore
+dotnet restore
+~/.dotnet/tools/libman restore
+dotnet build
 dotnet publish -o ../bin/CoreHome/Admin
-
-cd ../bin/CoreHome/Admin
-nohup ./CoreHome.Admin --urls="http://*:5001" > ../Admin.out
-cd ../HomePage
-nohup ./CoreHome.HomePage --urls="http://*:5001" > ../HomePage.out
