@@ -27,15 +27,13 @@ function uploadAvatar() {
         processData: false,
         contentType: false,
         success: function (data) {
-            document.querySelector("#avatarUrl").value = data;
-            document.querySelector("#avatar").src = data + "?" + Math.random();
-            if (confirm("Upload successful, whether to submit？")) {
-                document.querySelector("#submit-profile").click();
-            }
+            document.querySelector("#avatarUrl").value = data.toString();
+            document.querySelector("#avatar").src = data.toString() + "?" + Math.random();
+            alert("Upload successful");
             uploadingState(false, "Upload Avatar");
         },
         error: function (response) {
-            alert("Upload failed " + response);
+            alert("Upload failed " + response.toString());
             uploadingState(false, "Upload Avatar");
         }
     });
@@ -54,12 +52,12 @@ function uploadProjectCover() {
         processData: false,
         contentType: false,
         success: function (data) {
-            document.querySelector("#coverUrl").value = data;
+            document.querySelector("#coverUrl").value = data.toString();
             alert("Upload successful");
             uploadingState(false, "Upload Avatar");
         },
         error: function (response) {
-            alert("Upload failed " + response);
+            alert("Upload failed " + response.toString());
             uploadingState(false, "Upload Avatar");
         }
     });
