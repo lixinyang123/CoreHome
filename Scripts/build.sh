@@ -57,11 +57,16 @@ echo + Start publish CoreHome.HomePage +
 echo ===================================
 cd ../CoreHome.HomePage
 libman restore
-dotnet publish
+dotnet publish -o ../bin/CoreHome/HomePage
 
 echo ================================
 echo + Start publish CoreHome.Admin +
 echo ================================
 cd ../CoreHome.Admin
 libman restore
-dotnet publish
+dotnet publish -o ../bin/CoreHome/Admin
+
+cd ../bin/CoreHome/Admin
+nohup ./CoreHome.Admin --urls="http://*:5001" > ../Admin.out
+cd ../HomePage
+nohup ./CoreHome.HomePage --urls="http://*:5001" > ../HomePage.out
