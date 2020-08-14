@@ -1,4 +1,4 @@
-﻿using CoreHome.Data.Model;
+﻿using CoreHome.Data.Models;
 
 namespace CoreHome.HomePage.ViewModels
 {

@@ -1,7 +1,7 @@
 ﻿using CoreHome.Admin.Filter;
 using CoreHome.Admin.ViewModels;
 using CoreHome.Data.DatabaseContext;
-using CoreHome.Data.Model;
+using CoreHome.Data.Models;
 using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

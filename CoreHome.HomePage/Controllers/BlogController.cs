@@ -1,5 +1,5 @@
 ﻿using CoreHome.Data.DatabaseContext;
-using CoreHome.Data.Model;
+using CoreHome.Data.Models;
 using CoreHome.HomePage.ViewModels;
 using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;

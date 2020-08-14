@@ -1,4 +1,4 @@
-﻿namespace CoreHome.Data.Model
+﻿namespace CoreHome.Data.Models
 {
     public class ArticleTag
     {

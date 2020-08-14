@@ -1,5 +1,5 @@
 ﻿using CoreHome.Data.DatabaseContext;
-using CoreHome.Data.Model;
+using CoreHome.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;

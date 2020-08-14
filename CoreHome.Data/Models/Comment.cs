@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CoreHome.Data.Model
+namespace CoreHome.Data.Models
 {
     public class Comment
     {
