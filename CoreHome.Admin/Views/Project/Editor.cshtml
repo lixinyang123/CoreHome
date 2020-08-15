@@ -39,10 +39,10 @@
         <div class="inputRow">
             <label asp-for="CoverUrl"></label>*
             <div class="input-group mb-3">
-                <input asp-for="CoverUrl" type="text" autocomplete="off" class="form-control" id="coverUrl"/>
+                <input asp-for="CoverUrl" type="text" autocomplete="off" class="form-control" id="coverUrl" />
                 <input id="fileSelector" type="file" onchange="uploadProjectCover()" hidden />
-                <div class="input-group-prepend" onclick="upload()">
-                    <span id="uploading" class="input-group-text">Upload Cover</span>
+                <div class="input-group-append">
+                    <button id="uploading" class="btn btn-outline-secondary" type="button" onclick="upload()">Upload Cover</button>
                 </div>
             </div>
         </div>
