@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoreHome.Infrastructure.Models
 {
@@ -34,5 +35,12 @@ namespace CoreHome.Infrastructure.Models
         [MinLength(8)]
         [Display(Name = "Admin Password")]
         public string AdminPassword { get; set; }
+
+        public List<FooterLink> WhatsNew { get; set; }
+
+        public List<FooterLink> FriendLinks { get; set; }
+
+        public List<FooterLink> About { get; set; }
+
     }
 }

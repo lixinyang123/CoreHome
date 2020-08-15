@@ -5,7 +5,6 @@
 <div class="container">
 
     <h1 class="display-4">Profile</h1>
-    <br />
     <hr />
 
     <div class="row">
@@ -63,4 +62,75 @@
 
         </form>
     </div>
+    <br />
+
+    <div class="inputRow">
+        <h1 class="display-4">What's new</h1>
+        <form asp-controller="Profile" asp-action="AddFooterLink" asp-route-type="WhatsNew" method="post" class="input-group">
+            <input type="text" name="Title" placeholder="Title" class="form-control" autocomplete="off" />
+            <input type="text" name="Link" placeholder="Link" class="form-control" autocomplete="off" />
+            <div class="input-group-append">
+                <input class="btn btn-outline-success" type="submit" value="Add Link" />
+            </div>
+        </form>
+        <hr />
+        @foreach (var item in Model.WhatsNew)
+        {
+            <div class="input-group">
+                <input type="text" placeholder="Title" class="form-control" value="@item.Title" readonly />
+                <input type="text" placeholder="Link" class="form-control" value="@item.Link" readonly />
+                <div class="input-group-append">
+                    <a asp-controller="Profile" asp-action="DeleteFooterLink" asp-route-id="@item.Id" asp-route-type="WhatsNew" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+            <br />
+        }
+    </div>
+
+    <div class="inputRow">
+        <h1 class="display-4">FriendLinks</h1>
+        <form asp-controller="Profile" asp-action="AddFooterLink" asp-route-type="FriendLinks" method="post" class="input-group">
+            <input type="text" name="Title" placeholder="Title" class="form-control" autocomplete="off" />
+            <input type="text" name="Link" placeholder="Link" class="form-control" autocomplete="off" />
+            <div class="input-group-append">
+                <input class="btn btn-outline-success" type="submit" value="Add Link" />
+            </div>
+        </form>
+        <hr />
+        @foreach (var item in Model.FriendLinks)
+        {
+            <div class="input-group">
+                <input type="text" placeholder="Title" class="form-control" value="@item.Title" readonly />
+                <input type="text" placeholder="Link" class="form-control" value="@item.Link" readonly />
+                <div class="input-group-append">
+                    <a asp-controller="Profile" asp-action="DeleteFooterLink" asp-route-id="@item.Id" asp-route-type="FriendLinks" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+            <br />
+        }
+    </div>
+
+    <div class="inputRow">
+        <h1 class="display-4">About</h1>
+        <form asp-controller="Profile" asp-action="AddFooterLink" asp-route-type="About" method="post" class="input-group">
+            <input type="text" name="Title" placeholder="Title" class="form-control" autocomplete="off" />
+            <input type="text" name="Link" placeholder="Link" class="form-control" autocomplete="off" />
+            <div class="input-group-append">
+                <input class="btn btn-outline-success" type="submit" value="Add Link" />
+            </div>
+        </form>
+        <hr />
+        @foreach (var item in Model.About)
+        {
+            <div class="input-group">
+                <input type="text" placeholder="Title" class="form-control" value="@item.Title" readonly />
+                <input type="text" placeholder="Link" class="form-control" value="@item.Link" readonly />
+                <div class="input-group-append">
+                    <a asp-controller="Profile" asp-action="DeleteFooterLink" asp-route-id="@item.Id" asp-route-type="About" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+            <br />
+        }
+    </div>
+
 </div>

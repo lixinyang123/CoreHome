@@ -14,6 +14,7 @@ namespace CoreHome.Admin.Controllers
         public DatabaseController(ArticleDbContext articleDbContext)
         {
             this.articleDbContext = articleDbContext;
+            ViewBag.PageTitle = "Database";
         }
 
         public IActionResult Index()
