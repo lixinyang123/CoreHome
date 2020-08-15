@@ -31,6 +31,11 @@ namespace CoreHome.Admin.Controllers
         [HttpPost]
         public IActionResult Index(Profile profile)
         {
+            var config = profileService.Config;
+            profile.WhatsNew = config.WhatsNew;
+            profile.FriendLinks = config.FriendLinks;
+            profile.About = config.About;
+
             profileService.Config = profile;
             return RedirectToAction("Index");
         }
