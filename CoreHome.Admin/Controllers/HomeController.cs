@@ -80,7 +80,7 @@ namespace CoreHome.Admin.Controllers
             }
             catch (Exception) { }
 
-            var verifyAdminPwd = pwd == userInfoService.Config.AdminPassword;
+            var verifyAdminPwd = pwd == userInfoService.Config.AdminPassword && pwd != null;
             var verifyDynamicPwd = pwd == password && pwd != null && password != null;
 
             if (verifyAdminPwd || verifyDynamicPwd)

@@ -46,19 +46,7 @@ namespace CoreHome.Admin
             });
 
             services.AddSingleton<BingWallpaperService>();
-            services.AddSingleton(new ProfileService("Profile.json", new Profile()
-            {
-                Name = "LLLXY",
-                Avatar = "https://corehome.oss-accelerate.aliyuncs.com/images/avatar.jpg",
-                Info = ".Net Developer",
-                QQ = "837685961",
-                Email = "lixinyangemil@outlook.com",
-                ICP = "豫ICP备18041216号-2",
-                AdminPassword = "12345678",
-                WhatsNew = new List<FooterLink>(),
-                FriendLinks = new List<FooterLink>(),
-                About = new List<FooterLink>()
-            }));
+            services.AddSingleton(new ProfileService("Profile.json", new Profile()));
             services.AddSingleton(new HomePageService("Project.json", new List<Project>()));
             services.AddSingleton(new ThemeService("Theme.json", new Theme()
             {
