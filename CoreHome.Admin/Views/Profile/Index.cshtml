@@ -77,8 +77,8 @@
         @foreach (var item in Model.WhatsNew)
         {
             <div class="input-group">
-                <input type="text" placeholder="Title" class="form-control" value="@item.Title" readonly />
-                <input type="text" placeholder="Link" class="form-control" value="@item.Link" readonly />
+                <input type="text" placeholder="Title" class="form-control" value="@item.Title" disabled />
+                <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
                     <a asp-controller="Profile" asp-action="DeleteFooterLink" asp-route-id="@item.Id" asp-route-type="WhatsNew" class="btn btn-danger">Delete</a>
                 </div>
@@ -100,8 +100,8 @@
         @foreach (var item in Model.FriendLinks)
         {
             <div class="input-group">
-                <input type="text" placeholder="Title" class="form-control" value="@item.Title" readonly />
-                <input type="text" placeholder="Link" class="form-control" value="@item.Link" readonly />
+                <input type="text" placeholder="Title" class="form-control" value="@item.Title" disabled />
+                <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
                     <a asp-controller="Profile" asp-action="DeleteFooterLink" asp-route-id="@item.Id" asp-route-type="FriendLinks" class="btn btn-danger">Delete</a>
                 </div>
@@ -123,8 +123,8 @@
         @foreach (var item in Model.About)
         {
             <div class="input-group">
-                <input type="text" placeholder="Title" class="form-control" value="@item.Title" readonly />
-                <input type="text" placeholder="Link" class="form-control" value="@item.Link" readonly />
+                <input type="text" placeholder="Title" class="form-control" value="@item.Title" disabled />
+                <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
                     <a asp-controller="Profile" asp-action="DeleteFooterLink" asp-route-id="@item.Id" asp-route-type="About" class="btn btn-danger">Delete</a>
                 </div>
