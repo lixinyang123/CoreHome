@@ -30,6 +30,13 @@ namespace CoreHome.Infrastructure.Services
             return config.BucketDomainName + path + "avatar.jpg";
         }
 
+        public string UploadBackground(Stream stream)
+        {
+            string path = "images/";
+            client.PutObject(config.BucketName, path + "background.jpg", stream);
+            return config.BucketDomainName + path + "background.jpg";
+        }
+
         public string UploadBlogPic(string fileName, Stream stream)
         {
             string path = "blogs/";

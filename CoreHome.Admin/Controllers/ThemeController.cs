@@ -1,7 +1,9 @@
 ﻿using CoreHome.Admin.Filter;
 using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace CoreHome.Admin.Controllers
 {
@@ -9,10 +11,12 @@ namespace CoreHome.Admin.Controllers
     public class ThemeController : Controller
     {
         private readonly ThemeService themeService;
+        private readonly OssService ossService;
 
-        public ThemeController(ThemeService themeService)
+        public ThemeController(ThemeService themeService, OssService ossService)
         {
             this.themeService = themeService;
+            this.ossService = ossService;
         }
 
         public IActionResult Index()
@@ -32,6 +36,21 @@ namespace CoreHome.Admin.Controllers
                 themeService.Config = theme;
             }
             return View(themeService.Config);
+        }
+
+        [HttpPost]
+        public IActionResult UploadBackground(IFormFile file)
+        {
+            using Stream stream = file.OpenReadStream();
+            try
+            {
+                return Content(ossService.UploadBackground(stream));
+            }
+            catch (System.Exception ex)
+            {
+                Response.StatusCode = 500;
+                return Content(ex.Message);
+            }
         }
 
     }

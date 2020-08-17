@@ -18,7 +18,7 @@ function uploadAvatar() {
     uploadingState(true, "Upload Avatar");
 
     var formData = new FormData();
-    formData.append("avatar", document.querySelector("#fileSelector").files[0]);
+    formData.append("file", document.querySelector("#fileSelector").files[0]);
 
     $.ajax({
         url: "/Admin/Profile/UploadAvatar",
@@ -43,7 +43,7 @@ function uploadProjectCover() {
     uploadingState(true, "Upload Cover");
 
     var formData = new FormData();
-    formData.append("cover", document.querySelector("#fileSelector").files[0]);
+    formData.append("file", document.querySelector("#fileSelector").files[0]);
 
     $.ajax({
         url: "/Admin/Project/UploadCover",

@@ -22,7 +22,7 @@
                     <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="changeTheme('auto')">
                             <label>
-                                <input class="ThemeType" id="auto" type="radio" name="ThemeType" value="0"
+                                <input class="ThemeType" id="auto" type="radio" name="ThemeType" value="@ThemeType.Auto"
                                        @if (Model.ThemeType == ThemeType.Auto) { Write("checked"); } /> Auto
                             </label>
                             <br />
@@ -35,7 +35,7 @@
                     <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="changeTheme('white')">
                             <label>
-                                <input class="ThemeType" id="white" type="radio" name="ThemeType" value="1"
+                                <input class="ThemeType" id="white" type="radio" name="ThemeType" value="@ThemeType.White"
                                        @if (Model.ThemeType == ThemeType.White) { Write("checked"); } /> White
                             </label>
                             <br />
@@ -48,7 +48,7 @@
                     <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="changeTheme('black')">
                             <label>
-                                <input class="ThemeType" id="black" type="radio" name="ThemeType" value="2"
+                                <input class="ThemeType" id="black" type="radio" name="ThemeType" value="@ThemeType.Black"
                                        @if (Model.ThemeType == ThemeType.Black) { Write("checked"); } /> Black
                             </label>
                             <br />
@@ -69,7 +69,7 @@
                     <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="changeBackground('color')">
                             <label>
-                                <input class="BackgroundType" id="color" type="radio" name="BackgroundType" value="0"
+                                <input class="BackgroundType" id="color" type="radio" name="BackgroundType" value="@BackgroundType.Color"
                                        @if (Model.BackgroundType == BackgroundType.Color) { Write("checked"); } /> Color
                             </label>
                             <br />
@@ -82,11 +82,25 @@
                     <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="changeBackground('bing')">
                             <label>
-                                <input class="BackgroundType" id="bing" type="radio" name="BackgroundType" value="1"
+                                <input class="BackgroundType" id="bing" type="radio" name="BackgroundType" value="@BackgroundType.Bing"
                                        @if (Model.BackgroundType == BackgroundType.Bing) { Write("checked"); } /> Bing
                             </label>
                             <br />
                             <img src="https://corehome.oss-accelerate.aliyuncs.com/images/backgroundtype-bing.jpg" class="img-rounded" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mt-3">
+                    <div class="card mb-2 tests-card h-100">
+                        <div class="card-body" onclick="selectImage()">
+                            <label>
+                                <input class="BackgroundType" id="custom" type="radio" name="BackgroundType" value="@BackgroundType.Custom"
+                                       @if (Model.BackgroundType == BackgroundType.Custom) { Write("checked"); } /> Custom
+                                <input id="fileSelector" type="file" onchange="uploadBackground()" hidden />
+                            </label>
+                            <br />
+                            <img src="https://corehome.oss-accelerate.aliyuncs.com/images/backgroundtype-image.jpg" class="img-rounded" />
                         </div>
                     </div>
                 </div>

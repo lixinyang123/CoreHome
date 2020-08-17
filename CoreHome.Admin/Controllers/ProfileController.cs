@@ -41,9 +41,9 @@ namespace CoreHome.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult UploadAvatar(IFormFile avatar)
+        public IActionResult UploadAvatar(IFormFile file)
         {
-            using Stream stream = avatar.OpenReadStream();
+            using Stream stream = file.OpenReadStream();
             try
             {
                 return Content(ossService.UploadAvatar(stream));

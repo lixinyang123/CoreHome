@@ -16,7 +16,28 @@ function changeBackground(type) {
 }
 
 function selectImage() {
-    document.getElementById("backgroundImage").click();
+    document.getElementById("fileSelector").click();
+}
+
+function uploadBackground() {
+    alert("Uploading...")
+    var formData = new FormData();
+    formData.append("file", document.querySelector("#fileSelector").files[0]);
+
+    $.ajax({
+        url: "/Admin/Theme/UploadBackground",
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            alert("Upload successful");
+            changeBackground('custom');
+        },
+        error: function (response) {
+            alert("Upload failed " + response.toString());
+        }
+    });
 }
 
 function apply_onclick() {

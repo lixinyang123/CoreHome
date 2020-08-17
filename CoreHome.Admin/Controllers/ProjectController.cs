@@ -99,12 +99,12 @@ namespace CoreHome.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult UploadCover(IFormFile cover)
+        public IActionResult UploadCover(IFormFile file)
         {
-            using Stream stream = cover.OpenReadStream();
+            using Stream stream = file.OpenReadStream();
             try
             {
-                return Content(ossService.UploadProjCover(cover.FileName, stream));
+                return Content(ossService.UploadProjCover(file.FileName, stream));
             }
             catch (Exception ex)
             {
