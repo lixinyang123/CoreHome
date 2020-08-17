@@ -7,6 +7,7 @@ EXPOSE 443
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
+COPY ["./sources.list","/etc/apt/sources.list"]
 RUN apt update
 RUN apt install libgdiplus -y
 
