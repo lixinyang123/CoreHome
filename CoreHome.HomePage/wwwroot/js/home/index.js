@@ -1,7 +1,7 @@
-﻿var musicSrc = undefined;
+﻿var player = undefined;
+var musicSrc = undefined;
 
 function playMusic() {
-    var player = document.querySelector("#player");
     try {
         player.addEventListener('ended', () => {
             setTimeout(() => {
@@ -16,8 +16,9 @@ function playMusic() {
 //=============Initializa================
 
 function initHome() {
-    musicSrc = document.querySelector("#player").src;
-    window.onreadystatechange = playMusic();
+    player = document.querySelector("#player");
+    musicSrc = player.src;
+    playMusic();
 }
 
 initHome();
