@@ -1,0 +1,2 @@
+deb https://mirrors.aliyun.com/debian  stable main contrib non-free
+deb https://mirrors.aliyun.com/debian  stable-updates main contrib non-free
