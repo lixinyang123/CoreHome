@@ -19,7 +19,6 @@ services:
       - database
     restart: always
     volumes:
-    - ./sources.list:/etc/apt/sources.list
     - server:/home
 
   corehome.admin:
