@@ -9,7 +9,7 @@
 <div class="container mt-4 mb-5">
     <div class="row post">
 
-        <aside class="col-lg-3 d-none d-lg-block">
+        <aside class="col-lg-3 d-none d-lg-block reveal">
 
             @await Component.InvokeAsync("TopTags")
             <br />
@@ -25,7 +25,7 @@
 
                 @foreach (var article in Model)
                 {
-                        <article>
+                        <article class="reveal">
                             <a class="articleTitle" asp-controller="Blog" asp-action="Detail" asp-route-id="@article.ArticleCode">
                                 @article.Title
                             </a>

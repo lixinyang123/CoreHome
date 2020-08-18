@@ -55,6 +55,7 @@ function init() {
     }
 	window.onresize = fullHeight;
 	fullHeight();
+	ScrollReveal().reveal(".reveal");
 }
 
 init();
