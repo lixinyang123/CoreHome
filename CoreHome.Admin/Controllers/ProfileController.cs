@@ -76,6 +76,10 @@ namespace CoreHome.Admin.Controllers
                     case "About":
                         config.About.Add(footerLink);
                         break;
+
+                    case "Others":
+                        config.Others.Add(footerLink);
+                        break;
                 }
 
                 profileService.Config = config;
@@ -102,6 +106,10 @@ namespace CoreHome.Admin.Controllers
 
                     case "About":
                         config.About.RemoveAt(config.About.FindIndex(i => i.Id == id));
+                        break;
+
+                    case "Others":
+                        config.Others.RemoveAt(config.Others.FindIndex(i => i.Id == id));
                         break;
                 }
                 profileService.Config = config;

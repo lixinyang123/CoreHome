@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CoreHome.Infrastructure.Models
@@ -7,9 +8,69 @@ namespace CoreHome.Infrastructure.Models
     {
         public Profile()
         {
-            WhatsNew = new List<FooterLink>();
-            FriendLinks = new List<FooterLink>();
-            About = new List<FooterLink>();
+            WhatsNew = new List<FooterLink>()
+            {
+                new FooterLink()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Title = "CoreHome",
+                    Link = "https://github.com/lixinyang123/CoreHome"
+                },
+                new FooterLink()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Title = "CloudShell",
+                    Link = "http://180.76.232.34/"
+                }
+            };
+
+            FriendLinks = new List<FooterLink>()
+            {
+                new FooterLink()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Title = "LLLXY",
+                    Link = "https://www.lllxy.net/"
+                },
+                new FooterLink()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Title = "ConchBrainClub",
+                    Link = "https://conchbrain.club/"
+                }
+            };
+
+            About = new List<FooterLink>()
+            {
+                new FooterLink()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Title = "Github",
+                    Link = "https://github.com/"
+                },
+                new FooterLink()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Title = "微博",
+                    Link = "https://weibo.com/"
+                }
+            };
+
+            Others = new List<FooterLink>()
+            {
+                new FooterLink()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Title = "Privacy&Cookie",
+                    Link = "/Home/Privacy"
+                },
+                new FooterLink()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Title = "Admin",
+                    Link = "/Admin"
+                }
+            };
         }
 
         [Required]
@@ -48,6 +109,8 @@ namespace CoreHome.Infrastructure.Models
         public List<FooterLink> FriendLinks { get; set; }
 
         public List<FooterLink> About { get; set; }
+
+        public List<FooterLink> Others { get; set; }
 
     }
 }

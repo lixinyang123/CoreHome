@@ -82,8 +82,10 @@
 
                 <div class="col-md-3">
                     <p class="title">Others</p>
-                    <p><a target="blank" asp-controller="Home" asp-action="Privacy">Privacy&Cookie</a></p>
-                    <p><a target="blank" asp-controller="Admin" asp-action="Index">Admin</a></p>
+                    @foreach (var item in ProfileService.Config.Others)
+                    {
+                        <p><a target="blank" href="@item.Link">@item.Title</a></p>
+                    }
                 </div>
 
             </div>
