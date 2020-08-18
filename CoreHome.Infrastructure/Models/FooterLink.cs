@@ -9,7 +9,6 @@ namespace CoreHome.Infrastructure.Models
         [Required]
         public string Title { get; set; }
 
-        [Url]
         [Required]
         public string Link { get; set; }
     }
