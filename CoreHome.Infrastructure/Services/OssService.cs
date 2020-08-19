@@ -2,7 +2,7 @@
 using CoreHome.Infrastructure.Models;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Encodings.Web;
+using System.Web;
 
 namespace CoreHome.Infrastructure.Services
 {
@@ -21,7 +21,7 @@ namespace CoreHome.Infrastructure.Services
         {
             string path = "images/projects/";
             client.PutObject(config.BucketName, path + fileName, stream);
-            return UrlEncoder.Create().Encode(config.BucketDomainName + path + fileName);
+            return HttpUtility.UrlEncode(config.BucketDomainName + path + fileName);
         }
 
         public string UploadAvatar(Stream stream)
@@ -42,7 +42,7 @@ namespace CoreHome.Infrastructure.Services
         {
             string path = "blogs/";
             client.PutObject(config.BucketName, path + fileName, stream);
-            return UrlEncoder.Create().Encode(config.BucketDomainName + path + fileName);
+            return HttpUtility.UrlEncode(config.BucketDomainName + path + fileName);
         }
 
         public List<string> GetMusics()
