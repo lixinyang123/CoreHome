@@ -21,7 +21,7 @@ namespace CoreHome.Infrastructure.Services
         {
             string path = "images/projects/";
             client.PutObject(config.BucketName, path + fileName, stream);
-            return HttpUtility.UrlEncode(config.BucketDomainName + path + fileName);
+            return config.BucketDomainName + path + HttpUtility.UrlEncode(fileName);
         }
 
         public string UploadAvatar(Stream stream)
@@ -42,7 +42,7 @@ namespace CoreHome.Infrastructure.Services
         {
             string path = "blogs/";
             client.PutObject(config.BucketName, path + fileName, stream);
-            return HttpUtility.UrlEncode(config.BucketDomainName + path + fileName);
+            return config.BucketDomainName + path + HttpUtility.UrlEncode(fileName);
         }
 
         public List<string> GetMusics()
