@@ -19,4 +19,4 @@ jobs:
       run: cd ./CoreHome.HomePage
     
     - name: Build the HomePage
-      run: docker build . --file Dockerfile --tag corehomehomepage:latest
+      run: docker build */ --file Dockerfile --tag corehomehomepage:latest
