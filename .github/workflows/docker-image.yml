@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker Image
 
 on:
   push:
@@ -17,5 +17,21 @@ jobs:
     
     - name: Build CoreHome.Admin
       run: docker build --file ./CoreHome.Admin/Dockerfile --tag corehomeadmin:latest .
+    
     - name: Build CoreHome.HomePage
       run: docker build --file ./CoreHome.HomePage/Dockerfile --tag corehomehomepage:latest .
+    
+    - name: Login DockerHub
+      run: docker login -u lixinyang -p lxy15937905153
+  
+    - name: Tag Admin
+      run: docker tag corehomeadmin:latest lixinyang/corehomeadmin:latest
+    
+    - name: Tag HomePage
+      run: docker tag corehomehomepage:latest lixinyang/corehomehomepage:latest
+      
+    - name: Push Admin
+      run: docker push lixinyang/corehomeadmin:latest
+      
+    - name: Push HomePage
+      run: docker push lixinyang/corehomehomepage:latest
