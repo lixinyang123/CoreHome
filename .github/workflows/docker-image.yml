@@ -15,6 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Build the HomePage
+    - name: Build CoreHome.Admin
+      working-directory: ./CoreHome.Admin
+      run: docker build . --file Dockerfile --tag corehomeadmin:latest
+    
+    - name: Build CoreHome.HomePage
       working-directory: ./CoreHome.HomePage
       run: docker build . --file Dockerfile --tag corehomehomepage:latest
