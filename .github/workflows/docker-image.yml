@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build CoreHome.HomePage
+      run: docker build ./CoreHome.HomePage --file Dockerfile --tag corehomehomepage:latest
+    - name: Build CoreHome.Admin
+      run: docker build ./CoreHome.Admin --file Dockerfile --tag corehomeadmin:latest
