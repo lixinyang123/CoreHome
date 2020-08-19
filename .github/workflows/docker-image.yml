@@ -14,9 +14,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+  
+    - name: Test
+      run: dirs
     
-    - name: Go to HomePage
-      run: cd ./CoreHome.HomePage
+    - name: Test
+      run: ls
     
     - name: Build the HomePage
-      run: docker build */ --file Dockerfile --tag corehomehomepage:latest
+      run: docker build . --file Dockerfile --tag corehomehomepage:latest
