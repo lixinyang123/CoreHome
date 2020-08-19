@@ -24,14 +24,35 @@ jobs:
     - name: Login DockerHub
       run: docker login -u lixinyang -p lxy15937905153
   
-    - name: Tag Admin
+    - name: Tag Admin to DockerHub
       run: docker tag corehomeadmin:latest lixinyang/corehomeadmin:latest
     
-    - name: Tag HomePage
+    - name: Tag HomePage to DockerHub
       run: docker tag corehomehomepage:latest lixinyang/corehomehomepage:latest
       
-    - name: Push Admin
+    - name: Push Admin to DockerHub
       run: docker push lixinyang/corehomeadmin:latest
       
-    - name: Push HomePage
+    - name: Push HomePage to DockerHub
       run: docker push lixinyang/corehomehomepage:latest
+
+    - name: Logout DockerHub
+      run: docker logout
+      
+    - name: Login aliyun
+      run: docker login -u=lllxy啊啊啊 -p lxy15937905153 registry.cn-shenzhen.aliyuncs.com
+      
+    - name: Tag Admin to aliyun
+      run: docker tag corehomeadmin:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehomeadmin:latest
+      
+    - name: Tag HomePage to aliyun
+      run: docker tag corehomehomepage:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehomehomepage:latest
+      
+    - name: Push Admin to aliyun
+      run: docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehomeadmin:latest
+      
+    - name: Push HomePage to aliyun
+      run: docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehomehomepage:latest
+    
+    - name: Logout aliyun
+      run: docker logout
