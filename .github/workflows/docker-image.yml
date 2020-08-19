@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Build CoreHome.Admin
-      run: docker build ./CoreHome.Admin --file Dockerfile --tag corehomeadmin:latest
+      run: docker build "./CoreHome.Admin" --file Dockerfile --tag corehomeadmin:latest
     
     - name: Build CoreHome.HomePage
-      run: docker build ./CoreHome.HomePage --file Dockerfile --tag corehomehomepage:latest
+      run: docker build "./CoreHome.HomePage" --file Dockerfile --tag corehomehomepage:latest
