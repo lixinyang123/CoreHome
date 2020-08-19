@@ -14,12 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-  
-    - name: Test
-      run: dirs
-    
-    - name: Test
-      run: ls
     
     - name: Build the HomePage
+      working-directory: ./CoreHome.HomePage
       run: docker build . --file Dockerfile --tag corehomehomepage:latest
