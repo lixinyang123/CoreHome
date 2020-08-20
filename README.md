@@ -5,8 +5,6 @@
 
 当前的个人网站，由 [.NET Core 3.1](https://dotnet.microsoft.com/) 驱动
 
-### CoreHome是什么
-
 CoreHome是一个基于.NET Core和阿里云OSS的博客系统（依赖于 Aliyun.OSS.SDK.NetCore），包含了个人信息管理，主页项目管理，主题管理（主页背景，亮暗主题，BGM），博客管理、分类、标签、归档，评论及反馈提醒，服务器网络状态检测等功能。
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=lixinyang123&repo=CoreHome)](https://github.com/lixinyang123/CoreHome)
