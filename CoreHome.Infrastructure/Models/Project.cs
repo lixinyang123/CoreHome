@@ -25,7 +25,6 @@ namespace CoreHome.Infrastructure.Models
         [Display(Name = "CoverUrl")]
         public string CoverUrl { get; set; }
 
-        [Url]
         [Required]
         [Display(Name = "Project Href")]
         public string Link { get; set; }
