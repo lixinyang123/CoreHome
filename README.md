@@ -157,6 +157,10 @@ docker-compose up
 
 ![](https://corehome.oss-accelerate.aliyuncs.com/blogs/screencapture-lllxy-net-Admin-1597908667098.png)
 
+##### 网络状态检测
+
+![](https://corehome.oss-cn-shenzhen.aliyuncs.com/blogs/screencapture-lllxy-net-Admin-Overview-1597908919597.png)
+
 ##### 个人信息管理
 
 ![](https://corehome.oss-accelerate.aliyuncs.com/blogs/%e5%b1%8f%e5%b9%95%e6%88%aa%e5%9b%be+2020-08-20+153928.png)
