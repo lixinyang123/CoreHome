@@ -14,14 +14,14 @@ CoreHome是一个基于.NET Core和阿里云OSS的博客系统（依赖于 Aliyu
 #### 准备
 
 首先构建源码需要以下环境
-- Visual Studio 2019 / Visual Studio Core
+- Visual Studio 2019 / Visual Studio Code
 - .NET Core 3.1 SDK
 - Entity Framework Core
 - Libman
 - Mysql
 - Docker（推荐使用WSL2）
 
-> 注意：使用 Visual Studio（非 Visual Studio Core）不需要 Libman CLI 和 Entity Framework CLI
+> 注意：使用 Visual Studio（非 Visual Studio Code）不需要 Libman CLI 和 Entity Framework CLI
 
 安装 LibMan CLI：
 ```shell
