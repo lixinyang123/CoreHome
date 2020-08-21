@@ -98,6 +98,24 @@ namespace CoreHome.Admin.Controllers
             }
         }
 
+        public IActionResult MoveUp(string id)
+        {
+            ViewBag.PageTitle = "Edit Project";
+            ViewBag.Action = "Edit";
+            var index = homePageService.Config.FindIndex(i => i.Id == id);
+            if (index > 0)
+            {
+                var projects = homePageService.Config;
+
+                var tempProject = projects[index];
+                projects[index] = projects[index - 1];
+                projects[index - 1] = tempProject;
+
+                homePageService.Config = projects;
+            }
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public IActionResult UploadCover(IFormFile file)
         {
