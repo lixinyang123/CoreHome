@@ -37,6 +37,7 @@ footer a {
     bottom: 17%;
     position: fixed;
     right: -2px;
+    z-index: 999;
 }
 
 .gototop {
