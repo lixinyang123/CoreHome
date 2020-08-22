@@ -33,6 +33,12 @@ footer a {
     padding-bottom: 0;
 }
 
+#privacy {
+    bottom: 20%;
+    position: fixed;
+    right: -2px;
+}
+
 .gototop {
     position: fixed;
     bottom: 20px;

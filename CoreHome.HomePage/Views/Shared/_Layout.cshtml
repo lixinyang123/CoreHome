@@ -107,7 +107,24 @@
 
     </footer>
 
-    <partial name="_CookieConsentPartial" />
+    <div id="privacy">
+        <a asp-controller="Home" asp-action="Privacy">
+            <svg width="40" height="130" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <g>
+                    <title>background</title>
+                    <rect x="-1" y="-1" width="42" height="132" id="canvas_background" fill="none" />
+                </g>
+                <g>
+                    <title>Layer 1</title>
+                    <rect y="43" width="130" height="40" transform="rotate(-90 19.000000000000004,63) " fill="#004880" id="svg_1" x="-46" />
+                    <rect y="130" width="1" height="40" transform="rotate(-90 1.1368683772161605e-13,130.00000000000003) " fill="white" id="svg_3" />
+                    <rect y="1" width="1" height="40" transform="rotate(-90 0,1) " fill="white" id="svg_4" />
+                    <rect y="129" width="128" height="1" transform="rotate(-90 1.1368683772161605e-13,129.00000000000003) " fill="white" id="svg_5" />
+                    <text font-weight="bold" fill="#ffffff" stroke="null" stroke-width="0" stroke-opacity="null" x="-14" y="70" id="svg_6" font-size="20" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="rotate(-90 21.804687500000004,63.3359375) ">Privacy</text>
+                </g>
+            </svg>
+        </a>
+    </div>
 
     <div id="top" class="gototop js-top">
         <a onclick="MoveTop()"><i>TOP</i></a>

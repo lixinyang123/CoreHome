@@ -1,11 +1,11 @@
-﻿using CoreHome.Infrastructure.Models;
-using CoreHome.Infrastructure.Services;
+﻿using CoreHome.Infrastructure.Services;
 using CoreHome.Infrastructure.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace CoreHome.HomePage.Controllers
 {
@@ -36,9 +36,9 @@ namespace CoreHome.HomePage.Controllers
             {
                 try
                 {
-                    DateTime dt = DateTime.ParseExact(lastTime, "yyyy/MM/dd hh:mm:ss", System.Globalization.CultureInfo.CurrentCulture);
-                    int ts = now.Subtract(dt).Days;
-                    if (ts < 1)
+                    DateTime dt = DateTime.ParseExact(lastTime, "yyyy/MM/dd hh:mm:ss", CultureInfo.CurrentCulture);
+                    int ts = now.Subtract(dt).Minutes;
+                    if (ts < 5)
                     {
                         ViewBag.Title = "Welcome Back !";
                     }
