@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Diagnostics;
-using System.Globalization;
 
 namespace CoreHome.HomePage.Controllers
 {
@@ -25,30 +24,21 @@ namespace CoreHome.HomePage.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.PageTitle = "Home";
             searchEngineService.PushToBaidu(environment.WebRootPath);
 
+            ViewBag.PageTitle = "Home";
             ViewBag.Title = profileService.Config.Name;
+
             string lastTime = Request.Cookies["lastTime"];
 
-            DateTime now = DateTime.Now;
             if (lastTime != null)
             {
-                try
-                {
-                    DateTime dt = DateTime.ParseExact(lastTime, "yyyy/MM/dd hh:mm:ss", CultureInfo.CurrentCulture);
-                    int ts = now.Subtract(dt).Minutes;
-                    if (ts < 5)
-                    {
-                        ViewBag.Title = "Welcome Back !";
-                    }
-                }
-                catch (Exception) { }
+                ViewBag.Title = "Welcome Back !";
             }
 
-            Response.Cookies.Append("lastTime", now.ToString("yyyy/MM/dd hh:mm:ss"), new CookieOptions()
+            Response.Cookies.Append("lastTime", string.Empty, new CookieOptions()
             {
-                Expires = DateTime.Now.AddDays(30)
+                Expires = DateTime.Now.AddMinutes(5)
             });
             return View();
         }
