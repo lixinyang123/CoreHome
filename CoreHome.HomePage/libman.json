@@ -11,7 +11,7 @@
       "destination": "wwwroot/lib/bootstrap/"
     },
     {
-      "library": "darkreader@4.9.15",
+      "library": "darkreader@4.7.15",
       "destination": "wwwroot/lib/darkreader/"
     },
     {
