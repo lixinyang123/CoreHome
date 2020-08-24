@@ -53,8 +53,15 @@ git clone https://github.com/lixinyang123/CoreHome.git
 		- appsettings.json（项目配置）
 		- wwwroot/favicon.ico（网站logo）
 
-> 注意：CoreHome.HomePage 和 CoreHome.Admin 中的 appsettings.json 内容完全一致，复制粘贴即可。
 
+>注意：CoreHome.HomePage 和 CoreHome.Admin 中的 appsettings.json 内容完全一致，复制粘贴即可。
+
+#### 修改数据连接配置（appsettings.json）:
+CoreHome.HomePage和CoreHome.Admin都需要修改
+```
+ "ArticleDb": "server=数据库url(不用加端口号);user id=数据库用户名;password=数据库密码;database=articles"
+```
+	
 #### 还原依赖
 
 - 使用 Visual Studio
