@@ -33,7 +33,15 @@ function fullHeight() {
 
 function MoveTop()
 {
-	window.scrollTo(0, 0);
+	timer = setInterval(function () {
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		var speed = Math.floor(-scrollTop / 8);
+		document.documentElement.scrollTop = document.body.scrollTop = scrollTop + speed;
+		isTop = true; 
+		if (scrollTop == 0) {
+			clearInterval(timer);
+		}
+	}, 50);
 }
 
 //=============GetVerfyCode=============
