@@ -33,7 +33,7 @@ function fullHeight() {
 
 function MoveTop()
 {
-	window.scrollTo(0, 0);
+	$("html,body").animate({ scrollTop: 0 }, 500);
 }
 
 //=============GetVerfyCode=============
