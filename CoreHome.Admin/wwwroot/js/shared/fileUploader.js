@@ -26,14 +26,13 @@ function uploadAvatar() {
         data: formData,
         processData: false,
         contentType: false,
-        success: function (data) {
-            document.querySelector("#avatarUrl").value = data.toString();
-            document.querySelector("#avatar").src = data.toString() + "?" + Math.random();
+        success: function () {
+            document.querySelector("#avatar").src = document.querySelector("#avatar").src + "?" + Math.random();
             alert("Upload successful");
             uploadingState(false, "Upload Avatar");
         },
-        error: function (response) {
-            alert("Upload failed " + response.toString());
+        error: function () {
+            alert("Upload failed");
             uploadingState(false, "Upload Avatar");
         }
     });

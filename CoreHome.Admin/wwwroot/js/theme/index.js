@@ -30,12 +30,12 @@ function uploadBackground() {
         data: formData,
         processData: false,
         contentType: false,
-        success: function (data) {
+        success: function () {
             alert("Upload successful");
             changeBackground('custom');
         },
-        error: function (response) {
-            alert("Upload failed " + response.toString());
+        error: function () {
+            alert("Upload failed");
         }
     });
 }

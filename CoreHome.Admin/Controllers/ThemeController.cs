@@ -44,12 +44,12 @@ namespace CoreHome.Admin.Controllers
             using Stream stream = file.OpenReadStream();
             try
             {
+                ossService.UploadBackground(stream);
                 return Ok();
             }
             catch (System.Exception ex)
             {
-                Response.StatusCode = 500;
-                return Content(ex.Message);
+                return NotFound();
             }
         }
 

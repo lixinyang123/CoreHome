@@ -44,12 +44,12 @@ namespace CoreHome.Admin.Controllers
             using Stream stream = file.OpenReadStream();
             try
             {
+                ossService.UploadAvatar(stream);
                 return Ok();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Response.StatusCode = 500;
-                return Content(ex.Message);
+                return NotFound();
             }
         }
 
