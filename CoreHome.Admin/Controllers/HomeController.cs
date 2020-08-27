@@ -44,7 +44,6 @@ namespace CoreHome.Admin.Controllers
             Response.Cookies.Append("user", cacheKey, new CookieOptions()
             {
                 Expires = DateTimeOffset.Now.AddDays(1),
-                SameSite = SameSiteMode.None
             });
 
             //随机生成密码
@@ -90,7 +89,6 @@ namespace CoreHome.Admin.Controllers
                 Response.Cookies.Append("accessToken", securityService.Encrypt(cacheKey), new CookieOptions()
                 {
                     Expires = DateTimeOffset.Now.AddDays(1),
-                    SameSite = SameSiteMode.None
                 });
 
                 //重定向到仪表盘
