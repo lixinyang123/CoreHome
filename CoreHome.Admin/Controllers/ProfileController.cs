@@ -4,9 +4,7 @@ using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace CoreHome.Admin.Controllers
 {
@@ -48,7 +46,7 @@ namespace CoreHome.Admin.Controllers
             {
                 return Content(ossService.UploadAvatar(stream));
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 Response.StatusCode = 500;
                 return Content(ex.Message);
