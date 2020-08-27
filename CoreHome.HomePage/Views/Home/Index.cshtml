@@ -38,7 +38,7 @@
                         <div class="display-t js-fullheight">
 
                             <div class="display-tc">
-                                <img id="avatar" src="@ProfileService.Config.Avatar" />
+                                <img id="avatar" src="@Html.Raw(ossService.config.BucketDomainName + "images/avatar.jpg")" />
                                 <h1><span id="name">@ViewBag.Title</span></h1>
                                 <h2 id="info">@ProfileService.Config.Info</h2>
                                 <h3><span id="qq">QQ：@ProfileService.Config.QQ</span></h3>

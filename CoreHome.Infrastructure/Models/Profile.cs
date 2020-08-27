@@ -78,11 +78,6 @@ namespace CoreHome.Infrastructure.Models
         public string Name { get; set; } = "LLLXY";
 
         [Required]
-        [Url]
-        [Display(Name = "User Avatar")]
-        public string Avatar { get; set; } = "https://corehome.oss-accelerate.aliyuncs.com/images/avatar.jpg";
-
-        [Required]
         [Display(Name = "User Info (eg: .Net Developer)")]
         public string Info { get; set; } = ".Net Developer";
 
