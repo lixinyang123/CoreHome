@@ -1,5 +1,6 @@
 ﻿@inject BingWallpaperService BingWallpaperService
 @inject HomePageService homePageService
+@inject OssService ossService
 
 <div>
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet" />
@@ -20,7 +21,7 @@
                     break;
 
                 case BackgroundType.Custom:
-                    <div id="imgbg" style="background-image: url('https://corehome.oss-cn-shenzhen.aliyuncs.com/images/background.jpg');"></div>
+                    <div id="imgbg" style="background-image: url('@Html.Raw(ossService.config.BucketDomainName + "images/background.jpg")');"></div>
                     break;
 
                 @*case BackgroundType.Video:

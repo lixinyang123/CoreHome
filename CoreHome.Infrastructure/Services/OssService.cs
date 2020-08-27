@@ -9,7 +9,7 @@ namespace CoreHome.Infrastructure.Services
     public class OssService
     {
         private readonly OssClient client;
-        private readonly OssConfig config;
+        public readonly OssConfig config;
 
         public OssService(OssConfig config)
         {
