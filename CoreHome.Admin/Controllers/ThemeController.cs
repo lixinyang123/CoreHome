@@ -47,7 +47,7 @@ namespace CoreHome.Admin.Controllers
                 ossService.UploadBackground(stream);
                 return Ok();
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 return NotFound();
             }
