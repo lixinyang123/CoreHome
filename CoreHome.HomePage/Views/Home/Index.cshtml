@@ -20,7 +20,7 @@
                     break;
 
                 case BackgroundType.Custom:
-                    <div id="imgbg" style="background-image: url('@Html.Raw(ossService.config.BucketDomainName + "images/background.jpg")');"></div>
+                    <div id="imgbg" style="background-image: url('@ossService.GetBackground()');"></div>
                     break;
 
                 @*case BackgroundType.Video:
@@ -37,7 +37,7 @@
                         <div class="display-t js-fullheight">
 
                             <div class="display-tc">
-                                <img id="avatar" src="@Html.Raw(ossService.config.BucketDomainName + "images/avatar.jpg")" />
+                                <img id="avatar" src="@ossService.GetAvatar()" />
                                 <h1><span id="name">@ViewBag.Title</span></h1>
                                 <h2 id="info">@ProfileService.Config.Info</h2>
                                 <h3><span id="qq">QQ：@ProfileService.Config.QQ</span></h3>

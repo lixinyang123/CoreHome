@@ -9,7 +9,7 @@ namespace CoreHome.Infrastructure.Services
     public class OssService
     {
         private readonly OssClient client;
-        public readonly OssConfig config;
+        private readonly OssConfig config;
 
         public OssService(OssConfig config)
         {
@@ -24,18 +24,24 @@ namespace CoreHome.Infrastructure.Services
             return config.BucketDomainName + path + HttpUtility.UrlEncode(fileName);
         }
 
-        public string UploadAvatar(Stream stream)
+        public string GetAvatar()
         {
-            string path = "images/";
-            client.PutObject(config.BucketName, path + "avatar.jpg", stream);
-            return config.BucketDomainName + path + "avatar.jpg";
+            return config.BucketDomainName + "images/avatar.jpg";
         }
 
-        public string UploadBackground(Stream stream)
+        public void UploadAvatar(Stream stream)
         {
-            string path = "images/";
-            client.PutObject(config.BucketName, path + "background.jpg", stream);
-            return config.BucketDomainName + path + "background.jpg";
+            client.PutObject(config.BucketName, "images/avatar.jpg", stream);
+        }
+
+        public string GetBackground()
+        {
+            return config.BucketDomainName + "images/background.jpg";
+        }
+
+        public void UploadBackground(Stream stream)
+        {
+            client.PutObject(config.BucketName, "images/background.jpg", stream);
         }
 
         public string UploadBlogPic(string fileName, Stream stream)

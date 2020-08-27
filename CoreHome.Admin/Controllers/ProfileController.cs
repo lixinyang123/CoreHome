@@ -44,7 +44,7 @@ namespace CoreHome.Admin.Controllers
             using Stream stream = file.OpenReadStream();
             try
             {
-                return Content(ossService.UploadAvatar(stream));
+                return Ok();
             }
             catch (Exception ex)
             {

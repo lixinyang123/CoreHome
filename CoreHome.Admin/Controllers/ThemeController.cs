@@ -44,7 +44,7 @@ namespace CoreHome.Admin.Controllers
             using Stream stream = file.OpenReadStream();
             try
             {
-                return Content(ossService.UploadBackground(stream));
+                return Ok();
             }
             catch (System.Exception ex)
             {
