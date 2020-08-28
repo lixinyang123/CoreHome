@@ -29,10 +29,9 @@ namespace CoreHome.Admin
         // 将服务添加到容器
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
+            services.Configure<CookieOptions>(config =>
             {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.Strict;
+                config.SameSite = SameSiteMode.Lax;
             });
 
             services.AddControllersWithViews();
@@ -57,11 +56,6 @@ namespace CoreHome.Admin
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
             services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
             services.AddSingleton(new SecurityService("Key.txt", Guid.NewGuid().ToString().Replace("-", "")));
-
-            services.Configure<CookieOptions>(config =>
-            {
-                config.SameSite = SameSiteMode.Strict;
-            });
         }
 
         // 配置应用服务

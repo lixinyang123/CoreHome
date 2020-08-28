@@ -38,8 +38,7 @@ namespace CoreHome.HomePage.Controllers
 
             Response.Cookies.Append("lastTime", string.Empty, new CookieOptions()
             {
-                Expires = DateTime.Now.AddMinutes(5),
-                SameSite = SameSiteMode.Strict
+                Expires = DateTime.Now.AddMinutes(5)
             });
             return View();
         }

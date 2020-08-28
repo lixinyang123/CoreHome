@@ -43,8 +43,7 @@ namespace CoreHome.Admin.Controllers
             string cacheKey = Guid.NewGuid().ToString();
             Response.Cookies.Append("user", cacheKey, new CookieOptions()
             {
-                Expires = DateTimeOffset.Now.AddDays(1),
-                SameSite = SameSiteMode.Strict
+                Expires = DateTimeOffset.Now.AddDays(1)
             });
 
             //随机生成密码
@@ -89,8 +88,7 @@ namespace CoreHome.Admin.Controllers
                 //颁发访问令牌
                 Response.Cookies.Append("accessToken", securityService.Encrypt(cacheKey), new CookieOptions()
                 {
-                    Expires = DateTimeOffset.Now.AddDays(1),
-                    SameSite = SameSiteMode.Strict
+                    Expires = DateTimeOffset.Now.AddDays(1)
                 });
 
                 //重定向到仪表盘
