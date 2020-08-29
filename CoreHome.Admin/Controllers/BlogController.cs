@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CoreHome.Admin.Controllers
 {
@@ -98,7 +99,7 @@ namespace CoreHome.Admin.Controllers
                 Category = category,
                 ArticleTags = articleTags,
                 Overview = articleViewModel.Overview,
-                Content = articleViewModel.Content
+                Content = Regex.Escape(articleViewModel.Content)
             });
 
             articleDbContext.SaveChanges();
@@ -179,7 +180,7 @@ namespace CoreHome.Admin.Controllers
             article.Category = category;
             article.ArticleTags = articleTags;
             article.Overview = articleViewModel.Overview;
-            article.Content = articleViewModel.Content;
+            article.Content = Regex.Unescape(articleViewModel.Content);
 
             articleDbContext.SaveChanges();
 
