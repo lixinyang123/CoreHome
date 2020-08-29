@@ -99,7 +99,7 @@ namespace CoreHome.Admin.Controllers
                 Category = category,
                 ArticleTags = articleTags,
                 Overview = articleViewModel.Overview,
-                Content = Regex.Escape(articleViewModel.Content)
+                Content = articleViewModel.Content
             });
 
             articleDbContext.SaveChanges();
@@ -180,7 +180,7 @@ namespace CoreHome.Admin.Controllers
             article.Category = category;
             article.ArticleTags = articleTags;
             article.Overview = articleViewModel.Overview;
-            article.Content = Regex.Unescape(articleViewModel.Content);
+            article.Content = articleViewModel.Content;
 
             articleDbContext.SaveChanges();
 
