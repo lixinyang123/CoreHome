@@ -38,7 +38,7 @@ namespace CoreHome.HomePage
 
             services.AddDbContext<ArticleDbContext>(options =>
             {
-                options.UseMySql(Configuration.GetConnectionString("ArticleDb"), mySqlOptions =>
+                options.UseMySql(Configuration.GetConnectionString("CoreHome"), mySqlOptions =>
                 {
                     mySqlOptions.ServerVersion(new ServerVersion(new Version(8, 0, 18), ServerType.MySql));
                 });
