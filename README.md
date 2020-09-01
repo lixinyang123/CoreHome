@@ -30,7 +30,7 @@ dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 
 安装 Entity Framework Core CLI
 ```shell
-dotnet tool install --global dotnet-ef
+dotnet tool install -g dotnet-ef
 ```
 
 ![](https://corehome.oss-accelerate.aliyuncs.com/blogs/%e5%b1%8f%e5%b9%95%e6%88%aa%e5%9b%be+2020-08-20+175532.jpg)
@@ -59,7 +59,7 @@ git clone https://github.com/lixinyang123/CoreHome.git
 #### 修改数据连接配置（appsettings.json）:
 CoreHome.HomePage和CoreHome.Admin都需要修改
 ```
- "ArticleDb": "server=数据库url(不用加端口号);user id=数据库用户名;password=数据库密码;database=corehome"
+  "CoreHome": "server=[数据库url];user id=[数据库用户名];password=[数据库密码];database=corehome"
 ```
 	
 #### 还原依赖
