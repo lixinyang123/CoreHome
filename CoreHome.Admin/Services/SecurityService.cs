@@ -19,7 +19,7 @@ namespace CoreHome.Admin.Services
             };
         }
 
-        public string Encrypt(string str)
+        public string AESEncrypt(string str)
         {
             if (string.IsNullOrEmpty(str)) return null;
             byte[] toEncryptArray = Encoding.UTF8.GetBytes(str);
@@ -30,7 +30,7 @@ namespace CoreHome.Admin.Services
             return Convert.ToBase64String(resultArray, 0, resultArray.Length);
         }
 
-        public string Decrypt(string str)
+        public string AESDecrypt(string str)
         {
             if (string.IsNullOrEmpty(str)) return null;
             byte[] toEncryptArray = Convert.FromBase64String(str);
@@ -39,6 +39,17 @@ namespace CoreHome.Admin.Services
             byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
 
             return Encoding.UTF8.GetString(resultArray);
+        }
+
+        public string SHA256Encrypt(string str)
+        {
+            byte[] password = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(str));
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < password.Length; i++)
+            {
+                builder.Append(password[i].ToString("X2"));
+            }
+            return builder.ToString();
         }
 
     }

@@ -80,13 +80,13 @@ namespace CoreHome.Admin.Controllers
             }
             catch (Exception) { }
 
-            var verifyAdminPwd = pwd == userInfoService.Config.AdminPassword && pwd != null;
+            var verifyAdminPwd = securityService.AESEncrypt(pwd) == userInfoService.Config.AdminPassword && pwd != null;
             var verifyDynamicPwd = pwd == password && pwd != null && password != null;
 
             if (verifyAdminPwd || verifyDynamicPwd)
             {
                 //颁发访问令牌
-                Response.Cookies.Append("accessToken", securityService.Encrypt(cacheKey), new CookieOptions()
+                Response.Cookies.Append("accessToken", securityService.AESEncrypt(cacheKey), new CookieOptions()
                 {
                     Expires = DateTimeOffset.Now.AddDays(1)
                 });

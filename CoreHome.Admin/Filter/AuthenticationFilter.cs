@@ -35,7 +35,7 @@ namespace CoreHome.Admin.Filter
             {
                 string tokenStr = context.HttpContext.Request.Cookies["accessToken"];
                 string cacheKey = context.HttpContext.Request.Cookies["user"];
-                bool verifyDefeat = securityService.Decrypt(tokenStr) != cacheKey;
+                bool verifyDefeat = securityService.AESDecrypt(tokenStr) != cacheKey;
 
                 if (verifyDefeat || tokenStr == null || cacheKey == null)
                 {

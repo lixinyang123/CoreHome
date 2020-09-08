@@ -1,4 +1,5 @@
 ﻿using CoreHome.Admin.Filter;
+using CoreHome.Admin.Services;
 using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
@@ -13,29 +14,42 @@ namespace CoreHome.Admin.Controllers
     {
         private readonly ProfileService profileService;
         private readonly OssService ossService;
+        private readonly SecurityService securityService;
 
-        public ProfileController(ProfileService profileService, OssService ossService)
+        public ProfileController(ProfileService profileService, OssService ossService, SecurityService securityService)
         {
             this.profileService = profileService;
             this.ossService = ossService;
+            this.securityService = securityService;
         }
 
         public IActionResult Index()
         {
             ViewBag.PageTitle = "Profile";
-            return View(profileService.Config);
+            var config = profileService.Config;
+            config.AdminPassword = securityService.AESDecrypt(config.AdminPassword);
+            return View(config);
         }
 
         [HttpPost]
         public IActionResult Index(Profile profile)
         {
             var config = profileService.Config;
+
+            profile.AdminPassword = securityService.AESEncrypt(profile.AdminPassword);
             profile.WhatsNew = config.WhatsNew;
             profile.FriendLinks = config.FriendLinks;
             profile.About = config.About;
 
             profileService.Config = profile;
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Reset()
+        {
+            securityService.ResetConfig();
+            profileService.ResetConfig();
+            return Content("Reset Successful");
         }
 
         [HttpPost]

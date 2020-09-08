@@ -116,6 +116,12 @@ namespace CoreHome.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Reset()
+        {
+            homePageService.ResetConfig();
+            return Content("Reset Successful");
+        }
+
         [HttpPost]
         public IActionResult UploadCover(IFormFile file)
         {

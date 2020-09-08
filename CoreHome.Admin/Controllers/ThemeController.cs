@@ -38,6 +38,12 @@ namespace CoreHome.Admin.Controllers
             return View(themeService.Config);
         }
 
+        public IActionResult Reset()
+        {
+            themeService.ResetConfig();
+            return Content("Reset Successful");
+        }
+
         [HttpPost]
         public IActionResult UploadBackground(IFormFile file)
         {

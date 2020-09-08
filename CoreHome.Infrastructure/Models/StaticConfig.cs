@@ -6,6 +6,7 @@ namespace CoreHome.Infrastructure.Models
 {
     public class StaticConfig<ConfigType>
     {
+        private readonly ConfigType initConfig;
         private readonly string configPath;
         private readonly string configFile;
 
@@ -13,6 +14,10 @@ namespace CoreHome.Infrastructure.Models
         {
             get
             {
+                if (!File.Exists(configFile))
+                {
+                    ResetConfig();
+                }
                 return JsonSerializer.Deserialize<ConfigType>(File.ReadAllText(configFile));
             }
             set
@@ -26,7 +31,7 @@ namespace CoreHome.Infrastructure.Models
         /// </summary>
         /// <param name="fileName">文件名称</param>
         /// <param name="InitConfig">初始化配置</param>
-        public StaticConfig(string fileName,ConfigType InitConfig)
+        public StaticConfig(string fileName,ConfigType initConfig)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -45,10 +50,12 @@ namespace CoreHome.Infrastructure.Models
                 Directory.CreateDirectory(configPath);
             }
 
-            if (!File.Exists(configFile))
-            {
-                Config = InitConfig;
-            }
+            this.initConfig = initConfig;
+        }
+
+        public void ResetConfig()
+        {
+            Config = initConfig;
         }
     }
 }
