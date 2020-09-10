@@ -78,7 +78,7 @@ namespace CoreHome.Infrastructure.Models
         public string Name { get; set; } = "LLLXY";
 
         [Required]
-        [Display(Name = "User Info (eg: .Net Developer)")]
+        [Display(Name = "User Info (Use the '#' separation)")]
         public string Info { get; set; } = ".Net Developer";
 
         [Required]
