@@ -1,5 +1,4 @@
-﻿var player = undefined;
-var musicSrc = undefined;
+﻿let player, musicSrc, typed;
 
 function playMusic() {
     try {
@@ -13,9 +12,9 @@ function playMusic() {
     } catch (e) {}
 }
 
-function test() {
-    var infoList = document.querySelector("#infoList").value.split("#");
-    new Typed('#info', {
+function showInfo() {
+    let infoList = document.querySelector("#infoList").value.split("#");
+    typed = new Typed('#info', {
         strings: infoList,
         typeSpeed: 70,
         backSpeed: 50,
@@ -29,7 +28,7 @@ function test() {
 //=============Initializa================
 
 function initHome() {
-    test();
+    showInfo();
     player = document.querySelector("#player");
     musicSrc = player.src;
     playMusic();
