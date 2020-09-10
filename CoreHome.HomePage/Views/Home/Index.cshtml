@@ -2,6 +2,8 @@
 @inject HomePageService homePageService
 
 <div>
+    <script type="text/javascript" src="~/lib/typed.js/lib/typed.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/home/index.min.css" />
@@ -39,7 +41,8 @@
                             <div class="display-tc">
                                 <img id="avatar" src="@ossService.GetAvatar()" />
                                 <h1><span id="name">@ViewBag.Title</span></h1>
-                                <h2 id="info">@ProfileService.Config.Info</h2>
+                                <h2><span id="info"></span></h2>
+                                <input id="infoList" type="hidden" value="@ProfileService.Config.Info"/>
                                 <h3><span id="qq">QQ：@ProfileService.Config.QQ</span></h3>
                                 <br />
                                 <h3><span id="email">email：@ProfileService.Config.Email</span></h3>

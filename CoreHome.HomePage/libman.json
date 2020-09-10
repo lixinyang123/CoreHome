@@ -25,6 +25,10 @@
     {
       "library": "scrollreveal@4.0.7",
       "destination": "wwwroot/lib/scrollreveal/"
+    },
+    {
+      "library": "typed.js@2.0.11",
+      "destination": "wwwroot/lib/typed.js/"
     }
   ]
 }
