@@ -128,7 +128,7 @@ namespace CoreHome.Admin.Controllers
             using Stream stream = file.OpenReadStream();
             try
             {
-                return Content(ossService.UploadProjCover(file.FileName, stream));
+                return Content(ossService.UploadProjCover(stream));
             }
             catch (Exception ex)
             {

@@ -235,7 +235,7 @@ namespace CoreHome.Admin.Controllers
             using Stream stream = file.OpenReadStream();
             try
             {
-                string uri = ossService.UploadBlogPic(file.FileName, stream);
+                string uri = ossService.UploadBlogPic(stream);
                 return Json(new { success = 1, message = "上传成功", url = uri });
             }
             catch (Exception ex)

@@ -1,8 +1,8 @@
 ﻿using Aliyun.OSS;
 using CoreHome.Infrastructure.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Web;
 
 namespace CoreHome.Infrastructure.Services
 {
@@ -17,11 +17,12 @@ namespace CoreHome.Infrastructure.Services
             this.config = config;
         }
 
-        public string UploadProjCover(string fileName, Stream stream)
+        public string UploadProjCover(Stream stream)
         {
+            string fileName = Guid.NewGuid().ToString() + ".jpg";
             string path = "images/projects/";
             client.PutObject(config.BucketName, path + fileName, stream);
-            return config.BucketDomainName + path + HttpUtility.UrlEncode(fileName);
+            return config.BucketDomainName + path + fileName;
         }
 
         public string GetAvatar()
@@ -44,11 +45,12 @@ namespace CoreHome.Infrastructure.Services
             client.PutObject(config.BucketName, "images/background.jpg", stream);
         }
 
-        public string UploadBlogPic(string fileName, Stream stream)
+        public string UploadBlogPic(Stream stream)
         {
+            string fileName = Guid.NewGuid().ToString() + ".jpg";
             string path = "blogs/";
             client.PutObject(config.BucketName, path + fileName, stream);
-            return config.BucketDomainName + path + HttpUtility.UrlEncode(fileName);
+            return config.BucketDomainName + path + fileName;
         }
 
         public List<string> GetMusics()
