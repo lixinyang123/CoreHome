@@ -53,11 +53,11 @@ function uploadProjectCover() {
         success: function (data) {
             document.querySelector("#coverUrl").value = data.toString();
             alert("Upload successful");
-            uploadingState(false, "Upload Avatar");
+            uploadingState(false, "Upload Cover");
         },
         error: function (response) {
             alert("Upload failed " + response.toString());
-            uploadingState(false, "Upload Avatar");
+            uploadingState(false, "Upload Cover");
         }
     });
 }
