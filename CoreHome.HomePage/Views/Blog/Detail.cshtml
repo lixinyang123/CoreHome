@@ -4,8 +4,6 @@
     ViewData["Title"] = "Detail";
 }
 
-<link rel="stylesheet" href="~/css/blog/detail.min.css" />
-
 <input id="warning" type="hidden" value="@ViewBag.Warning" />
 <div class="container mt-4 mb-5">
     <div class="row">
@@ -69,7 +67,7 @@
 
             <form asp-controller="Blog" asp-action="Detail" method="post">
                 <input type="hidden" value="@Model.Article.ArticleCode" name="ArticleCode"/>
-                <textarea class="form-control" rows="4" placeholder="Comments（Support MarkDown）" maxlength="1024" name="Detail">@Model.CommentViewModel.Detail</textarea>
+                <textarea class="form-control mb-3" rows="4" placeholder="Comments（Support MarkDown）" maxlength="1024" name="Detail">@Model.CommentViewModel.Detail</textarea>
                 <div class="row">
                     <div class="col">
                         <div class="input-group">
@@ -83,11 +81,11 @@
                 </div>
             </form>
 
-            <div id="comments">
+            <div id="comments" class="mt-5">
 
                 @foreach (var comment in Model.Article.Comments)
                 {
-                        <div class="card comment-item">
+                        <div class="card comment-item mb-3">
                             <div class="card-header">
                                 <strong>@comment.Time</strong>
                             </div>

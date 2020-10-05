@@ -42,12 +42,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/css/blog/detail.min.css",
-    "inputFiles": [
-      "wwwroot/css/blog/detail.css"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/css/components/toptags.min.css",
     "inputFiles": [
       "wwwroot/css/components/toptags.css"
