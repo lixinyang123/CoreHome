@@ -36,6 +36,7 @@ namespace CoreHome.Admin.Controllers
             return View(articles);
         }
 
+        [HttpPost]
         public IActionResult Save(ArticleViewModel viewModel)
         {
             try
