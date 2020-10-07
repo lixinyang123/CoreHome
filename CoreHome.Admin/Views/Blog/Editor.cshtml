@@ -12,20 +12,20 @@
         <input asp-for="ArticleCode" type="hidden" />
 
         <label asp-for="Title"></label>*
-        <input asp-for="Title" type="text" autocomplete="off" class="form-control" />
+        <input id="Title" asp-for="Title" type="text" autocomplete="off" class="form-control" />
 
         <label asp-for="CategoryName"></label>*
-        <input asp-for="CategoryName" type="text" autocomplete="off" class="form-control" />
+        <input id="CategoryName" asp-for="CategoryName" type="text" autocomplete="off" class="form-control" />
 
         <label asp-for="TagStr"></label>*<label>（Use the '#' separation）</label>
-        <input asp-for="TagStr" type="text" autocomplete="off" class="form-control" />
+        <input id="TagStr" asp-for="TagStr" type="text" autocomplete="off" class="form-control" />
 
         <label asp-for="Overview"></label>*
-        <input asp-for="Overview" type="text" autocomplete="off" class="form-control" />
+        <input id="Overview" asp-for="Overview" type="text" autocomplete="off" class="form-control" />
 
         <label asp-for="Content"></label>*
         <div id="test-editor">
-            <textarea asp-for="Content" class="form-control" rows="10" cols="100" placeholder="博客内容"></textarea>
+            <textarea id="Content" asp-for="Content" class="form-control" rows="10" cols="100" placeholder="博客内容"></textarea>
         </div>
         <script type="text/javascript">
             editormd("test-editor", {
@@ -38,6 +38,32 @@
                 imageUploadURL : "/Admin/Blog/UploadPic",
                 htmlDecode: "style,script,iframe"
             });
+
+            if (window.location.href.includes("Upload")) {
+                console.log("Enable cache");
+
+                setInterval(() => {
+                    let tempArticle = {
+                        "Title": document.querySelector("#Title").value,
+                        "CategoryName": document.querySelector("#CategoryName").value,
+                        "TagStr": document.querySelector("#TagStr").value,
+                        "Overview": document.querySelector("#Overview").value,
+                        "Content": document.querySelector("#Content").innerText
+                    };
+
+                    $.ajax({
+                        url: "/Blog/Save",
+                        type: "POST",
+                        data: tempArticle,
+                        success: function () {
+                            console.log("save successful");
+                        },
+                        error: function () {
+                            console.log("save defeat");
+                        }
+                    });
+                },5000);
+            }
         </script>
 
         <input type="submit" value="Upload" class="btn btn-success mt-2" />

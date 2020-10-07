@@ -6,6 +6,7 @@ using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,11 +19,13 @@ namespace CoreHome.Admin.Controllers
     {
         private readonly ArticleDbContext articleDbContext;
         private readonly OssService ossService;
+        private readonly IMemoryCache memoryCache;
 
-        public BlogController(ArticleDbContext articleDbContext, OssService ossService)
+        public BlogController(ArticleDbContext articleDbContext, OssService ossService, IMemoryCache memoryCache)
         {
             this.articleDbContext = articleDbContext;
             this.ossService = ossService;
+            this.memoryCache = memoryCache;
         }
 
         public IActionResult Index()
@@ -33,12 +36,37 @@ namespace CoreHome.Admin.Controllers
             return View(articles);
         }
 
+        public IActionResult Save(ArticleViewModel viewModel)
+        {
+            try
+            {
+                //暂存文章
+                memoryCache.Set("tempArticle", viewModel, DateTimeOffset.Now.AddDays(1));
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+
         public IActionResult Upload()
         {
             ViewBag.PageTitle = "Upload";
-
             ViewBag.Action = "Upload";
-            return View("Editor", new ArticleViewModel());
+
+            ArticleViewModel viewModel;
+            try
+            {
+                //读取暂存文章
+                viewModel = memoryCache.Get<ArticleViewModel>("tempArticle");
+            }
+            catch (Exception)
+            {
+                viewModel = new ArticleViewModel();
+            }
+
+            return View("Editor", viewModel);
         }
 
         [HttpPost]
@@ -102,6 +130,10 @@ namespace CoreHome.Admin.Controllers
             });
 
             articleDbContext.SaveChanges();
+
+            //移除缓存
+            memoryCache.Remove("tempArticle");
+
             return RedirectToAction("Index");
         }
 
