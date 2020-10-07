@@ -70,5 +70,11 @@
     "inputFiles": [
       "wwwroot/css/components/project.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/blog/editor.min.js",
+    "inputFiles": [
+      "wwwroot/js/blog/editor.js"
+    ]
   }
 ]
