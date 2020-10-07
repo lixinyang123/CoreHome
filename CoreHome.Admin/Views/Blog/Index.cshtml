@@ -28,7 +28,7 @@
                         <td>@article.Title</td>
                         <td><a asp-action="Modify" asp-route-id="@article.ArticleCode">Modify</a></td>
                         <td><a asp-action="Comment" asp-route-id="@article.ArticleCode">Comment</a></td>
-                        <td><a asp-action="Delete" asp-route-id="@article.ArticleCode">Delete</a></td>
+                        <td><a onclick="if (confirm('Confirm deletion?')) { window.location.href = '/Admin/Blog/Delete/@article.ArticleCode'; }" href="javascript:void(0)">Delete</a></td>
                     </tr>
               }
           </tbody>

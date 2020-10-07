@@ -1,4 +1,4 @@
-﻿editormd("test-editor", {
+﻿editormd("editor", {
     width: "100%",
     height: "700px",
     path: "/Admin/lib/editor.md/lib/",
