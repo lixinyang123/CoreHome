@@ -56,13 +56,9 @@ namespace CoreHome.Admin.Controllers
             ViewBag.PageTitle = "Upload";
             ViewBag.Action = "Upload";
 
-            ArticleViewModel viewModel;
-            try
-            {
-                //读取暂存文章
-                viewModel = memoryCache.Get<ArticleViewModel>("tempArticle");
-            }
-            catch (Exception)
+            //读取暂存文章
+            ArticleViewModel viewModel = memoryCache.Get<ArticleViewModel>("tempArticle");
+            if (viewModel == null)
             {
                 viewModel = new ArticleViewModel();
             }
