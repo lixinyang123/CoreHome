@@ -52,7 +52,7 @@
                     };
 
                     $.ajax({
-                        url: "/Blog/Save",
+                        url: "/Admin/Blog/Save",
                         type: "POST",
                         data: tempArticle,
                         success: function () {
@@ -62,7 +62,7 @@
                             console.log("save defeat");
                         }
                     });
-                },5000);
+                },10000);
             }
         </script>
 
