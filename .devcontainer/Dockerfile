@@ -19,3 +19,6 @@ RUN apt-get update; \
 
 RUN dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 RUN ln -s ~/.dotnet/tools/libman /bin/libman
+
+RUN dotnet tool install -g dotnet-ef
+RUN ln -s ~/.dotnet/tools/dotnet-ef /bin/dotnet-ef
