@@ -10,5 +10,6 @@
 		"ms-dotnettools.csharp"
 	],
 	"forwardPorts": [5000, 5001],
+	"postCreateCommand": "dotnet restore",
 	"remoteUser": "root"
 }
