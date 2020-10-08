@@ -20,7 +20,7 @@ RUN apt-get update; \
 RUN dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 RUN ln -s ~/.dotnet/tools/libman /bin/libman
 
-RUN cd ../CoreHome.HomePage
+RUN cd ./CoreHome.HomePage
 RUN dotnet restore
 RUN ~/.dotnet/tools/libman restore
 
