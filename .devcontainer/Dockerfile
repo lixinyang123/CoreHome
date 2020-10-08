@@ -19,5 +19,3 @@ RUN apt-get update; \
 
 RUN dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 RUN ln -s ~/.dotnet/tools/libman /bin/libman
-
-RUN dotnet restore
