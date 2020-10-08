@@ -3,18 +3,12 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
-
 	"extensions": [
 		"ms-dotnettools.csharp"
 	],
-
 	"forwardPorts": [5000, 5001],
-	
-	"postCreateCommand": "dotnet restore",
-
 	"remoteUser": "root"
 }
