@@ -161,6 +161,11 @@ namespace CoreHome.HomePage.Controllers
             return View("Index", articles);
         }
 
+        /// <summary>
+        /// 查看博客详情
+        /// </summary>
+        /// <param name="id">博客ArticleCode</param>
+        /// <returns>博客详情页面</returns>
         public IActionResult Detail(Guid id)
         {
             Article article = articleDbContext.Articles
@@ -179,6 +184,11 @@ namespace CoreHome.HomePage.Controllers
             });
         }
 
+        /// <summary>
+        /// 评论功能
+        /// </summary>
+        /// <param name="viewModel">评论内容</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Detail(CommentViewModel viewModel)
         {
