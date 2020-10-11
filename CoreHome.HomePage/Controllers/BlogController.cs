@@ -155,7 +155,7 @@ namespace CoreHome.HomePage.Controllers
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Where(i => i.Title.ToLower().Contains(keyword.ToLower()))
-                .ToList();
+                .Take(pageSize).ToList();
 
             ViewBag.Warning = keyword;
             return View("Index", articles);
