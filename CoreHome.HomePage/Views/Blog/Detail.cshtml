@@ -67,7 +67,7 @@
 
             <form asp-controller="Blog" asp-action="Detail" method="post">
                 <input type="hidden" value="@Model.Article.ArticleCode" name="ArticleCode"/>
-                <textarea class="form-control mb-3" rows="4" placeholder="Comments（Support MarkDown）" maxlength="1024" name="Detail">@Model.CommentViewModel.Detail</textarea>
+                <textarea class="form-control mb-3" rows="4" placeholder="Comment（Support MarkDown）" maxlength="1024" name="Detail">@Model.CommentViewModel.Detail</textarea>
                 <div class="row">
                     <div class="col">
                         <div class="input-group">
