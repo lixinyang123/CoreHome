@@ -57,7 +57,8 @@ namespace CoreHome.HomePage.Controllers
             ViewBag.Pagination = new PaginationViewModel()
             {
                 CurrentIndex = index,
-                PageCount = pageCount
+                PageCount = pageCount,
+                ActionName = "Index"
             };
 
             ViewBag.Warning = "All Posts";
@@ -65,35 +66,58 @@ namespace CoreHome.HomePage.Controllers
         }
 
         /// <param name="id">博客类别</param>
-        public IActionResult Categories(string id)
+        public IActionResult Categories(string id, int index = 1)
         {
             ViewBag.PageTitle = id;
+
+            int pageCount = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(
+                articleDbContext.Articles.Where(i => i.Category.CategoriesName == id).Count()) / pageSize));
 
             List<Article> articles = articleDbContext.Articles
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Where(i => i.Category.CategoriesName == id)
-                .ToList();
+                .Skip((index - 1) * pageSize)
+                .Take(pageSize).ToList();
+
+            ViewBag.Pagination = new PaginationViewModel()
+            {
+                CurrentIndex = index,
+                PageCount = pageCount,
+                ActionName = "Categories"
+            };
 
             ViewBag.Warning = id;
             return View("Index", articles);
         }
 
         /// <param name="id">博客标签</param>
-        public IActionResult Tags(string id)
+        public IActionResult Tags(string id, int index = 1)
         {
             ViewBag.PageTitle = id;
+
+            int pageCount = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(
+                articleDbContext.ArticleTags.Include(i => i.Tag).Where(i => i.Tag.TagName == id).Count()) / pageSize));
 
             List<ArticleTag> articleTags = articleDbContext.ArticleTags
                 .OrderByDescending(i => i.Article.Id)
                 .Include(i => i.Article)
                 .ThenInclude(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
-                .Where(i => i.Tag.TagName == id).ToList();
+                .Where(i => i.Tag.TagName == id)
+                .Skip((index - 1) * pageSize)
+                .Take(pageSize).ToList();
 
             List<Article> articles = new List<Article>();
             articleTags.ForEach(i => articles.Add(i.Article));
+
+            ViewBag.Pagination = new PaginationViewModel()
+            {
+                CurrentIndex = index,
+                PageCount = pageCount,
+                ActionName = "Tags"
+            };
 
             ViewBag.Warning = id;
             return View("Index", articles);

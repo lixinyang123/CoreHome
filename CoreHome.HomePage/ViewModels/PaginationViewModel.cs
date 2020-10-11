@@ -8,5 +8,7 @@
         /// 总页数
         /// </summary>
         public int PageCount { get; set; }
+
+        public string ActionName { get; set; }
     }
 }
