@@ -188,7 +188,7 @@ namespace CoreHome.HomePage.Controllers
         /// 评论功能
         /// </summary>
         /// <param name="viewModel">评论内容</param>
-        /// <returns></returns>
+        /// <returns>评论状态</returns>
         [HttpPost]
         public IActionResult Detail(CommentViewModel viewModel)
         {
@@ -199,6 +199,9 @@ namespace CoreHome.HomePage.Controllers
                    .ThenInclude(i => i.Tag)
                    .SingleOrDefault(i => i.ArticleCode == viewModel.ArticleCode);
 
+            if (article == null)
+                return RedirectToAction("Index");
+
             ViewBag.PageTitle = article.Title;
 
             DetailViewModel detailViewModel = new DetailViewModel()
@@ -207,34 +210,35 @@ namespace CoreHome.HomePage.Controllers
                 CommentViewModel = viewModel
             };
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                string str = HttpContext.Session.GetString("VerificationCode");
-                if (str == viewModel.VerificationCode.ToLower())
-                {
-                    article.Comments.Add(new Comment()
-                    {
-                        Time = DateTime.Now,
-                        Detail = viewModel.Detail
-                    });
-                    articleDbContext.SaveChanges();
-
-                    //评论通知
-                    notifyService.PushNotify("New Commit", viewModel.Detail);
-
-                    detailViewModel.CommentViewModel = new CommentViewModel();
-                    ViewBag.Warning = "评论成功";
-                    return View(detailViewModel);
-                }
-                else
-                {
-                    ViewBag.Warning = "验证码错误";
-                    return View(detailViewModel);
-                }
+                ViewBag.Warning = "请完善评论";
+                return View(detailViewModel);
             }
 
-            ViewBag.Warning = "请完善评论";
-            return View(detailViewModel);
+            string str = HttpContext.Session.GetString("VerificationCode");
+            if (str == viewModel.VerificationCode.ToLower())
+            {
+                article.Comments.Add(new Comment()
+                {
+                    Time = DateTime.Now,
+                    Detail = viewModel.Detail
+                });
+                articleDbContext.SaveChanges();
+
+                //评论通知
+                notifyService.PushNotify("New Commit", viewModel.Detail);
+
+                detailViewModel.CommentViewModel = new CommentViewModel();
+                ViewBag.Warning = "评论成功";
+                return View(detailViewModel);
+            }
+            else
+            {
+                ViewBag.Warning = "验证码错误";
+                return View(detailViewModel);
+            }
+
         }
     }
 }
