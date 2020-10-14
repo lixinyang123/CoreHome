@@ -67,7 +67,7 @@ namespace CoreHome.HomePage
                 app.UseHsts();
             }
 
-            //Linux使用Nginx反向代理，边缘服务器不启用https
+            //Linux使用Nginx反向代理，不启用https
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 app.UseHttpsRedirection();
