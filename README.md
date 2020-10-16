@@ -73,7 +73,7 @@ CoreHome.HomePage和CoreHome.Admin都需要修改
 	- 前端：鼠标右键点击下面两个文件，弹出菜单中点击还原客户端库。
 		- CoreHome.HomePage/libman.json
 		- CoreHome.Admin/libman.json
-- 使用 Visual Studio Core 或 CLI
+- 使用 Visual Studio Code 或 CLI
 	- 后端：切换到下方目录执行命令 **dotnet restore**
 		- CoreHome.HomePage
 		- CoreHome.Admin
@@ -90,8 +90,8 @@ CoreHome.HomePage和CoreHome.Admin都需要修改
 Update-Database
 ```
 
-- 使用 Visual Studio Core 或 CLI
-在 CoreHome.HomePage 或 CoreHome.Admin 目录下执行
+- 使用 Visual Studio Code 或 CLI
+在 CoreHome.HomePage 和 CoreHome.Admin 目录下执行
 
 ```shell
 dotnet-ef database update -p ..\CoreHome.Data
@@ -106,14 +106,14 @@ dotnet-ef database update -p ..\CoreHome.Data
 #### 启动项目
 
 - Visual Studio 点击顶部运行即可
-- Visual Studio Core 选择项目生成 launcher.json 并点击运行
+- Visual Studio Code 选择项目生成 launcher.json 并点击运行
 - CLI 分别在 CoreHome.HomePage 和 CoreHome.Admin 执行 **dotnet run**
 
 #### 构建Docker镜像
 
 - Visual Studio：右键 CoreHome.HomePage/Dockerfile 和 CoreHome.Admin/Dockerfile 点击 **生成Docker映像**
 
-- Visual Studio Core 或 CLI：在项目根目录下执行
+- Visual Studio Code 或 CLI：在项目根目录下执行
 
 ```shell
 docker build --file ./CoreHome.Admin/Dockerfile --tag corehomeadmin:latest .
@@ -124,7 +124,7 @@ docker build --file ./CoreHome.HomePage/Dockerfile --tag corehomehomepage:latest
 
 - Visual Studio：启动项目更改为Docker点击启动即可。
 
-- Visual Studio Core 或 CLI：在项目中 DockerCompose 目录中执行
+- Visual Studio Code 或 CLI：在项目中 DockerCompose 目录中执行
 
 ```shell
 docker-compose up
