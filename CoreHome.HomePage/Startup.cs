@@ -46,7 +46,7 @@ namespace CoreHome.HomePage
 
             services.AddScoped<VerificationCodeService>();
             services.AddSingleton<BingWallpaperService>();
-            services.AddSingleton<SearchEngineService>();
+            services.AddSingleton(new SearchEngineService(Configuration.GetValue<string>("BaiduLinkSubmit")));
             services.AddSingleton(new ProfileService("Profile.json", new Profile()));
             services.AddSingleton(new HomePageService("Project.json", new List<Project>()));
             services.AddSingleton(new ThemeService("Theme.json", new Theme()));

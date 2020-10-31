@@ -7,6 +7,13 @@ namespace CoreHome.Infrastructure.Services
 {
     public class SearchEngineService
     {
+        private readonly string baiduLinkSubmit;
+
+        public SearchEngineService(string baiduLinkSubmit)
+        {
+            this.baiduLinkSubmit = baiduLinkSubmit;
+        }
+
         /// <summary>
         /// PushLinkToBaidu
         /// </summary>
@@ -16,13 +23,12 @@ namespace CoreHome.Infrastructure.Services
             try
             {
                 HttpClient httpClient = new HttpClient();
-                string url = @"http://data.zz.baidu.com/urls?site=https://www.lllxy.net&token=5ZG2x3hnCmpkN4Qh";
 
                 string SiteMapPath = WebRootPath + "\\SiteMap.txt";
                 string linkStr = File.ReadAllText(SiteMapPath);
                 HttpContent content = new StringContent(linkStr, Encoding.UTF8);
 
-                await httpClient.PostAsync(url, content);
+                await httpClient.PostAsync(baiduLinkSubmit, content);
             }
             catch (Exception) { }
         }
