@@ -9,8 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using Pomelo.EntityFrameworkCore.MySql.Storage;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -36,25 +34,31 @@ namespace CoreHome.Admin
 
             services.AddControllersWithViews();
 
+            //数据库上下文
             services.AddDbContext<ArticleDbContext>(options =>
             {
-                options.UseMySql(Configuration.GetConnectionString("CoreHome"), mySqlOptions =>
-                {
-                    mySqlOptions.ServerVersion(new ServerVersion(new Version(8, 0, 18), ServerType.MySql));
-                });
+                options.UseMySql(Configuration.GetConnectionString("CoreHome"), new MySqlServerVersion(new Version(8, 0, 18)));
             });
 
+            //Bing壁纸服务
             services.AddSingleton<BingWallpaperService>();
+
+            //个人信息服务
             services.AddSingleton(new ProfileService("Profile.json", new Profile()));
+
+            //项目管理服务
             services.AddSingleton(new HomePageService("Project.json", new List<Project>()));
-            services.AddSingleton(new ThemeService("Theme.json", new Theme()
-            {
-                ThemeType = ThemeType.Auto,
-                BackgroundType = BackgroundType.Color,
-                MusicUrl = null
-            }));
+
+            //主题服务
+            services.AddSingleton(new ThemeService("Theme.json", new Theme()));
+
+            //通知服务
             services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
+
+            //阿里云OSS服务
             services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
+
+            //安全服务
             services.AddSingleton(new SecurityService("Key.txt", Guid.NewGuid().ToString().Replace("-", "")));
         }
 

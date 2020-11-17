@@ -7,11 +7,11 @@ namespace CoreHome.Infrastructure.Models
 
     public class Theme
     {
-        public ThemeType ThemeType { get; set; }
+        public ThemeType ThemeType { get; set; } = ThemeType.Auto;
 
-        public BackgroundType BackgroundType { get; set; }
+        public BackgroundType BackgroundType { get; set; } = BackgroundType.Color;
 
         [Url]
-        public string MusicUrl { get; set; }
+        public string MusicUrl { get; set; } = string.Empty;
     }
 }
