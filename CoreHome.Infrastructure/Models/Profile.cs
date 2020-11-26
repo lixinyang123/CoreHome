@@ -20,7 +20,7 @@ namespace CoreHome.Infrastructure.Models
                 {
                     Id = Guid.NewGuid().ToString(),
                     Title = "CloudShell",
-                    Link = "http://180.76.232.34/"
+                    Link = "https://conchbrain.club/#brain"
                 }
             };
 
