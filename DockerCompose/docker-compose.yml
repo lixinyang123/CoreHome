@@ -8,7 +8,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
-    - db:/var/lib/mysql
+      - db:/var/lib/mysql
 
   corehome.homepage:
     image: ${DOCKER_REGISTRY-}corehomehomepage
@@ -19,7 +19,7 @@ services:
       - database
     restart: always
     volumes:
-    - server:/home
+      - server:/home
 
   corehome.admin:
     image: ${DOCKER_REGISTRY-}corehomeadmin
@@ -30,7 +30,7 @@ services:
       - database
     restart: always
     volumes:
-    - server:/home
+      - server:/home
 
   reverse-proxy:
     image: nginx
