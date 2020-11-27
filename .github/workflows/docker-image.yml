@@ -16,25 +16,23 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Build CoreHome.Admin
-      run: docker build --file ./CoreHome.Admin/Dockerfile --tag corehomeadmin:latest .
+      run: docker build --file ./CoreHome.Admin/Dockerfile --tag lixinyang/corehomeadmin:latest .
     
     - name: Build CoreHome.HomePage
-      run: docker build --file ./CoreHome.HomePage/Dockerfile --tag corehomehomepage:latest .
+      run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehomehomepage:latest .
     
     - name: Push image to DockerHub
       run: |
         docker login -u lixinyang -p ${{ secrets.DOCKERHUB_PASSWORD }}
-        docker tag corehomeadmin:latest lixinyang/corehomeadmin:latest
         docker push lixinyang/corehomeadmin:latest
-        docker tag corehomehomepage:latest lixinyang/corehomehomepage:latest
         docker push lixinyang/corehomehomepage:latest
         docker logout
     
     - name: Push image to aliyun
       run: |
         docker login -u=lllxy啊啊啊 -p ${{ secrets.DOCKERHUB_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
-        docker tag corehomeadmin:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehomeadmin:latest
+        docker tag lixinyang/corehomeadmin:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehomeadmin:latest
         docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehomeadmin:latest
-        docker tag corehomehomepage:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehomehomepage:latest
+        docker tag lixinyang/corehomehomepage:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehomehomepage:latest
         docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehomehomepage:latest
         docker logout
