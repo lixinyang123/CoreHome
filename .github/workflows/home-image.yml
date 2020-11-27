@@ -91,7 +91,7 @@ jobs:
             function showEasterEggs() {
                 if (!isShowed) {
                     typed.destroy();
-                    $(document).snowfall({ flakeCount: 100, maxSpeed: 5 });
+                    \$(document).snowfall({ flakeCount: 100, maxSpeed: 5 });
 
                     document.querySelector("#avatar").src = "https://corehome.oss-accelerate.aliyuncs.com/images/f.jpg";
                     document.querySelector("#name").innerText = "f j h";
