@@ -17,104 +17,103 @@ jobs:
 
     - name: Add EasterEggs
       run: |
-        
         cat >> ./CoreHome.HomePage/Views/Home/Index.cshtml << EOF
 
-          <script src="https://cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js"></script>
 
-          <style>
+        <style>
 
-              #EasterEggs {
-                  cursor: pointer;
-              }
+            #EasterEggs {
+                cursor: pointer;
+            }
 
-              .snowfall-flakes:before {
-                  content: "";
-                  position: absolute;
-                  left: 0px;
-                  top: 0px;
-                  width: 10px;
-                  height: 16px;
-                  transform: rotate(-45deg);
-                  background-color: red;
-                  border-radius: 5px 5px 1px 1px;
-              }
+            .snowfall-flakes:before {
+                content: "";
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 10px;
+                height: 16px;
+                transform: rotate(-45deg);
+                background-color: red;
+                border-radius: 5px 5px 1px 1px;
+            }
 
-              .snowfall-flakes:after {
-                  content: "";
-                  position: absolute;
-                  left: 0px;
-                  top: 0px;
-                  width: 10px;
-                  height: 16px;
-                  transform: translateX(4.3px) rotate(45deg);
-                  background-color: red;
-                  border-radius: 5px 5px 1px 1px;
-              }
-          </style>
+            .snowfall-flakes:after {
+                content: "";
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 10px;
+                height: 16px;
+                transform: translateX(4.3px) rotate(45deg);
+                background-color: red;
+                border-radius: 5px 5px 1px 1px;
+            }
+        </style>
 
-          <script>
+        <script>
 
-              function toDouble(num) {
-                  num >= 10 ? num = '' + num : num = '0' + num;
-                  return num;
-              }
+            function toDouble(num) {
+                num >= 10 ? num = '' + num : num = '0' + num;
+                return num;
+            }
 
-              function timer(year, month, day, hour, minute, seconds, elem) {
-                  var hour = hour || 0,
-                      minute = minute || 0,
-                      seconds = seconds || 0;
-                  var endTime = new Date();
+            function timer(year, month, day, hour, minute, seconds, elem) {
+                var hour = hour || 0,
+                    minute = minute || 0,
+                    seconds = seconds || 0;
+                var endTime = new Date();
 
-                  endTime.setFullYear(parseInt(year)),
-                      endTime.setMonth(parseInt(month) - 1),
-                      endTime.setDate(parseInt(day)),
-                      endTime.setHours(parseInt(hour)),
-                      endTime.setMinutes(parseInt(minute)),
-                      endTime.setSeconds(parseInt(seconds));
-                  setTime();
-                  setInterval(function () {
-                      setTime()
-                  }, 1000);
-                  function setTime() {
-                      var startTime = new Date();
-                      var lengthTime = parseInt((startTime.getTime() - endTime.getTime()) / 1000);
-                      var lSeconds = parseInt(lengthTime % 60),
-                          lMinute = parseInt((lengthTime / 60) % 60),
-                          lHour = Math.floor((lengthTime / 3600) % 24),
-                          lDay = Math.floor(lengthTime / (24 * 3600));
-                      elem.innerHTML = "认识你的第" + lDay + '天' + toDouble(lHour) + '小时' + toDouble(lMinute) + '分钟' + toDouble(lSeconds) + '秒';
-                  }
-              }
+                endTime.setFullYear(parseInt(year)),
+                    endTime.setMonth(parseInt(month) - 1),
+                    endTime.setDate(parseInt(day)),
+                    endTime.setHours(parseInt(hour)),
+                    endTime.setMinutes(parseInt(minute)),
+                    endTime.setSeconds(parseInt(seconds));
+                setTime();
+                setInterval(function () {
+                    setTime()
+                }, 1000);
+                function setTime() {
+                    var startTime = new Date();
+                    var lengthTime = parseInt((startTime.getTime() - endTime.getTime()) / 1000);
+                    var lSeconds = parseInt(lengthTime % 60),
+                        lMinute = parseInt((lengthTime / 60) % 60),
+                        lHour = Math.floor((lengthTime / 3600) % 24),
+                        lDay = Math.floor(lengthTime / (24 * 3600));
+                    elem.innerHTML = "认识你的第" + lDay + '天' + toDouble(lHour) + '小时' + toDouble(lMinute) + '分钟' + toDouble(lSeconds) + '秒';
+                }
+            }
 
-              var isShowed = false;
+            var isShowed = false;
 
-              function showEasterEggs() {
-                  if (!isShowed) {
-                      typed.destroy();
-                      $(document).snowfall({ flakeCount: 100, maxSpeed: 5 });
+            function showEasterEggs() {
+                if (!isShowed) {
+                    typed.destroy();
+                    $(document).snowfall({ flakeCount: 100, maxSpeed: 5 });
 
-                      document.querySelector("#avatar").src = "https://corehome.oss-accelerate.aliyuncs.com/images/f.jpg";
-                      document.querySelector("#name").innerText = "f j h";
-                      timer(2020, 03, 18, 0, 0, 0, document.querySelector("#info"));
-                      document.querySelector("#qq").innerText = "依旧爱你嗷❤宝贝~"
-                      document.querySelector("#email").innerText = "🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹";
+                    document.querySelector("#avatar").src = "https://corehome.oss-accelerate.aliyuncs.com/images/f.jpg";
+                    document.querySelector("#name").innerText = "f j h";
+                    timer(2020, 03, 18, 0, 0, 0, document.querySelector("#info"));
+                    document.querySelector("#qq").innerText = "依旧爱你嗷❤宝贝~"
+                    document.querySelector("#email").innerText = "🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹";
 
-                      MoveTop();
+                    MoveTop();
 
-                      isShowed = true;
-                  }
-              }
+                    isShowed = true;
+                }
+            }
 
-              document.onreadystatechange = () => {
-                  document.getElementById("EasterEggs").addEventListener("click", showEasterEggs);
-              }
+            document.onreadystatechange = () => {
+                document.getElementById("EasterEggs").addEventListener("click", showEasterEggs);
+            }
 
-          </script>
+        </script>
 
         EOF
 
-        sed -i "s/❤/<span id="EasterEggs">❤</span>/g" ./CoreHome.HomePage/Views/Shared/_Layout.cshtml
+        sed -i "s! ❤! <span id="EasterEggs">❤</span>! g" ./CoreHome.HomePage/Views/Shared/_Layout.cshtml
     
     - name: Build CoreHome.Admin
       run: docker build --file ./CoreHome.Admin/Dockerfile --tag lixinyang/corehomeadmin:home .
