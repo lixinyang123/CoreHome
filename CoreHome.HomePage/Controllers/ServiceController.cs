@@ -28,7 +28,7 @@ namespace CoreHome.HomePage.Controllers
 
         public IActionResult BackgroundMusic()
         {
-            if (themeService.Config.MusicUrl != null)
+            if (!string.IsNullOrEmpty(themeService.Config.MusicUrl))
             {
                 return Redirect(themeService.Config.MusicUrl);
             }
