@@ -79,7 +79,7 @@ namespace CoreHome.Infrastructure.Models
 
         [Required]
         [Display(Name = "User Info (Use the '#' separation)")]
-        public string Info { get; set; } = ".Net Developer";
+        public string Info { get; set; } = ".NET Developer";
 
         [Required]
         [Display(Name = "QQ")]
