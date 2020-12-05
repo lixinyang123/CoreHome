@@ -116,17 +116,17 @@ jobs:
         sed -i "s! ❤! <span id="EasterEggs">❤</span>! g" ./CoreHome.HomePage/Views/Shared/_Layout.cshtml
 
     - name: Build CoreHome.HomePage
-      run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome/homepage:home .
+      run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome-homepage:home .
 
     - name: Push image to DockerHub
       run: |
         docker login -u lixinyang -p ${{ secrets.DOCKERHUB_PASSWORD }}
-        docker push lixinyang/corehome/homepage:home
+        docker push lixinyang/corehome-homepage:home
         docker logout
     
     - name: Push image to aliyun
       run: |
         docker login -u=lllxy啊啊啊 -p ${{ secrets.DOCKERHUB_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
-        docker tag lixinyang/corehome/homepage:home registry.cn-shenzhen.aliyuncs.com/lllxy/corehome/homepage:home
-        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome/homepage:home
+        docker tag lixinyang/corehome-homepage:home registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-homepage:home
+        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-homepage:home
         docker logout
