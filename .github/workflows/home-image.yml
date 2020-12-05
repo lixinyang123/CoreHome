@@ -114,25 +114,19 @@ jobs:
         EOF
 
         sed -i "s! ❤! <span id="EasterEggs">❤</span>! g" ./CoreHome.HomePage/Views/Shared/_Layout.cshtml
-    
-    - name: Build CoreHome.Admin
-      run: docker build --file ./CoreHome.Admin/Dockerfile --tag lixinyang/corehomeadmin:home .
-    
+
     - name: Build CoreHome.HomePage
-      run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehomehomepage:home .
-    
+      run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome/homepage:home .
+
     - name: Push image to DockerHub
       run: |
         docker login -u lixinyang -p ${{ secrets.DOCKERHUB_PASSWORD }}
-        docker push lixinyang/corehomeadmin:home
-        docker push lixinyang/corehomehomepage:home
+        docker push lixinyang/corehome/homepage:home
         docker logout
     
     - name: Push image to aliyun
       run: |
         docker login -u=lllxy啊啊啊 -p ${{ secrets.DOCKERHUB_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
-        docker tag lixinyang/corehomeadmin:home registry.cn-shenzhen.aliyuncs.com/lllxy/corehomeadmin:home
-        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehomeadmin:home
-        docker tag lixinyang/corehomehomepage:home registry.cn-shenzhen.aliyuncs.com/lllxy/corehomehomepage:home
-        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehomehomepage:home
+        docker tag lixinyang/corehome/homepage:home registry.cn-shenzhen.aliyuncs.com/lllxy/corehome/homepage:home
+        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome/homepage:home
         docker logout

@@ -32,7 +32,7 @@ services:
     volumes:
       - server:/home
 
-  reverse-proxy:
+  corehome.reverseproxy:
     image: ${DOCKER_REGISTRY-}corehome/reverseproxy
     build:
       context: ../
