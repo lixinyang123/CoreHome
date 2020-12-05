@@ -9,7 +9,6 @@
     <DockerServiceName>corehome</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="default.conf" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
