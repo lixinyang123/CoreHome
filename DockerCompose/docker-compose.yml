@@ -11,7 +11,7 @@ services:
       - db:/var/lib/mysql
 
   corehome.homepage:
-    image: ${DOCKER_REGISTRY-}corehomehomepage
+    image: ${DOCKER_REGISTRY-}corehome/homepage
     build:
       context: ../
       dockerfile: CoreHome.HomePage/Dockerfile
@@ -22,7 +22,7 @@ services:
       - server:/home
 
   corehome.admin:
-    image: ${DOCKER_REGISTRY-}corehomeadmin
+    image: ${DOCKER_REGISTRY-}corehome/admin
     build:
       context: ../
       dockerfile: CoreHome.Admin/Dockerfile
@@ -33,7 +33,7 @@ services:
       - server:/home
 
   reverse-proxy:
-    image: ${DOCKER_REGISTRY-}corehomereverseproxy
+    image: ${DOCKER_REGISTRY-}corehome/reverseproxy
     build:
       context: ../
       dockerfile: CoreHome.ReverseProxy/Dockerfile
