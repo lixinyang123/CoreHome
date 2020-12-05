@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreHome.Data", "CoreHome.D
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "DockerCompose\docker-compose.dcproj", "{3993574F-541E-4D6F-898B-5243A0AF3001}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreHome.ReverseProxy", "CoreHome.ReverseProxy\CoreHome.ReverseProxy.csproj", "{2964AFA2-272D-47BC-BB4E-69DF9C53066A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3993574F-541E-4D6F-898B-5243A0AF3001}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3993574F-541E-4D6F-898B-5243A0AF3001}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3993574F-541E-4D6F-898B-5243A0AF3001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2964AFA2-272D-47BC-BB4E-69DF9C53066A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2964AFA2-272D-47BC-BB4E-69DF9C53066A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2964AFA2-272D-47BC-BB4E-69DF9C53066A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2964AFA2-272D-47BC-BB4E-69DF9C53066A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

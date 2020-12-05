@@ -33,14 +33,15 @@ services:
       - server:/home
 
   reverse-proxy:
-    image: nginx
+    image: ${DOCKER_REGISTRY-}corehomereverseproxy
+    build:
+      context: ../
+      dockerfile: CoreHome.ReverseProxy/Dockerfile
     depends_on:
       - corehome.homepage
       - corehome.admin
     ports:
       - "8080:80"
-    volumes:
-      - ./default.conf:/etc/nginx/conf.d/default.conf
 
 volumes:
   db:
