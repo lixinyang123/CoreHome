@@ -40,6 +40,7 @@ namespace CoreHome.Admin.Controllers
             profile.WhatsNew = config.WhatsNew;
             profile.FriendLinks = config.FriendLinks;
             profile.About = config.About;
+            profile.Others = config.Others;
 
             profileService.Config = profile;
             return RedirectToAction("Index");
