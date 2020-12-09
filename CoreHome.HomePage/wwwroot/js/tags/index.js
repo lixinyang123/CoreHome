@@ -15,6 +15,7 @@ function showTags(allTags) {
         WordCloud(wordcloud, {
             gridSize: 20,
             weightFactor: 3,
+            shrinkToFit: true,
             hover: window.drawBox,
             click: function (item) {
                 window.location.href = "/Blog/Tags/" + item[0];
