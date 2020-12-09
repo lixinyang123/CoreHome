@@ -16,8 +16,7 @@ function showTags(allTags) {
             gridSize: 20,
             weightFactor: 3,
             shrinkToFit: true,
-            hover: window.drawBox,
-            click: function (item) {
+            click: (item) => {
                 window.location.href = "/Blog/Tags/" + item[0];
             },
             backgroundColor: 'white',
