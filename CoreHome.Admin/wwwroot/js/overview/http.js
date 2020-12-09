@@ -1,7 +1,6 @@
-﻿'use strict';
-var pingMaxlag = 0;
-var pingStop = false;
-var ping = function () {
+﻿let pingMaxlag = 0;
+let pingStop = false;
+let ping = function () {
     //thread safe
     if ($('#pingbutton').attr('disabled') === 'disabled') {
         return;
@@ -10,16 +9,16 @@ var ping = function () {
     pingStop = false;
     startping();
 };
-var startping = function () {
+let startping = function () {
     if(pingStop) {
         return;
     }
     //prepare
-    var startTime = new Date();
+    let startTime = new Date();
     $.get('/admin/overview/GetPing', function (data) {
         //get time
-        var endtime = new Date();
-        var lag = endtime - startTime - 7;
+        let endtime = new Date();
+        let lag = endtime - startTime - 7;
         //update max value
         if (lag > pingMaxlag) {
             pingMaxlag = lag;
@@ -43,7 +42,7 @@ var startping = function () {
     });
 };
 
-var stopPing = function () {
+let stopPing = function () {
     pingStop = true;
     $('#pingbutton').removeAttr('disabled', 'disabled');
 };

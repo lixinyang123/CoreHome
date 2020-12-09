@@ -39,9 +39,9 @@
                                 <span class="toptags-list">
                                     @foreach (var articleTag in Model.Article.ArticleTags)
                                     {
-                                            <a class="btn btn-primary" asp-controller="Blog" asp-action="Tags" asp-route-id="@articleTag.Tag.TagName">
-                                                @articleTag.Tag.TagName
-                                            </a>
+                                        <a class="btn btn-primary" asp-controller="Blog" asp-action="Tags" asp-route-id="@articleTag.Tag.TagName">
+                                            @articleTag.Tag.TagName
+                                        </a>
                                     }
                                 </span>
                             </div>
@@ -85,25 +85,23 @@
 
                 @foreach (var comment in Model.Article.Comments)
                 {
-                        <div class="card comment-item mb-3">
-                            <div class="card-header">
-                                <strong>@comment.Time</strong>
-                            </div>
-
-                            <div class="card-body markdown">
-                                <textarea hidden>@comment.Detail</textarea>
-                            </div>
+                    <div class="card comment-item mb-3">
+                        <div class="card-header">
+                            <strong>@comment.Time</strong>
                         </div>
+
+                        <div class="card-body markdown">
+                            <textarea hidden>@comment.Detail</textarea>
+                        </div>
+                    </div>
                 }
 
             </div>
         </selection>
 
         <script>
-            var warning = document.querySelector("#warning").value;
-            if (warning != "") {
-                alert(warning);
-            }
+            let warning = document.querySelector("#warning").value;
+            if (warning != "") { alert(warning); }
         </script>
 
         <partial name="MarkdownRender" />

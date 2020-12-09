@@ -3,7 +3,7 @@
 }
 
 function uploadingState(flag, text) {
-    var uploading = document.querySelector("#uploading");
+    let uploading = document.querySelector("#uploading");
     if (flag) {
         uploading.innerText = "Uploading...";
         uploading.setAttribute("disabled", "disabled");
@@ -17,7 +17,7 @@ function uploadingState(flag, text) {
 function uploadAvatar() {
     uploadingState(true, "Upload Avatar");
 
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append("file", document.querySelector("#fileSelector").files[0]);
 
     $.ajax({
@@ -41,7 +41,7 @@ function uploadAvatar() {
 function uploadProjectCover() {
     uploadingState(true, "Upload Cover");
 
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append("file", document.querySelector("#fileSelector").files[0]);
 
     $.ajax({

@@ -1,15 +1,15 @@
 ﻿function changeTheme(type) {
-    var themeTypes = document.getElementsByClassName("ThemeType");
+    let themeTypes = document.querySelectorAll(".ThemeType");
     console.log(themeTypes);
-    for (var i = 0; i < themeTypes.length; i++) {
+    for (let i = 0; i < themeTypes.length; i++) {
         themeTypes[i].removeAttribute("checked");
     }
     document.getElementById(type).setAttribute("checked", "checked");
 }
 
 function changeBackground(type) {
-    var backgroundTypes = document.getElementsByClassName("BackgroundType");
-    for (var i = 0; i < backgroundTypes.length; i++) {
+    let backgroundTypes = document.querySelectorAll(".BackgroundType");
+    for (let i = 0; i < backgroundTypes.length; i++) {
         backgroundTypes[i].removeAttribute("checked");
     }
     document.getElementById(type).setAttribute("checked", "checked");
@@ -21,7 +21,7 @@ function selectImage() {
 
 function uploadBackground() {
     alert("Uploading...")
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append("file", document.querySelector("#fileSelector").files[0]);
 
     $.ajax({

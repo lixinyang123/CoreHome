@@ -1,7 +1,6 @@
-﻿'use strict';
-var downMaxTime = 0;
-var downloadStopped = false;
-var download = function () {
+﻿let downMaxTime = 0;
+let downloadStopped = false;
+let download = function () {
     //thread safe
     if ($('#downloadbutton').attr('disabled') === 'disabled') {
         return;
@@ -11,23 +10,23 @@ var download = function () {
     startdownload();
 };
 
-var startdownload = function () {
+let startdownload = function () {
     //prepare
-    var st = new Date();
+    let st = new Date();
     $.get('/admin/overview/download?t=' + st.getMilliseconds(), function (data) {
         if (downloadStopped) {
             return;
         }
         //get time
-        var et = new Date();
-        var downloadTime = et - st;
+        let et = new Date();
+        let downloadTime = et - st;
         //update max value
         if (downloadTime > downMaxTime) {
             downMaxTime = downloadTime;
         }
         //get speed
-        var speed = 1.0 / downloadTime * 1000;
-        var minspeed = 1.0 / downMaxTime * 1000;
+        let speed = 1.0 / downloadTime * 1000;
+        let minspeed = 1.0 / downMaxTime * 1000;
         //log
         if (speed < $('#speedlagfilter').val()) {
             trig('Downloader', speed + 'MB/s');
@@ -48,7 +47,7 @@ var startdownload = function () {
     });
 };
 
-var stopDownload = function () {
+let stopDownload = function () {
     downloadStopped = true;
     if ($('#downloadbutton').removeAttr('disabled')) {
         return;

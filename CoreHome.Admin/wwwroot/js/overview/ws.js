@@ -1,14 +1,13 @@
-﻿'use strict';
-function getWSAddress() {
-    var ishttps = 'https:' === document.location.protocol ? true : false;
-    var host = window.location.host;
-    var head = ishttps ? "wss://" : "ws://";
+﻿function getWSAddress() {
+    let ishttps = 'https:' === document.location.protocol ? true : false;
+    let host = window.location.host;
+    let head = ishttps ? "wss://" : "ws://";
     return head + host;
 }
-var webSocket;
-var wsMaxLag = 0;
-var wsOrder = 0;
-var WsTest = function () {
+let webSocket;
+let wsMaxLag = 0;
+let wsOrder = 0;
+let WsTest = function () {
     //thread safe
     if ($('#wsbutton').attr('disabled') === 'disabled') {
         return;
@@ -16,9 +15,9 @@ var WsTest = function () {
     $('#wsbutton').attr('disabled', 'disabled');
     startWsTest();
 };
-var startWsTest = function () {
+let startWsTest = function () {
     //prepare
-    var wsStartTime = new Date();
+    let wsStartTime = new Date();
     wsOrder = 0;
     webSocket = new WebSocket(getWSAddress() + "/admin/overview/Pushing");
     webSocket.onopen = function () {
@@ -26,10 +25,10 @@ var startWsTest = function () {
     };
     webSocket.onmessage = function (evt) {
         //show message
-        var order = Number(evt.data.split('|')[1]);
+        let order = Number(evt.data.split('|')[1]);
         $("#spanStatus").html('Server Time: ' + evt.data.split('|')[0] + '  Message Order: ' + order);
         //get time
-        var wslag = new Date() - wsStartTime;
+        let wslag = new Date() - wsStartTime;
         wsStartTime = new Date();
         //update max
         if (wslag > wsMaxLag) {
@@ -64,7 +63,7 @@ var startWsTest = function () {
     };
 };
 
-var stopWsTest = function () {
+let stopWsTest = function () {
     if (webSocket) {
         webSocket.close();
     }

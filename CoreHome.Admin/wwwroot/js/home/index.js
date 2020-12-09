@@ -1,5 +1,5 @@
 ﻿function signIn() {
-    var btn = document.getElementById("btn_sign");
+    let btn = document.getElementById("btn_sign");
     btn.innerText = "Get random password again";
     btn.setAttribute("disabled", "");
 

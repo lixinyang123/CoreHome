@@ -21,31 +21,30 @@
 
                 @foreach (var year in Model)
                 {
-                        <li class="reveal">
-                            <label class="timeline-icon"></label>
-                            <div class="timeline-info">
-                                <h3>@year.Value</h3>
-                                <hr />
-                                <div class="timeline-body">
-                                    <div class="row">
+                    <li class="reveal">
+                        <label class="timeline-icon"></label>
+                        <div class="timeline-info">
+                            <h3>@year.Value</h3>
+                            <hr />
+                            <div class="timeline-body">
+                                <div class="row">
 
-                                        @foreach (var month in year.Months)
-                                        {
-                                                <div class="col-md-6 col-sm-6 col-6 article-month">
-                                                    <span class="badge badge-secondary float-right">@month.Articles.Count</span>
-                                                    <a href="/Blog/Archive/@year.Value/@month.Value">
-                                                        @System.Globalization.CultureInfo.CreateSpecificCulture("en-GB").DateTimeFormat.GetMonthName(month.Value)
-                                                    </a>
-                                                </div>
-                                        }
+                                    @foreach (var month in year.Months)
+                                    {
+                                        <div class="col-md-6 col-sm-6 col-6 article-month">
+                                            <span class="badge badge-secondary float-right">@month.Articles.Count</span>
+                                            <a href="/Blog/Archive/@year.Value/@month.Value">
+                                                @System.Globalization.CultureInfo.CreateSpecificCulture("en-GB").DateTimeFormat.GetMonthName(month.Value)
+                                            </a>
+                                        </div>
+                                    }
 
-                                    </div>
                                 </div>
-
                             </div>
-                        </li>
-                }
 
+                        </div>
+                    </li>
+                }
 
             </ul>
         </section>

@@ -1,20 +1,19 @@
-﻿'use strict';
-var trig = function (trigger, value) {
-    var newTr = logTable.insertRow(-1);
-    var newTd0 = newTr.insertCell();
-    var newTd1 = newTr.insertCell();
-    var newTd2 = newTr.insertCell();
+﻿let trig = function (trigger, value) {
+    let newTr = logTable.insertRow(-1);
+    let newTd0 = newTr.insertCell();
+    let newTd1 = newTr.insertCell();
+    let newTd2 = newTr.insertCell();
     newTd0.innerText = new Date();
     newTd1.innerText = trigger;
     newTd2.innerText = value;
 };
 
 
-var ctx = document.getElementById('httpChart').getContext('2d');
-var downloadChartCtx = document.getElementById('downloadChart').getContext('2d');
-var wsChartCtx = document.getElementById('wsChart').getContext('2d');
+let ctx = document.getElementById('httpChart').getContext('2d');
+let downloadChartCtx = document.getElementById('downloadChart').getContext('2d');
+let wsChartCtx = document.getElementById('wsChart').getContext('2d');
 
-var chartData = {
+let chartData = {
     labels: [],
     datasets: [{
         label: "HTTP Lag",
@@ -25,7 +24,7 @@ var chartData = {
     }]
 };
 
-var downloadchartData = {
+let downloadchartData = {
     labels: [],
     datasets: [{
         label: "Download Speed",
@@ -36,7 +35,7 @@ var downloadchartData = {
     }]
 };
 
-var wschartData = {
+let wschartData = {
     labels: [],
     datasets: [{
         label: "WebSocket Connection",
@@ -47,7 +46,7 @@ var wschartData = {
     }]
 };
 
-var chartOption = {
+let chartOption = {
     responsive: true,
     tooltips: {
         mode: 'index',
@@ -93,7 +92,7 @@ window.myWSLine = new Chart(wsChartCtx, {
     options: chartOption
 });
 
-var startAll = function () {
+let startAll = function () {
     $('#startAllButton').attr('disabled', 'disabled');
     WsTest();
     ping();

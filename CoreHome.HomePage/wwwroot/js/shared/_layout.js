@@ -1,5 +1,5 @@
 //===================Adapter=======================
-var isMobile = {
+let isMobile = {
 	Android: function () {
 		return navigator.userAgent.match(/Android/i);
 	},
@@ -17,9 +17,9 @@ var isMobile = {
 function fullHeight() {
 
 	if (!isMobile.any()) {
-		var list = document.getElementsByClassName("js-fullheight");
+		let list = document.getElementsByClassName("js-fullheight");
 
-		for (var i = 0; i < list.length; i++) {
+		for (let i = 0; i < list.length; i++) {
 			list[i].style.height = window.innerHeight + "px";
 		}
 	}

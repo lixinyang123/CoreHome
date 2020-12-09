@@ -10,7 +10,7 @@
 
 function showTags(allTags) {
     if (allTags.length > 0) {
-        var wordcloud = document.querySelector("#allTags");
+        let wordcloud = document.querySelector("#allTags");
         wordcloud.style.minHeight = "500px";
         WordCloud(wordcloud, {
             gridSize: 20,

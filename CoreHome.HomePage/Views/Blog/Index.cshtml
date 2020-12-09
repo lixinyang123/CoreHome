@@ -25,27 +25,27 @@
 
                 @foreach (var article in Model)
                 {
-                        <article class="reveal">
-                            <a class="articleTitle" asp-controller="Blog" asp-action="Detail" asp-route-id="@article.ArticleCode">
-                                @article.Title
-                            </a>
-                            <p class="date">@article.Time.ToString("yyyy/MM/dd")</p>
-                            <p>@article.Overview</p>
-                            <div class="post-tags">
-                                @{
-                                    var articleTags = article.ArticleTags;
-                                }
+                    <article class="reveal">
+                        <a class="articleTitle" asp-controller="Blog" asp-action="Detail" asp-route-id="@article.ArticleCode">
+                            @article.Title
+                        </a>
+                        <p class="date">@article.Time.ToString("yyyy/MM/dd")</p>
+                        <p>@article.Overview</p>
+                        <div class="post-tags">
+                            @{
+                                var articleTags = article.ArticleTags;
+                            }
 
-                                @foreach (var articleTag in articleTags)
-                                {
-                                        <a class="btn btn-primary mb-1" asp-action="Tags" asp-route-id="@articleTag.Tag.TagName">
-                                            @articleTag.Tag.TagName
-                                        </a>
-                                }
-                            </div>
-                        </article>
-                        <div class="mb-4 d-md-block"></div>
-                        <hr class="d-md-block" />
+                            @foreach (var articleTag in articleTags)
+                            {
+                                    <a class="btn btn-primary mb-1" asp-action="Tags" asp-route-id="@articleTag.Tag.TagName">
+                                        @articleTag.Tag.TagName
+                                    </a>
+                            }
+                        </div>
+                    </article>
+                    <div class="mb-4 d-md-block"></div>
+                    <hr class="d-md-block" />
                 }
             </div>
 
