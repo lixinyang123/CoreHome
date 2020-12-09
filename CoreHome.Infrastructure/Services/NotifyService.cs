@@ -13,7 +13,7 @@ namespace CoreHome.Infrastructure.Services
 
         public void PushNotify(string text, string desp)
         {
-            string url = $" https://sc.ftqq.com/{Sckey}.send?text={text}&desp={desp}";
+            string url = $"https://sc.ftqq.com/{Sckey}.send?text={text}&desp={desp}";
 
             new HttpClient().GetAsync(url);
         }

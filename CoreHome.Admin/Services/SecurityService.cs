@@ -14,7 +14,7 @@ namespace CoreHome.Admin.Services
             rijndaelManaged = new RijndaelManaged
             {
                 Key = Encoding.UTF8.GetBytes(Config),
-                Mode = CipherMode.ECB,
+                Mode = CipherMode.CBC,
                 Padding = PaddingMode.PKCS7
             };
         }
