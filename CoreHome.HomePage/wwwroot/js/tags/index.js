@@ -1,17 +1,14 @@
-﻿var allTags = undefined;
-
-function getAllTags() {
-    fetch("/Tags/AllTags", {
-        method: "GET"
-    }).then((res) => {
-        res.text().then((text) => {
-            allTags = JSON.parse(text);
-            showTags();
-        });
+﻿function getAllTags() {
+    $.ajax({
+        url: "/Tags/AllTags",
+        type: "GET",
+        success: function (data) {
+            showTags(data);
+        }
     });
 }
 
-function showTags() {
+function showTags(allTags) {
     if (allTags.length > 0) {
         var wordcloud = document.querySelector("#allTags");
         wordcloud.style.minHeight = "500px";
