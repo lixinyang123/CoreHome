@@ -35,18 +35,14 @@
     </div>
 
     <nav class="mt-4">
+        @{
+            string previous = "", next = "";
+            if (ViewBag.CurrentIndex <= 1)
+                previous = "disabled";
+            if (ViewBag.CurrentIndex >= ViewBag.PageCount)
+                next = "disabled";
+        }
         <ul class="pagination justify-content-center">
-            @{
-                string previous = "", next = "";
-                if (ViewBag.CurrentIndex <= 1)
-                {
-                    previous = "disabled";
-                }
-                if (ViewBag.CurrentIndex >= ViewBag.PageCount)
-                {
-                    next = "disabled";
-                }
-            }
             <li class="page-item">
                 <button @previous class="page-link" onclick="window.location.href='/Admin/Blog?index=@(ViewBag.CurrentIndex-1)'">&laquo;</button>
             </li>
