@@ -5,33 +5,56 @@
     <h1 class="display-4">Blog</h1>
     <br />
     <a asp-action="Upload" class="btn btn-primary">Upload Blog</a>
-    <br />
-    <br />
+    <br /><br />
 
+    <div class="overflow-auto">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ArticleCode</th>
+                    <th scope="col">ArticleTitle</th>
+                    <th scope="col">Modify</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
 
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">ArticleCode</th>
-                <th scope="col">ArticleTitle</th>
-                <th scope="col">Modify</th>
-                <th scope="col">Comment</th>
-                <th scope="col">Delete</th>
-            </tr>
-        </thead>
-
-          <tbody>
-              @foreach (var article in Model)
-              {
+            <tbody>
+                @foreach (var article in Model)
+                {
                     <tr>
-                        <th scope="row">@article.ArticleCode.ToString().Substring(0,6)</th>
+                        <th scope="row">@article.ArticleCode.ToString().Substring(0, 6)</th>
                         <td>@article.Title</td>
                         <td><a asp-action="Modify" asp-route-id="@article.ArticleCode">Modify</a></td>
                         <td><a asp-action="Comment" asp-route-id="@article.ArticleCode">Comment</a></td>
                         <td><a onclick="if (confirm('Confirm deletion?')) { window.location.href = '/Admin/Blog/Delete/@article.ArticleCode'; }" href="javascript:void(0)">Delete</a></td>
                     </tr>
-              }
-          </tbody>
-    </table>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <nav class="mt-4">
+        <strong><i>Page @ViewBag.CurrentIndex of @ViewBag.PageCount</i></strong>
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                @{
+                    string previous = "", next = "";
+                    if (ViewBag.CurrentIndex <= 1)
+                    {
+                        previous = "disabled";
+                    }
+                    if (ViewBag.CurrentIndex >= ViewBag.PageCount)
+                    {
+                        next = "disabled";
+                    }
+                }
+                <button @previous class="page-link" onclick="window.location.href='/Admin/Blog?index=@(ViewBag.CurrentIndex-1)'">Previous</button>
+            </li>
+            <li class="page-item">
+                <button @next class="page-link" onclick="window.location.href='/Admin/Blog?index=@(ViewBag.CurrentIndex+1)'">Next</button>
+            </li>
+        </ul>
+    </nav>
 
 </div>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,19 +21,46 @@ namespace CoreHome.Admin.Controllers
         private readonly ArticleDbContext articleDbContext;
         private readonly OssService ossService;
         private readonly IMemoryCache memoryCache;
+        private readonly int pageSize;
 
-        public BlogController(ArticleDbContext articleDbContext, OssService ossService, IMemoryCache memoryCache)
+        public BlogController(ArticleDbContext articleDbContext, 
+            OssService ossService, 
+            IMemoryCache memoryCache, 
+            IConfiguration configuration)
         {
             this.articleDbContext = articleDbContext;
             this.ossService = ossService;
             this.memoryCache = memoryCache;
+            pageSize = configuration.GetValue<int>("PageSize");
         }
 
-        public IActionResult Index()
+        //矫正页码
+        private int CorrectIndex(int index, int pageCount)
+        {
+            //页码<1时留在第一页
+            index = index < 1 ? 1 : index;
+            //页码>总页数时留在最后一页
+            index = index > pageCount ? pageCount : index;
+            //如果没有博客时留在第一页
+            index = pageCount == 0 ? 1 : index;
+            return index;
+        }
+
+        public IActionResult Index(int index = 1)
         {
             ViewBag.PageTitle = "Blog";
 
-            List<Article> articles = articleDbContext.Articles.OrderByDescending(i => i.Id).ToList();
+            //博客总页数
+            int pageCount = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(articleDbContext.Articles.Count()) / pageSize));
+            index = CorrectIndex(index, pageCount);
+
+            ViewBag.CurrentIndex = index;
+            ViewBag.PageCount = pageCount;
+
+            List<Article> articles = articleDbContext.Articles
+                .OrderByDescending(i => i.Id)
+                .Skip((index - 1) * pageSize)
+                .Take(pageSize).ToList().ToList();
             return View(articles);
         }
 
