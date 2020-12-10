@@ -44,13 +44,13 @@
         }
         <ul class="pagination justify-content-center">
             <li class="page-item">
-                <button @previous class="page-link" onclick="window.location.href='/Admin/Blog?index=@(ViewBag.CurrentIndex-1)'">&laquo;</button>
+                <button @previous class="page-link" onclick="window.location.href='/Admin/Blog?index=@(ViewBag.CurrentIndex-1)'">Previous</button>
             </li>
             <li class="page-item">
-                <button class="page-link bg-primary text-light" disabled>Page @ViewBag.CurrentIndex of @ViewBag.PageCount</button>
+                <button class="page-link" disabled>Page @ViewBag.CurrentIndex of @ViewBag.PageCount</button>
             </li>
             <li class="page-item">
-                <button @next class="page-link" onclick="window.location.href='/Admin/Blog?index=@(ViewBag.CurrentIndex+1)'">&raquo;</button>
+                <button @next class="page-link" onclick="window.location.href='/Admin/Blog?index=@(ViewBag.CurrentIndex+1)'">Next</button>
             </li>
         </ul>
     </nav>
