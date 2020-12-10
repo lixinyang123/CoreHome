@@ -1,19 +1,23 @@
 ﻿using CoreHome.Infrastructure.Models;
+using CoreHome.Admin.Models;
 using System;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace CoreHome.Admin.Services
 {
-    public class SecurityService : StaticConfig<string>
+    public class SecurityService : StaticConfig<Secret>
     {
         private readonly RijndaelManaged rijndaelManaged;
 
-        public SecurityService(string fileName, string initKey) : base(fileName, initKey)
+        public SecurityService(string fileName, Secret initSecret) : base(fileName, initSecret)
         {
             rijndaelManaged = new RijndaelManaged
             {
-                Key = Encoding.UTF8.GetBytes(Config),
+                // 初始化向量
+                IV = Encoding.UTF8.GetBytes(Config.IV),
+                // 密钥
+                Key = Encoding.UTF8.GetBytes(Config.Key),
                 Mode = CipherMode.CBC,
                 Padding = PaddingMode.PKCS7
             };
