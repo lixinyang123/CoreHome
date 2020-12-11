@@ -18,7 +18,7 @@ namespace CoreHome.ReverseProxy
         // 配置服务
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddReverseProxy().LoadFromConfig(Configuration.GetSection("ReverseProxy")); 
+            services.AddReverseProxy().LoadFromConfig(Configuration.GetSection("ReverseProxy"));
         }
 
         // 配置HTTP请求管道
@@ -31,7 +31,7 @@ namespace CoreHome.ReverseProxy
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints => 
+            app.UseEndpoints(endpoints =>
             {
                 endpoints.MapReverseProxy();
             });

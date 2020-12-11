@@ -13,8 +13,8 @@ namespace CoreHome.HomePage.Controllers
         private readonly OssService ossService;
         private IServiceProvider serviceProvider;
 
-        public ServiceController(VerificationCodeService verificationHelper, 
-            OssService ossService, 
+        public ServiceController(VerificationCodeService verificationHelper,
+            OssService ossService,
             IServiceProvider serviceProvider)
         {
             this.verificationHelper = verificationHelper;

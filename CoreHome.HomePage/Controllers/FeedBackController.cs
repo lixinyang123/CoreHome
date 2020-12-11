@@ -36,7 +36,7 @@ namespace CoreHome.HomePage.Controllers
             string str = HttpContext.Session.GetString("VerificationCode");
             if (str == feedback.VerificationCode.ToLower())
             {
-                notifyService.PushNotify(feedback.Title + $"[{feedback.Contact}]", feedback.Content);
+                notifyService.PushNotify("New feedback" + $"[{feedback.Title}/{feedback.Contact}]", feedback.Content);
                 ViewBag.Warning = "Thank you for your feedback";
                 return View();
             }

@@ -212,7 +212,7 @@ namespace CoreHome.HomePage.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.Warning = "请完善评论";
+                ViewBag.Warning = "Please refine your Comment";
                 return View(detailViewModel);
             }
 
@@ -227,15 +227,15 @@ namespace CoreHome.HomePage.Controllers
                 articleDbContext.SaveChanges();
 
                 //评论通知
-                notifyService.PushNotify($"New Commit for《{article.Title}》", viewModel.Detail);
+                notifyService.PushNotify($"New Comment for [{article.Title}]", viewModel.Detail);
 
                 detailViewModel.CommentViewModel = new CommentViewModel();
-                ViewBag.Warning = "评论成功";
+                ViewBag.Warning = "Thank you for your Comment";
                 return View(detailViewModel);
             }
             else
             {
-                ViewBag.Warning = "验证码错误";
+                ViewBag.Warning = "The verification code is wrong";
                 return View(detailViewModel);
             }
 
