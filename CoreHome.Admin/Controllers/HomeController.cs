@@ -17,8 +17,8 @@ namespace CoreHome.Admin.Controllers
         private readonly SecurityService securityService;
         private readonly ProfileService userInfoService;
 
-        public HomeController(IMemoryCache cache, 
-            NotifyService notifyService, 
+        public HomeController(IMemoryCache cache,
+            NotifyService notifyService,
             SecurityService securityService,
             ProfileService userInfoService)
         {

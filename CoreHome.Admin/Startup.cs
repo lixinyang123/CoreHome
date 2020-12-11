@@ -61,8 +61,8 @@ namespace CoreHome.Admin
             //安全服务
             services.AddSingleton(new SecurityService("Key.txt", new Models.Secret()
             {
-                IV = Guid.NewGuid().ToString().Replace("-","").Substring(0,16),
-                Key = Guid.NewGuid().ToString().Replace("-","")
+                IV = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 16),
+                Key = Guid.NewGuid().ToString().Replace("-", "")
             }));
         }
 

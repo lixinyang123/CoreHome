@@ -23,9 +23,9 @@ namespace CoreHome.Admin.Controllers
         private readonly IMemoryCache memoryCache;
         private readonly int pageSize;
 
-        public BlogController(ArticleDbContext articleDbContext, 
-            OssService ossService, 
-            IMemoryCache memoryCache, 
+        public BlogController(ArticleDbContext articleDbContext,
+            OssService ossService,
+            IMemoryCache memoryCache,
             IConfiguration configuration)
         {
             this.articleDbContext = articleDbContext;

@@ -15,7 +15,7 @@ namespace CoreHome.Infrastructure.Models
         /// </summary>
         /// <param name="fileName">文件名称</param>
         /// <param name="InitConfig">初始化配置</param>
-        public StaticConfig(string fileName,ConfigType initConfig)
+        public StaticConfig(string fileName, ConfigType initConfig)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -36,10 +36,6 @@ namespace CoreHome.Infrastructure.Models
 
             this.initConfig = initConfig;
         }
-
-
-        //========================================================TODO
-        //减少IO次数，提升性能
 
         public ConfigType Config
         {
