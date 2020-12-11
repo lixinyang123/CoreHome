@@ -4,9 +4,6 @@ using System.Text.Json;
 
 namespace CoreHome.Infrastructure.Models
 {
-    //========================================================TODO
-    //减少IO次数，提升性能
-
     public class StaticConfig<ConfigType>
     {
         private readonly ConfigType initConfig;
@@ -39,6 +36,10 @@ namespace CoreHome.Infrastructure.Models
 
             this.initConfig = initConfig;
         }
+
+
+        //========================================================TODO
+        //减少IO次数，提升性能
 
         public ConfigType Config
         {
