@@ -43,7 +43,7 @@ namespace CoreHome.Infrastructure.Models
             {
                 try
                 {
-                    return JsonSerializer.Deserialize<ConfigType>(File.ReadAllText(configFile));
+                    return JsonSerializer.Deserialize<ConfigType>(File.ReadAllTextAsync(configFile).Result);
                 }
                 catch (System.Exception)
                 {
@@ -53,7 +53,7 @@ namespace CoreHome.Infrastructure.Models
             }
             set
             {
-                File.WriteAllText(configFile, JsonSerializer.Serialize(value));
+                File.WriteAllTextAsync(configFile, JsonSerializer.Serialize(value));
             }
         }
 
