@@ -227,7 +227,7 @@ namespace CoreHome.HomePage.Controllers
                 articleDbContext.SaveChanges();
 
                 //评论通知
-                notifyService.PushNotify("New Commit", viewModel.Detail);
+                notifyService.PushNotify($"New Commit for《{article.Title}》", viewModel.Detail);
 
                 detailViewModel.CommentViewModel = new CommentViewModel();
                 ViewBag.Warning = "评论成功";

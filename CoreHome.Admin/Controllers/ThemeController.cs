@@ -22,7 +22,6 @@ namespace CoreHome.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.PageTitle = "Theme";
-
             return View(themeService.Config);
         }
 

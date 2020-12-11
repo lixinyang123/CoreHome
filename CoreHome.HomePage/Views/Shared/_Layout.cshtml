@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="@ProfileService.Config.Name" />
-    <meta name="description" content="@ProfileService.Config.Name's Blog" />
+    <meta name="keywords" content="@ViewBag.Profile.Name" />
+    <meta name="description" content="@ViewBag.Profile.Name's Blog" />
 
     <meta property="og:locale" content="zh_cn" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="@ProfileService.Config.Name" />
-    <meta property="og:description" content="@ProfileService.Config.Name's Blog" />
-    <meta property="og:site_name" content="@ProfileService.Config.Name" />
+    <meta property="og:title" content="@ViewBag.Profile.Name" />
+    <meta property="og:description" content="@ViewBag.Profile.Name's Blog" />
+    <meta property="og:site_name" content="@ViewBag.Profile.Name" />
     <meta property="og:image" content="@OssService.GetAvatar()" />
 
-    <title>@ViewBag.PageTitle | @ProfileService.Config.Name</title>
+    <title>@ViewBag.PageTitle | @ViewBag.Profile.Name</title>
 
     <link rel="shortcut icon" href="~/favicon.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="~/lib/scrollreveal/dist/scrollreveal.min.js"></script>
     <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
 
-    @switch (ThemeService.Config.ThemeType)
+    @switch (ViewBag.Theme.ThemeType)
     {
         case ThemeType.Auto:
             @if (DateTime.Now.Hour > 18 || DateTime.Now.Hour < 7)
@@ -58,7 +58,7 @@
 
                 <div class="col-md-3">
                     <p class="title">What's new</p>
-                    @foreach (var item in ProfileService.Config.WhatsNew)
+                    @foreach (var item in ViewBag.Profile.WhatsNew)
                     {
                         <p><a target="_blank" href="@item.Link">@item.Title</a></p>
                     }
@@ -66,7 +66,7 @@
 
                 <div class="col-md-3">
                     <p class="title">FriendLinks</p>
-                    @foreach (var item in ProfileService.Config.FriendLinks)
+                    @foreach (var item in ViewBag.Profile.FriendLinks)
                     {
                         <p><a target="_blank" href="@item.Link">@item.Title</a></p>
                     }
@@ -74,7 +74,7 @@
 
                 <div class="col-md-3">
                     <p class="title">About</p>
-                    @foreach (var item in ProfileService.Config.About)
+                    @foreach (var item in ViewBag.Profile.About)
                     {
                         <p><a target="_blank" href="@item.Link">@item.Title</a></p>
                     }
@@ -82,7 +82,7 @@
 
                 <div class="col-md-3">
                     <p class="title">Others</p>
-                    @foreach (var item in ProfileService.Config.Others)
+                    @foreach (var item in ViewBag.Profile.Others)
                     {
                         <p><a target="_blank" href="@item.Link">@item.Title</a></p>
                     }
@@ -99,8 +99,8 @@
                 <a target="_blank" href="https://dotnet.microsoft.com/"><strong>.NET</strong></a> 5.0.1
             </p>
             <p>
-                &copy; 2020 - @ProfileService.Config.Name
-                &nbsp;<a href="https://beian.miit.gov.cn/" target="_blank"><strong>@ProfileService.Config.ICP</strong></a>
+                &copy; 2020 - @ViewBag.Profile.Name
+                &nbsp;<a href="https://beian.miit.gov.cn/" target="_blank"><strong>@ViewBag.Profile.ICP</strong></a>
             </p>
         </div>
 

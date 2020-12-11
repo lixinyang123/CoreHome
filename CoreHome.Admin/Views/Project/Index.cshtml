@@ -1,4 +1,5 @@
-﻿@inject HomePageService homePageService
+﻿@inject HomePageService HomePageService
+@{ ViewBag.HomePage = HomePageService.Config; }
 
 <div class="container">
 
@@ -9,7 +10,7 @@
     <hr />
 
     <div class="row">
-        @foreach (var project in homePageService.Config)
+        @foreach (var project in ViewBag.HomePage)
         {
             @await Component.InvokeAsync("Project", project)
         }

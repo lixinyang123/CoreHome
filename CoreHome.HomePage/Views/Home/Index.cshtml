@@ -1,5 +1,8 @@
 ﻿@inject BingWallpaperService BingWallpaperService
-@inject HomePageService homePageService
+@inject HomePageService HomePageService
+@{ 
+    ViewBag.HomePage = HomePageService.Config;
+}
 
 <div>
     <script type="text/javascript" src="~/lib/typed.js/lib/typed.min.js"></script>
@@ -11,7 +14,7 @@
     <div>
         <header class="fh5co-cover js-fullheight">
 
-            @switch (ThemeService.Config.BackgroundType)
+            @switch (ViewBag.Theme.BackgroundType)
             {
                 case BackgroundType.Color:
                     <div id="colorbg"></div>
@@ -33,12 +36,12 @@
 
                             <div class="display-tc">
                                 <img id="avatar" src="@OssService.GetAvatar()" />
-                                <h1><span id="name">@ViewBag.Title</span></h1>
+                                <h1><span id="name">@ViewBag.Profile.Name</span></h1>
                                 <h2><span id="info"></span></h2>
-                                <input id="infoList" type="hidden" value="@ProfileService.Config.Info"/>
-                                <h3><span id="qq">QQ：@ProfileService.Config.QQ</span></h3>
+                                <input id="infoList" type="hidden" value="@ViewBag.Profile.Info"/>
+                                <h3><span id="qq">QQ：@ViewBag.Profile.QQ</span></h3>
                                 <br />
-                                <h3><span id="email">email：@ProfileService.Config.Email</span></h3>
+                                <h3><span id="email">email：@ViewBag.Profile.Email</span></h3>
                                 <br /><br />
 
                                 <a href="#program">
@@ -54,7 +57,7 @@
 
         <div id="program" class="container">
 
-            @if (homePageService.Config.Count > 0)
+            @if (ViewBag.HomePage.Count > 0)
             {
                 <!--Title-->
                 <div class="row reveal">
@@ -65,7 +68,7 @@
             }
 
             <div class="row">
-                @foreach (var project in homePageService.Config)
+                @foreach (var project in ViewBag.HomePage)
                 {
                     @await Component.InvokeAsync("Project", project)
                 }

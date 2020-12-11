@@ -8,9 +8,9 @@
 
     <meta property="og:locale" content="zh_cn" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="@ProfileService.Config.Name" />
-    <meta property="og:description" content="@ProfileService.Config.Name | Admin" />
-    <meta property="og:site_name" content="@ProfileService.Config.Name" />
+    <meta property="og:title" content="@ViewBag.Profile.Name" />
+    <meta property="og:description" content="@ViewBag.Profile.Name | Admin" />
+    <meta property="og:site_name" content="@ViewBag.Profile.Name" />
     <meta property="og:image" content="@OssService.GetAvatar()" />
 
     <title>@ViewBag.PageTitle | Admin</title>
@@ -27,7 +27,7 @@
         <div class="sidebar">
 
             <div class="top-row pl-4 navbar navbar-dark">
-                <a class="navbar-brand" asp-controller="Overview" asp-action="Index">Admin | @ProfileService.Config.Name</a>
+                <a class="navbar-brand" asp-controller="Overview" asp-action="Index">Admin | @ViewBag.Profile.Name</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
