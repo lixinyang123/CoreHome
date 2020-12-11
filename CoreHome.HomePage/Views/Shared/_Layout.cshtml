@@ -29,7 +29,10 @@
         case ThemeType.Auto:
             @if (DateTime.Now.Hour > 18 || DateTime.Now.Hour < 7)
             {
-                <script>DarkReader.enable();</script>
+                <script>
+                    DarkReader.setFetchMethod(window.fetch);
+                    DarkReader.enable();
+                </script>
             }
             break;
 

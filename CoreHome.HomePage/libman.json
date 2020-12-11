@@ -1,17 +1,17 @@
 {
   "version": "1.0",
-  "defaultProvider": "unpkg",
+  "defaultProvider": "jsdelivr",
   "libraries": [
     {
       "library": "jquery@3.5.1",
       "destination": "wwwroot/lib/jquery/"
     },
     {
-      "library": "bootstrap@4.5.2",
+      "library": "bootstrap@4.5.3",
       "destination": "wwwroot/lib/bootstrap/"
     },
     {
-      "library": "darkreader@4.7.15",
+      "library": "darkreader@4.9.26",
       "destination": "wwwroot/lib/darkreader/"
     },
     {

@@ -1,17 +1,17 @@
 {
   "version": "1.0",
-  "defaultProvider": "unpkg",
+  "defaultProvider": "jsdelivr",
   "libraries": [
     {
       "library": "jquery@3.5.1",
       "destination": "wwwroot/lib/jquery/"
     },
     {
-      "library": "chart.js@2.9.3",
+      "library": "chart.js@2.9.4",
       "destination": "wwwroot/lib/chart.js/"
     },
     {
-      "library": "bootstrap@4.5.2",
+      "library": "bootstrap@4.5.3",
       "destination": "wwwroot/lib/bootstrap/"
     },
     {
