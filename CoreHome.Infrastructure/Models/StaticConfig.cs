@@ -13,26 +13,6 @@ namespace CoreHome.Infrastructure.Models
         private readonly string configPath;
         private readonly string configFile;
 
-        public ConfigType Config
-        {
-            get
-            {
-                try
-                {
-                    return JsonSerializer.Deserialize<ConfigType>(File.ReadAllText(configFile));
-                }
-                catch (System.Exception)
-                {
-                    ResetConfig();
-                    return initConfig;
-                }
-            }
-            set
-            {
-                File.WriteAllText(configFile, JsonSerializer.Serialize(value));
-            }
-        }
-
         /// <summary>
         /// 初始化静态配置
         /// </summary>
@@ -58,6 +38,26 @@ namespace CoreHome.Infrastructure.Models
             }
 
             this.initConfig = initConfig;
+        }
+
+        public ConfigType Config
+        {
+            get
+            {
+                try
+                {
+                    return JsonSerializer.Deserialize<ConfigType>(File.ReadAllText(configFile));
+                }
+                catch (System.Exception)
+                {
+                    ResetConfig();
+                    return initConfig;
+                }
+            }
+            set
+            {
+                File.WriteAllText(configFile, JsonSerializer.Serialize(value));
+            }
         }
 
         public void ResetConfig()
