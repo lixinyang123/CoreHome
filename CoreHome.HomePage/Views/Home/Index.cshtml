@@ -22,7 +22,7 @@
                     break;
 
                 case BackgroundType.Custom:
-                    <div id="imgbg" style="background-image: url('@ossService.GetBackground()');"></div>
+                    <div id="imgbg" style="background-image: url('@OssService.GetBackground()');"></div>
                     break;
             }
 
@@ -32,7 +32,7 @@
                         <div class="display-t js-fullheight">
 
                             <div class="display-tc">
-                                <img id="avatar" src="@ossService.GetAvatar()" />
+                                <img id="avatar" src="@OssService.GetAvatar()" />
                                 <h1><span id="name">@ViewBag.Title</span></h1>
                                 <h2><span id="info"></span></h2>
                                 <input id="infoList" type="hidden" value="@ProfileService.Config.Info"/>
