@@ -36,7 +36,7 @@
 
                             <div class="display-tc">
                                 <img id="avatar" src="@OssService.GetAvatar()" />
-                                <h1><span id="name">@ViewBag.Profile.Name</span></h1>
+                                <h1><span id="name">@(ViewBag.Title == null ? ViewBag.Profile.Name : ViewBag.Title)</span></h1>
                                 <h2><span id="info"></span></h2>
                                 <input id="infoList" type="hidden" value="@ViewBag.Profile.Info"/>
                                 <h3><span id="qq">QQ：@ViewBag.Profile.QQ</span></h3>
