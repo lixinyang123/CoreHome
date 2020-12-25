@@ -27,10 +27,9 @@ namespace CoreHome.Admin
         // 将服务添加到容器
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookieOptions>(config =>
-            {
-                config.SameSite = SameSiteMode.Lax;
-            });
+            services.AddAntiforgery(options => options.Cookie.Name = "X-CSRF-TOKEN-ADMIN");
+
+            services.Configure<CookieOptions>(config => config.SameSite = SameSiteMode.Lax);
 
             services.AddControllersWithViews();
 
