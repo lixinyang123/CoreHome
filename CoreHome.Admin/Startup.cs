@@ -3,6 +3,7 @@ using CoreHome.Data.DatabaseContext;
 using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,8 @@ namespace CoreHome.Admin
         // 将服务添加到容器
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDataProtection().SetApplicationName("CoreHome");
+
             services.Configure<CookieOptions>(config =>
             {
                 config.SameSite = SameSiteMode.Lax;
