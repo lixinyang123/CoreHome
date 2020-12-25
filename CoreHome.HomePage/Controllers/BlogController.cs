@@ -125,6 +125,9 @@ namespace CoreHome.HomePage.Controllers
 
         public IActionResult Archive(int id, int para)
         {
+            if (id == 0 || para == 0)
+                return NotFound();
+
             string date = $"{id}/{para}";
             ViewBag.PageTitle = date;
 
