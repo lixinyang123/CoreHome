@@ -28,11 +28,11 @@ namespace CoreHome.HomePage
         // 将服务添加到容器
         public void ConfigureServices(IServiceCollection services)
         {
-            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 services.AddDataProtection().SetApplicationName("CoreHome")
                     .PersistKeysToFileSystem(new DirectoryInfo(@"C:/Server/CoreHome/"));
 
-            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 services.AddDataProtection().SetApplicationName("CoreHome")
                     .PersistKeysToFileSystem(new DirectoryInfo(@"/home/Server/CoreHome/"));
 
