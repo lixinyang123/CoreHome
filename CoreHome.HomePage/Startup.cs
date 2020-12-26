@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,7 +40,8 @@ namespace CoreHome.HomePage
             services.Configure<CookieOptions>(config => config.SameSite = SameSiteMode.Lax);
 
             services.AddSession();
-            services.AddControllersWithViews();
+
+            services.AddControllersWithViews(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 
             //数据库上下文
             services.AddDbContext<ArticleDbContext>(options =>
