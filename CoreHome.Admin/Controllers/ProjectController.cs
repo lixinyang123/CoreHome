@@ -53,6 +53,7 @@ namespace CoreHome.Admin.Controllers
             }
         }
 
+        [HttpPost]
         public IActionResult Delete(string id)
         {
             var index = homePageService.Config.FindIndex(i => i.Id == id);
@@ -98,6 +99,7 @@ namespace CoreHome.Admin.Controllers
             }
         }
 
+        [HttpPost]
         public IActionResult MoveUp(string id)
         {
             ViewBag.PageTitle = "Edit Project";

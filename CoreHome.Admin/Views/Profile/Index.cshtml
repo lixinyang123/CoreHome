@@ -59,6 +59,15 @@
     </div>
 
     <div class="inputRow mt-5">
+        @{
+            var formLink = new FormLink()
+            {
+                Href = "/Admin/Profile/DeleteFooterLink/",
+                Text = "Delete",
+                ClassName = "btn btn-danger",
+                Warning = "Confirm deletion?"
+            };
+        }
         <hr />
         <h1 class="display-4">What's new</h1>
         <form asp-controller="Profile" asp-action="AddFooterLink" asp-route-type="WhatsNew" method="post" class="input-group">
@@ -75,7 +84,14 @@
                 <input type="text" placeholder="Title" class="form-control" value="@item.Title" disabled />
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
-                    <a asp-controller="Profile" asp-action="DeleteFooterLink" asp-route-id="@item.Id" asp-route-type="WhatsNew" class="btn btn-danger">Delete</a>
+                    @{
+                        formLink.Paras = new Dictionary<string, string>()
+                        {
+                            {"id", item.Id },
+                            {"type", "WhatsNew"}
+                        };
+                    }
+                    @await Component.InvokeAsync("FormLink", formLink)
                 </div>
             </div>
             <br />
@@ -98,7 +114,14 @@
                 <input type="text" placeholder="Title" class="form-control" value="@item.Title" disabled />
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
-                    <a asp-controller="Profile" asp-action="DeleteFooterLink" asp-route-id="@item.Id" asp-route-type="FriendLinks" class="btn btn-danger">Delete</a>
+                    @{
+                        formLink.Paras = new Dictionary<string, string>()
+                        {
+                            {"id", item.Id },
+                            {"type", "FriendLinks"}
+                        };
+                    }
+                    @await Component.InvokeAsync("FormLink", formLink)
                 </div>
             </div>
             <br />
@@ -121,7 +144,14 @@
                 <input type="text" placeholder="Title" class="form-control" value="@item.Title" disabled />
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
-                    <a asp-controller="Profile" asp-action="DeleteFooterLink" asp-route-id="@item.Id" asp-route-type="About" class="btn btn-danger">Delete</a>
+                    @{
+                        formLink.Paras = new Dictionary<string, string>()
+                        {
+                            {"id", item.Id },
+                            {"type", "About"}
+                        };
+                    }
+                    @await Component.InvokeAsync("FormLink", formLink)
                 </div>
             </div>
             <br />
@@ -144,7 +174,14 @@
                 <input type="text" placeholder="Title" class="form-control" value="@item.Title" disabled />
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
-                    <a asp-controller="Profile" asp-action="DeleteFooterLink" asp-route-id="@item.Id" asp-route-type="Others" class="btn btn-danger">Delete</a>
+                    @{
+                        formLink.Paras = new Dictionary<string, string>()
+                        {
+                            {"id", item.Id },
+                            {"type", "Others"}
+                        };
+                    }
+                    @await Component.InvokeAsync("FormLink", formLink)
                 </div>
             </div>
             <br />

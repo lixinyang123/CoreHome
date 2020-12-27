@@ -22,9 +22,30 @@
 }
 
 <div class="@sizeClassName">
-    <a class="btn-edit btn btn-info" asp-controller="Project" asp-action="MoveUp" asp-route-id="@Model.Id">MoveUp</a>
+    @{
+        var moveUpLink = new FormLink()
+        {
+            Href = "/Admin/Project/MoveUp/",
+            Text = "MoveUp",
+            Paras = { {"id", Model.Id } },
+            ClassName = "btn-edit btn btn-info",
+            Warning = "Confirm MoveUp?"
+        };
+
+        var deleteLink = new FormLink()
+        {
+            Href = "/Admin/Project/Delete/",
+            Text = "Delete",
+            Paras = { { "id", Model.Id } },
+            ClassName = "btn-edit btn btn-danger",
+            Warning = "Confirm deletion?"
+        };
+    }
+
+    @await Component.InvokeAsync("FormLink", moveUpLink)
     <a class="btn-edit btn btn-warning" asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-    <a class="btn-edit btn btn-danger" asp-controller="Project" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+    @await Component.InvokeAsync("FormLink", deleteLink)
+
     <div class="fh5co-blog">
         <div class="blog-imgbox">
             <a class="blog-bg" style="background-image:url(@Model.CoverUrl);" href="@Model.Link" target="_blank"></a>

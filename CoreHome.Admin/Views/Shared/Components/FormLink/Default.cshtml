@@ -1,0 +1,15 @@
+﻿@model CoreHome.Admin.Models.FormLink
+
+@{ var id = Guid.NewGuid().ToString().Substring(0,6);}
+
+<form id="@id" action="@Model.Href" method="post" asp-antiforgery="true" hidden>
+    @foreach (var para in Model.Paras)
+    {
+        <input name="@para.Key" value="@para.Value"/>
+    }
+</form>
+
+<a href="javascript:void(0)" class="@Model.ClassName" 
+   onclick="if (confirm('@Model.Warning')) { document.getElementById('@id').submit() }">
+    @Model.Text
+</a>

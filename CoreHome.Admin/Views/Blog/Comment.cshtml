@@ -17,17 +17,27 @@
         <ul class="list-group list-group-flush">
             @foreach (var comment in Model.Comments)
             {
-                    <li class="list-group-item">
-                        <div>
-                            <p>
-                                <spsn>@comment.Time.ToString("yy/MM/dd")</spsn>
-                                <a asp-controller="Blog" asp-action="DelComment" asp-route-id="@comment.Id" asp-route-articleCode="@Model.ArticleCode">Delete</a>
-                            </p>
-                            <div class="markdown">
-                                <textarea hidden>@comment.Detail</textarea>
-                            </div>
+                <li class="list-group-item">
+                    <div>
+                        <p>
+                            <spsn>@comment.Time.ToString("yy/MM/dd")</spsn>
+                            @{
+                                var formLink = new FormLink()
+                                {
+                                    Href = "/Admin/Blog/DelComment/",
+                                    Text = "Delete",
+                                    Warning = "Confirm deletion?"
+                                };
+                                formLink.Paras.Add("id", comment.Id.ToString());
+                                formLink.Paras.Add("articleCode", Model.ArticleCode.ToString());
+                            }
+                            @await Component.InvokeAsync("FormLink", formLink)
+                        </p>
+                        <div class="markdown">
+                            <textarea hidden>@comment.Detail</textarea>
                         </div>
-                    </li>
+                    </div>
+                </li>
             }
         </ul>
     }

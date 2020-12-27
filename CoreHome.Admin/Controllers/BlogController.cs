@@ -253,6 +253,7 @@ namespace CoreHome.Admin.Controllers
             return View("Editor", articleViewModel);
         }
 
+        [HttpPost]
         public IActionResult Delete(Guid id)
         {
             Article article = articleDbContext.Articles.Include(i => i.Comments)
@@ -281,6 +282,7 @@ namespace CoreHome.Admin.Controllers
             return View(article);
         }
 
+        [HttpPost]
         public IActionResult DelComment(int id, Guid articleCode)
         {
             Comment comment = articleDbContext.Comments.SingleOrDefault(i => i.Id == id);

@@ -101,6 +101,7 @@ namespace CoreHome.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
         public IActionResult DeleteFooterLink(string id)
         {
             if (id != null)
