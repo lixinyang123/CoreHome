@@ -4,7 +4,7 @@
     path: "/Admin/lib/editor.md/lib/",
     emoji: true,
     imageUpload: true,
-    imageFormats: ["jpg", "png"],
+    imageFormats: ["jpg", "png", "gif"],
     imageUploadURL: "/Admin/Blog/UploadPic",
     htmlDecode: "style,script,iframe"
 });
@@ -18,7 +18,8 @@ if (window.location.href.includes("Upload")) {
             "CategoryName": document.querySelector("#CategoryName").value,
             "TagStr": document.querySelector("#TagStr").value,
             "Overview": document.querySelector("#Overview").value,
-            "Content": document.querySelector("#Content").innerText
+            "Content": document.querySelector("#Content").innerText,
+            "__RequestVerificationToken": document.getElementsByName("__RequestVerificationToken")[0].value
         };
 
         $.ajax({

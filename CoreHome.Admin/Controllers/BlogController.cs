@@ -295,6 +295,7 @@ namespace CoreHome.Admin.Controllers
         }
 
         [HttpPost]
+        [IgnoreAntiforgeryToken]
         public IActionResult UploadPic()
         {
             IFormFile file = HttpContext.Request.Form.Files["editormd-image-file"];

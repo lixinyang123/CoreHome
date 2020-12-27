@@ -23,6 +23,7 @@ function uploadBackground() {
     alert("Uploading...")
     let formData = new FormData();
     formData.append("file", document.querySelector("#fileSelector").files[0]);
+    formData.append("__RequestVerificationToken", document.getElementsByName("__RequestVerificationToken")[0].value);
 
     $.ajax({
         url: "/Admin/Theme/UploadBackground",
