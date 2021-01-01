@@ -9,7 +9,7 @@
     htmlDecode: "style,script,iframe"
 });
 
-if (window.location.href.includes("Upload")) {
+if (location.href.includes("Upload")) {
     console.log("Enable cache");
 
     setInterval(() => {
