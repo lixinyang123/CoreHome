@@ -17,7 +17,7 @@ namespace CoreHome.Infrastructure.Services
         /// <summary>
         /// PushLinkToBaidu
         /// </summary>
-        /// <param name="SiteMapPath">站点地图文件路径</param>
+        /// <param name="WebRootPath">站点地图的存放路径</param>
         public async void PushToBaidu(string WebRootPath)
         {
             try
@@ -28,7 +28,9 @@ namespace CoreHome.Infrastructure.Services
                 string linkStr = File.ReadAllText(SiteMapPath);
                 HttpContent content = new StringContent(linkStr, Encoding.UTF8);
 
-                await httpClient.PostAsync(baiduLinkSubmit, content);
+                HttpResponseMessage responseMessage = await httpClient.PostAsync(baiduLinkSubmit, content);
+                string result = await responseMessage.Content.ReadAsStringAsync();
+                Console.WriteLine(result);
             }
             catch (Exception) { }
         }
