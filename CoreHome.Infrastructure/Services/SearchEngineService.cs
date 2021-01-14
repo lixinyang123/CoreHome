@@ -25,7 +25,7 @@ namespace CoreHome.Infrastructure.Services
             {
                 HttpClient httpClient = new HttpClient();
 
-                string SiteMapPath = WebRootPath + "\\SiteMap.txt";
+                string SiteMapPath = WebRootPath + "/SiteMap.txt";
                 string linkStr = File.ReadAllText(SiteMapPath);
                 HttpContent content = new StringContent(linkStr, Encoding.UTF8);
 
