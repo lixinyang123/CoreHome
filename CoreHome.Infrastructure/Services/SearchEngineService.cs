@@ -32,9 +32,9 @@ namespace CoreHome.Infrastructure.Services
                 HttpResponseMessage responseMessage = await httpClient.PostAsync(baiduLinkSubmit, content);
                 return await responseMessage.Content.ReadAsStringAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return string.Empty;
+                return ex.Message;
             }
         }
     }
