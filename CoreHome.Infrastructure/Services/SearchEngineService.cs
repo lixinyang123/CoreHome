@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CoreHome.Infrastructure.Services
 {
@@ -18,7 +19,7 @@ namespace CoreHome.Infrastructure.Services
         /// PushLinkToBaidu
         /// </summary>
         /// <param name="WebRootPath">站点地图的存放路径</param>
-        public async void PushToBaidu(string WebRootPath)
+        public async Task<string> PushToBaidu(string WebRootPath)
         {
             try
             {
@@ -29,10 +30,12 @@ namespace CoreHome.Infrastructure.Services
                 HttpContent content = new StringContent(linkStr, Encoding.UTF8);
 
                 HttpResponseMessage responseMessage = await httpClient.PostAsync(baiduLinkSubmit, content);
-                string result = await responseMessage.Content.ReadAsStringAsync();
-                Console.WriteLine(result);
+                return await responseMessage.Content.ReadAsStringAsync();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
         }
     }
 }

@@ -3,25 +3,33 @@ using CoreHome.Infrastructure.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace CoreHome.HomePage.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILogger<string> logger;
         private readonly IWebHostEnvironment environment;
         private readonly SearchEngineService searchEngineService;
 
-        public HomeController(IWebHostEnvironment environment, SearchEngineService searchEngineService)
+        public HomeController(IWebHostEnvironment environment, SearchEngineService searchEngineService, ILogger<string> logger)
         {
+            this.logger = logger;
             this.environment = environment;
             this.searchEngineService = searchEngineService;
         }
 
         public IActionResult Index()
         {
-            searchEngineService.PushToBaidu(environment.WebRootPath);
+            Task.Run(() =>
+            {
+                var log = searchEngineService.PushToBaidu(environment.WebRootPath).Result;
+                logger.LogInformation($"Push to Baidu：{log}");
+            });
 
             ViewBag.PageTitle = "Home";
 
