@@ -25,9 +25,9 @@ namespace CoreHome.HomePage.Controllers
 
         public IActionResult Index()
         {
-            Task.Run(() =>
+            Task.Run(async () =>
             {
-                var log = searchEngineService.PushToBaidu(environment.WebRootPath).Result;
+                var log = await searchEngineService.PushToBaidu(environment.WebRootPath);
                 logger.LogInformation($"Push to Baidu：{log}");
             });
 
