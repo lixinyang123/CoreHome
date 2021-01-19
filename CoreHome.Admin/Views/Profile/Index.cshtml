@@ -62,7 +62,6 @@
         @{
             var formLink = new FormLink()
             {
-                Href = "/Admin/Profile/DeleteFooterLink/",
                 Text = "Delete",
                 ClassName = "btn btn-danger",
                 Warning = "Confirm deletion?"
@@ -85,10 +84,10 @@
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
                     @{
+                        formLink.Href = "/Admin/Profile/DeleteFooterLink?type=WhatsNew";
                         formLink.Paras = new Dictionary<string, string>()
                         {
-                            {"id", item.Id },
-                            {"type", "WhatsNew"}
+                            {"id", item.Id }
                         };
                     }
                     @await Component.InvokeAsync("FormLink", formLink)
@@ -115,10 +114,10 @@
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
                     @{
+                        formLink.Href = "/Admin/Profile/DeleteFooterLink?type=FriendLinks";
                         formLink.Paras = new Dictionary<string, string>()
                         {
-                            {"id", item.Id },
-                            {"type", "FriendLinks"}
+                            {"id", item.Id }
                         };
                     }
                     @await Component.InvokeAsync("FormLink", formLink)
@@ -145,10 +144,10 @@
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
                     @{
+                        formLink.Href = "/Admin/Profile/DeleteFooterLink?type=About";
                         formLink.Paras = new Dictionary<string, string>()
                         {
-                            {"id", item.Id },
-                            {"type", "About"}
+                            {"id", item.Id }
                         };
                     }
                     @await Component.InvokeAsync("FormLink", formLink)
@@ -175,10 +174,10 @@
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
                     @{
+                        formLink.Href = "/Admin/Profile/DeleteFooterLink?type=Others";
                         formLink.Paras = new Dictionary<string, string>()
                         {
-                            {"id", item.Id },
-                            {"type", "Others"}
+                            {"id", item.Id }
                         };
                     }
                     @await Component.InvokeAsync("FormLink", formLink)
