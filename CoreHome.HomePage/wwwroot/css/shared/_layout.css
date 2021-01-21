@@ -1,17 +1,19 @@
 
 body {
-    padding-top: 50px;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
 
 #content {
+    padding-top: 50px;
     flex: 1;
 }
 
 nav {
-    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: saturate(180%) blur(10px);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 footer {

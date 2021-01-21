@@ -1,5 +1,9 @@
-﻿
+﻿#content {
+    padding-top: 0;
+}
+
 .fh5co-cover {
+    padding-top: 50px;
     position: relative;
     width: 100%;
     line-height: 1.7;

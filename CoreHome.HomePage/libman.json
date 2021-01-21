@@ -7,7 +7,7 @@
       "destination": "wwwroot/lib/jquery/"
     },
     {
-      "library": "bootstrap@4.5.3",
+      "library": "bootstrap@4.6.0",
       "destination": "wwwroot/lib/bootstrap/"
     },
     {
@@ -19,7 +19,7 @@
       "destination": "wwwroot/lib/editor.md/"
     },
     {
-      "library": "wordcloud@1.1.1",
+      "library": "wordcloud@1.1.2",
       "destination": "wwwroot/lib/wordcloud/"
     },
     {
