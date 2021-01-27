@@ -1,6 +1,7 @@
-﻿#btn-qrcode{
+﻿#btn-qrcode {
     float: right;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 #qrcode img {
