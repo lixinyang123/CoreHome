@@ -4,6 +4,11 @@
     ViewData["Title"] = "Detail";
 }
 
+<link rel="stylesheet" href="~/css/blog/detail.min.css" />
+
+<script src="~/lib/qrcodejs/qrcode.min.js"></script>
+<script src="~/js/blog/detail.min.js"></script>
+
 <input id="warning" type="hidden" value="@ViewBag.Warning" />
 <div class="container mt-4 mb-5">
     <div class="row">
@@ -26,7 +31,26 @@
                         <strong class="text-muted">
                             <span>@Model.Article.Time.ToString()</span>
                             | China Standard Time
+                            <svg id="btn-qrcode" onclick="showCode()" class="bi bi-upc-scan" data-toggle="modal" data-target="#qrcodeModal" width="25" height="25" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5zM3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7z"></path>
+                            </svg>
                         </strong>
+                    </div>
+
+                    <div class="modal fade" id="qrcodeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">@Model.Article.Title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="qrcode" class="text-center"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <p>
@@ -66,13 +90,13 @@
             </article>
 
             <form asp-controller="Blog" asp-action="Detail" method="post">
-                <input type="hidden" value="@Model.Article.ArticleCode" name="ArticleCode"/>
+                <input type="hidden" value="@Model.Article.ArticleCode" name="ArticleCode" />
                 <textarea class="form-control mb-3" rows="4" placeholder="Comment（Support MarkDown）" maxlength="1024" name="Detail">@Model.CommentViewModel.Detail</textarea>
                 <div class="row">
                     <div class="col">
                         <div class="input-group">
                             <img id="verfyImg" onclick="getVerfyCode(this)" src="/Service/VerificationCode" />
-                            <input id="verificationCode" type="text" autocomplete="off" class="form-control" placeholder="Code" name="VerificationCode" value="@Model.CommentViewModel.VerificationCode"/>
+                            <input id="verificationCode" type="text" autocomplete="off" class="form-control" placeholder="Code" name="VerificationCode" value="@Model.CommentViewModel.VerificationCode" />
                         </div>
                     </div>
                     <div class="col">
@@ -98,11 +122,6 @@
 
             </div>
         </selection>
-
-        <script>
-            let warning = document.querySelector("#warning").value;
-            if (warning != "") { alert(warning); }
-        </script>
 
         <partial name="MarkdownRender" />
     </div>

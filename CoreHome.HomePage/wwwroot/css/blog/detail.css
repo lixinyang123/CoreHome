@@ -1,0 +1,8 @@
+﻿#btn-qrcode{
+    float: right;
+    cursor: pointer;
+}
+
+#qrcode img {
+    margin: 0 auto;
+}

@@ -88,5 +88,17 @@
     "inputFiles": [
       "wwwroot/css/components/project.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/blog/detail.min.js",
+    "inputFiles": [
+      "wwwroot/js/blog/detail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/blog/detail.min.css",
+    "inputFiles": [
+      "wwwroot/css/blog/detail.css"
+    ]
   }
 ]
