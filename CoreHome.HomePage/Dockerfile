@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
@@ -9,7 +9,7 @@ COPY ["DockerCompose/sources.list", "/etc/apt/sources.list"]
 RUN apt update
 RUN apt install libgdiplus -y
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["CoreHome.HomePage/CoreHome.HomePage.csproj", "CoreHome.HomePage/"]
 COPY ["CoreHome.Infrastructure/CoreHome.Infrastructure.csproj", "CoreHome.Infrastructure/"]
