@@ -21,4 +21,8 @@ function init() {
         element.setAttribute("id", id);
         render(id);
     });
+
+    document.querySelectorAll(".loading").forEach((ele) => {
+        ele.remove();
+    });
 }
