@@ -1,5 +1,6 @@
 ﻿using CoreHome.Infrastructure.Models;
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace CoreHome.Infrastructure.Services
                     string jsonStr = await httpClient.GetStringAsync(url);
                     BingWallpaper wallpaper = JsonSerializer.Deserialize<BingWallpaper>(jsonStr);
 
-                    urlCache = "https://cn.bing.com" + wallpaper.images[0].url;
+                    urlCache = Path.Combine("https://cn.bing.com", wallpaper.images[0].url);
                     lastDay = nowDay;
                     return urlCache;
                 }

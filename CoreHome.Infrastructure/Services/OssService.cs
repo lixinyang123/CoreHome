@@ -21,13 +21,13 @@ namespace CoreHome.Infrastructure.Services
         {
             string fileName = Guid.NewGuid().ToString() + ".jpg";
             string path = "images/projects/";
-            client.PutObject(config.BucketName, path + fileName, stream);
-            return config.BucketDomainName + path + fileName;
+            client.PutObject(config.BucketName, Path.Combine(path, fileName), stream);
+            return Path.Combine(config.BucketDomainName, path, fileName);
         }
 
         public string GetAvatar()
         {
-            return config.BucketDomainName + "images/avatar.jpg";
+            return Path.Combine(config.BucketDomainName, "images/avatar.jpg");
         }
 
         public void UploadAvatar(Stream stream)
@@ -37,7 +37,7 @@ namespace CoreHome.Infrastructure.Services
 
         public string GetBackground()
         {
-            return config.BucketDomainName + "images/background.jpg";
+            return Path.Combine(config.BucketDomainName, "images/background.jpg");
         }
 
         public void UploadBackground(Stream stream)
@@ -49,8 +49,8 @@ namespace CoreHome.Infrastructure.Services
         {
             string fileName = Guid.NewGuid().ToString() + ".jpg";
             string path = "blogs/";
-            client.PutObject(config.BucketName, path + fileName, stream);
-            return config.BucketDomainName + path + fileName;
+            client.PutObject(config.BucketName, Path.Combine(path, fileName), stream);
+            return Path.Combine(config.BucketDomainName, path, fileName);
         }
 
         public List<string> GetMusics()

@@ -27,7 +27,7 @@ namespace CoreHome.Infrastructure.Models
                 configPath = @"/home/Server/CoreHome/";
             }
 
-            configFile = configPath + fileName;
+            configFile = Path.Combine(configPath, fileName);
 
             if (!Directory.Exists(configPath))
             {

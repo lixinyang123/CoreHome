@@ -18,6 +18,7 @@ function uploadAvatar() {
     uploadingState(true, "Upload Avatar");
 
     let formData = new FormData();
+    formData.append("__RequestVerificationToken", document.getElementsByName("__RequestVerificationToken")[0].value);
     formData.append("file", document.querySelector("#fileSelector").files[0]);
 
     $.ajax({
@@ -42,6 +43,7 @@ function uploadProjectCover() {
     uploadingState(true, "Upload Cover");
 
     let formData = new FormData();
+    formData.append("__RequestVerificationToken", document.getElementsByName("__RequestVerificationToken")[0].value);
     formData.append("file", document.querySelector("#fileSelector").files[0]);
 
     $.ajax({
