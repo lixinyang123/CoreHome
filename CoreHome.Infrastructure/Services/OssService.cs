@@ -3,6 +3,7 @@ using CoreHome.Infrastructure.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Web;
 
 namespace CoreHome.Infrastructure.Services
 {
@@ -63,7 +64,7 @@ namespace CoreHome.Infrastructure.Services
             {
                 if (item.Key != path)
                 {
-                    musics.Add(config.BucketDomainName + item.Key);
+                    musics.Add(Path.Combine(config.BucketDomainName, HttpUtility.UrlEncode(item.Key)));
                 }
             }
             return musics;

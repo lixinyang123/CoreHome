@@ -32,13 +32,15 @@ namespace CoreHome.HomePage.Controllers
         public IActionResult BackgroundMusic()
         {
             string musicUrl = serviceProvider.GetService<ThemeService>().Config.MusicUrl;
+
             if (!string.IsNullOrEmpty(musicUrl))
-            {
                 return Redirect(musicUrl);
-            }
+
             List<string> musics = ossService.GetMusics();
-            string music = musics[new Random().Next(musics.Count)];
-            return Redirect(music);
+            if (musics.Count == 0)
+                return NoContent();
+
+            return Redirect(musics[new Random().Next(musics.Count)]);
         }
     }
 }
