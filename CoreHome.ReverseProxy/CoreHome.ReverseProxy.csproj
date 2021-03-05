@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.ReverseProxy" Version="1.0.0-preview.8.21065.1" />
+    <PackageReference Include="Microsoft.ReverseProxy" Version="1.0.0-preview.9.21116.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
   </ItemGroup>
 
