@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CoreHome.HomePage.Controllers
 {
@@ -26,7 +27,7 @@ namespace CoreHome.HomePage.Controllers
         }
 
         //矫正页码
-        private int CorrectIndex(int index, int pageCount)
+        private static int CorrectIndex(int index, int pageCount)
         {
             //页码<1时留在第一页
             index = index < 1 ? 1 : index;
@@ -38,7 +39,7 @@ namespace CoreHome.HomePage.Controllers
         }
 
         /// <param name="index">页面索引</param>
-        public IActionResult Index(int index = 1)
+        public async Task<IActionResult> Index(int index = 1)
         {
             ViewBag.PageTitle = "Blogs";
 
@@ -46,13 +47,13 @@ namespace CoreHome.HomePage.Controllers
             int pageCount = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(articleDbContext.Articles.Count()) / pageSize));
             index = CorrectIndex(index, pageCount);
 
-            List<Article> articles = articleDbContext.Articles
+            List<Article> articles = await articleDbContext.Articles
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.Category)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Skip((index - 1) * pageSize)
-                .Take(pageSize).ToList();
+                .Take(pageSize).ToListAsync();
 
             ViewBag.Pagination = new PaginationViewModel()
             {
@@ -66,20 +67,23 @@ namespace CoreHome.HomePage.Controllers
         }
 
         /// <param name="id">博客类别</param>
-        public IActionResult Categories(string id, int index = 1)
+        public async Task<IActionResult> Categories(string id, int index = 1)
         {
             ViewBag.PageTitle = id;
 
-            int pageCount = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(
-                articleDbContext.Articles.Where(i => i.Category.CategoriesName == id).Count()) / pageSize));
+            int pageCount = await Task.Run(() =>
+            {
+                return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(
+                    articleDbContext.Articles.Where(i => i.Category.CategoriesName == id).Count()) / pageSize));
+            });
 
-            List<Article> articles = articleDbContext.Articles
+            List<Article> articles = await articleDbContext.Articles
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Where(i => i.Category.CategoriesName == id)
                 .Skip((index - 1) * pageSize)
-                .Take(pageSize).ToList();
+                .Take(pageSize).ToListAsync();
 
             ViewBag.Pagination = new PaginationViewModel()
             {
@@ -93,24 +97,27 @@ namespace CoreHome.HomePage.Controllers
         }
 
         /// <param name="id">博客标签</param>
-        public IActionResult Tags(string id, int index = 1)
+        public async Task<IActionResult> Tags(string id, int index = 1)
         {
             ViewBag.PageTitle = id;
 
-            int pageCount = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(
-                articleDbContext.ArticleTags.Include(i => i.Tag).Where(i => i.Tag.TagName == id).Count()) / pageSize));
+            int pageCount = await Task.Run(() =>
+            {
+                return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(
+                    articleDbContext.ArticleTags.Include(i => i.Tag).Where(i => i.Tag.TagName == id).Count()) / pageSize));
+            });
 
-            List<ArticleTag> articleTags = articleDbContext.ArticleTags
+            List<ArticleTag> articleTags = await articleDbContext.ArticleTags
                 .OrderByDescending(i => i.Article.Id)
                 .Include(i => i.Article)
                 .ThenInclude(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Where(i => i.Tag.TagName == id)
                 .Skip((index - 1) * pageSize)
-                .Take(pageSize).ToList();
+                .Take(pageSize).ToListAsync();
 
-            List<Article> articles = new List<Article>();
-            articleTags.ForEach(i => articles.Add(i.Article));
+            List<Article> articles = new();
+            articleTags.AsParallel().ForAll(i => articles.Add(i.Article));
 
             ViewBag.Pagination = new PaginationViewModel()
             {
@@ -123,7 +130,7 @@ namespace CoreHome.HomePage.Controllers
             return View("Index", articles);
         }
 
-        public IActionResult Archive(int id, int para)
+        public async Task<IActionResult> Archive(int id, int para)
         {
             if (id == 0 || para == 0)
                 return NotFound();
@@ -131,12 +138,12 @@ namespace CoreHome.HomePage.Controllers
             string date = $"{id}/{para}";
             ViewBag.PageTitle = date;
 
-            List<Article> articles = articleDbContext.Months
+            List<Article> articles = (await articleDbContext.Months
                 .Include(i => i.Year)
                 .Include(i => i.Articles)
                 .ThenInclude(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
-                .SingleOrDefault(i => i.Year.Value == id && i.Value == para)
+                .SingleOrDefaultAsync(i => i.Year.Value == id && i.Value == para))
                 .Articles.ToList();
 
             ViewBag.Warning = date;
@@ -144,7 +151,7 @@ namespace CoreHome.HomePage.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(string keyword)
+        public async Task<IActionResult> Search(string keyword)
         {
             ViewBag.PageTitle = keyword;
 
@@ -153,12 +160,12 @@ namespace CoreHome.HomePage.Controllers
                 return RedirectToAction("Index");
             }
 
-            List<Article> articles = articleDbContext.Articles
+            List<Article> articles = await articleDbContext.Articles
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Where(i => i.Title.ToLower().Contains(keyword.ToLower()))
-                .Take(pageSize).ToList();
+                .Take(pageSize).ToListAsync();
 
             ViewBag.Warning = keyword;
             return View("Index", articles);
@@ -169,14 +176,14 @@ namespace CoreHome.HomePage.Controllers
         /// </summary>
         /// <param name="id">博客ArticleCode</param>
         /// <returns>博客详情页面</returns>
-        public IActionResult Detail(Guid id)
+        public async Task<IActionResult> Detail(Guid id)
         {
-            Article article = articleDbContext.Articles
+            Article article = await articleDbContext.Articles
                 .Include(i => i.Category)
                 .Include(i => i.Comments)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
-                .SingleOrDefault(i => i.ArticleCode == id);
+                .SingleOrDefaultAsync(i => i.ArticleCode == id);
 
             ViewBag.PageTitle = article.Title;
 
@@ -193,21 +200,21 @@ namespace CoreHome.HomePage.Controllers
         /// <param name="viewModel">评论内容</param>
         /// <returns>评论状态</returns>
         [HttpPost]
-        public IActionResult Detail(CommentViewModel viewModel)
+        public async Task<IActionResult> Detail(CommentViewModel viewModel)
         {
-            Article article = articleDbContext.Articles
+            Article article = await articleDbContext.Articles
                    .Include(i => i.Category)
                    .Include(i => i.Comments)
                    .Include(i => i.ArticleTags)
                    .ThenInclude(i => i.Tag)
-                   .SingleOrDefault(i => i.ArticleCode == viewModel.ArticleCode);
+                   .SingleOrDefaultAsync(i => i.ArticleCode == viewModel.ArticleCode);
 
             if (article == null)
                 return RedirectToAction("Index");
 
             ViewBag.PageTitle = article.Title;
 
-            DetailViewModel detailViewModel = new DetailViewModel()
+            DetailViewModel detailViewModel = new()
             {
                 Article = article,
                 CommentViewModel = viewModel

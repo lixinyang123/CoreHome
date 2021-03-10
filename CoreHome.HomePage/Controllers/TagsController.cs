@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CoreHome.HomePage.Controllers
 {
@@ -22,19 +23,21 @@ namespace CoreHome.HomePage.Controllers
             return View();
         }
 
-        public IActionResult AllTags()
+        public async Task<IActionResult> AllTags()
         {
-            List<Tag> tags = articleDbContext.Tags.Include(i => i.ArticleTags).ToList();
+            List<Tag> tags = await articleDbContext.Tags.Include(i => i.ArticleTags).ToListAsync();
 
-            List<List<string>> wordClouds = new List<List<string>>();
-            foreach (var tag in tags)
+            List<List<string>> wordClouds = new();
+
+            tags.AsParallel().ForAll(tag =>
             {
                 wordClouds.Add(new List<string>()
                 {
                     {tag.TagName },
                     {(tag.ArticleTags.Count*8).ToString() }
                 });
-            }
+            });
+
             return Json(wordClouds);
         }
     }

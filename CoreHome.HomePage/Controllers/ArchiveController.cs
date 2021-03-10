@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CoreHome.HomePage.Controllers
 {
@@ -16,15 +17,15 @@ namespace CoreHome.HomePage.Controllers
             this.articleDbContext = articleDbContext;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewBag.PageTitle = "Archive";
 
-            List<Year> years = articleDbContext.Years
+            List<Year> years = await articleDbContext.Years
                 .OrderByDescending(i => i.Value)
                 .Include(i => i.Months)
                 .ThenInclude(i => i.Articles)
-                .ToList();
+                .ToListAsync();
 
             return View(years);
         }
