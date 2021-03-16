@@ -34,6 +34,10 @@ namespace CoreHome.Admin.Controllers
         [HttpPost]
         public IActionResult Index(Profile profile)
         {
+            ViewBag.PageTitle = "Profile";
+            if (!ModelState.IsValid)
+                return View(profile);
+
             var config = profileService.Config;
 
             profile.AdminPassword = securityService.AESEncrypt(profile.AdminPassword);

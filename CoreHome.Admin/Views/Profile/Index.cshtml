@@ -26,31 +26,37 @@
             <div class="inputRow">
                 <label asp-for="Name"></label>*
                 <input asp-for="Name" type="text" autocomplete="off" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
             <div class="inputRow">
                 <label asp-for="Info"></label>*
                 <input asp-for="Info" type="text" autocomplete="off" class="form-control" />
+                <span asp-validation-for="Info" class="text-danger"></span>
             </div>
 
             <div class="inputRow">
                 <label asp-for="QQ"></label>*
                 <input asp-for="QQ" type="text" autocomplete="off" class="form-control" />
+                <span asp-validation-for="QQ" class="text-danger"></span>
             </div>
 
             <div class="inputRow">
                 <label asp-for="Email"></label>*
                 <input asp-for="Email" type="text" autocomplete="off" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="inputRow">
                 <label asp-for="ICP"></label>*
                 <input asp-for="ICP" type="text" autocomplete="off" class="form-control" />
+                <span asp-validation-for="ICP" class="text-danger"></span>
             </div>
 
             <div class="inputRow">
                 <label asp-for="AdminPassword"></label>*（MinLength = 8）
                 <input asp-for="AdminPassword" type="text" autocomplete="off" class="form-control" />
+                <span asp-validation-for="AdminPassword" class="text-danger"></span>
             </div>
 
             <input id="submit-profile" type="submit" value="Apply" class="btn btn-success" />
