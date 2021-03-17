@@ -15,23 +15,23 @@ namespace CoreHome.Admin.Controllers
         private readonly IMemoryCache cache;
         private readonly NotifyService notifyService;
         private readonly SecurityService securityService;
-        private readonly ProfileService userInfoService;
+        private readonly ProfileService profileService;
 
         public HomeController(IMemoryCache cache,
             NotifyService notifyService,
             SecurityService securityService,
-            ProfileService userInfoService)
+            ProfileService profileService)
         {
             this.cache = cache;
             this.notifyService = notifyService;
             this.securityService = securityService;
-            this.userInfoService = userInfoService;
+            this.profileService = profileService;
         }
 
         public IActionResult Index()
         {
-            //有管理员权限的话直接跳转的Overview验证访问令牌
-            if (Request.Cookies.TryGetValue("accessToken", out _))
+            //有管理员权限，或未设定管理员密码，直接跳转到 Overview 验证访问令牌
+            if (Request.Cookies.TryGetValue("accessToken", out _) || string.IsNullOrEmpty(profileService.Config.AdminPassword))
             {
                 return Redirect("/Admin/Overview");
             }
@@ -80,7 +80,7 @@ namespace CoreHome.Admin.Controllers
             }
             catch (Exception) { }
 
-            var verifyAdminPwd = securityService.AESEncrypt(pwd) == userInfoService.Config.AdminPassword && !string.IsNullOrEmpty(pwd);
+            var verifyAdminPwd = securityService.SHA256Encrypt(pwd) == profileService.Config.AdminPassword && !string.IsNullOrEmpty(pwd);
             var verifyDynamicPwd = pwd == password && !string.IsNullOrEmpty(pwd) && !string.IsNullOrEmpty(password);
 
             if (verifyAdminPwd || verifyDynamicPwd)

@@ -1,4 +1,5 @@
 ﻿using CoreHome.Admin.Services;
+using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -11,11 +12,13 @@ namespace CoreHome.Admin.Filter
     {
         private readonly IWebHostEnvironment environment;
         private readonly SecurityService securityService;
+        private readonly ProfileService profileService;
 
-        public AuthorizationFilter(IWebHostEnvironment environment, SecurityService securityService)
+        public AuthorizationFilter(IWebHostEnvironment environment, SecurityService securityService, ProfileService profileService)
         {
             this.environment = environment;
             this.securityService = securityService;
+            this.profileService = profileService;
         }
 
         public void OnAuthorization(AuthorizationFilterContext context)
@@ -31,6 +34,10 @@ namespace CoreHome.Admin.Filter
         /// </summary>
         public void IdentityAuthorization(AuthorizationFilterContext context)
         {
+            // 未设定管理员密码，不进行认证
+            if (string.IsNullOrEmpty(profileService.Config.AdminPassword))
+                return;
+
             try
             {
                 string tokenStr = context.HttpContext.Request.Cookies["accessToken"];

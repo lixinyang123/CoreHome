@@ -82,6 +82,7 @@ namespace CoreHome.Infrastructure.Models
         public string Info { get; set; } = ".NET Developer";
 
         [Required]
+        [RegularExpression("[0-9]+")]
         [Display(Name = "QQ")]
         public string QQ { get; set; } = "837685961";
 
@@ -97,6 +98,7 @@ namespace CoreHome.Infrastructure.Models
         [Required]
         [MinLength(8)]
         [Display(Name = "Admin Password")]
+        [RegularExpression("[!@#$%^&*.,0-9a-zA-Z]+")]
         public string AdminPassword { get; set; }
 
         public List<FooterLink> WhatsNew { get; set; }

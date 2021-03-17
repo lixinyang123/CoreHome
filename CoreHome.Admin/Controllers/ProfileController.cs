@@ -26,21 +26,20 @@ namespace CoreHome.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.PageTitle = "Profile";
-            var config = profileService.Config;
-            config.AdminPassword = securityService.AESDecrypt(config.AdminPassword);
-            return View(config);
+            return View(profileService.Config);
         }
 
         [HttpPost]
         public IActionResult Index(Profile profile)
         {
             ViewBag.PageTitle = "Profile";
-            if (!ModelState.IsValid)
-                return View(profile);
 
             var config = profileService.Config;
 
-            profile.AdminPassword = securityService.AESEncrypt(profile.AdminPassword);
+            if (!ModelState.IsValid)
+                return View(config);
+
+            profile.AdminPassword = securityService.SHA256Encrypt(profile.AdminPassword);
             profile.WhatsNew = config.WhatsNew;
             profile.FriendLinks = config.FriendLinks;
             profile.About = config.About;
@@ -50,11 +49,13 @@ namespace CoreHome.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Reset()
+        [HttpPost]
+        public IActionResult ResetPassword()
         {
-            securityService.ResetConfig();
-            profileService.ResetConfig();
-            return Content("Reset Successful");
+            var config = profileService.Config;
+            config.AdminPassword = string.Empty;
+            profileService.Config = config;
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

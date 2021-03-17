@@ -17,6 +17,16 @@
         <div class="col text-center">
             <button id="uploading" class="btn btn-primary" onclick="upload()">Upload Avatar</button>
             <input id="fileSelector" type="file" onchange="uploadAvatar()" hidden />
+            @if (!string.IsNullOrEmpty(Model.AdminPassword))
+            {
+                @await Component.InvokeAsync("FormLink", new FormLink()
+                {
+                    Text = "Delete Password",
+                    ClassName = "btn btn-danger",
+                    Warning = "Confirm deletion?",
+                    Href = "/Admin/Profile/ResetPassword"
+                })
+            }
         </div>
     </div>
 
@@ -53,15 +63,19 @@
                 <span asp-validation-for="ICP" class="text-danger"></span>
             </div>
 
-            <div class="inputRow">
-                <label asp-for="AdminPassword"></label>*（MinLength = 8）
-                <input asp-for="AdminPassword" type="text" autocomplete="off" class="form-control" />
-                <span asp-validation-for="AdminPassword" class="text-danger"></span>
-            </div>
+            @if (string.IsNullOrEmpty(Model.AdminPassword))
+            {
+                <div class="inputRow">
+                    <label asp-for="AdminPassword"></label>*（MinLength = 8）
+                    <input asp-for="AdminPassword" type="text" autocomplete="off" class="form-control" />
+                    <span asp-validation-for="AdminPassword" class="text-danger"></span>
+                </div>
+            }
 
             <input id="submit-profile" type="submit" value="Apply" class="btn btn-success" />
 
         </form>
+
     </div>
 
     <div class="inputRow mt-5">
