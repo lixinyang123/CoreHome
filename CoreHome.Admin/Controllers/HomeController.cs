@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
 namespace CoreHome.Admin.Controllers
@@ -70,8 +71,11 @@ namespace CoreHome.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult VerifyPassword([FromForm] string pwd)
+        public IActionResult VerifyPassword([FromForm][Required] string pwd)
         {
+            if (!ModelState.IsValid)
+                return Redirect("/Admin/Home");
+
             string cacheKey = null, password = null;
             try
             {
