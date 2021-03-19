@@ -107,7 +107,6 @@ jobs:
 
             document.onreadystatechange = () => {
                 document.getElementById("EasterEggs").addEventListener("click", showEasterEggs);
-                showEasterEggs();
             }
 
         </script>
