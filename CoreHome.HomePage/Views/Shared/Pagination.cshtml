@@ -4,18 +4,20 @@
     <ul class="pagination justify-content-end">
 
         @{
+            int preShowNum = 2;
+            int showNum = preShowNum * 2 + 1;
             List<int> indexs = new List<int>();
 
-            int skip = -2;
-            if(Model.PageCount - Model.CurrentIndex < 2)
+            int skip = -preShowNum;
+            if(Model.PageCount - Model.CurrentIndex < preShowNum)
             {
                 //右侧将会少取到的数量
-                int rightLossCount = 2 - (Model.PageCount - Model.CurrentIndex);
+                int rightLossCount = preShowNum - (Model.PageCount - Model.CurrentIndex);
                 //右侧少取的补充到左边
                 skip -= rightLossCount;
             }
 
-            var maxLength = Model.PageCount < 5 ? Model.PageCount : 5;
+            var maxLength = Model.PageCount < showNum ? Model.PageCount : showNum;
 
             while (indexs.Count < maxLength)
             {
