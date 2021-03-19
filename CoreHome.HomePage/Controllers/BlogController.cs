@@ -44,7 +44,11 @@ namespace CoreHome.HomePage.Controllers
             ViewBag.PageTitle = "Blogs";
 
             //博客总页数
-            int pageCount = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(articleDbContext.Articles.Count()) / pageSize));
+            int pageCount = await Task.Run(() =>
+            {
+                int count = articleDbContext.Articles.Count();
+                return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
+            });
             index = CorrectIndex(index, pageCount);
 
             List<Article> articles = await articleDbContext.Articles
@@ -73,9 +77,10 @@ namespace CoreHome.HomePage.Controllers
 
             int pageCount = await Task.Run(() =>
             {
-                return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(
-                    articleDbContext.Articles.Where(i => i.Category.CategoriesName == id).Count()) / pageSize));
+                int count = articleDbContext.Articles.Where(i => i.Category.CategoriesName == id).Count();
+                return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
             });
+            index = CorrectIndex(index, pageCount);
 
             List<Article> articles = await articleDbContext.Articles
                 .OrderByDescending(i => i.Id)
@@ -103,9 +108,10 @@ namespace CoreHome.HomePage.Controllers
 
             int pageCount = await Task.Run(() =>
             {
-                return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(
-                    articleDbContext.ArticleTags.Include(i => i.Tag).Where(i => i.Tag.TagName == id).Count()) / pageSize));
+                int count = articleDbContext.ArticleTags.Include(i => i.Tag).Where(i => i.Tag.TagName == id).Count();
+                return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
             });
+            index = CorrectIndex(index, pageCount);
 
             List<ArticleTag> articleTags = await articleDbContext.ArticleTags
                 .OrderByDescending(i => i.Article.Id)
@@ -130,7 +136,7 @@ namespace CoreHome.HomePage.Controllers
             return View("Index", articles);
         }
 
-        public async Task<IActionResult> Archive(int id, int para)
+        public async Task<IActionResult> Archive(int id, int para, int index = 1)
         {
             if (id == 0 || para == 0)
                 return NotFound();
@@ -138,36 +144,61 @@ namespace CoreHome.HomePage.Controllers
             string date = $"{id}/{para}";
             ViewBag.PageTitle = date;
 
-            List<Article> articles = (await articleDbContext.Months
-                .Include(i => i.Year)
-                .Include(i => i.Articles)
-                .ThenInclude(i => i.ArticleTags)
+            int pageCount = await Task.Run(() =>
+            {
+                int count = articleDbContext.Articles.Where(i => i.Month.Value == para && i.Month.Year.Value == id).Count();
+                return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
+            });
+            index = CorrectIndex(index, pageCount);
+
+            List<Article> articles = await articleDbContext.Articles
+                .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
-                .SingleOrDefaultAsync(i => i.Year.Value == id && i.Value == para))
-                .Articles.ToList();
+                .Where(i => i.Month.Value == para && i.Month.Year.Value == id)
+                .Skip((index - 1) * pageSize)
+                .Take(pageSize).ToListAsync();
+
+            ViewBag.Pagination = new PaginationViewModel()
+            {
+                CurrentIndex = index,
+                PageCount = pageCount,
+                ActionName = "Archive"
+            };
 
             ViewBag.Warning = date;
             return View("Index", articles);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Search(string keyword)
+        public async Task<IActionResult> Search(string id, int index = 1)
         {
-            ViewBag.PageTitle = keyword;
+            ViewBag.PageTitle = id;
 
-            if (keyword == null)
-            {
+            if (id == null)
                 return RedirectToAction("Index");
-            }
+
+            int pageCount = await Task.Run(() =>
+            {
+                int count = articleDbContext.Articles.Where(i => i.Title.ToLower().Contains(id.ToLower())).Count();
+                return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
+            });
+            index = CorrectIndex(index, pageCount);
 
             List<Article> articles = await articleDbContext.Articles
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
-                .Where(i => i.Title.ToLower().Contains(keyword.ToLower()))
+                .Where(i => i.Title.ToLower().Contains(id.ToLower()))
+                .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
 
-            ViewBag.Warning = keyword;
+            ViewBag.Pagination = new PaginationViewModel()
+            {
+                CurrentIndex = index,
+                PageCount = pageCount,
+                ActionName = "Search"
+            };
+
+            ViewBag.Warning = id;
             return View("Index", articles);
         }
 

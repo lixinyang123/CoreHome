@@ -100,5 +100,11 @@
     "inputFiles": [
       "wwwroot/css/blog/detail.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/components/Navbar.min.js",
+    "inputFiles": [
+      "wwwroot/js/components/Navbar.js"
+    ]
   }
 ]
