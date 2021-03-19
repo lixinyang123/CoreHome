@@ -48,7 +48,7 @@ namespace CoreHome.Admin.Services
         public string SHA256Encrypt(string str)
         {
             byte[] password = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(str));
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new();
             for (int i = 0; i < password.Length; i++)
             {
                 builder.Append(password[i].ToString("X2"));

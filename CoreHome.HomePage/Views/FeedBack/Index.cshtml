@@ -20,15 +20,21 @@
             <div class="col-md-8">
                 <form asp-controller="Feedback" asp-action="Index" method="post">
 
-                    <input asp-for="Contact" class="form-control feedInfo" type="text" placeholder="Your contact details（Enail/QQ）" autocomplete="off"/>
-                    <input asp-for="Title" class="form-control feedInfo" type="text" placeholder="Title" autocomplete="off"/>
+                    <input asp-for="Contact" class="form-control feedInfo" type="text" placeholder="Your contact details（Enail/QQ）" autocomplete="off" />
+                    <span asp-validation-for="Contact" class="text-danger"></span>
+
+                    <input asp-for="Title" class="form-control feedInfo" type="text" placeholder="Title" autocomplete="off" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+
                     <textarea asp-for="Content" class="form-control feedInfo" rows="10" cols="100" placeholder="Description of the problem." maxlength="999"></textarea>
-                
+                    <span asp-validation-for="Content" class="text-danger"></span>
+
                     <div class="row">
                         <div class="col">
                             <div class="input-group">
                                 <img id="verfyImg" onclick="getVerfyCode(this)" src="/Service/VerificationCode" />
                                 <input id="verificationCode" asp-for="VerificationCode" type="text" autocomplete="off" class="form-control" placeholder="Code" />
+                                <span asp-validation-for="VerificationCode" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">

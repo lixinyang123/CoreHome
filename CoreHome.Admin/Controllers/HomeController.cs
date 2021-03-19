@@ -33,22 +33,22 @@ namespace CoreHome.Admin.Controllers
         {
             //有管理员权限，或未设定管理员密码，直接跳转到 Overview 验证访问令牌
             if (Request.Cookies.TryGetValue("accessToken", out _) || string.IsNullOrEmpty(profileService.Config.AdminPassword))
-            {
                 return Redirect("/Admin/Overview");
-            }
-            return View();
-        }
 
-        public IActionResult Login()
-        {
             string cacheKey = Guid.NewGuid().ToString();
             Response.Cookies.Append("user", cacheKey, new CookieOptions()
             {
                 Expires = DateTimeOffset.Now.AddDays(1)
             });
 
+            return View();
+        }
+
+        public IActionResult Login()
+        {
             //随机生成密码
             string password = Guid.NewGuid().ToString().Substring(0, 6);
+            string cacheKey = Request.Cookies["user"];
 
             //记录密码并设置过期时间为一分钟
             cache.Set(cacheKey, password, DateTimeOffset.Now.AddMinutes(1));
@@ -73,9 +73,6 @@ namespace CoreHome.Admin.Controllers
         [HttpPost]
         public IActionResult VerifyPassword([FromForm][Required] string pwd)
         {
-            if (!ModelState.IsValid)
-                return Redirect("/Admin/Home");
-
             string cacheKey = null, password = null;
             try
             {
@@ -83,6 +80,9 @@ namespace CoreHome.Admin.Controllers
                 password = cache.Get(cacheKey).ToString();
             }
             catch (Exception) { }
+
+            if (!ModelState.IsValid || string.IsNullOrEmpty(cacheKey))
+                return Redirect("/Admin/Home");
 
             var verifyAdminPwd = securityService.SHA256Encrypt(pwd) == profileService.Config.AdminPassword && !string.IsNullOrEmpty(pwd);
             var verifyDynamicPwd = pwd == password && !string.IsNullOrEmpty(pwd) && !string.IsNullOrEmpty(password);
