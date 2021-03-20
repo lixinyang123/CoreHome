@@ -35,11 +35,14 @@ namespace CoreHome.Admin.Controllers
             if (Request.Cookies.TryGetValue("accessToken", out _) || string.IsNullOrEmpty(profileService.Config.AdminPassword))
                 return Redirect("/Admin/Overview");
 
-            string cacheKey = Guid.NewGuid().ToString();
-            Response.Cookies.Append("user", cacheKey, new CookieOptions()
+            if(!Request.Cookies.TryGetValue("user", out string _))
             {
-                Expires = DateTimeOffset.Now.AddDays(1)
-            });
+                string cacheKey = Guid.NewGuid().ToString();
+                Response.Cookies.Append("user", cacheKey, new CookieOptions()
+                {
+                    Expires = DateTimeOffset.Now.AddDays(1)
+                });
+            }
 
             return View();
         }
