@@ -32,7 +32,7 @@ jobs:
       uses: github/codeql-action/analyze@v1
 
   build-image:
-    needs: build
+    needs: Analyze
     runs-on: ubuntu-latest
 
     steps:
