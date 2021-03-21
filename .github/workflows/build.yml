@@ -7,8 +7,53 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'csharp', 'javascript' ]
+        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python' ]
+        # Learn more:
+        # https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#changing-the-languages-that-are-analyzed
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+        # If you wish to specify custom queries, you can do so here or in a config file.
+        # By default, queries listed here will override any specified in a config file.
+        # Prefix the list here with "+" to use these queries and those in the config file.
+        # queries: ./path/to/local/query, your-org/your-repo/queries@main
+
+    # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
+    # If this step fails, then you should remove it and run the build manually (see below)
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v1
+
+    # ℹ️ Command-line programs to run using the OS shell.
+    # 📚 https://git.io/JvXDl
+
+    # ✏️ If the Autobuild fails above, remove it and uncomment the following three lines
+    #    and modify them (or add more) to build your code if your project
+    #    uses a compiled language
+
+    #- run: |
+    #   make bootstrap
+    #   make release
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
+
+  build:
+    needs: analyze
     runs-on: ubuntu-latest
 
     steps:
@@ -23,3 +68,38 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+      
+  build-image:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build CoreHome.Admin
+      run: docker build --file ./CoreHome.Admin/Dockerfile --tag lixinyang/corehome-admin:latest .
+    
+    - name: Build CoreHome.HomePage
+      run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome-homepage:latest .
+
+    - name: Build CoreHome.ReverseProxy
+      run: docker build --file ./CoreHome.ReverseProxy/Dockerfile --tag lixinyang/corehome-reverseproxy:latest .
+    
+    - name: Push image to DockerHub
+      run: |
+        docker login -u lixinyang -p ${{ secrets.DOCKERHUB_PASSWORD }}
+        docker push lixinyang/corehome-admin:latest
+        docker push lixinyang/corehome-homepage:latest
+        docker push lixinyang/corehome-reverseproxy:latest
+        docker logout
+    
+    - name: Push image to aliyun
+      run: |
+        docker login -u=lllxy啊啊啊 -p ${{ secrets.DOCKERHUB_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
+        docker tag lixinyang/corehome-admin:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-admin:latest
+        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-admin:latest
+        docker tag lixinyang/corehome-homepage:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-homepage:latest
+        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-homepage:latest
+        docker tag lixinyang/corehome-reverseproxy:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-reverseproxy:latest
+        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-reverseproxy:latest
+        docker logout
