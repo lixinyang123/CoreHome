@@ -1,7 +1,6 @@
 # CoreHome
 
 ![build](https://github.com/lixinyang123/CoreHome/workflows/build/badge.svg?branch=main)
-![Docker Image](https://github.com/lixinyang123/CoreHome/workflows/Docker%20Image/badge.svg)
 
 当前的个人网站，由 [ .NET 5.0 ](https://dotnet.microsoft.com/) 驱动
 
