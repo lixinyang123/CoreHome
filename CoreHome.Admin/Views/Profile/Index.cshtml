@@ -71,6 +71,10 @@
                     <span asp-validation-for="AdminPassword" class="text-danger"></span>
                 </div>
             }
+            else
+            {
+                <input asp-for="AdminPassword" type="hidden" />
+            }
 
             <input id="submit-profile" type="submit" value="Apply" class="btn btn-success" />
 

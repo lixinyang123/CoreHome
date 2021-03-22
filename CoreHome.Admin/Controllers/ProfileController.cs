@@ -33,13 +33,14 @@ namespace CoreHome.Admin.Controllers
         public IActionResult Index(Profile profile)
         {
             ViewBag.PageTitle = "Profile";
-
             var config = profileService.Config;
 
             if (!ModelState.IsValid)
                 return View(config);
 
-            profile.AdminPassword = securityService.SHA256Encrypt(profile.AdminPassword);
+            if (string.IsNullOrEmpty(profileService.Config.AdminPassword))
+                profile.AdminPassword = securityService.SHA256Encrypt(profile.AdminPassword);
+
             profile.WhatsNew = config.WhatsNew;
             profile.FriendLinks = config.FriendLinks;
             profile.About = config.About;
