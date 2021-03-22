@@ -83,7 +83,7 @@ namespace CoreHome.Admin.Controllers
             }
             catch (Exception)
             {
-                return NotFound();
+                return BadRequest();
             }
         }
 
@@ -113,9 +113,9 @@ namespace CoreHome.Admin.Controllers
             DateTime time = DateTime.Now;
 
             List<ArticleTag> articleTags = new();
-            new List<string>(articleViewModel.TagStr.Split("#").Distinct()).AsParallel().ForAll(async (i) =>
+            new List<string>(articleViewModel.TagStr.Split("#").Distinct()).ForEach((i) =>
             {
-                Tag tag = await articleDbContext.Tags.SingleOrDefaultAsync(tag => tag.TagName == i);
+                Tag tag = articleDbContext.Tags.SingleOrDefault(tag => tag.TagName == i);
 
                 if (tag == null)
                     articleTags.Add(new ArticleTag() { Tag = new Tag() { TagName = i } });
@@ -176,7 +176,7 @@ namespace CoreHome.Admin.Controllers
                 return RedirectToAction("Index");
 
             string tagStr = string.Empty;
-            article.ArticleTags.AsParallel().ForAll(i =>
+            article.ArticleTags.ForEach(i =>
             {
                 tagStr += i.Tag.TagName + "#";
             });
@@ -209,9 +209,9 @@ namespace CoreHome.Admin.Controllers
             ViewBag.PageTitle = article.Title;
 
             List<ArticleTag> articleTags = new();
-            new List<string>(articleViewModel.TagStr.Split("#").Distinct()).AsParallel().ForAll(async (i) =>
+            new List<string>(articleViewModel.TagStr.Split("#").Distinct()).ForEach((i) =>
             {
-                Tag tag = await articleDbContext.Tags.SingleOrDefaultAsync(tag => tag.TagName == i);
+                Tag tag = articleDbContext.Tags.SingleOrDefault(tag => tag.TagName == i);
 
                 if (tag == null)
                     articleTags.Add(new ArticleTag() { Tag = new Tag() { TagName = i } });
@@ -219,7 +219,7 @@ namespace CoreHome.Admin.Controllers
                     articleTags.Add(new ArticleTag() { TagId = tag.Id });
             });
 
-            Category category = await articleDbContext.Categories.SingleOrDefaultAsync(i => 
+            Category category = await articleDbContext.Categories.SingleOrDefaultAsync(i =>
                 i.CategoriesName == articleViewModel.CategoryName);
 
             if (category == null)
@@ -249,8 +249,8 @@ namespace CoreHome.Admin.Controllers
             if (article != null)
             {
                 articleDbContext.Remove(article);
-                article.ArticleTags.AsParallel().ForAll(i => articleDbContext.ArticleTags.Remove(i));
-                article.Comments.AsParallel().ForAll(i => articleDbContext.Comments.Remove(i));
+                article.ArticleTags.ForEach(i => articleDbContext.ArticleTags.Remove(i));
+                article.Comments.ForEach(i => articleDbContext.Comments.Remove(i));
                 articleDbContext.SaveChanges();
 
                 RecyclingData();
@@ -265,6 +265,7 @@ namespace CoreHome.Admin.Controllers
             Article article = await articleDbContext.Articles
                 .Include(i => i.Comments)
                 .SingleOrDefaultAsync(i => i.ArticleCode == id);
+
             return View(article);
         }
 
@@ -297,26 +298,24 @@ namespace CoreHome.Admin.Controllers
             }
         }
 
-        private async void RecyclingData()
+        private void RecyclingData()
         {
             //回收分类
-            List<Category> noArticleCategories = await articleDbContext.Categories.Where(i => i.Articles.Count == 0).ToListAsync();
-            noArticleCategories.AsParallel().ForAll(i => articleDbContext.Categories.Remove(i));
-            articleDbContext.SaveChanges();
+            List<Category> noArticleCategories = articleDbContext.Categories.Where(i => i.Articles.Count == 0).ToList();
+            noArticleCategories.ForEach(i => articleDbContext.Categories.Remove(i));
 
             //回收标签
-            List<Tag> noArticleTag = await articleDbContext.Tags.Where(i => i.ArticleTags.Count == 0).ToListAsync();
-            noArticleTag.AsParallel().ForAll(i => articleDbContext.Tags.Remove(i));
-            articleDbContext.SaveChanges();
+            List<Tag> noArticleTag = articleDbContext.Tags.Where(i => i.ArticleTags.Count == 0).ToList();
+            noArticleTag.ForEach(i => articleDbContext.Tags.Remove(i));
 
             //回收归档月份
-            List<Month> months = await articleDbContext.Months.Where(i => i.Articles.Count == 0).ToListAsync();
-            months.AsParallel().ForAll(i => articleDbContext.Months.Remove(i));
-            articleDbContext.SaveChanges();
+            List<Month> months = articleDbContext.Months.Where(i => i.Articles.Count == 0).ToList();
+            months.ForEach(i => articleDbContext.Months.Remove(i));
 
             //回收归档年份
-            List<Year> years = await articleDbContext.Years.Where(i => i.Months.Count == 0).ToListAsync();
-            years.AsParallel().ForAll(i => articleDbContext.Years.Remove(i));
+            List<Year> years = articleDbContext.Years.Where(i => i.Months.Count == 0).ToList();
+            years.ForEach(i => articleDbContext.Years.Remove(i));
+
             articleDbContext.SaveChanges();
         }
 

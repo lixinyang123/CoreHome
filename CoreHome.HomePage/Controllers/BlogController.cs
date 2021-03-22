@@ -123,7 +123,7 @@ namespace CoreHome.HomePage.Controllers
                 .Take(pageSize).ToListAsync();
 
             List<Article> articles = new();
-            articleTags.AsParallel().ForAll(i => articles.Add(i.Article));
+            articleTags.ForEach(i => articles.Add(i.Article));
 
             ViewBag.Pagination = new PaginationViewModel()
             {
