@@ -93,18 +93,8 @@ namespace CoreHome.Admin.Controllers
             ViewBag.Action = "Upload";
 
             //读取暂存文章
-            ArticleViewModel viewModel;
-
-            try
-            {
-                viewModel = memoryCache.Get<ArticleViewModel>("tempArticle");
-                if (viewModel == null)
-                    throw new Exception();
-            }
-            catch (Exception)
-            {
+            if (!memoryCache.TryGetValue("tempArticle", out ArticleViewModel viewModel))
                 viewModel = new ArticleViewModel();
-            }
 
             return View("Editor", viewModel);
         }
