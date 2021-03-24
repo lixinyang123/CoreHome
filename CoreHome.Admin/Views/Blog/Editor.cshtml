@@ -12,18 +12,23 @@
         <input asp-for="ArticleCode" type="hidden" />
 
         <label asp-for="Title"></label>*
+        <span asp-validation-for="Title" class="text-danger"></span>
         <input id="Title" asp-for="Title" type="text" autocomplete="off" class="form-control" />
 
         <label asp-for="CategoryName"></label>*
+        <span asp-validation-for="CategoryName" class="text-danger"></span>
         <input id="CategoryName" asp-for="CategoryName" type="text" autocomplete="off" class="form-control" />
 
         <label asp-for="TagStr"></label>*<label>（Use the '#' separation）</label>
+        <span asp-validation-for="TagStr" class="text-danger"></span>
         <input id="TagStr" asp-for="TagStr" type="text" autocomplete="off" class="form-control" />
 
         <label asp-for="Overview"></label>*
+        <span asp-validation-for="Overview" class="text-danger"></span>
         <input id="Overview" asp-for="Overview" type="text" autocomplete="off" class="form-control" />
 
         <label asp-for="Content"></label>*
+        <span asp-validation-for="Content" class="text-danger"></span>
         <div id="editor">
             <textarea id="Content" asp-for="Content" class="form-control" rows="10" cols="100" placeholder="博客内容"></textarea>
         </div>

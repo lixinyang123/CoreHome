@@ -199,8 +199,13 @@ namespace CoreHome.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Modify(ArticleViewModel articleViewModel)
         {
+            ViewBag.PageTitle = articleViewModel.Title;
+
             if (!ModelState.IsValid)
+            {
+                ViewBag.Action = "Modify";
                 return View("Editor", articleViewModel);
+            }
 
             Article article = await articleDbContext.Articles.Include(i => i.Category)
                 .Include(i => i.ArticleTags)
@@ -235,8 +240,7 @@ namespace CoreHome.Admin.Controllers
 
             RecyclingData();
 
-            ViewBag.Action = "Modify";
-            return View("Editor", articleViewModel);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
