@@ -61,7 +61,7 @@ namespace CoreHome.Admin.Controllers
             index = CorrectIndex(index, pageCount);
 
             ViewBag.CurrentIndex = index;
-            ViewBag.PageCount = pageCount;
+            ViewBag.PageCount = pageCount == 0 ? 1 : pageCount;
 
             List<Article> articles = await articleDbContext.Articles
                 .OrderByDescending(i => i.Id)
@@ -129,18 +129,15 @@ namespace CoreHome.Admin.Controllers
             if (category == null)
                 category = new Category() { CategoriesName = articleViewModel.CategoryName };
 
-            Month month = await articleDbContext.Months.SingleOrDefaultAsync(i => i.Value == time.Month);
+            Year year = await articleDbContext.Years.SingleOrDefaultAsync(i => i.Value == time.Year);
+
+            if (year == null)
+                year = new Year() { Value = time.Year };
+
+            Month month = await articleDbContext.Months.SingleOrDefaultAsync(i => i.Value == time.Month && i.Year.Value == time.Year);
 
             if (month == null)
-            {
-                Year year = await articleDbContext.Years.SingleOrDefaultAsync(i => i.Value == time.Year);
-                if (year == null)
-                {
-                    year = new Year() { Value = time.Year };
-                }
-
                 month = new Month() { Value = time.Month, Year = year };
-            }
 
             articleDbContext.Articles.Add(new Article()
             {
@@ -315,6 +312,8 @@ namespace CoreHome.Admin.Controllers
             //回收归档月份
             List<Month> months = articleDbContext.Months.Where(i => i.Articles.Count == 0).ToList();
             months.ForEach(i => articleDbContext.Months.Remove(i));
+
+            articleDbContext.SaveChanges();
 
             //回收归档年份
             List<Year> years = articleDbContext.Years.Where(i => i.Months.Count == 0).ToList();

@@ -13,9 +13,6 @@ namespace CoreHome.Data.DatabaseContext
                 .HasKey(i => i.Value);
 
             modelBuilder.Entity<Month>()
-                .HasKey(i => i.Value);
-
-            modelBuilder.Entity<Month>()
                 .HasOne(i => i.Year)
                 .WithMany(i => i.Months)
                 .HasForeignKey(i => i.YearId);

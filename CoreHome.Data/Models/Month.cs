@@ -5,6 +5,8 @@ namespace CoreHome.Data.Models
 {
     public class Month
     {
+        public int Id { get; set; }
+
         [Required]
         public int Value { get; set; }
 

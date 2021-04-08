@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
 namespace CoreHome.Data.Migrations
 {
-    public partial class initialize : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,9 +12,9 @@ namespace CoreHome.Data.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CategoriesName = table.Column<string>(nullable: false)
+                    CategoriesName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -25,9 +25,9 @@ namespace CoreHome.Data.Migrations
                 name: "Tags",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TagName = table.Column<string>(nullable: false)
+                    TagName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,7 +38,7 @@ namespace CoreHome.Data.Migrations
                 name: "Years",
                 columns: table => new
                 {
-                    Value = table.Column<int>(nullable: false)
+                    Value = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 },
                 constraints: table =>
@@ -50,13 +50,14 @@ namespace CoreHome.Data.Migrations
                 name: "Months",
                 columns: table => new
                 {
-                    Value = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    YearId = table.Column<int>(nullable: false)
+                    Value = table.Column<int>(type: "int", nullable: false),
+                    YearId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Months", x => x.Value);
+                    table.PrimaryKey("PK_Months", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Months_Years_YearId",
                         column: x => x.YearId,
@@ -69,15 +70,15 @@ namespace CoreHome.Data.Migrations
                 name: "Articles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ArticleCode = table.Column<Guid>(nullable: false),
-                    Title = table.Column<string>(nullable: false),
-                    Time = table.Column<DateTime>(nullable: false),
-                    MonthId = table.Column<int>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false),
-                    Overview = table.Column<string>(nullable: false),
-                    Content = table.Column<string>(nullable: false)
+                    ArticleCode = table.Column<Guid>(type: "char(36)", nullable: false),
+                    Title = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
+                    Time = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    MonthId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    Overview = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
+                    Content = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,7 +93,7 @@ namespace CoreHome.Data.Migrations
                         name: "FK_Articles_Months_MonthId",
                         column: x => x.MonthId,
                         principalTable: "Months",
-                        principalColumn: "Value",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -100,8 +101,8 @@ namespace CoreHome.Data.Migrations
                 name: "ArticleTags",
                 columns: table => new
                 {
-                    ArticleId = table.Column<int>(nullable: false),
-                    TagId = table.Column<int>(nullable: false)
+                    ArticleId = table.Column<int>(type: "int", nullable: false),
+                    TagId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -124,11 +125,11 @@ namespace CoreHome.Data.Migrations
                 name: "Comments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Time = table.Column<DateTime>(nullable: false),
-                    Detail = table.Column<string>(nullable: false),
-                    ArticleId = table.Column<int>(nullable: false)
+                    Time = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Detail = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
+                    ArticleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
