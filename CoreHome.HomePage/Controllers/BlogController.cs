@@ -216,6 +216,9 @@ namespace CoreHome.HomePage.Controllers
                 .ThenInclude(i => i.Tag)
                 .SingleOrDefaultAsync(i => i.ArticleCode == id);
 
+            if (article == null)
+                return NotFound();
+
             ViewBag.PageTitle = article.Title;
 
             return View(new DetailViewModel()
