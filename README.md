@@ -41,7 +41,7 @@ git clone https://github.com/lixinyang123/CoreHome.git
 
 修改配置文件(如下5个配置文件)
 
-不会修改的话，可以看上一篇博客[《介绍 DockerHome》](https://lllxy.net/Blog/Detail/2d06644a-ea60-49e1-8e63-ca60d7091fc9 "《介绍 DockerHome》")，里面详细介绍了怎样修改配置文件。
+不会修改的话，可以看上一篇博客[《介绍 DockerHome》](https://www.lllxy.net/Blog/Detail/ea8c626c-fac4-4a19-85e8-a46d41d938d5 "《介绍 DockerHome》")，里面详细介绍了怎样修改配置文件。
 
 - CoreHome
 	- CoreHome.HomePage
