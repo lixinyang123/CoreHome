@@ -24,6 +24,7 @@
 }
 
 .fh5co-blog:hover .blog-bg {
+    transition: transform 0.2s ease-out;
     transform: scale(1.07);
 }
 
