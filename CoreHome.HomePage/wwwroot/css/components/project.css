@@ -6,7 +6,7 @@
 }
 
 .fh5co-blog:hover {
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
 .blog-imgbox {
@@ -21,10 +21,10 @@
     background-repeat: no-repeat;
     position: relative;
     height: 300px;
-    transition: transform 0.2s ease-out;
 }
 
 .fh5co-blog .blog-bg:hover {
+    transition: transform 0.2s ease-out;
     transform: scale(1.07);
 }
 

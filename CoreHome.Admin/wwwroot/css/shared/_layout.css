@@ -11,11 +11,11 @@
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-color: whitesmoke;
 }
 
 .sidebar .top-row {
-    background-color: rgba(0,0,0,0.4);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .sidebar .navbar-brand {
@@ -43,7 +43,7 @@
 }
 
 .sidebar .nav-item a {
-    color: #d7d7d7;
+    color: black;
     border-radius: 4px;
     height: 3rem;
     display: flex;
@@ -52,7 +52,7 @@
 }
 
 .sidebar .nav-item a:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: #007bff;
     color: white;
 }
 
@@ -74,6 +74,7 @@
         height: 100vh;
         position: sticky;
         top: 0;
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
     }
 
     .navbar-toggler {
@@ -87,6 +88,15 @@
 
 .btn {
     border-radius: 0;
+}
+
+.card:hover {
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card:hover img {
+    transition: transform 0.2s ease-out;
+    transform: scale(1.05);
 }
 
 #avatar {

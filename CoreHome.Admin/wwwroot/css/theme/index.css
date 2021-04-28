@@ -10,3 +10,7 @@ label{
 .section{
     margin-bottom: 40px;
 }
+
+.card {
+    cursor: pointer;
+}
