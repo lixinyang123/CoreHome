@@ -23,8 +23,7 @@
     height: 300px;
 }
 
-.fh5co-blog .blog-bg:hover {
-    transition: transform 0.2s ease-out;
+.fh5co-blog:hover .blog-bg {
     transform: scale(1.07);
 }
 
