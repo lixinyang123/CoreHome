@@ -15,7 +15,7 @@
 }
 
 .sidebar .top-row {
-    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar .navbar-brand {
@@ -74,7 +74,7 @@
         height: 100vh;
         position: sticky;
         top: 0;
-        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
     }
 
     .navbar-toggler {
