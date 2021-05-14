@@ -25,6 +25,12 @@ function showInfo() {
     });
 }
 
+function scrollToProject() {
+    try {
+        $("html,body").animate({ scrollTop: $("#project").offset().top }, 500);
+    } catch {}
+}
+
 //=============Initializa================
 
 function initHome() {

@@ -144,6 +144,11 @@
     font-size: 15px;
 }
 
+#btn_dowm {
+    width: 40px;
+    transition: transform 0.2s ease-out;
+}
+
 #btn_dowm:hover {
     transform: scale(1.3);
 }

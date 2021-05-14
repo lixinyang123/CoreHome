@@ -44,8 +44,8 @@
                                 <h3><span id="email">Email：@ViewBag.Profile.Email</span></h3>
                                 <br /><br />
 
-                                <a href="#program">
-                                    <img id="btn_dowm" src="https://corehome.oss-accelerate.aliyuncs.com/images/down.png" width="40" />
+                                <a onclick="scrollToProject()">
+                                    <img id="btn_dowm" src="https://corehome.oss-accelerate.aliyuncs.com/images/down.png" />
                                 </a>
                             </div>
 
@@ -55,7 +55,7 @@
             </div>
         </header>
 
-        <div id="program" class="container">
+        <div id="project" class="container">
 
             @if (ViewBag.HomePage.Count > 0)
             {
