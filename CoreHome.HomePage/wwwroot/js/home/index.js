@@ -1,4 +1,4 @@
-﻿let player, musicSrc, typed;
+let player, musicSrc, typed;
 
 function playMusic() {
     try {
@@ -9,7 +9,7 @@ function playMusic() {
             }, 1000);
         });
         player.play();
-    } catch () {}
+    } catch (e) {}
 }
 
 function showInfo() {
@@ -28,7 +28,7 @@ function showInfo() {
 function scrollToProject() {
     try {
         $("html,body").animate({ scrollTop: $("#project").offset().top }, 500);
-    } catch () {}
+    } catch (e) {}
 }
 
 //=============Initializa================
