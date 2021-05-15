@@ -145,6 +145,7 @@
 }
 
 #btn_dowm {
+    cursor: pointer;
     width: 40px;
     transition: transform 0.2s ease-out;
 }
