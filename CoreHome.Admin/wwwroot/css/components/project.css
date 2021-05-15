@@ -25,10 +25,10 @@
     background-repeat: no-repeat;
     position: relative;
     height: 300px;
+    transition: transform 0.2s ease-out;
 }
 
 .fh5co-blog:hover .blog-bg {
-    transition: transform 0.2s ease-out;
     transform: scale(1.07);
 }
 
