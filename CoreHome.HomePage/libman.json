@@ -33,6 +33,10 @@
     {
       "library": "qrcodejs@1.0.0",
       "destination": "wwwroot/lib/qrcodejs/"
+    },
+    {
+      "library": "viewerjs@1.9.2",
+      "destination": "wwwroot/lib/viewerjs/"
     }
   ]
 }

@@ -4,8 +4,10 @@
     ViewData["Title"] = "Detail";
 }
 
+<link rel="stylesheet" href="~/lib/viewerjs/dist/viewer.min.css" />
 <link rel="stylesheet" href="~/css/blog/detail.min.css" />
 
+<script src="~/lib/viewerjs/dist/viewer.min.js"></script>
 <script src="~/lib/qrcodejs/qrcode.min.js"></script>
 <script src="~/js/blog/detail.min.js"></script>
 
@@ -53,9 +55,7 @@
                         </div>
                     </div>
 
-                    <p>
-                        @Model.Article.Overview
-                    </p>
+                    <p>@Model.Article.Overview</p>
 
                     <div class="hidden-print">
                         <section>

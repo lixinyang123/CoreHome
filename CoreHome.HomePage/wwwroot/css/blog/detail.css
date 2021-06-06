@@ -52,3 +52,7 @@
         background-position-x: -20%;
     }
 }
+
+.markdown img {
+    cursor: pointer;
+}
