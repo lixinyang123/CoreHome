@@ -25,4 +25,8 @@ function init() {
     document.querySelectorAll(".loading").forEach((ele) => {
         ele.remove();
     });
+
+    document.querySelectorAll(".markdown img").forEach(ele => {
+        ele.onclick = () => { new Viewer(ele).show(); };
+    });
 }
