@@ -110,8 +110,6 @@ namespace CoreHome.Admin.Controllers
                 return View("Editor", articleViewModel);
             }
 
-            DateTime time = DateTime.Now;
-
             List<ArticleTag> articleTags = new();
             new List<string>(articleViewModel.TagStr.Split("#").Distinct()).ForEach((i) =>
             {
@@ -128,13 +126,17 @@ namespace CoreHome.Admin.Controllers
 
             if (category == null)
                 category = new Category() { CategoriesName = articleViewModel.CategoryName };
+            
+            DateTime time = DateTime.Now;
+            int tempYear = time.Year;
+            int tempMonth = time.Month;
 
-            Year year = await articleDbContext.Years.SingleOrDefaultAsync(i => i.Value == time.Year);
+            Year year = await articleDbContext.Years.SingleOrDefaultAsync(i => i.Value == tempYear);
 
             if (year == null)
                 year = new Year() { Value = time.Year };
 
-            Month month = await articleDbContext.Months.SingleOrDefaultAsync(i => i.Value == time.Month && i.Year.Value == time.Year);
+            Month month = await articleDbContext.Months.SingleOrDefaultAsync(i => i.Value == tempMonth && i.Year.Value == tempYear);
 
             if (month == null)
                 month = new Month() { Value = time.Month, Year = year };
