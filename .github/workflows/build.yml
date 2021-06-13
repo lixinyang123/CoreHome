@@ -132,7 +132,7 @@ jobs:
                         lMinute = parseInt((lengthTime / 60) % 60),
                         lHour = Math.floor((lengthTime / 3600) % 24),
                         lDay = Math.floor(lengthTime / (24 * 3600));
-                    elem.innerHTML = "认识你的第" + lDay + '天' + toDouble(lHour) + '小时' + toDouble(lMinute) + '分钟' + toDouble(lSeconds) + '秒';
+                    elem.innerHTML = "爱你的第" + lDay + '天' + toDouble(lHour) + '小时' + toDouble(lMinute) + '分钟' + toDouble(lSeconds) + '秒';
                 }
             }
             var isShowed = false;
@@ -143,14 +143,15 @@ jobs:
                     document.querySelector("#avatar").src = "https://corehome.oss-accelerate.aliyuncs.com/images/f.jpg";
                     document.querySelector("#name").innerText = "f j h";
                     timer(2020, 03, 18, 0, 0, 0, document.querySelector("#info"));
-                    document.querySelector("#qq").innerText = "You complete ❤ me ~"
-                    document.querySelector("#email").innerText = "🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹🌹";
+                    document.querySelector("#qq").innerText = "生日快乐！！！哦哦哦～～"
+                    document.querySelector("#email").innerText = "🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂";
                     MoveTop();
                     isShowed = true;
                 }
             }
             document.onreadystatechange = () => {
                 document.getElementById("EasterEggs").addEventListener("click", showEasterEggs);
+                showEasterEggs();
             }
         </script>
         EOF
