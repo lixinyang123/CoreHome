@@ -128,15 +128,13 @@ namespace CoreHome.Admin.Controllers
                 category = new Category() { CategoriesName = articleViewModel.CategoryName };
             
             DateTime time = DateTime.Now;
-            int tempYear = time.Year;
-            int tempMonth = time.Month;
 
-            Year year = await articleDbContext.Years.SingleOrDefaultAsync(i => i.Value == tempYear);
+            Year year = await articleDbContext.Years.SingleOrDefaultAsync(i => i.Value == time.Year);
 
             if (year == null)
                 year = new Year() { Value = time.Year };
 
-            Month month = await articleDbContext.Months.SingleOrDefaultAsync(i => i.Value == tempMonth && i.Year.Value == tempYear);
+            Month month = await articleDbContext.Months.SingleOrDefaultAsync(i => i.Value == time.Month && i.Year.Value == time.Year);
 
             if (month == null)
                 month = new Month() { Value = time.Month, Year = year };
