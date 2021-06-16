@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using CoreHome.Data.DatabaseContext;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreHome.HomePage
 {
@@ -7,7 +9,10 @@ namespace CoreHome.HomePage
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            IHost host = CreateHostBuilder(args).Build();
+            using IServiceScope serviceScope = host.Services.CreateScope();
+            serviceScope.ServiceProvider.GetService<ArticleDbContext>().Database.EnsureCreated();
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
