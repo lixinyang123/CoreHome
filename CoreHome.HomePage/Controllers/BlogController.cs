@@ -59,12 +59,7 @@ namespace CoreHome.HomePage.Controllers
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
 
-            ViewBag.Pagination = new PaginationViewModel()
-            {
-                CurrentIndex = index,
-                PageCount = pageCount,
-                ActionName = "Index"
-            };
+            ViewBag.Pagination = new PaginationViewModel(index, pageCount, "Index");
 
             ViewBag.Warning = "All Posts";
             return View(articles);
@@ -90,12 +85,7 @@ namespace CoreHome.HomePage.Controllers
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
 
-            ViewBag.Pagination = new PaginationViewModel()
-            {
-                CurrentIndex = index,
-                PageCount = pageCount,
-                ActionName = "Categories"
-            };
+            ViewBag.Pagination = new PaginationViewModel(index, pageCount, "Categories");
 
             ViewBag.Warning = id;
             return View("Index", articles);
@@ -125,12 +115,7 @@ namespace CoreHome.HomePage.Controllers
             List<Article> articles = new();
             articleTags.ForEach(i => articles.Add(i.Article));
 
-            ViewBag.Pagination = new PaginationViewModel()
-            {
-                CurrentIndex = index,
-                PageCount = pageCount,
-                ActionName = "Tags"
-            };
+            ViewBag.Pagination = new PaginationViewModel(index, pageCount, "Tags");
 
             ViewBag.Warning = id;
             return View("Index", articles);
@@ -158,12 +143,7 @@ namespace CoreHome.HomePage.Controllers
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
 
-            ViewBag.Pagination = new PaginationViewModel()
-            {
-                CurrentIndex = index,
-                PageCount = pageCount,
-                ActionName = "Archive"
-            };
+            ViewBag.Pagination = new PaginationViewModel(index, pageCount, "Archive");
 
             ViewBag.Warning = date;
             return View("Index", articles);
@@ -191,12 +171,7 @@ namespace CoreHome.HomePage.Controllers
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
 
-            ViewBag.Pagination = new PaginationViewModel()
-            {
-                CurrentIndex = index,
-                PageCount = pageCount,
-                ActionName = "Search"
-            };
+            ViewBag.Pagination = new PaginationViewModel(index, pageCount, "Search");
 
             ViewBag.Warning = id;
             return View("Index", articles);

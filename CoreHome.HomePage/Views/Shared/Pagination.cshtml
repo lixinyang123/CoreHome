@@ -3,72 +3,44 @@
 <div class="pagination-container">
     <ul class="pagination justify-content-end">
 
-        @{
-            int preShowNum = 2;
-            int showNum = preShowNum * 2 + 1;
-            List<int> indexs = new List<int>();
-
-            int skip = -preShowNum;
-            if(Model.PageCount - Model.CurrentIndex < preShowNum)
-            {
-                //右侧将会少取到的数量
-                int rightLossCount = preShowNum - (Model.PageCount - Model.CurrentIndex);
-                //右侧少取的补充到左边
-                skip -= rightLossCount;
-            }
-
-            var maxLength = Model.PageCount < showNum ? Model.PageCount : showNum;
-
-            while (indexs.Count < maxLength)
-            {
-                int index = Model.CurrentIndex + skip;
-                if (index > 0)
-                {
-                    indexs.Add(index);
-                }
-                skip++;
-            }
-        }
-
-
-        @if(Model.CurrentIndex - 1 > 2)
+        @if(Model.showStart)
         {
             <li class="page-item PagedList-skipToFirst">
                 <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="1">&lt;&lt;</a>
             </li>
         }
 
-        @if (Model.CurrentIndex > 1)
+        @if (Model.showPrevious)
         {
             <li class="page-item PagedList-skipToNext">
                 <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="@(Model.CurrentIndex-1)" rel="next">&lt;</a>
             </li>
         }
 
-        @for (var i = 0; i < indexs.Count; i++)
+        @foreach (KeyValuePair<int, bool> index in Model.Indexs)
         {
-            if (indexs[i] == Model.CurrentIndex)
+            if(index.Key == Model.CurrentIndex)
             {
                 <li class="page-item active">
-                    <span class="page-link">@indexs[i]</span>
+                    <span class="page-link">@index.Key</span>
                 </li>
             }
             else
             {
                 <li class="page-item">
-                    <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="@indexs[i]">@indexs[i]</a>
+                    <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="@index.Key">@index.Key</a>
                 </li>
             }
         }
 
-        @if (Model.CurrentIndex < Model.PageCount)
+        @if (Model.showNext)
         {
             <li class="page-item PagedList-skipToNext">
                 <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="@(Model.CurrentIndex+1)" rel="next">&gt;</a>
             </li>
         }
 
-        @if (Model.PageCount - Model.CurrentIndex > 2)
+        @if (Model.showEnd)
         {
             <li class="page-item PagedList-skipToLast">
                 <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="@Model.PageCount">&gt;&gt;</a>
