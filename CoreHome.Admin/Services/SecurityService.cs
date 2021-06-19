@@ -8,19 +8,15 @@ namespace CoreHome.Admin.Services
 {
     public class SecurityService : StaticConfig<Secret>
     {
-        private readonly RijndaelManaged rijndaelManaged;
+        private readonly Aes aes;
 
         public SecurityService(string fileName, Secret initSecret) : base(fileName, initSecret)
         {
-            rijndaelManaged = new RijndaelManaged
-            {
-                // 初始化向量
-                IV = Encoding.UTF8.GetBytes(Config.IV),
-                // 密钥
-                Key = Encoding.UTF8.GetBytes(Config.Key),
-                Mode = CipherMode.CBC,
-                Padding = PaddingMode.PKCS7
-            };
+            aes = Aes.Create();
+            aes.IV = Encoding.UTF8.GetBytes(Config.IV);
+            aes.Key = Encoding.UTF8.GetBytes(Config.Key);
+            aes.Mode = CipherMode.CBC;
+            aes.Padding = PaddingMode.PKCS7;
         }
 
         public string AESEncrypt(string str)
@@ -28,7 +24,7 @@ namespace CoreHome.Admin.Services
             if (string.IsNullOrEmpty(str)) return null;
             byte[] toEncryptArray = Encoding.UTF8.GetBytes(str);
 
-            using ICryptoTransform cTransform = rijndaelManaged.CreateEncryptor();
+            using ICryptoTransform cTransform = aes.CreateEncryptor();
             byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
 
             return Convert.ToBase64String(resultArray, 0, resultArray.Length);
@@ -39,7 +35,7 @@ namespace CoreHome.Admin.Services
             if (string.IsNullOrEmpty(str)) return null;
             byte[] toEncryptArray = Convert.FromBase64String(str);
 
-            using ICryptoTransform cTransform = rijndaelManaged.CreateDecryptor();
+            using ICryptoTransform cTransform = aes.CreateDecryptor();
             byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
 
             return Encoding.UTF8.GetString(resultArray);
