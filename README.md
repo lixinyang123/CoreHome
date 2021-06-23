@@ -96,12 +96,6 @@ Update-Database
 dotnet-ef database update -p ..\CoreHome.Data
 ```
 
-- 启动后创建
-第一次启动后访问 /Admin 并**登录**
-登陆成功后请求 /Admin/Database 会看到**连接失败**字样
-接下来请求 /Admin/Database/Create 会看到**创建成功**字样，既数据库创建成功
-返回 /Admin/Database 会看到**连接成功**
-
 #### 启动项目
 
 - Visual Studio 点击顶部运行即可
