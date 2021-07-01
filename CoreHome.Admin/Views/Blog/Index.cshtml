@@ -25,14 +25,15 @@
                     <tr>
                         <th scope="row">@article.ArticleCode.ToString().Substring(0, 6)</th>
                         <td>@article.Title</td>
-                        <td><a asp-action="Modify" asp-route-id="@article.ArticleCode">Modify</a></td>
-                        <td><a asp-action="Comment" asp-route-id="@article.ArticleCode">Comment</a></td>
+                        <td><a asp-action="Modify" asp-route-id="@article.ArticleCode" class="badge badge-warning">Modify</a></td>
+                        <td><a asp-action="Comment" asp-route-id="@article.ArticleCode" class="badge badge-info">Comment</a></td>
                         <td>
                             @{
                                 var formLink = new FormLink()
                                 {
                                     Href = "/Admin/Blog/Delete/",
                                     Text = "Delete",
+                                    ClassName = "badge badge-danger",
                                     Warning = "Confirm deletion?"
                                 };
                                 formLink.Paras.Add("id", article.ArticleCode.ToString());

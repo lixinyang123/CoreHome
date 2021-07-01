@@ -1,11 +1,12 @@
 ﻿img {
     width: 100%;
-    border-radius: 10px;
     transition: transform 0.2s ease-out;
 }
 
-label{
-    font-weight:bold;
+label {
+    font-weight: bold;
+    padding-left: 1rem;
+    padding-top: 0.6rem;
 }
 
 .section {
@@ -15,4 +16,8 @@ label{
 .card:hover img {
     transition: transform 0.2s ease-out;
     transform: scale(1.05);
+}
+
+.card-body {
+    padding: 0;
 }

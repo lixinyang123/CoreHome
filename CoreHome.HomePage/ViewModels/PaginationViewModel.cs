@@ -8,7 +8,7 @@ namespace CoreHome.HomePage.ViewModels
         /// 当前索引前后显示的索引数量
         /// 显示索引总数 = preShowNum * 2 + 1
         /// </summary>
-        private const int preShowNum = 2; 
+        private const int preShowNum = 2;
 
         /// <summary>
         /// 当前页面索引
@@ -35,7 +35,7 @@ namespace CoreHome.HomePage.ViewModels
         /// <summary>
         /// 显示的索引
         /// </summary>
-        public Dictionary<int, bool> Indexs 
+        public Dictionary<int, bool> Indexs
         {
             get
             {
@@ -43,7 +43,7 @@ namespace CoreHome.HomePage.ViewModels
                 Dictionary<int, bool> indexs = new Dictionary<int, bool>();
 
                 int skip = -preShowNum;
-                if(PageCount - CurrentIndex < preShowNum)
+                if (PageCount - CurrentIndex < preShowNum)
                 {
                     //右侧将会少取到的数量
                     int rightLossCount = preShowNum - (PageCount - CurrentIndex);
@@ -69,7 +69,7 @@ namespace CoreHome.HomePage.ViewModels
                 return indexs;
             }
         }
-        
+
         /// <summary>
         /// 显示跳转到首页
         /// </summary>

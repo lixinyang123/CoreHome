@@ -51,10 +51,7 @@ namespace CoreHome.Infrastructure.Models
                     return initConfig;
                 }
             }
-            set
-            {
-                File.WriteAllTextAsync(configFile, JsonSerializer.Serialize(value));
-            }
+            set => File.WriteAllTextAsync(configFile, JsonSerializer.Serialize(value)).Wait();
         }
 
         public void ResetConfig()

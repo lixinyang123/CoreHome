@@ -35,7 +35,7 @@ namespace CoreHome.Admin.Controllers
             if (Request.Cookies.TryGetValue("accessToken", out _) || string.IsNullOrEmpty(profileService.Config.AdminPassword))
                 return Redirect("/Admin/Overview");
 
-            if(!Request.Cookies.TryGetValue("user", out string _))
+            if (!Request.Cookies.TryGetValue("user", out string _))
             {
                 string cacheKey = Guid.NewGuid().ToString();
                 Response.Cookies.Append("user", cacheKey, new CookieOptions()

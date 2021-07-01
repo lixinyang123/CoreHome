@@ -31,9 +31,8 @@ namespace CoreHome.Admin.Controllers
             ViewBag.PageTitle = "Theme";
 
             if (ModelState.IsValid)
-            {
                 themeService.Config = theme;
-            }
+
             return View(themeService.Config);
         }
 

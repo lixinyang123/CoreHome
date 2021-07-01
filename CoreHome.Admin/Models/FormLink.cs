@@ -10,6 +10,16 @@ namespace CoreHome.Admin.Models
         }
 
         /// <summary>
+        /// 表单ID
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// 表单模态框Id
+        /// </summary>
+        public string ModalId => $"modal-{Id}";
+
+        /// <summary>
         /// POST地址
         /// </summary>
         public string Href { get; set; }

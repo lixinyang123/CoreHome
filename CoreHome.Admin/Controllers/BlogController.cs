@@ -126,7 +126,7 @@ namespace CoreHome.Admin.Controllers
 
             if (category == null)
                 category = new Category() { CategoriesName = articleViewModel.CategoryName };
-            
+
             DateTime time = DateTime.Now;
 
             Year year = await articleDbContext.Years.SingleOrDefaultAsync(i => i.Value == time.Year);
