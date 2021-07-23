@@ -2,9 +2,9 @@
 
 ![build](https://github.com/lixinyang123/CoreHome/workflows/build/badge.svg?branch=main)
 
-当前的个人网站，由 [ .NET 5.0 ](https://dotnet.microsoft.com/) 驱动
+当前的个人网站，由 [ .NET 6.0 ](https://dotnet.microsoft.com/) 驱动
 
-CoreHome 是一个基于 .NET 5 和阿里云OSS的博客系统（依赖于 Aliyun.OSS.SDK.NetCore），包含了个人信息管理，主页项目管理，主题管理（主页背景，亮暗主题，BGM），博客管理、分类、标签、归档，评论及反馈提醒，服务器网络状态检测等功能。
+CoreHome 是一个基于 .NET 6 和阿里云OSS的博客系统（依赖于 Aliyun.OSS.SDK.NetCore），包含了个人信息管理，主页项目管理，主题管理（主页背景，亮暗主题，BGM），博客管理、分类、标签、归档，评论及反馈提醒，服务器网络状态检测等功能。
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=lixinyang123&repo=CoreHome)](https://github.com/lixinyang123/CoreHome) [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=lixinyang123&repo=DockerHome)](https://github.com/lixinyang123/DockerHome)
 
@@ -14,7 +14,7 @@ CoreHome 是一个基于 .NET 5 和阿里云OSS的博客系统（依赖于 Aliyu
 
 首先构建源码需要以下环境
 - Visual Studio 2019 / Visual Studio Code
-- .NET 5.0 SDK
+- .NET 6.0 SDK
 - Entity Framework Core
 - Libman
 - Mysql
