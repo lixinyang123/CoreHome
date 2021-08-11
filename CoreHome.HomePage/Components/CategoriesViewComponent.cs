@@ -1,8 +1,6 @@
 ﻿using CoreHome.Data.DatabaseContext;
 using CoreHome.Data.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CoreHome.HomePage.Components
 {

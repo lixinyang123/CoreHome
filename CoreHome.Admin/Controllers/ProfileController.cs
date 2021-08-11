@@ -2,10 +2,7 @@
 using CoreHome.Admin.Services;
 using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.IO;
 
 namespace CoreHome.Admin.Controllers
 {
@@ -33,13 +30,17 @@ namespace CoreHome.Admin.Controllers
         public IActionResult Index(Profile profile)
         {
             ViewBag.PageTitle = "Profile";
-            var config = profileService.Config;
+            Profile config = profileService.Config;
 
             if (!ModelState.IsValid)
+            {
                 return View(config);
+            }
 
             if (string.IsNullOrEmpty(profileService.Config.AdminPassword))
+            {
                 profile.AdminPassword = securityService.SHA256Encrypt(profile.AdminPassword);
+            }
 
             profile.WhatsNew = config.WhatsNew;
             profile.FriendLinks = config.FriendLinks;
@@ -53,7 +54,7 @@ namespace CoreHome.Admin.Controllers
         [HttpPost]
         public IActionResult ResetPassword()
         {
-            var config = profileService.Config;
+            Profile config = profileService.Config;
             config.AdminPassword = string.Empty;
             profileService.Config = config;
             return RedirectToAction("Index");
@@ -80,7 +81,7 @@ namespace CoreHome.Admin.Controllers
             if (ModelState.IsValid)
             {
                 footerLink.Id = Guid.NewGuid().ToString();
-                var config = profileService.Config;
+                Profile config = profileService.Config;
 
                 switch (Request.Query["type"])
                 {
@@ -112,7 +113,7 @@ namespace CoreHome.Admin.Controllers
         {
             if (id != null)
             {
-                var config = profileService.Config;
+                Profile config = profileService.Config;
 
                 switch (Request.Query["type"])
                 {

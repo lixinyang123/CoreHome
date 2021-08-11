@@ -1,8 +1,5 @@
 ﻿using CoreHome.Infrastructure.Models;
-using System;
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace CoreHome.Infrastructure.Services
 {

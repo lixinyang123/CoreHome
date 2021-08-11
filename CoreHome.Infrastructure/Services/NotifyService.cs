@@ -1,6 +1,4 @@
-﻿using System.Net.Http;
-
-namespace CoreHome.Infrastructure.Services
+﻿namespace CoreHome.Infrastructure.Services
 {
     public class NotifyService
     {

@@ -2,18 +2,9 @@
 using CoreHome.Data.DatabaseContext;
 using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Runtime.InteropServices;
 
 namespace CoreHome.Admin
@@ -31,12 +22,16 @@ namespace CoreHome.Admin
         public void ConfigureServices(IServiceCollection services)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
                 services.AddDataProtection().SetApplicationName("CoreHome")
                     .PersistKeysToFileSystem(new DirectoryInfo(@"C:/Server/CoreHome/"));
+            }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
                 services.AddDataProtection().SetApplicationName("CoreHome")
                     .PersistKeysToFileSystem(new DirectoryInfo(@"/home/Server/CoreHome/"));
+            }
 
             services.Configure<CookieOptions>(config => config.SameSite = SameSiteMode.Lax);
 
@@ -89,7 +84,9 @@ namespace CoreHome.Admin
 
             //Linux使用Nginx反向代理，不启用https
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
                 app.UseHttpsRedirection();
+            }
 
             app.UsePathBase(new PathString("/Admin"));
             app.UseWebSockets();

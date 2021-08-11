@@ -1,6 +1,5 @@
 ﻿using CoreHome.HomePage.ViewModels;
 using CoreHome.Infrastructure.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreHome.HomePage.Controllers

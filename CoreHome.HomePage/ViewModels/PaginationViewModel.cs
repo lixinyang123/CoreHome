@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CoreHome.HomePage.ViewModels
+﻿namespace CoreHome.HomePage.ViewModels
 {
     public class PaginationViewModel
     {
@@ -27,9 +25,9 @@ namespace CoreHome.HomePage.ViewModels
 
         public PaginationViewModel(int currentIndex, int pageCount, string actionName)
         {
-            this.CurrentIndex = currentIndex;
-            this.PageCount = pageCount;
-            this.ActionName = actionName;
+            CurrentIndex = currentIndex;
+            PageCount = pageCount;
+            ActionName = actionName;
         }
 
         /// <summary>
@@ -51,7 +49,7 @@ namespace CoreHome.HomePage.ViewModels
                     skip -= rightLossCount;
                 }
 
-                var maxLength = PageCount < showNum ? PageCount : showNum;
+                int maxLength = PageCount < showNum ? PageCount : showNum;
 
                 while (indexs.Count < maxLength)
                 {
@@ -60,7 +58,10 @@ namespace CoreHome.HomePage.ViewModels
                     {
                         bool isCurrent = false;
                         if (index == CurrentIndex)
+                        {
                             isCurrent = true;
+                        }
+
                         indexs.Add(index, isCurrent);
                     }
                     skip++;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
+﻿using System.Drawing;
 
 namespace CoreHome.Infrastructure.Services
 {
@@ -21,7 +19,7 @@ namespace CoreHome.Infrastructure.Services
         }
 
         //生成随机点
-        private int[] RandomPoint()
+        private static int[] RandomPoint()
         {
             int[] intArray = new int[6];
             for (int i = 0; i < 6; i += 2)

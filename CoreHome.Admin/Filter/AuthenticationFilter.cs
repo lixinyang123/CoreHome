@@ -1,10 +1,7 @@
 ﻿using CoreHome.Admin.Services;
 using CoreHome.Infrastructure.Services;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Hosting;
-using System;
 
 namespace CoreHome.Admin.Filter
 {
@@ -36,7 +33,9 @@ namespace CoreHome.Admin.Filter
         {
             // 未设定管理员密码，不进行认证
             if (string.IsNullOrEmpty(profileService.Config.AdminPassword))
+            {
                 return;
+            }
 
             try
             {

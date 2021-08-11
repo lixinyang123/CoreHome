@@ -1,6 +1,5 @@
 ﻿using CoreHome.Admin.Models;
 using CoreHome.Infrastructure.Models;
-using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -21,7 +20,11 @@ namespace CoreHome.Admin.Services
 
         public string AESEncrypt(string str)
         {
-            if (string.IsNullOrEmpty(str)) return null;
+            if (string.IsNullOrEmpty(str))
+            {
+                return null;
+            }
+
             byte[] toEncryptArray = Encoding.UTF8.GetBytes(str);
 
             using ICryptoTransform cTransform = aes.CreateEncryptor();
@@ -32,7 +35,11 @@ namespace CoreHome.Admin.Services
 
         public string AESDecrypt(string str)
         {
-            if (string.IsNullOrEmpty(str)) return null;
+            if (string.IsNullOrEmpty(str))
+            {
+                return null;
+            }
+
             byte[] toEncryptArray = Convert.FromBase64String(str);
 
             using ICryptoTransform cTransform = aes.CreateDecryptor();

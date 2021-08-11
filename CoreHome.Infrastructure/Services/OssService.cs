@@ -1,8 +1,5 @@
 ﻿using Aliyun.OSS;
 using CoreHome.Infrastructure.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Web;
 
 namespace CoreHome.Infrastructure.Services

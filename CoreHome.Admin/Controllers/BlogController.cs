@@ -3,16 +3,9 @@ using CoreHome.Admin.ViewModels;
 using CoreHome.Data.DatabaseContext;
 using CoreHome.Data.Models;
 using CoreHome.Infrastructure.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CoreHome.Admin.Controllers
 {
@@ -94,7 +87,9 @@ namespace CoreHome.Admin.Controllers
 
             //读取暂存文章
             if (!memoryCache.TryGetValue("tempArticle", out ArticleViewModel viewModel))
+            {
                 viewModel = new ArticleViewModel();
+            }
 
             return View("Editor", viewModel);
         }
@@ -116,28 +111,38 @@ namespace CoreHome.Admin.Controllers
                 Tag tag = articleDbContext.Tags.SingleOrDefault(tag => tag.TagName == i);
 
                 if (tag == null)
+                {
                     articleTags.Add(new ArticleTag() { Tag = new Tag() { TagName = i } });
+                }
                 else
+                {
                     articleTags.Add(new ArticleTag() { TagId = tag.Id });
+                }
             });
 
             Category category = await articleDbContext.Categories
                 .SingleOrDefaultAsync(i => i.CategoriesName == articleViewModel.CategoryName);
 
             if (category == null)
+            {
                 category = new Category() { CategoriesName = articleViewModel.CategoryName };
+            }
 
             DateTime time = DateTime.Now;
 
             Year year = await articleDbContext.Years.SingleOrDefaultAsync(i => i.Value == time.Year);
 
             if (year == null)
+            {
                 year = new Year() { Value = time.Year };
+            }
 
             Month month = await articleDbContext.Months.SingleOrDefaultAsync(i => i.Value == time.Month && i.Year.Value == time.Year);
 
             if (month == null)
+            {
                 month = new Month() { Value = time.Month, Year = year };
+            }
 
             articleDbContext.Articles.Add(new Article()
             {
@@ -170,7 +175,9 @@ namespace CoreHome.Admin.Controllers
             ViewBag.PageTitle = article.Title;
 
             if (article == null)
+            {
                 return RedirectToAction("Index");
+            }
 
             string tagStr = string.Empty;
             article.ArticleTags.ForEach(i =>
@@ -216,16 +223,22 @@ namespace CoreHome.Admin.Controllers
                 Tag tag = articleDbContext.Tags.SingleOrDefault(tag => tag.TagName == i);
 
                 if (tag == null)
+                {
                     articleTags.Add(new ArticleTag() { Tag = new Tag() { TagName = i } });
+                }
                 else
+                {
                     articleTags.Add(new ArticleTag() { TagId = tag.Id });
+                }
             });
 
             Category category = await articleDbContext.Categories.SingleOrDefaultAsync(i =>
                 i.CategoriesName == articleViewModel.CategoryName);
 
             if (category == null)
+            {
                 category = new Category() { CategoriesName = articleViewModel.CategoryName };
+            }
 
             article.Title = articleViewModel.Title;
             article.Category = category;

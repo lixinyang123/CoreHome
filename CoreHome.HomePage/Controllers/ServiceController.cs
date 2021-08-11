@@ -1,9 +1,5 @@
 ﻿using CoreHome.Infrastructure.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 
 namespace CoreHome.HomePage.Controllers
 {
@@ -11,7 +7,7 @@ namespace CoreHome.HomePage.Controllers
     {
         private readonly VerificationCodeService verificationHelper;
         private readonly OssService ossService;
-        private IServiceProvider serviceProvider;
+        private readonly IServiceProvider serviceProvider;
 
         public ServiceController(VerificationCodeService verificationHelper,
             OssService ossService,
@@ -34,11 +30,15 @@ namespace CoreHome.HomePage.Controllers
             string musicUrl = serviceProvider.GetService<ThemeService>().Config.MusicUrl;
 
             if (!string.IsNullOrEmpty(musicUrl))
+            {
                 return Redirect(musicUrl);
+            }
 
             List<string> musics = ossService.GetMusics();
             if (musics.Count == 0)
+            {
                 return NoContent();
+            }
 
             return Redirect(musics[new Random().Next(musics.Count)]);
         }

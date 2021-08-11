@@ -1,12 +1,7 @@
 ﻿using CoreHome.Admin.Filter;
 using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace CoreHome.Admin.Controllers
 {
@@ -56,10 +51,10 @@ namespace CoreHome.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(string id)
         {
-            var index = homePageService.Config.FindIndex(i => i.Id == id);
+            int index = homePageService.Config.FindIndex(i => i.Id == id);
             if (index >= 0)
             {
-                var projects = homePageService.Config;
+                List<Project> projects = homePageService.Config;
                 projects.RemoveAt(index);
                 homePageService.Config = projects;
             }
@@ -83,10 +78,10 @@ namespace CoreHome.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var index = homePageService.Config.FindIndex(i => i.Id == project.Id);
+                int index = homePageService.Config.FindIndex(i => i.Id == project.Id);
                 if (index >= 0)
                 {
-                    var projects = homePageService.Config;
+                    List<Project> projects = homePageService.Config;
                     projects[index] = project;
                     homePageService.Config = projects;
                 }
@@ -104,12 +99,12 @@ namespace CoreHome.Admin.Controllers
         {
             ViewBag.PageTitle = "Edit Project";
             ViewBag.Action = "Edit";
-            var index = homePageService.Config.FindIndex(i => i.Id == id);
+            int index = homePageService.Config.FindIndex(i => i.Id == id);
             if (index > 0)
             {
-                var projects = homePageService.Config;
+                List<Project> projects = homePageService.Config;
 
-                var tempProject = projects[index];
+                Project tempProject = projects[index];
                 projects[index] = projects[index - 1];
                 projects[index - 1] = tempProject;
 

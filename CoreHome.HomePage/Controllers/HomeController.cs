@@ -1,12 +1,7 @@
 ﻿using CoreHome.Infrastructure.Services;
 using CoreHome.Infrastructure.ViewModels;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace CoreHome.HomePage.Controllers
 {
@@ -27,7 +22,7 @@ namespace CoreHome.HomePage.Controllers
         {
             Task.Run(async () =>
             {
-                var log = await searchEngineService.PushToBaidu(environment.WebRootPath);
+                string log = await searchEngineService.PushToBaidu(environment.WebRootPath);
                 logger.LogInformation($"Push to Baidu：{log}");
             });
 

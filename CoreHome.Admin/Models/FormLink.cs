@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CoreHome.Admin.Models
+﻿namespace CoreHome.Admin.Models
 {
     public class FormLink
     {

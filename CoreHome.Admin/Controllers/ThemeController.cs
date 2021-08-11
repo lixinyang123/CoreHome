@@ -1,9 +1,7 @@
 ﻿using CoreHome.Admin.Filter;
 using CoreHome.Infrastructure.Models;
 using CoreHome.Infrastructure.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
 
 namespace CoreHome.Admin.Controllers
 {
@@ -31,7 +29,9 @@ namespace CoreHome.Admin.Controllers
             ViewBag.PageTitle = "Theme";
 
             if (ModelState.IsValid)
+            {
                 themeService.Config = theme;
+            }
 
             return View(themeService.Config);
         }

@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
-
-namespace CoreHome.Admin.Models
+﻿namespace CoreHome.Admin.Models
 {
     public interface IPusher<T>
     {

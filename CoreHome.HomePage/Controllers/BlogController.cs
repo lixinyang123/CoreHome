@@ -2,14 +2,8 @@
 using CoreHome.Data.Models;
 using CoreHome.HomePage.ViewModels;
 using CoreHome.Infrastructure.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CoreHome.HomePage.Controllers
 {
@@ -124,7 +118,9 @@ namespace CoreHome.HomePage.Controllers
         public async Task<IActionResult> Archive(int id, int para, int index = 1)
         {
             if (id == 0 || para == 0)
+            {
                 return NotFound();
+            }
 
             string date = $"{id}/{para}";
             ViewBag.PageTitle = date;
@@ -154,7 +150,9 @@ namespace CoreHome.HomePage.Controllers
             ViewBag.PageTitle = id;
 
             if (id == null)
+            {
                 return RedirectToAction("Index");
+            }
 
             int pageCount = await Task.Run(() =>
             {
@@ -192,7 +190,9 @@ namespace CoreHome.HomePage.Controllers
                 .SingleOrDefaultAsync(i => i.ArticleCode == id);
 
             if (article == null)
+            {
                 return NotFound();
+            }
 
             ViewBag.PageTitle = article.Title;
 
@@ -219,7 +219,9 @@ namespace CoreHome.HomePage.Controllers
                    .SingleOrDefaultAsync(i => i.ArticleCode == viewModel.ArticleCode);
 
             if (article == null)
+            {
                 return RedirectToAction("Index");
+            }
 
             ViewBag.PageTitle = article.Title;
 
