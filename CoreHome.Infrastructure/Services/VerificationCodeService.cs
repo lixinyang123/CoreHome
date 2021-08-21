@@ -58,21 +58,18 @@ namespace CoreHome.Infrastructure.Services
             graph.Clear(Color.White);
             //笔刷
             Pen pen = new Pen(Brushes.Black, 2);
+            //干扰线
             for (int i = 0; i < 4; i++)
             {
                 int[] points = RandomPoint();
-                //画一条曲线
                 graph.DrawCurve(pen, new Point[] {
                     new Point(points[0], points[1]),
                     new Point(points[2], points[3]),
                     new Point(points[4], points[5])
                 });
             }
-            //画一条直线
-            //graph.DrawLines(pen, new Point[] { new Point(10, 10), new Point(90, 40) });
-            //画数字
-            graph.DrawString(VerificationCode, new Font(new FontFamily("Microsoft YaHei"), 20, FontStyle.Bold),
-                Brushes.Black, new PointF(10, 0));
+            //画验证码
+            graph.DrawString(VerificationCode, new Font(new FontFamily("Microsoft YaHei"), 20, FontStyle.Bold), Brushes.Black, new PointF(10, 0));
             //内存流
             MemoryStream ms = new MemoryStream();
             //把图片存进内存流
