@@ -1,4 +1,10 @@
-﻿#search {
+﻿nav {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: saturate(180%) blur(10px);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+#search {
     border-radius: 3px;
 }
 
