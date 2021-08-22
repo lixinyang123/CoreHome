@@ -32,8 +32,6 @@ dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 dotnet tool install -g dotnet-ef
 ```
 
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/%e5%b1%8f%e5%b9%95%e6%88%aa%e5%9b%be+2020-08-20+175532.jpg)
-
 接下来clone源码
 ```shell
 git clone https://github.com/lixinyang123/CoreHome.git
@@ -130,65 +128,6 @@ docker-compose up
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=lixinyang123&repo=DockerHome)](https://github.com/lixinyang123/DockerHome)
 
 详情可以见上一篇博客[《介绍 DockerHome》](https://www.lllxy.net/Blog/Detail/ea8c626c-fac4-4a19-85e8-a46d41d938d5 "《介绍 DockerHome》")，Windows上构建完成发布到IIS即可。
-
-### CoreHome展示
-
-##### 主页
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/screencapture-lllxy-net-1597907877343.png)
-
-##### 博客页面
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/screencapture-lllxy-net-Blog-1597908118906.png)
-
-##### 标签页面
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/screencapture-lllxy-net-Tags-1597908148988.png)
-
-##### 归档页面
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/screencapture-lllxy-net-Archive-1597908159862.png)
-
-##### 反馈中心
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/screencapture-lllxy-net-FeedBack-1597908176136.png)
-
-##### 管理员登陆页
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/screencapture-lllxy-net-Admin-1597908667098.png)
-
-##### 网络状态检测
-
-![](https://corehome.oss-cn-shenzhen.aliyuncs.com/blogs/screencapture-lllxy-net-Admin-Overview-1597908919597.png)
-
-##### 个人信息管理
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/%e5%b1%8f%e5%b9%95%e6%88%aa%e5%9b%be+2020-08-20+153928.png)
-
-##### 页脚管理
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/%e5%b1%8f%e5%b9%95%e6%88%aa%e5%9b%be+2020-08-20+153943.png)
-
-##### 主页项目管理
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/%e5%b1%8f%e5%b9%95%e6%88%aa%e5%9b%be+2020-08-20+154034.png)
-
-##### 创建新项目
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/%e5%b1%8f%e5%b9%95%e6%88%aa%e5%9b%be+2020-08-20+154543.png)
-
-##### 主题管理
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/screencapture-lllxy-net-Admin-Theme-1597909018355.png)
-
-##### 博客管理
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/screencapture-lllxy-net-Admin-Blog-1597909029131.png)
-
-##### 博客编辑页面
-
-![](https://corehome.oss-accelerate.aliyuncs.com/blogs/screencapture-lllxy-net-Admin-Blog-Modify-7a329492-3825-4ddc-9112-ece35cf964ae-1597909040687.png)
-
 
 ### 最后
 
