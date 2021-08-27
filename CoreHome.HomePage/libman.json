@@ -11,7 +11,7 @@
       "destination": "wwwroot/lib/bootstrap/"
     },
     {
-      "library": "darkreader@4.9.27",
+      "library": "darkreader@4.9.34",
       "destination": "wwwroot/lib/darkreader/"
     },
     {
@@ -23,7 +23,7 @@
       "destination": "wwwroot/lib/wordcloud/"
     },
     {
-      "library": "scrollreveal@4.0.7",
+      "library": "scrollreveal@4.0.9",
       "destination": "wwwroot/lib/scrollreveal/"
     },
     {
