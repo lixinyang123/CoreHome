@@ -15,18 +15,6 @@ namespace CoreHome.ReverseProxy
         // 配置服务
         public void ConfigureServices(IServiceCollection services)
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                services.AddDataProtection().SetApplicationName("CoreHome")
-                    .PersistKeysToFileSystem(new DirectoryInfo(@"C:/Server/CoreHome/"));
-            }
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                services.AddDataProtection().SetApplicationName("CoreHome")
-                    .PersistKeysToFileSystem(new DirectoryInfo(@"/home/Server/CoreHome/"));
-            }
-
             services.AddReverseProxy().LoadFromConfig(Configuration.GetSection("ReverseProxy"));
         }
 
