@@ -11,7 +11,7 @@
 function showTags(allTags) {
     if (allTags.length > 0) {
         let wordcloud = document.querySelector("#allTags");
-        wordcloud.style.minHeight = "500px";
+        wordcloud.style.minHeight = `${document.querySelector("#content").clientHeight}px`;
         WordCloud(wordcloud, {
             gridSize: 20,
             weightFactor: 3,
