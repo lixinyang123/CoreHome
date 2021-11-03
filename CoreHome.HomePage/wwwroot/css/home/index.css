@@ -1,4 +1,11 @@
-﻿#content {
+﻿@font-face {
+    font-family: 'Kaushan Script';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/font/KaushanScript.woff2') format('woff2');
+}
+
+#content {
     padding-top: 0;
 }
 
