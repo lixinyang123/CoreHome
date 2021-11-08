@@ -11,6 +11,7 @@ jobs:
   build-image:
     # needs: Analyze
     runs-on: ubuntu-latest
+    if: github.repository == 'lixinyang123/CoreHome'
 
     steps:
     - uses: actions/checkout@v2
@@ -47,6 +48,7 @@ jobs:
   build-myhome:
     # needs: Analyze
     runs-on: ubuntu-latest
+    if: github.repository == 'lixinyang123/CoreHome'
 
     steps:
     - uses: actions/checkout@v2
