@@ -31,7 +31,7 @@ async function presearch() {
         i.overview = i.overview.replace(reg, `<span class="bg-warning">${keyword}</span>`);
 
         list += `
-            <li class="list-group-item p-0">
+            <li class="list-group-item p-1">
                 <p><a href="/Blog/Detail/${i.articleCode}">${i.title}</a></p>
                 <div class="alert alert-light p-0" role="alert">
                     ${i.overview}
