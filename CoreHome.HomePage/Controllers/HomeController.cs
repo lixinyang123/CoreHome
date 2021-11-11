@@ -7,23 +7,25 @@ namespace CoreHome.HomePage.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<string> logger;
         private readonly IWebHostEnvironment environment;
         private readonly SearchEngineService searchEngineService;
 
-        public HomeController(IWebHostEnvironment environment, SearchEngineService searchEngineService, ILogger<string> logger)
+        public HomeController(IWebHostEnvironment environment, SearchEngineService searchEngineService)
         {
-            this.logger = logger;
             this.environment = environment;
             this.searchEngineService = searchEngineService;
         }
 
+        /// <summary>
+        /// 主页
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
-            Task.Run(async () =>
+            // 推送到百度资源搜索平台
+            _ = Task.Run(async () =>
             {
                 string log = await searchEngineService.PushToBaidu(environment.WebRootPath);
-                logger.LogInformation($"Push to Baidu：{log}");
             });
 
             ViewBag.PageTitle = "Home";
@@ -42,12 +44,20 @@ namespace CoreHome.HomePage.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 隐私页面
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Privacy()
         {
             ViewBag.PageTitle = "Privacy";
             return View();
         }
 
+        /// <summary>
+        /// 错误页面
+        /// </summary>
+        /// <returns></returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

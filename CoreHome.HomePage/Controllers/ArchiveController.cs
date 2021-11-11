@@ -14,6 +14,10 @@ namespace CoreHome.HomePage.Controllers
             this.articleDbContext = articleDbContext;
         }
 
+        /// <summary>
+        /// 归档时间线
+        /// </summary>
+        /// <returns>归档时间线页面</returns>
         public async Task<IActionResult> Index()
         {
             ViewBag.PageTitle = "Archive";

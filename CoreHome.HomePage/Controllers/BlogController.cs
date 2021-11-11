@@ -20,7 +20,12 @@ namespace CoreHome.HomePage.Controllers
             pageSize = configuration.GetValue<int>("PageSize");
         }
 
-        //矫正页码
+        /// <summary>
+        /// 矫正页码
+        /// </summary>
+        /// <param name="index">当前页码</param>
+        /// <param name="pageCount">可以查询到的总页数</param>
+        /// <returns>矫正后的页码</returns>
         private static int CorrectIndex(int index, int pageCount)
         {
             //页码<1时留在第一页
@@ -32,7 +37,11 @@ namespace CoreHome.HomePage.Controllers
             return index;
         }
 
-        /// <param name="index">页面索引</param>
+        /// <summary>
+        /// 博客列表
+        /// </summary>
+        /// <param name="index">页码</param>
+        /// <returns>博客列表页面</returns>
         public async Task<IActionResult> Index(int index = 1)
         {
             ViewBag.PageTitle = "Blogs";
@@ -59,7 +68,12 @@ namespace CoreHome.HomePage.Controllers
             return View(articles);
         }
 
-        /// <param name="id">博客类别</param>
+        /// <summary>
+        /// 博客类别
+        /// </summary>
+        /// <param name="id">类别名称</param>
+        /// <param name="index">页码</param>
+        /// <returns>博客类别页面</returns>
         public async Task<IActionResult> Categories(string id, int index = 1)
         {
             ViewBag.PageTitle = id;
@@ -85,7 +99,12 @@ namespace CoreHome.HomePage.Controllers
             return View("Index", articles);
         }
 
+        /// <summary>
+        /// 博客标签
+        /// </summary>
         /// <param name="id">博客标签</param>
+        /// <param name="index">页码</param>
+        /// <returns>博客标签页面</returns>
         public async Task<IActionResult> Tags(string id, int index = 1)
         {
             ViewBag.PageTitle = id;
@@ -115,6 +134,13 @@ namespace CoreHome.HomePage.Controllers
             return View("Index", articles);
         }
 
+        /// <summary>
+        /// 归档页面
+        /// </summary>
+        /// <param name="id">年份</param>
+        /// <param name="para">月份</param>
+        /// <param name="index">页码</param>
+        /// <returns>博客归档页面</returns>
         public async Task<IActionResult> Archive(int id, int para, int index = 1)
         {
             if (id == 0 || para == 0)
@@ -145,6 +171,12 @@ namespace CoreHome.HomePage.Controllers
             return View("Index", articles);
         }
 
+        /// <summary>
+        /// 搜索结果
+        /// </summary>
+        /// <param name="id">搜索关键词</param>
+        /// <param name="index">页码</param>
+        /// <returns>搜索结果页面</returns>
         public async Task<IActionResult> Search(string id, int index = 1)
         {
             ViewBag.PageTitle = id;

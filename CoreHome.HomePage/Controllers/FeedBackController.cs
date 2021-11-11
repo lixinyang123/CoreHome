@@ -13,6 +13,10 @@ namespace CoreHome.HomePage.Controllers
             this.notifyService = notifyService;
         }
 
+        /// <summary>
+        /// 访问反馈
+        /// </summary>
+        /// <returns>反馈页面</returns>
         public IActionResult Index()
         {
             ViewBag.PageTitle = "Feedback";
@@ -21,6 +25,11 @@ namespace CoreHome.HomePage.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 处理反馈
+        /// </summary>
+        /// <param name="feedback"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Index([FromForm] FeedbackViewModel feedback)
         {

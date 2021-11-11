@@ -20,6 +20,10 @@ namespace CoreHome.HomePage.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 所有标签
+        /// </summary>
+        /// <returns>所有标签页面</returns>
         public async Task<IActionResult> AllTags()
         {
             List<Tag> tags = await articleDbContext.Tags.Include(i => i.ArticleTags).ToListAsync();
