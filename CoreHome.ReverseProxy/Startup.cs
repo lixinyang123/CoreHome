@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.DataProtection;
-using System.Runtime.InteropServices;
-
 namespace CoreHome.ReverseProxy
 {
     public class Startup

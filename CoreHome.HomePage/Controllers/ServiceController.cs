@@ -72,9 +72,9 @@ namespace CoreHome.HomePage.Controllers
 
             List<Article> articles = await articleDbContext.Articles
                 .OrderByDescending(i => i.Id)
-                .Where(
-                    i => i.Title.ToLower().Contains(id.ToLower()) || i.Overview.ToLower().Contains(id.ToLower())
-                ).Take(5).ToListAsync();
+                .Where(i => i.Title.ToLower().Contains(id.ToLower()) || i.Overview.ToLower().Contains(id.ToLower()))
+                .Take(5)
+                .ToListAsync();
 
             List<PreSearchViewModel> viewModels = new();
 

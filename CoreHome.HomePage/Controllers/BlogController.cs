@@ -197,7 +197,7 @@ namespace CoreHome.HomePage.Controllers
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
-                .Where(i => i.Title.ToLower().Contains(id.ToLower()))
+                .Where(i => i.Title.ToLower().Contains(id.ToLower()) || i.Overview.ToLower().Contains(id.ToLower()))
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
 

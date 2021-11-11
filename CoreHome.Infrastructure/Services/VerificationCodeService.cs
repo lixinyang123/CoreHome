@@ -47,7 +47,7 @@ namespace CoreHome.Infrastructure.Services
             return intArray;
         }
 
-        #pragma warning disable CA1416 // Validate platform compatibility
+#pragma warning disable CA1416 // Validate platform compatibility
         private void CreateImage()
         {
             //设置图片大小
@@ -77,6 +77,6 @@ namespace CoreHome.Infrastructure.Services
             //获取内存流的byte数组
             VerificationImage = ms.GetBuffer();
         }
-        #pragma warning restore CA1416 // Validate platform compatibility
+#pragma warning restore CA1416 // Validate platform compatibility
     }
 }
