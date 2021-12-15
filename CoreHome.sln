@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.352
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreHome.HomePage", "CoreHome.HomePage\CoreHome.HomePage.csproj", "{F4936AB3-4EA2-4787-A15D-302B5233027B}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreHome.Data", "CoreHome.D
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "DockerCompose\docker-compose.dcproj", "{3993574F-541E-4D6F-898B-5243A0AF3001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreHome.ReverseProxy", "CoreHome.ReverseProxy\CoreHome.ReverseProxy.csproj", "{2964AFA2-272D-47BC-BB4E-69DF9C53066A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreHome.ReverseProxy", "CoreHome.ReverseProxy\CoreHome.ReverseProxy.csproj", "{2964AFA2-272D-47BC-BB4E-69DF9C53066A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
