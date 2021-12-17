@@ -11,12 +11,21 @@ namespace CoreHome.Infrastructure.Services
         public async Task<string> GetUrl()
         {
             int nowDay = DateTime.Now.Day;
-            if (nowDay != lastDay)
+
+            if(nowDay == lastDay)
+            {
+                return urlCache;
+            }
+            else
             {
                 try
                 {
-                    string url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
-                    using HttpClient httpClient = new HttpClient();
+                    string url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
+                    using HttpClient httpClient = new()
+                    {
+                        Timeout = TimeSpan.FromSeconds(5)
+                    };
+
                     string jsonStr = await httpClient.GetStringAsync(url);
                     BingWallpaper wallpaper = JsonSerializer.Deserialize<BingWallpaper>(jsonStr);
 
@@ -29,11 +38,6 @@ namespace CoreHome.Infrastructure.Services
                     return null;
                 }
             }
-            else
-            {
-                return urlCache;
-            }
-
         }
     }
 }
