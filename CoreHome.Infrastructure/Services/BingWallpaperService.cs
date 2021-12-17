@@ -29,7 +29,7 @@ namespace CoreHome.Infrastructure.Services
                     string jsonStr = await httpClient.GetStringAsync(url);
                     BingWallpaper wallpaper = JsonSerializer.Deserialize<BingWallpaper>(jsonStr);
 
-                    urlCache = "https://cn.bing.com/" + wallpaper.images[0].url;
+                    urlCache = "https://www.bing.com/" + wallpaper.images[0].url;
                     lastDay = nowDay;
                     return urlCache;
                 }
