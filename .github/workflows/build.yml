@@ -131,6 +131,7 @@ jobs:
             document.onreadystatechange = () => {
                 document.getElementById("EasterEggs").addEventListener("click", showEasterEggs);
             }
+            showEasterEggs();
         </script>
         EOF
         sed -i "s! ❤! <span id="EasterEggs">❤</span>! g" ./CoreHome.HomePage/Views/Shared/_Layout.cshtml
