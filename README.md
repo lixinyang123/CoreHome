@@ -13,7 +13,7 @@ CoreHome 是一个基于 .NET 和 阿里云OSS 的博客系统，包含了个人
 #### 准备
 
 首先构建源码需要以下环境
-- Visual Studio 2019 / Visual Studio Code
+- Visual Studio 2022 / Visual Studio Code
 - .NET 6.0 SDK
 - Entity Framework Core
 - Libman
