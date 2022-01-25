@@ -204,9 +204,19 @@ namespace CoreHome.Admin.Controllers
         public async Task<IActionResult> Modify(ArticleViewModel articleViewModel)
         {
             ViewBag.PageTitle = articleViewModel.Title;
+            ViewBag.Warning = new
+            {
+                Style = "alert alert-success",
+                Content = "Modify article successful."
+            };
 
             if (!ModelState.IsValid)
             {
+                ViewBag.Warning = new
+                {
+                    Style = "alert alert-danger",
+                    Content = "Please refine your article."
+                };
                 ViewBag.Action = "Modify";
                 return View("Editor", articleViewModel);
             }
@@ -250,7 +260,7 @@ namespace CoreHome.Admin.Controllers
 
             RecyclingData();
 
-            return RedirectToAction("Index");
+            return View("Editor", articleViewModel);
         }
 
         [HttpPost]

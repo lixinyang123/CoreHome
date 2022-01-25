@@ -7,6 +7,16 @@
     <h1 class="display-4">Editor</h1>
     <hr />
 
+    @if(ViewBag.Warning is not null)
+    {
+        <div class="@ViewBag.Warning.Style alert-dismissible fade show">
+            @ViewBag.Warning.Content
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
     <form asp-action="@ViewBag.Action" method="post">
 
         <input asp-for="ArticleCode" type="hidden" />

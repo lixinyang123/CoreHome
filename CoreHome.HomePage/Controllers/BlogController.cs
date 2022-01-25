@@ -265,32 +265,42 @@ namespace CoreHome.HomePage.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.Warning = "Please refine your Comment";
+                ViewBag.Warning = new
+                {
+                    Style = "alert alert-danger",
+                    Content = "Please refine your Comment."
+                };
                 return View(detailViewModel);
             }
 
             string str = HttpContext.Session.GetString("VerificationCode");
-            if (str == viewModel.VerificationCode.ToLower())
+            if (str != viewModel.VerificationCode.ToLower())
             {
-                article.Comments.Add(new Comment()
+                ViewBag.Warning = new
                 {
-                    Time = DateTime.Now,
-                    Detail = viewModel.Detail
-                });
-                articleDbContext.SaveChanges();
-
-                //评论通知
-                notifyService.PushNotify($"New Comment for [{article.Title}]", viewModel.Detail);
-
-                detailViewModel.CommentViewModel = new CommentViewModel();
-                ViewBag.Warning = "Thank you for your Comment";
+                    Style = "alert alert-danger",
+                    Content = "The verification code is wrong."
+                };
                 return View(detailViewModel);
             }
-            else
+
+            article.Comments.Add(new Comment()
             {
-                ViewBag.Warning = "The verification code is wrong";
-                return View(detailViewModel);
-            }
+                Time = DateTime.Now,
+                Detail = viewModel.Detail
+            });
+            articleDbContext.SaveChanges();
+
+            //评论通知
+            notifyService.PushNotify($"New Comment for [{article.Title}]", viewModel.Detail);
+
+            detailViewModel.CommentViewModel = new CommentViewModel();
+            ViewBag.Warning = new
+            {
+                Style = "alert alert-success",
+                Content = "Thank you for your Comment."
+            };
+            return View(detailViewModel);
 
         }
     }
