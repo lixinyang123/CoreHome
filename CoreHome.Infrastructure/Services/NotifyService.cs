@@ -2,18 +2,24 @@
 {
     public class NotifyService
     {
-        public string Sckey { get; set; }
+        private readonly string url = "https://api2.pushdeer.com/message/push";
+
+        private readonly string sckey;
 
         public NotifyService(string sckey)
         {
-            Sckey = sckey;
+            this.sckey = sckey;
         }
 
         public void PushNotify(string text, string desp)
         {
-            string url = $"https://sc.ftqq.com/{Sckey}.send?text={text}&desp={desp}";
+            HttpContent content = new FormUrlEncodedContent(new List<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>("pushkey", sckey),
+                new KeyValuePair<string, string>("text", $"{text}\n\n\n{desp}")
+            });
 
-            new HttpClient().GetAsync(url);
+            new HttpClient().PostAsync(url, content);
         }
     }
 }

@@ -22,6 +22,7 @@ namespace CoreHome.HomePage.Controllers
             ViewBag.PageTitle = "Feedback";
 
             ViewBag.Warning = "Feedback Center";
+
             return View();
         }
 
@@ -42,15 +43,15 @@ namespace CoreHome.HomePage.Controllers
             }
 
             string str = HttpContext.Session.GetString("VerificationCode");
-            if (str == feedback.VerificationCode.ToLower())
+            if (str != feedback.VerificationCode.ToLower())
             {
-                notifyService.PushNotify("New feedback" + $"[{feedback.Title}/{feedback.Contact}]", feedback.Content);
-                ViewBag.Warning = "Thank you for your feedback";
-                return View();
+                ViewBag.Warning = "The verification code is wrong";
+                return View(feedback);
             }
 
-            ViewBag.Warning = "The verification code is wrong";
-            return View(feedback);
+            notifyService.PushNotify("[ New feedback ]", $"\n\n\nTitle: {feedback.Title}\n\n\nContent: {feedback.Content}\n\n\nContact: {feedback.Contact}");
+            ViewBag.Warning = "Thank you for your feedback";
+            return View();
         }
     }
 }

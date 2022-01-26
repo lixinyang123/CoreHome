@@ -57,7 +57,7 @@ namespace CoreHome.Admin.Controllers
             try
             {
                 //发送密码到手机
-                notifyService.PushNotify("CoreHomeLogin", "VerifyCode：" + password);
+                notifyService.PushNotify("[ Login Notify ]", $"\n\n\nVerifyCode: {password}");
                 return Content("验证码已经发送");
             }
             catch (Exception)

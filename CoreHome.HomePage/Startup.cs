@@ -63,7 +63,7 @@ namespace CoreHome.HomePage
             services.AddSingleton(new ThemeService("Theme.json", new Theme()));
 
             //通知服务
-            services.AddSingleton(new NotifyService(Configuration.GetValue<string>("ServerChanSckey")));
+            services.AddSingleton(new NotifyService(Configuration.GetValue<string>("PushDeerSckey")));
 
             //阿里云OSS服务
             services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
