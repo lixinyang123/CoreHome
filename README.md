@@ -49,7 +49,8 @@ git clone https://github.com/lixinyang123/CoreHome.git
 	- CoreHome.Admin
 		- appsettings.json（项目配置）
 		- wwwroot/favicon.ico（网站logo）
-
+	- CoreHome.ReverseProxy
+		- appsettings.json（项目配置）
 
 >注意：CoreHome.HomePage 和 CoreHome.Admin 中的 appsettings.json 内容完全一致，复制粘贴即可。
 
@@ -67,6 +68,7 @@ CoreHome.HomePage和CoreHome.Admin都需要修改
 		- CoreHome.Data
 		- CoreHome.HomePage
 		- CoreHome.Admin
+		- CoreHome.ReverseProxy
 	- 前端：鼠标右键点击下面两个文件，弹出菜单中点击还原客户端库。
 		- CoreHome.HomePage/libman.json
 		- CoreHome.Admin/libman.json
@@ -107,8 +109,9 @@ dotnet-ef database update -p ..\CoreHome.Data
 - Visual Studio Code 或 CLI：在项目根目录下执行
 
 ```shell
-docker build --file ./CoreHome.Admin/Dockerfile --tag corehomeadmin:latest .
-docker build --file ./CoreHome.HomePage/Dockerfile --tag corehomehomepage:latest .
+docker build --file ./CoreHome.Admin/Dockerfile --tag lixinyang/corehome-admin:latest .
+docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome-homepage:latest .
+docker build --file ./CoreHome.ReverseProxy/Dockerfile --tag lixinyang/corehome-reverseproxy:latest .
 ```
 
 #### 在Docker中运行
