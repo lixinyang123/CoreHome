@@ -20,10 +20,9 @@ namespace CoreHome.HomePage.Controllers
         public IActionResult Index()
         {
             ViewBag.PageTitle = "Feedback";
-
             ViewBag.Warning = "Feedback Center";
 
-            return View();
+            return View(new FeedbackViewModel());
         }
 
         /// <summary>

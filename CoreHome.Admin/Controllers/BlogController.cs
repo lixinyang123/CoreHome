@@ -173,6 +173,7 @@ namespace CoreHome.Admin.Controllers
                 .SingleOrDefaultAsync(i => i.ArticleCode == id);
 
             ViewBag.PageTitle = article.Title;
+            ViewBag.Action = "Modify";
 
             if (article == null)
             {
@@ -195,7 +196,6 @@ namespace CoreHome.Admin.Controllers
                 Content = article.Content
             };
 
-            ViewBag.Action = "Modify";
             return View("Editor", articleViewModel);
         }
 
@@ -204,11 +204,7 @@ namespace CoreHome.Admin.Controllers
         public async Task<IActionResult> Modify(ArticleViewModel articleViewModel)
         {
             ViewBag.PageTitle = articleViewModel.Title;
-            ViewBag.Warning = new
-            {
-                Style = "alert alert-success",
-                Content = "Modify article successful."
-            };
+            ViewBag.Action = "Modify";
 
             if (!ModelState.IsValid)
             {
@@ -217,9 +213,14 @@ namespace CoreHome.Admin.Controllers
                     Style = "alert alert-danger",
                     Content = "Please refine your article."
                 };
-                ViewBag.Action = "Modify";
                 return View("Editor", articleViewModel);
             }
+
+            ViewBag.Warning = new
+            {
+                Style = "alert alert-success",
+                Content = "Modify article successful."
+            };
 
             Article article = await articleDbContext.Articles.Include(i => i.Category)
                 .Include(i => i.ArticleTags)
