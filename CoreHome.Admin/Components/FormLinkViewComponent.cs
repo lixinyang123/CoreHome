@@ -7,7 +7,7 @@ namespace CoreHome.Admin.Components
     {
         public IViewComponentResult Invoke(FormLink formLink)
         {
-            formLink.Id = Guid.NewGuid().ToString().Substring(0, 6);
+            formLink.Id = Guid.NewGuid().ToString()[..6];
             return View(formLink);
         }
     }

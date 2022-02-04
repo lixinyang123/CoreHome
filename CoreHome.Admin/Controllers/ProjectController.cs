@@ -104,10 +104,7 @@ namespace CoreHome.Admin.Controllers
             {
                 List<Project> projects = homePageService.Config;
 
-                Project tempProject = projects[index];
-                projects[index] = projects[index - 1];
-                projects[index - 1] = tempProject;
-
+                (projects[index - 1], projects[index]) = (projects[index], projects[index - 1]);
                 homePageService.Config = projects;
             }
             return RedirectToAction("Index");
