@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "coreHome": {
+    "CoreHome.HomePage": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
