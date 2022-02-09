@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
 		  <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
