@@ -56,7 +56,7 @@ namespace CoreHome.Infrastructure.Services
             string path = "musics/";
             ObjectListing listing = client.ListObjects(config.BucketName, path);
 
-            List<string> musics = new List<string>();
+            List<string> musics = new();
             foreach (OssObjectSummary item in listing.ObjectSummaries)
             {
                 if (item.Key != path)
