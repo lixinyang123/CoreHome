@@ -16,7 +16,7 @@ namespace CoreHome.Infrastructure.Services
 
         public VerificationCodeService()
         {
-            fontFamily = new FontCollection().AddSystemFonts().Families.First();
+            fontFamily = new FontCollection().Add("./wwwroot/font/Ubuntu-BI.ttf");
             CreateCode();
             CreateImage();
         }
