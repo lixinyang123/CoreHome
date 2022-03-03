@@ -292,9 +292,11 @@ namespace CoreHome.HomePage.Controllers
             articleDbContext.SaveChanges();
 
             string title = "[ New Comment ]";
-            string content = $"\n\n\nBlog: {article.Title}\n\n\nDetail: {viewModel.Detail}";
+            string content = $"### Blog\n {article.Title} \n### Detail\n {viewModel.Detail}";
 
-            articleDbContext.Notifications.Add(new Notification(title, content));
+            await articleDbContext.Notifications.AddAsync(new Notification(title, content));
+            await articleDbContext.SaveChangesAsync();
+
             notifyService.PushNotify(title, content);
 
             detailViewModel.CommentViewModel = new CommentViewModel();

@@ -36,7 +36,7 @@ namespace CoreHome.HomePage.Controllers
         /// <param name="feedback"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Index([FromForm] FeedbackViewModel feedback)
+        public async Task<IActionResult> Index([FromForm] FeedbackViewModel feedback)
         {
             ViewBag.PageTitle = "Feedback";
 
@@ -54,9 +54,11 @@ namespace CoreHome.HomePage.Controllers
             }
 
             string title = "[ New feedback ]";
-            string content = $"\n\n\nTitle: {feedback.Title}\n\n\nContent: {feedback.Content}\n\n\nContact: {feedback.Contact}";
+            string content = $"### Title\n {feedback.Title} \n### Content\n {feedback.Content} \n### Contact\n {feedback.Contact}";
 
-            articleDbContext.Notifications.Add(new Notification(title, content));
+            await articleDbContext.Notifications.AddAsync(new Notification(title, content));
+            await articleDbContext.SaveChangesAsync();
+
             notifyService.PushNotify(title, content);
             ViewBag.Warning = "Thank you for your feedback";
             return View();

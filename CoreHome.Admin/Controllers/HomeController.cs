@@ -62,11 +62,12 @@ namespace CoreHome.Admin.Controllers
             try
             {
                 string title = "[ Login Notify ]";
-                string content = $"\n\n\nVerifyCode: {password}";
+                string content = $"### VerifyCode\n > {password}";
 
                 await articleDbContext.Notifications.AddAsync(new Notification(title, content));
-                notifyService.PushNotify(title, content);
+                await articleDbContext.SaveChangesAsync();
 
+                notifyService.PushNotify(title, content);
                 return Content("验证码已经发送");
             }
             catch (Exception)

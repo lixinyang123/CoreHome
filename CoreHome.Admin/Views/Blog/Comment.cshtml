@@ -14,32 +14,32 @@
     }
     else
     {
-        <ul class="list-group list-group-flush">
-            @foreach (var comment in Model.Comments)
-            {
-                <li class="list-group-item">
-                    <div>
-                        <p>
-                            <spsn>@comment.Time.ToString("yy/MM/dd")</spsn>
-                            @{
-                                var formLink = new FormLink()
-                                {
-                                    Href = "/Admin/Blog/DelComment/",
-                                    Text = "Delete",
-                                    Warning = "Confirm deletion?"
-                                };
-                                formLink.Paras.Add("id", comment.Id.ToString());
-                                formLink.Paras.Add("articleCode", Model.ArticleCode.ToString());
-                            }
-                            @await Component.InvokeAsync("FormLink", formLink)
-                        </p>
-                        <div class="markdown">
-                            <textarea hidden>@comment.Detail</textarea>
-                        </div>
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="card mb-4">
+                <div class="card-header font-weight-bolder">
+                    @comment.Time.ToString("yyyy/MM/dd")
+                </div>
+                <div class="card-body">
+                    <div class="markdown">
+                        <textarea hidden>@comment.Detail</textarea>
                     </div>
-                </li>
-            }
-        </ul>
+                    
+                    @await Component.InvokeAsync("FormLink", new FormLink()
+                    {
+                        Href = "/Admin/Blog/DelComment/",
+                        Text = "Delete",
+                        Warning = "Confirm deletion?",
+                        ClassName = "btn btn-danger float-right",
+                        Paras = new()
+                        {
+                            { "id", comment.Id.ToString() },
+                            { "articleCode", Model.ArticleCode.ToString() }
+                        }
+                    })
+                </div>
+            </div>
+        }
     }
 
     <partial name="MarkdownRender" />
