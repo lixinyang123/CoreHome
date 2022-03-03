@@ -1,4 +1,6 @@
-﻿using CoreHome.HomePage.ViewModels;
+﻿using CoreHome.Data.DatabaseContext;
+using CoreHome.Data.Models;
+using CoreHome.HomePage.ViewModels;
 using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +8,13 @@ namespace CoreHome.HomePage.Controllers
 {
     public class FeedbackController : Controller
     {
+        private readonly ArticleDbContext articleDbContext;
+
         private readonly NotifyService notifyService;
 
-        public FeedbackController(NotifyService notifyService)
+        public FeedbackController(ArticleDbContext articleDbContext, NotifyService notifyService)
         {
+            this.articleDbContext = articleDbContext;
             this.notifyService = notifyService;
         }
 
@@ -48,7 +53,11 @@ namespace CoreHome.HomePage.Controllers
                 return View(feedback);
             }
 
-            notifyService.PushNotify("[ New feedback ]", $"\n\n\nTitle: {feedback.Title}\n\n\nContent: {feedback.Content}\n\n\nContact: {feedback.Contact}");
+            string title = "[ New feedback ]";
+            string content = $"\n\n\nTitle: {feedback.Title}\n\n\nContent: {feedback.Content}\n\n\nContact: {feedback.Contact}";
+
+            articleDbContext.Notifications.Add(new Notification(title, content));
+            notifyService.PushNotify(title, content);
             ViewBag.Warning = "Thank you for your feedback";
             return View();
         }

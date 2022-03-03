@@ -1,4 +1,6 @@
 ﻿using CoreHome.Data.DatabaseContext;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace CoreHome.Admin
 {
@@ -7,9 +9,16 @@ namespace CoreHome.Admin
         public static void Main(string[] args)
         {
             IHost host = CreateHostBuilder(args).Build();
+            Initialize(host).Run();
+        }
+
+        private static IHost Initialize(IHost host)
+        {
             using IServiceScope serviceScope = host.Services.CreateScope();
-            serviceScope.ServiceProvider.GetService<ArticleDbContext>().Database.EnsureCreated();
-            host.Run();
+            ArticleDbContext dbContext = serviceScope.ServiceProvider.GetService<ArticleDbContext>();
+            dbContext.Database.EnsureCreated();
+            dbContext.Database.Migrate();
+            return host;
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)

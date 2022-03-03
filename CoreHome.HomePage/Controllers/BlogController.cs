@@ -291,8 +291,11 @@ namespace CoreHome.HomePage.Controllers
             });
             articleDbContext.SaveChanges();
 
-            //评论通知
-            notifyService.PushNotify("[ New Comment ]", $"\n\n\nBlog: {article.Title}\n\n\nDetail: {viewModel.Detail}");
+            string title = "[ New Comment ]";
+            string content = $"\n\n\nBlog: {article.Title}\n\n\nDetail: {viewModel.Detail}";
+
+            articleDbContext.Notifications.Add(new Notification(title, content));
+            notifyService.PushNotify(title, content);
 
             detailViewModel.CommentViewModel = new CommentViewModel();
             ViewBag.Warning = new

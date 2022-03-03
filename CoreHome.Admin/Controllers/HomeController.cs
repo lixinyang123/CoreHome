@@ -1,4 +1,6 @@
 ﻿using CoreHome.Admin.Services;
+using CoreHome.Data.DatabaseContext;
+using CoreHome.Data.Models;
 using CoreHome.Infrastructure.Services;
 using CoreHome.Infrastructure.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -10,16 +12,19 @@ namespace CoreHome.Admin.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ArticleDbContext articleDbContext;
         private readonly IMemoryCache cache;
         private readonly NotifyService notifyService;
         private readonly SecurityService securityService;
         private readonly ProfileService profileService;
 
-        public HomeController(IMemoryCache cache,
+        public HomeController(ArticleDbContext articleDbContext,
+            IMemoryCache cache,
             NotifyService notifyService,
             SecurityService securityService,
             ProfileService profileService)
         {
+            this.articleDbContext = articleDbContext;
             this.cache = cache;
             this.notifyService = notifyService;
             this.securityService = securityService;
@@ -46,7 +51,7 @@ namespace CoreHome.Admin.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
             //随机生成密码
             string password = Guid.NewGuid().ToString().Substring(0, 6);
@@ -56,8 +61,12 @@ namespace CoreHome.Admin.Controllers
             cache.Set(cacheKey, password, DateTimeOffset.Now.AddMinutes(1));
             try
             {
-                //发送密码到手机
-                notifyService.PushNotify("[ Login Notify ]", $"\n\n\nVerifyCode: {password}");
+                string title = "[ Login Notify ]";
+                string content = $"\n\n\nVerifyCode: {password}";
+
+                await articleDbContext.Notifications.AddAsync(new Notification(title, content));
+                notifyService.PushNotify(title, content);
+
                 return Content("验证码已经发送");
             }
             catch (Exception)
