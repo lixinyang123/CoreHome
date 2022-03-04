@@ -16,7 +16,6 @@ namespace CoreHome.HomePage
         {
             using IServiceScope serviceScope = host.Services.CreateScope();
             ArticleDbContext dbContext = serviceScope.ServiceProvider.GetService<ArticleDbContext>();
-            dbContext.Database.EnsureCreated();
             dbContext.Database.Migrate();
             return host;
         }
