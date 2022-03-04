@@ -45,6 +45,8 @@ namespace CoreHome.Data.DatabaseContext
                 .WithMany(i => i.Comments)
                 .HasForeignKey(i => i.ArticleId);
 
+            modelBuilder.Entity<Notification>()
+                .HasKey(i => i.Id);
         }
 
         public DbSet<Article> Articles { get; set; }
@@ -60,5 +62,7 @@ namespace CoreHome.Data.DatabaseContext
         public DbSet<Tag> Tags { get; set; }
 
         public DbSet<ArticleTag> ArticleTags { get; set; }
+
+        public DbSet<Notification> Notifications { get; set; }
     }
 }

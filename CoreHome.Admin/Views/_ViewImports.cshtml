@@ -5,8 +5,11 @@
 @using CoreHome.Infrastructure.ViewModels
 @using Microsoft.AspNetCore.Hosting;
 @using Microsoft.Extensions.Hosting;
+@using CoreHome.Data.DatabaseContext
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @inject ProfileService ProfileService
 @inject ThemeService ThemeService
 @inject OssService OssService
+@inject ArticleDbContext ArticleDbContext

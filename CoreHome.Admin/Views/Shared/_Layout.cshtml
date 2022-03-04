@@ -55,6 +55,15 @@
 
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav flex-column">
+                    @if(ViewBag.NotificationCount > 0)
+                    {
+                        <li class="nav-item px-3">
+                            <a class="nav-link bg-primary text-white" asp-controller="Notification" asp-action="Index">
+                                <span class="oi oi-bell"></span> Notification &nbsp;&nbsp;
+                                <span class="badge badge-secondary">@ViewBag.NotificationCount</span>
+                            </a>
+                        </li>
+                    }
                     <li class="nav-item px-3">
                         <a class="nav-link" asp-controller="Overview" asp-action="Index">
                             <span class="oi oi-home"></span> Overview

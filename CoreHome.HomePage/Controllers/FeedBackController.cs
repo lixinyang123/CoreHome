@@ -1,4 +1,6 @@
-﻿using CoreHome.HomePage.ViewModels;
+﻿using CoreHome.Data.DatabaseContext;
+using CoreHome.Data.Models;
+using CoreHome.HomePage.ViewModels;
 using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +8,13 @@ namespace CoreHome.HomePage.Controllers
 {
     public class FeedbackController : Controller
     {
+        private readonly ArticleDbContext articleDbContext;
+
         private readonly NotifyService notifyService;
 
-        public FeedbackController(NotifyService notifyService)
+        public FeedbackController(ArticleDbContext articleDbContext, NotifyService notifyService)
         {
+            this.articleDbContext = articleDbContext;
             this.notifyService = notifyService;
         }
 
@@ -31,7 +36,7 @@ namespace CoreHome.HomePage.Controllers
         /// <param name="feedback"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Index([FromForm] FeedbackViewModel feedback)
+        public async Task<IActionResult> Index([FromForm] FeedbackViewModel feedback)
         {
             ViewBag.PageTitle = "Feedback";
 
@@ -48,7 +53,13 @@ namespace CoreHome.HomePage.Controllers
                 return View(feedback);
             }
 
-            notifyService.PushNotify("[ New feedback ]", $"\n\n\nTitle: {feedback.Title}\n\n\nContent: {feedback.Content}\n\n\nContact: {feedback.Contact}");
+            string title = "[ New feedback ]";
+            string content = $"### Title\n {feedback.Title} \n### Content\n {feedback.Content} \n### Contact\n {feedback.Contact}";
+
+            await articleDbContext.Notifications.AddAsync(new Notification(title, content));
+            await articleDbContext.SaveChangesAsync();
+
+            notifyService.PushNotify(title, content);
             ViewBag.Warning = "Thank you for your feedback";
             return View();
         }

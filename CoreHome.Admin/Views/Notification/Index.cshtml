@@ -1,40 +1,45 @@
-﻿@model CoreHome.Data.Models.Article
+﻿@model List<Notification>
 
 @{
-    ViewData["Title"] = "Comment";
+    ViewData["Title"] = "Notification";
 }
 
 <div class="container">
-    <h1 class="display-4">Comment</h1>
+    <h1 class="display-4">Notification</h1>
     <br />
 
-    @if (Model.Comments.Count == 0)
+    @if (Model.Count == 0)
     {
         <h5>There is nothing here.</h5>
     }
     else
     {
-        @foreach (var comment in Model.Comments)
+        <a asp-action="DeleteAll">Delete All</a>
+        <br /><br />
+
+        @foreach (var notification in Model)
         {
             <div class="card mb-4">
                 <div class="card-header font-weight-bolder">
-                    @comment.Time.ToString("yyyy/MM/dd")
+                    @notification.Title
+                    <span class="float-right">
+                        @notification.DateTime.ToString("yyyy/MM/dd")
+                    </span>
                 </div>
                 <div class="card-body">
                     <div class="markdown">
-                        <textarea hidden>@comment.Detail</textarea>
+                        <textarea hidden>@notification.Content</textarea>
                     </div>
-                    
+
                     @await Component.InvokeAsync("FormLink", new FormLink()
                     {
-                        Href = "/Admin/Blog/DelComment/",
+                        Href = "/Admin/Notification/Delete/",
                         Text = "Delete",
                         Warning = "Confirm deletion?",
                         ClassName = "btn btn-danger float-right",
-                        Paras = new()
+                        Paras = new() 
                         {
-                            { "id", comment.Id.ToString() },
-                            { "articleCode", Model.ArticleCode.ToString() }
+                            { "id", notification.Id.ToString() }
                         }
                     })
                 </div>

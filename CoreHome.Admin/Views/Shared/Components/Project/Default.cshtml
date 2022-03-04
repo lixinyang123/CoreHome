@@ -22,29 +22,25 @@
 }
 
 <div class="@sizeClassName">
-    @{
-        var moveUpLink = new FormLink()
-        {
-            Href = "/Admin/Project/MoveUp/",
-            Text = "MoveUp",
-            Paras = { {"id", Model.Id } },
-            ClassName = "btn-edit btn btn-info",
-            Warning = "Confirm MoveUp?"
-        };
+    @await Component.InvokeAsync("FormLink", new FormLink()
+    {
+        Href = "/Admin/Project/MoveUp/",
+        Text = "MoveUp",
+        Paras = { {"id", Model.Id } },
+        ClassName = "btn-edit btn btn-info",
+        Warning = "Confirm MoveUp?"
+    })
 
-        var deleteLink = new FormLink()
-        {
-            Href = "/Admin/Project/Delete/",
-            Text = "Delete",
-            Paras = { { "id", Model.Id } },
-            ClassName = "btn-edit btn btn-danger",
-            Warning = "Confirm deletion?"
-        };
-    }
-
-    @await Component.InvokeAsync("FormLink", moveUpLink)
     <a class="btn-edit btn btn-warning" asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-    @await Component.InvokeAsync("FormLink", deleteLink)
+
+    @await Component.InvokeAsync("FormLink", new FormLink()
+    {
+        Href = "/Admin/Project/Delete/",
+        Text = "Delete",
+        Paras = { { "id", Model.Id } },
+        ClassName = "btn-edit btn btn-danger",
+        Warning = "Confirm deletion?"
+    })
 
     <div class="fh5co-blog">
         <div class="blog-imgbox">

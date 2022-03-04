@@ -6,20 +6,23 @@
 
         private readonly string sckey;
 
+        private readonly HttpClient httpClient;
+
         public NotifyService(string sckey)
         {
             this.sckey = sckey;
+            httpClient = new();
         }
 
-        public void PushNotify(string text, string desp)
+        public void PushNotify(string text, string content)
         {
-            HttpContent content = new FormUrlEncodedContent(new List<KeyValuePair<string, string>>()
+            HttpContent httpContent = new FormUrlEncodedContent(new List<KeyValuePair<string, string>>()
             {
                 new KeyValuePair<string, string>("pushkey", sckey),
-                new KeyValuePair<string, string>("text", $"{text}\n\n\n{desp}")
+                new KeyValuePair<string, string>("text", $"{text}\n\n\n{content}")
             });
 
-            new HttpClient().PostAsync(url, content);
+            httpClient.PostAsync(url, httpContent);
         }
     }
 }
