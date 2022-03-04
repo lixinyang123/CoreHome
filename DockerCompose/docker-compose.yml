@@ -17,6 +17,7 @@ services:
       dockerfile: CoreHome.HomePage/Dockerfile
     depends_on:
       - database
+      - corehome.admin
     restart: always
     volumes:
       - server:/home
