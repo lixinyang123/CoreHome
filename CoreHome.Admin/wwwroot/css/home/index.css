@@ -16,7 +16,6 @@
     margin-top: -200px;
     background-color: rgba(255, 255, 255, 0.6);
     backdrop-filter: saturate(180%) blur(10px);
-    vertical-align: middle;
     opacity: 0.8;
     box-shadow: 0 0 20px 10px rgba(0,0,0,.15);
 }
