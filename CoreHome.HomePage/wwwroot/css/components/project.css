@@ -3,10 +3,7 @@
     float: left;
     margin-bottom: 40px;
     border: 1px solid rgba(0,0,0,0.12);
-}
-
-.fh5co-blog:hover {
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease-out;
 }
 
 .blog-imgbox {
@@ -24,6 +21,11 @@
     transition: transform 0.2s ease-out;
 }
 
+.fh5co-blog:hover {
+    transform: translateY(-7px);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
 .fh5co-blog:hover .blog-bg {
     transform: scale(1.07);
 }
@@ -31,7 +33,7 @@
 .fh5co-blog .blog-text {
     position: relative;
     width: 100%;
-    padding: 30px;
+    padding: 20px 30px;
     float: left;
     background: #fff;
     transition: 0.3s;
