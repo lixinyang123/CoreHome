@@ -6,7 +6,7 @@
         {
             Title = title;
             Content = content;
-            DateTime = DateTime.Now;
+            Time = DateTime.Now;
         }
 
         public int Id { get; set; }
@@ -15,6 +15,6 @@
 
         public string Content { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime Time { get; set; }
     }
 }
