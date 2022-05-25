@@ -2,7 +2,7 @@
 
 ![build](https://github.com/lixinyang123/CoreHome/workflows/build/badge.svg?branch=main)
 
-当前的[个人网站](https://www.lllxy.net)，由 [ .NET 6.0 ](https://dotnet.microsoft.com/) 驱动
+当前的[个人网站](https://www.lllxy.net)，由 [ .NET ](https://dotnet.microsoft.com/) 驱动
 
 CoreHome 是一个基于 .NET 和 阿里云OSS 的博客系统，包含了个人信息管理，主页项目管理，主题管理（主页背景，亮暗主题，BGM），博客管理、分类、标签、归档，评论及反馈提醒，服务器网络状态检测等功能。
 
@@ -14,7 +14,7 @@ CoreHome 是一个基于 .NET 和 阿里云OSS 的博客系统，包含了个人
 
 首先构建源码需要以下环境
 - Visual Studio 2022 / Visual Studio Code
-- .NET 6.0 SDK
+- .NET 7.0 SDK
 - Entity Framework Core
 - Libman
 - Mysql
