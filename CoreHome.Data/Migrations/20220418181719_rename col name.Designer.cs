@@ -12,7 +12,7 @@ namespace CoreHome.Data.Migrations
 {
     [DbContext(typeof(ArticleDbContext))]
     [Migration("20220418181719_rename col name")]
-    partial class renamecolname
+    partial class RenameColname
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

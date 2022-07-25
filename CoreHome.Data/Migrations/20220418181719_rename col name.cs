@@ -5,7 +5,7 @@
 namespace CoreHome.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class renamecolname : Migration
+    public partial class RenameColname : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
