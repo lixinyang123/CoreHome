@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.RateLimiting;
 using System.Runtime.InteropServices;
+using System.Threading.RateLimiting;
 
 namespace CoreHome.ReverseProxy
 {
@@ -37,6 +39,20 @@ namespace CoreHome.ReverseProxy
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // 速率限制
+            app.UseRateLimiter(
+                new RateLimiterOptions()
+                {
+                    OnRejected = (context, cancellationToken) =>
+                    {
+                        context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+                        return new ValueTask();
+                    }
+                }.AddConcurrencyLimiter("MyPolicy",
+                    new ConcurrencyLimiterOptions(10, QueueProcessingOrder.OldestFirst, 10)
+                )
+            );
 
             app.UseRouting();
 
