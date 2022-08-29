@@ -3,7 +3,7 @@
   "defaultProvider": "jsdelivr",
   "libraries": [
     {
-      "library": "jquery@3.6.0",
+      "library": "jquery@3.6.1",
       "destination": "wwwroot/lib/jquery/"
     },
     {
@@ -11,11 +11,11 @@
       "destination": "wwwroot/lib/chart.js/"
     },
     {
-      "library": "bootstrap@4.6.1",
+      "library": "bootstrap@4.6.2",
       "destination": "wwwroot/lib/bootstrap/"
     },
     {
-      "library": "darkreader@4.9.51",
+      "library": "darkreader@4.9.57",
       "destination": "wwwroot/lib/darkreader/"
     },
     {
