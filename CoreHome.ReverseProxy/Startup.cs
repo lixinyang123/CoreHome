@@ -49,9 +49,12 @@ namespace CoreHome.ReverseProxy
                         context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
                         return new ValueTask();
                     }
-                }.AddConcurrencyLimiter("MyPolicy",
-                    new ConcurrencyLimiterOptions(10, QueueProcessingOrder.OldestFirst, 10)
-                )
+                }.AddConcurrencyLimiter("MyPolicy", option =>
+                {
+                    option.QueueLimit = 10;
+                    option.PermitLimit = 10;
+                    option.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                })
             );
 
             app.UseRouting();
