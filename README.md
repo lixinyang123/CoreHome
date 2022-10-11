@@ -24,19 +24,22 @@ CoreHome is a blog system based on. NET and Alibaba Cloud OSS. It includes funct
 - Mysql
 - Docker（WSL2 is recommended）
 
-> If you use Visual Studio (Not Visual Studio Code), you don't need to install Libman CLI and Entity Framework CLI
+> If you use Visual Studio (Not Visual Studio Code), you don't need to install Libman CLI and Entity Framework CLI.
 
 Install Libman CLI：
+
 ```shell
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
 
 Install Entity Framework Core CLI
+
 ```shell
 dotnet tool install -g dotnet-ef
 ```
 
 Clone source code
+
 ```shell
 git clone https://github.com/lixinyang123/CoreHome.git
 ```
@@ -78,6 +81,7 @@ Both CoreHome.HomePage and CoreHome.Admin
 	- Frontend：Click Restore Client Libraries in Solution Explorer.
 		- CoreHome.HomePage/libman.json
 		- CoreHome.Admin/libman.json
+
 - Visual Studio Code or CLI
 	- Backend：Execute `dotnet restore` in the following directory.
 		- CoreHome.HomePage
@@ -142,5 +146,5 @@ You can use [DockerHome](https://github.com/lixinyang123/DockerHome "DockerHome"
 
 You can use DockerHome to deploy CoreHome, or you can deploy it manually.
 
-> You can refer to [this](https://www.lllxy.net/Blog/Detail/b73acc42-ec42-4151-b108-a680bd1e0c87) blog to use DockerHome
+> You can refer to [this](https://www.lllxy.net/Blog/Detail/b73acc42-ec42-4151-b108-a680bd1e0c87) blog to use DockerHome.
 
