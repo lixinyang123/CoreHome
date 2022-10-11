@@ -6,8 +6,13 @@ Current personal [website](https://www.lllxy.net)，Powered by [ .NET ](https://
 
 CoreHome is a blog system based on. NET and Alibaba Cloud OSS. It includes functions such as personal information management, home page project management, theme management (home page background, light and dark themes, BGM), blog management, classification, tagging, archiving, comments and feedback alerts, and server network status detection.
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=lixinyang123&repo=CoreHome)](https://github.com/lixinyang123/CoreHome) [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=lixinyang123&repo=DockerHome)](https://github.com/lixinyang123/DockerHome)
-
+<div style="display:flex;">
+    <image style="width: 500px;" src="https://user-images.githubusercontent.com/32838371/168005656-1e49ccb1-737c-464c-bd25-5a7e2f89541b.png" />
+    <image style="width: 500px;" src="https://user-images.githubusercontent.com/32838371/195136555-73ce167e-114b-45c5-a6f2-11d65724174f.png" />
+    <image style="width: 500px;" src="https://user-images.githubusercontent.com/32838371/195137729-485080ad-5f69-4a8b-859d-ac8bf0245c06.jpeg" />
+    <image style="width: 500px;" src="https://user-images.githubusercontent.com/32838371/141163201-b37de67f-91f2-4333-840e-b888ae1d505e.jpeg" />
+</div>
+	
 ### Build from source
 
 #### Install pre-requisites
