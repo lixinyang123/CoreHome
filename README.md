@@ -2,111 +2,126 @@
 
 ![build](https://github.com/lixinyang123/CoreHome/workflows/build/badge.svg?branch=main)
 
-当前的[个人网站](https://www.lllxy.net)，由 [ .NET ](https://dotnet.microsoft.com/) 驱动
+Current personal [website](https://www.lllxy.net)，Powered by [ .NET ](https://dotnet.microsoft.com/)
 
-CoreHome 是一个基于 .NET 和 阿里云OSS 的博客系统，包含了个人信息管理，主页项目管理，主题管理（主页背景，亮暗主题，BGM），博客管理、分类、标签、归档，评论及反馈提醒，服务器网络状态检测等功能。
+CoreHome is a blog system based on. NET and Alibaba Cloud OSS. It includes functions such as personal information management, home page project management, theme management (home page background, light and dark themes, BGM), blog management, classification, tagging, archiving, comments and feedback alerts, and server network status detection.
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=lixinyang123&repo=CoreHome)](https://github.com/lixinyang123/CoreHome) [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=lixinyang123&repo=DockerHome)](https://github.com/lixinyang123/DockerHome)
 
-### 从源码构建CoreHome
+### Build from source
 
-#### 准备
+#### Install pre-requisites
 
-首先构建源码需要以下环境
 - Visual Studio 2022 / Visual Studio Code
 - .NET 7.0 SDK
 - Entity Framework Core
 - Libman
 - Mysql
-- Docker（推荐使用WSL2）
+- Docker（WSL2 is recommended）
 
-> 注意：使用 Visual Studio（非 Visual Studio Code）不需要 Libman CLI 和 Entity Framework CLI
+> If you use Visual Studio (Not Visual Studio Code), you don't need to install Libman CLI and Entity Framework CLI
 
-安装 LibMan CLI：
+Install Libman CLI：
 ```shell
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
 
-安装 Entity Framework Core CLI
+Install Entity Framework Core CLI
 ```shell
 dotnet tool install -g dotnet-ef
 ```
 
-接下来clone源码
+Clone source code
 ```shell
 git clone https://github.com/lixinyang123/CoreHome.git
 ```
 
-修改配置文件(如下5个配置文件)
+Configuration 
 
-不会修改的话，可以看上一篇博客[《介绍 DockerHome》](https://www.lllxy.net/Blog/Detail/ea8c626c-fac4-4a19-85e8-a46d41d938d5 "《介绍 DockerHome》")，里面详细介绍了怎样修改配置文件。
+You can refer to [this](https://www.lllxy.net/Blog/Detail/ea8c626c-fac4-4a19-85e8-a46d41d938d5) blog to configure.
 
 - CoreHome
 	- CoreHome.HomePage
-		- appsettings.json（项目配置）
-		- wwwroot/SiteMap.txt（站点地图，SEO用）
-		- wwwroot/favicon.ico（网站logo）
+		- appsettings.json
+		- wwwroot/SiteMap.txt
+		- wwwroot/favicon.ico
 	- CoreHome.Admin
-		- appsettings.json（项目配置）
-		- wwwroot/favicon.ico（网站logo）
+		- appsettings.json
+		- wwwroot/favicon.ico
 	- CoreHome.ReverseProxy
-		- appsettings.json（项目配置）
+		- appsettings.json
 
->注意：CoreHome.HomePage 和 CoreHome.Admin 中的 appsettings.json 内容完全一致，复制粘贴即可。
+> The content of appsettings.json in CoreHome.HomePage and CoreHome.Admin is exactly the same, just copy and paste.
 
-#### 修改数据连接配置（appsettings.json）:
-CoreHome.HomePage和CoreHome.Admin都需要修改
+#### Configure database（appsettings.json）:
+
+Both CoreHome.HomePage and CoreHome.Admin
+
 ```
-  "CoreHome": "server=[数据库url];user id=[数据库用户名];password=[数据库密码];database=corehome"
+  "CoreHome": "server=[host];user id=[user];password=[password];database=corehome"
 ```
 	
-#### 还原依赖
+#### Dependencies
 
-- 使用 Visual Studio
-	- 后端：鼠标右键点击，解决方案资源管理器中的项目文件，弹出菜单中点击还原Nuget包。
+- Visual Studio
+	- Backend：Click Restore Nuget Packages in Solution Explorer.
 		- CoreHome.Infrastructure
 		- CoreHome.Data
 		- CoreHome.HomePage
 		- CoreHome.Admin
 		- CoreHome.ReverseProxy
-	- 前端：鼠标右键点击下面两个文件，弹出菜单中点击还原客户端库。
+	- Frontend：Click Restore Client Libraries in Solution Explorer.
 		- CoreHome.HomePage/libman.json
 		- CoreHome.Admin/libman.json
-- 使用 Visual Studio Code 或 CLI
-	- 后端：切换到下方目录执行命令 **dotnet restore**
+- Visual Studio Code or CLI
+	- Backend：Execute `dotnet restore` in the following directory.
 		- CoreHome.HomePage
 		- CoreHome.Admin
-	- 前端：切换到下方目录执行命令 **libman restore**
+	- Frontend：Execute `libman restore` in the following directory.
 		- CoreHome.HomePage
 		- CoreHome.Admin
 
-#### 创建数据库
+#### Migrate Database
 
-- 使用 Visual Studio
-点击 工具-Nuget程序包管理器-程序包管理器控制台，执行
+- Visual Studio
+
+Tools \> Nuget Package Manager \> Package Manager Console
 
 ```shell
 Update-Database
 ```
 
-- 使用 Visual Studio Code 或 CLI
-在 CoreHome.HomePage 和 CoreHome.Admin 目录下执行
+- Visual Studio Code or CLI
+
+Execute the following commands in the CoreHome.HomePage and CoreHome.Admin directory.
 
 ```shell
 dotnet-ef database update -p ..\CoreHome.Data
 ```
 
-#### 启动项目
+#### Startup
 
-- Visual Studio 点击顶部运行即可
-- Visual Studio Code 选择项目生成 launcher.json 并点击运行
-- CLI 分别在 CoreHome.HomePage 和 CoreHome.Admin 执行 **dotnet run**
+- Visual Studio or Visual Studio Code
 
-#### 构建Docker镜像
+Click `Startup` in Solution Explorer or `Ctrl+F5`.
 
-- Visual Studio：右键 CoreHome.HomePage/Dockerfile 和 CoreHome.Admin/Dockerfile 点击 **生成Docker映像**
+- CLI 
 
-- Visual Studio Code 或 CLI：在项目根目录下执行
+Execute the following commands in the CoreHome.HomePage and CoreHome.Admin directory.
+
+```shell
+dotnet run
+```
+
+#### Build Dockerfile
+
+- Visual Studio
+
+Click `Build Dockerfile` in Solution Explorer.
+
+- Visual Studio Code or CLI
+
+Execute the following command in the project root directory.
 
 ```shell
 docker build --file ./CoreHome.Admin/Dockerfile --tag lixinyang/corehome-admin:latest .
@@ -114,24 +129,13 @@ docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome-home
 docker build --file ./CoreHome.ReverseProxy/Dockerfile --tag lixinyang/corehome-reverseproxy:latest .
 ```
 
-#### 在Docker中运行
+### Deploy
 
-- Visual Studio：启动项目更改为Docker点击启动即可。
-
-- Visual Studio Code 或 CLI：在项目中 DockerCompose 目录中执行
-
-```shell
-docker-compose up
-```
-
-### 怎样部署CoreHome
-
-在Linux上部署CoreHome可以使用[DockerHome](https://github.com/lixinyang123/DockerHome "DockerHome")进行快速部署
+You can use [DockerHome](https://github.com/lixinyang123/DockerHome "DockerHome") to deploy CoreHome.
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=lixinyang123&repo=DockerHome)](https://github.com/lixinyang123/DockerHome)
 
-详情可以见上一篇博客[《介绍 DockerHome》](https://www.lllxy.net/Blog/Detail/b73acc42-ec42-4151-b108-a680bd1e0c87 "《介绍 DockerHome》")，Windows上构建完成发布到IIS即可。
+You can use DockerHome to deploy CoreHome, or you can deploy it manually.
 
-### 最后
+> You can refer to [this](https://www.lllxy.net/Blog/Detail/b73acc42-ec42-4151-b108-a680bd1e0c87) blog to use DockerHome
 
-如果你喜欢这个博客，可以去Github上给个Star
