@@ -1,6 +1,3 @@
-sudo apt update && sudo apt upgrade -y
-sudo apt install libgdiplus -y
-
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 dotnet tool install -g dotnet-ef
 
