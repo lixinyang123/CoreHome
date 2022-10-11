@@ -2,7 +2,7 @@
 
 ![build](https://github.com/lixinyang123/CoreHome/workflows/build/badge.svg?branch=main)
 
-Current personal [website](https://www.lllxy.net)，Powered by [ .NET ](https://dotnet.microsoft.com/)
+Current personal [website](https://www.lllxy.net)，Powered by [.NET](https://dotnet.microsoft.com/) .
 
 CoreHome is a blog system based on. NET and Alibaba Cloud OSS. It includes functions such as personal information management, home page project management, theme management (home page background, light and dark themes, BGM), blog management, classification, tagging, archiving, comments and feedback alerts, and server network status detection.
 
