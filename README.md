@@ -11,6 +11,8 @@ CoreHome is a blog system based on. NET and Alibaba Cloud OSS. It includes funct
     <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/195136555-73ce167e-114b-45c5-a6f2-11d65724174f.png" />
     <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/195137729-485080ad-5f69-4a8b-859d-ac8bf0245c06.jpeg" />
     <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/141163201-b37de67f-91f2-4333-840e-b888ae1d505e.jpeg" />
+    <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/195309268-a655c813-1432-49ff-b24c-0fdafe52620a.jpeg" />
+    <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/195309417-02554c9e-4c8d-4514-96fd-94fbda9e6ff4.jpg" />
 </div>
 	
 ### Build from source
