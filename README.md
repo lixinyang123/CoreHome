@@ -2,9 +2,9 @@
 
 ![build](https://github.com/lixinyang123/CoreHome/workflows/build/badge.svg?branch=main)
 
-Current personal [website](https://www.lllxy.net)，Powered by [.NET](https://dotnet.microsoft.com/) .
+An open source blog system based on [.NET](https://dotnet.microsoft.com/) and [Alibaba Cloud](https://www.aliyun.com/).
 
-A blog system based on. NET and Alibaba Cloud OSS. 
+Current personal [website](https://www.lllxy.net), 
 
 ### Features
 
