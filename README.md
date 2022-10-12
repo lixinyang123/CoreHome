@@ -4,7 +4,18 @@
 
 Current personal [website](https://www.lllxy.net)，Powered by [.NET](https://dotnet.microsoft.com/) .
 
-CoreHome is a blog system based on. NET and Alibaba Cloud OSS. It includes functions such as personal information management, home page project management, theme management (home page background, light and dark themes, BGM), blog management, classification, tagging, archiving, comments and feedback alerts, and server network status detection.
+A blog system based on. NET and Alibaba Cloud OSS. 
+
+### Features
+
+- Personal information management.
+- Homepage project management.
+- Theme management (background, light and dark themes, BGM).
+- Blog management (classification, tagging, archiving, comments).
+- Feedback alerts.
+- Network status detection.
+
+### Screenshot
 
 <div style="display:flex; width: 100%;">
     <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/168005656-1e49ccb1-737c-464c-bd25-5a7e2f89541b.png" />
