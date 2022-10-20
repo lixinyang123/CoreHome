@@ -50,12 +50,7 @@ namespace CoreHome.HomePage.Controllers
             }
 
             List<string> musics = ossService.GetMusics();
-            if (musics.Count == 0)
-            {
-                return NoContent();
-            }
-
-            return Redirect(musics[new Random().Next(musics.Count)]);
+            return musics.Count == 0 ? NoContent() : Redirect(musics[new Random().Next(musics.Count)]);
         }
 
         /// <summary>

@@ -37,8 +37,8 @@
         {
             get
             {
-                int showNum = preShowNum * 2 + 1;
-                Dictionary<int, bool> indexs = new Dictionary<int, bool>();
+                int showNum = (preShowNum * 2) + 1;
+                Dictionary<int, bool> indexs = new();
 
                 int skip = -preShowNum;
                 if (PageCount - CurrentIndex < preShowNum)

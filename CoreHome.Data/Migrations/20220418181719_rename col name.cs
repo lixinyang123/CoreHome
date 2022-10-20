@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
 
 namespace CoreHome.Data.Migrations
 {
@@ -10,7 +9,7 @@ namespace CoreHome.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
+            _ = migrationBuilder.RenameColumn(
                 name: "DateTime",
                 table: "Notifications",
                 newName: "Time");
@@ -19,7 +18,7 @@ namespace CoreHome.Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
+            _ = migrationBuilder.RenameColumn(
                 name: "Time",
                 table: "Notifications",
                 newName: "DateTime");

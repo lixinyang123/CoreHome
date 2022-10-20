@@ -54,7 +54,7 @@ namespace CoreHome.Admin.Services
             StringBuilder builder = new();
             for (int i = 0; i < password.Length; i++)
             {
-                builder.Append(password[i].ToString("X2"));
+                _ = builder.Append(password[i].ToString("X2"));
             }
             return builder.ToString();
         }

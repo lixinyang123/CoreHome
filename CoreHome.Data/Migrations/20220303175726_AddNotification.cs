@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
 
 namespace CoreHome.Data.Migrations
 {
@@ -9,7 +8,7 @@ namespace CoreHome.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+            _ = migrationBuilder.CreateTable(
                 name: "Notifications",
                 columns: table => new
                 {
@@ -23,14 +22,14 @@ namespace CoreHome.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notifications", x => x.Id);
+                    _ = table.PrimaryKey("PK_Notifications", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
+            _ = migrationBuilder.DropTable(
                 name: "Notifications");
         }
     }

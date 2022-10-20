@@ -30,7 +30,7 @@ namespace CoreHome.Infrastructure.Models
 
             if (!Directory.Exists(configPath))
             {
-                Directory.CreateDirectory(configPath);
+                _ = Directory.CreateDirectory(configPath);
             }
 
             this.initConfig = initConfig;

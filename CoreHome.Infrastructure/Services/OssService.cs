@@ -19,7 +19,7 @@ namespace CoreHome.Infrastructure.Services
         {
             string fileName = Guid.NewGuid().ToString() + ".jpg";
             string path = "images/projects/";
-            client.PutObject(config.BucketName, Path.Combine(path, fileName), stream);
+            _ = client.PutObject(config.BucketName, Path.Combine(path, fileName), stream);
             return Path.Combine(config.BucketDomainName, path, fileName);
         }
 
@@ -30,7 +30,7 @@ namespace CoreHome.Infrastructure.Services
 
         public void UploadAvatar(Stream stream)
         {
-            client.PutObject(config.BucketName, "images/avatar.jpg", stream);
+            _ = client.PutObject(config.BucketName, "images/avatar.jpg", stream);
         }
 
         public string GetBackground()
@@ -40,14 +40,14 @@ namespace CoreHome.Infrastructure.Services
 
         public void UploadBackground(Stream stream)
         {
-            client.PutObject(config.BucketName, "images/background.jpg", stream);
+            _ = client.PutObject(config.BucketName, "images/background.jpg", stream);
         }
 
         public string UploadBlogPic(Stream stream)
         {
             string fileName = Guid.NewGuid().ToString() + ".jpg";
             string path = "blogs/";
-            client.PutObject(config.BucketName, Path.Combine(path, fileName), stream);
+            _ = client.PutObject(config.BucketName, Path.Combine(path, fileName), stream);
             return Path.Combine(config.BucketDomainName, path, fileName);
         }
 

@@ -19,7 +19,7 @@ namespace CoreHome.Infrastructure.Services
         {
             try
             {
-                HttpClient httpClient = new HttpClient();
+                HttpClient httpClient = new();
 
                 string SiteMapPath = Path.Combine(WebRootPath, "SiteMap.txt");
                 string linkStr = File.ReadAllText(SiteMapPath);

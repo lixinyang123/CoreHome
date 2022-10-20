@@ -66,11 +66,7 @@ namespace CoreHome.Admin.Controllers
             ViewBag.PageTitle = "Edit Project";
             ViewBag.Action = "Edit";
             Project project = homePageService.Config.SingleOrDefault(i => i.Id == id);
-            if (project == null)
-            {
-                return RedirectToAction("Index");
-            }
-            return View("Editor", project);
+            return project == null ? RedirectToAction("Index") : View("Editor", project);
         }
 
         [HttpPost]

@@ -7,7 +7,7 @@ namespace CoreHome.Admin.Services
     {
         public static async Task SendMessage(this WebSocket ws, string message)
         {
-            ArraySegment<byte> buffer = new ArraySegment<byte>(Encoding.UTF8.GetBytes(message));
+            ArraySegment<byte> buffer = new(Encoding.UTF8.GetBytes(message));
             await ws.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
         }
     }

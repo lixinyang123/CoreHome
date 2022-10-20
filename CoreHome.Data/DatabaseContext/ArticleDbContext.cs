@@ -9,43 +9,43 @@ namespace CoreHome.Data.DatabaseContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Year>()
+            _ = modelBuilder.Entity<Year>()
                 .HasKey(i => i.Value);
 
-            modelBuilder.Entity<Month>()
+            _ = modelBuilder.Entity<Month>()
                 .HasOne(i => i.Year)
                 .WithMany(i => i.Months)
                 .HasForeignKey(i => i.YearId);
 
-            modelBuilder.Entity<Article>()
+            _ = modelBuilder.Entity<Article>()
                 .HasOne(i => i.Month)
                 .WithMany(i => i.Articles)
                 .HasForeignKey(i => i.MonthId);
 
-            modelBuilder.Entity<Article>()
+            _ = modelBuilder.Entity<Article>()
                 .HasOne(i => i.Category)
                 .WithMany(i => i.Articles)
                 .HasForeignKey(i => i.CategoryId);
 
-            modelBuilder.Entity<ArticleTag>()
+            _ = modelBuilder.Entity<ArticleTag>()
                 .HasKey(i => new { i.ArticleId, i.TagId });
 
-            modelBuilder.Entity<ArticleTag>()
+            _ = modelBuilder.Entity<ArticleTag>()
                 .HasOne(i => i.Article)
                 .WithMany(i => i.ArticleTags)
                 .HasForeignKey(i => i.ArticleId);
 
-            modelBuilder.Entity<ArticleTag>()
+            _ = modelBuilder.Entity<ArticleTag>()
                 .HasOne(i => i.Tag)
                 .WithMany(i => i.ArticleTags)
                 .HasForeignKey(i => i.TagId);
 
-            modelBuilder.Entity<Comment>()
+            _ = modelBuilder.Entity<Comment>()
                 .HasOne(i => i.Article)
                 .WithMany(i => i.Comments)
                 .HasForeignKey(i => i.ArticleId);
 
-            modelBuilder.Entity<Notification>()
+            _ = modelBuilder.Entity<Notification>()
                 .HasKey(i => i.Id);
         }
 

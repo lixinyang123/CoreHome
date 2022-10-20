@@ -19,17 +19,17 @@ namespace CoreHome.ReverseProxy
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                services.AddDataProtection().SetApplicationName("CoreHome")
+                _ = services.AddDataProtection().SetApplicationName("CoreHome")
                     .PersistKeysToFileSystem(new DirectoryInfo(@"C:/Server/CoreHome/"));
             }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                services.AddDataProtection().SetApplicationName("CoreHome")
+                _ = services.AddDataProtection().SetApplicationName("CoreHome")
                     .PersistKeysToFileSystem(new DirectoryInfo(@"/home/Server/CoreHome/"));
             }
 
-            services.AddReverseProxy().LoadFromConfig(Configuration.GetSection("ReverseProxy"));
+            _ = services.AddReverseProxy().LoadFromConfig(Configuration.GetSection("ReverseProxy"));
         }
 
         // 配置HTTP请求管道
@@ -37,11 +37,11 @@ namespace CoreHome.ReverseProxy
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                _ = app.UseDeveloperExceptionPage();
             }
 
             // 速率限制
-            app.UseRateLimiter(
+            _ = app.UseRateLimiter(
                 new RateLimiterOptions()
                 {
                     OnRejected = (context, cancellationToken) =>
@@ -57,11 +57,11 @@ namespace CoreHome.ReverseProxy
                 })
             );
 
-            app.UseRouting();
+            _ = app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
+            _ = app.UseEndpoints(endpoints =>
             {
-                endpoints.MapReverseProxy();
+                _ = endpoints.MapReverseProxy();
             });
         }
     }

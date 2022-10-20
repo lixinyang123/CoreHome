@@ -22,7 +22,7 @@
                 new KeyValuePair<string, string>("text", $"{text}\n\n\n{content}")
             });
 
-            httpClient.PostAsync(url, httpContent);
+            _ = httpClient.PostAsync(url, httpContent);
         }
     }
 }

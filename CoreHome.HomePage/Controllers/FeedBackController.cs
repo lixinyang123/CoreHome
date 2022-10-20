@@ -56,8 +56,8 @@ namespace CoreHome.HomePage.Controllers
             string title = "[ New feedback ]";
             string content = $"### Title\n {feedback.Title} \n### Content\n {feedback.Content} \n### Contact\n {feedback.Contact}";
 
-            await articleDbContext.Notifications.AddAsync(new Notification(title, content));
-            await articleDbContext.SaveChangesAsync();
+            _ = await articleDbContext.Notifications.AddAsync(new Notification(title, content));
+            _ = await articleDbContext.SaveChangesAsync();
 
             notifyService.PushNotify(title, content);
             ViewBag.Warning = "Thank you for your feedback";

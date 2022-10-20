@@ -54,18 +54,18 @@ namespace CoreHome.Admin.Controllers
         public async Task<IActionResult> Login()
         {
             //随机生成密码
-            string password = Guid.NewGuid().ToString().Substring(0, 6);
+            string password = Guid.NewGuid().ToString()[..6];
             string cacheKey = Request.Cookies["user"];
 
             //记录密码并设置过期时间为一分钟
-            cache.Set(cacheKey, password, DateTimeOffset.Now.AddMinutes(1));
+            _ = cache.Set(cacheKey, password, DateTimeOffset.Now.AddMinutes(1));
             try
             {
                 string title = "[ Login Notify ]";
                 string content = $"### VerifyCode\n > {password}";
 
-                await articleDbContext.Notifications.AddAsync(new Notification(title, content));
-                await articleDbContext.SaveChangesAsync();
+                _ = await articleDbContext.Notifications.AddAsync(new Notification(title, content));
+                _ = await articleDbContext.SaveChangesAsync();
 
                 notifyService.PushNotify(title, content);
                 return Content("验证码已经发送");
