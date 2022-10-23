@@ -25,8 +25,7 @@ let startWsTest = function () {
     };
     webSocket.onmessage = function (evt) {
         //show message
-        let order = Number(evt.data.split('|')[1]);
-        $("#spanStatus").html('Server Time: ' + evt.data.split('|')[0] + '  Message Order: ' + order);
+        $("#spanStatus").html('Server Time: ' + evt.data.split('|')[0]);
         //get time
         let wslag = new Date() - wsStartTime;
         wsStartTime = new Date();
