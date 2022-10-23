@@ -2,15 +2,28 @@
 
 ![build](https://github.com/lixinyang123/CoreHome/workflows/build/badge.svg?branch=main)
 
-Current personal [website](https://www.lllxy.net)，Powered by [.NET](https://dotnet.microsoft.com/) .
+An open source blog system based on [.NET](https://dotnet.microsoft.com/) and [Alibaba Cloud](https://www.aliyun.com/).
 
-CoreHome is a blog system based on. NET and Alibaba Cloud OSS. It includes functions such as personal information management, home page project management, theme management (home page background, light and dark themes, BGM), blog management, classification, tagging, archiving, comments and feedback alerts, and server network status detection.
+Current personal [website](https://www.lllxy.net), 
+
+### Features
+
+- Personal information management.
+- Homepage project management.
+- Theme management (background, light and dark themes, BGM).
+- Blog management (classification, tagging, archiving, comments).
+- Feedback alerts.
+- Network status detection.
+
+### Screenshot
 
 <div style="display:flex; width: 100%;">
     <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/168005656-1e49ccb1-737c-464c-bd25-5a7e2f89541b.png" />
     <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/195136555-73ce167e-114b-45c5-a6f2-11d65724174f.png" />
     <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/195137729-485080ad-5f69-4a8b-859d-ac8bf0245c06.jpeg" />
     <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/141163201-b37de67f-91f2-4333-840e-b888ae1d505e.jpeg" />
+    <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/195313142-b0cc7ba1-0738-47f9-8864-2dba231fdf6c.png" />
+    <image style="width: 49%;" src="https://user-images.githubusercontent.com/32838371/195313304-4cd9a30a-9ea9-4f57-8c65-c4c390819c97.png" />
 </div>
 	
 ### Build from source
