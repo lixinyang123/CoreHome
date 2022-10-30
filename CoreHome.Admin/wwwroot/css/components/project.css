@@ -37,21 +37,14 @@
     width: 100%;
     padding: 30px;
     float: left;
-    background: #fff;
+    background: white;
     transition: 0.3s;
 }
 
 .fh5co-blog .blog-text h3 {
     font-size: 24px;
-    margin-bottom: 20px;
     line-height: 1.5;
 }
-
-.fh5co-blog .blog-text .stuff {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    padding-top: 20px;
-}
-
 
 .fh5co-blog .blog-text .stuff li {
     list-style: none;
@@ -71,9 +64,5 @@
 }
 
 .fh5co-blog .blog-text .stuff li:last-child a {
-    color: #000;
-}
-
-.detail {
-    margin-bottom: 20px;
+    color: black;
 }
