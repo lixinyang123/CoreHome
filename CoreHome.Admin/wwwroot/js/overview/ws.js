@@ -6,7 +6,6 @@
 }
 let webSocket;
 let wsMaxLag = 0;
-let wsOrder = 0;
 let WsTest = function () {
     //thread safe
     if ($('#wsbutton').attr('disabled') === 'disabled') {
@@ -18,7 +17,6 @@ let WsTest = function () {
 let startWsTest = function () {
     //prepare
     let wsStartTime = new Date();
-    wsOrder = 0;
     webSocket = new WebSocket(getWSAddress() + "/admin/overview/Pushing");
     webSocket.onopen = function () {
         $("#spanStatus").text("connected");
@@ -37,11 +35,6 @@ let startWsTest = function () {
         if (wslag > $('#wslagfilter').val()) {
             trig('WebSocket', wslag + 'ms');
         }
-        // check order
-        if (order !== wsOrder + 1) {
-            trig('WebSocket', 'Event Not constant! prev:' + wsOrder + ' current:' + order);
-        }
-        wsOrder = order;
         //update view
         $('#wsStatus').html('Current: ' + wslag + 'ms');
         $("#wsmax").html('Max: ' + wsMaxLag + 'ms');
