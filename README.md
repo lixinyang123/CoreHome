@@ -72,11 +72,11 @@ You can refer to [this](https://www.lllxy.net/Blog/Detail/ea8c626c-fac4-4a19-85e
 	- CoreHome.ReverseProxy
 		- appsettings.json
 
-> The content of appsettings.json in CoreHome.HomePage and CoreHome.Admin is exactly the same, just copy and paste.
+> The content of appsettings.json in `CoreHome.HomePage` and `CoreHome.Admin` is exactly the same, just copy and paste.
 
-#### Configure database（appsettings.json）:
+#### Configure database:
 
-Both CoreHome.HomePage and CoreHome.Admin
+Both CoreHome.HomePage and CoreHome.Admin's `application.json` files should be configured.
 
 ```
   "CoreHome": "server=[host];user id=[user];password=[password];database=corehome"
@@ -107,7 +107,7 @@ Both CoreHome.HomePage and CoreHome.Admin
 
 - Visual Studio
 
-Tools \> Nuget Package Manager \> Package Manager Console
+Tools \-\> Nuget Package Manager \-\> Package Manager Console
 
 ```shell
 Update-Database
@@ -115,7 +115,7 @@ Update-Database
 
 - Visual Studio Code or CLI
 
-Execute the following commands in the CoreHome.HomePage and CoreHome.Admin directory.
+Execute the following commands in the `CoreHome.HomePage` and `CoreHome.Admin` directory.
 
 ```shell
 dotnet-ef database update -p ..\CoreHome.Data
@@ -129,7 +129,7 @@ Click `Startup` in Solution Explorer or `Ctrl+F5`.
 
 - CLI 
 
-Execute the following commands in the CoreHome.HomePage and CoreHome.Admin directory.
+Execute the following commands in the `CoreHome.HomePage` and `CoreHome.Admin` directory.
 
 ```shell
 dotnet run
@@ -157,7 +157,7 @@ You can use [DockerHome](https://github.com/lixinyang123/DockerHome "DockerHome"
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=lixinyang123&repo=DockerHome)](https://github.com/lixinyang123/DockerHome)
 
-You can use DockerHome to deploy CoreHome, or you can deploy it manually.
+You can use `DockerHome` to deploy CoreHome, or you can deploy it manually.
 
 > You can refer to [this](https://www.lllxy.net/Blog/Detail/b73acc42-ec42-4151-b108-a680bd1e0c87) blog to use DockerHome.
 
