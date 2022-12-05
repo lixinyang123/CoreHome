@@ -1,5 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using System.Text.Json;
+﻿using MemoryPack;
+using System.Runtime.InteropServices;
 
 namespace CoreHome.Infrastructure.Models
 {
@@ -42,15 +42,15 @@ namespace CoreHome.Infrastructure.Models
             {
                 try
                 {
-                    return JsonSerializer.Deserialize<ConfigType>(File.ReadAllTextAsync(configFile).Result);
+                    return MemoryPackSerializer.Deserialize<ConfigType>(File.ReadAllBytesAsync(configFile).Result);
                 }
-                catch (System.Exception)
+                catch (Exception)
                 {
                     ResetConfig();
                     return initConfig;
                 }
             }
-            set => File.WriteAllTextAsync(configFile, JsonSerializer.Serialize(value)).Wait();
+            set => File.WriteAllBytesAsync(configFile, MemoryPackSerializer.Serialize(value)).Wait();
         }
 
         public void ResetConfig()

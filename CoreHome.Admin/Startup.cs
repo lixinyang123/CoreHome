@@ -47,13 +47,13 @@ namespace CoreHome.Admin
             _ = services.AddSingleton<BingWallpaperService>();
 
             //个人信息服务
-            _ = services.AddSingleton(new ProfileService("Profile.json", new Profile()));
+            _ = services.AddSingleton(new ProfileService("Profile", new Profile()));
 
             //项目管理服务
-            _ = services.AddSingleton(new HomePageService("Project.json", new List<Project>()));
+            _ = services.AddSingleton(new HomePageService("Project", new List<Project>()));
 
             //主题服务
-            _ = services.AddSingleton(new ThemeService("Theme.json", new Theme()));
+            _ = services.AddSingleton(new ThemeService("Theme", new Theme()));
 
             //通知服务
             _ = services.AddSingleton(new NotifyService(Configuration.GetValue<string>("PushDeerSckey")));
@@ -62,7 +62,7 @@ namespace CoreHome.Admin
             _ = services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
 
             //安全服务
-            _ = services.AddSingleton(new SecurityService("Key.txt", new Models.Secret()
+            _ = services.AddSingleton(new SecurityService("Key", new Models.Secret()
             {
                 IV = Guid.NewGuid().ToString().Replace("-", "")[..16],
                 Key = Guid.NewGuid().ToString().Replace("-", "")

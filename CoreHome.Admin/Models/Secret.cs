@@ -1,6 +1,9 @@
+using MemoryPack;
+
 namespace CoreHome.Admin.Models
 {
-    public class Secret
+    [MemoryPackable]
+    public partial class Secret
     {
         // 初始化向量
         public string IV { get; set; }

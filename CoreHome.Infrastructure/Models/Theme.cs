@@ -1,3 +1,4 @@
+using MemoryPack;
 using System.ComponentModel.DataAnnotations;
 
 namespace CoreHome.Infrastructure.Models
@@ -5,7 +6,8 @@ namespace CoreHome.Infrastructure.Models
     public enum ThemeType { Auto, White, Black }
     public enum BackgroundType { Color, Bing, Custom }
 
-    public class Theme
+    [MemoryPackable]
+    public partial class Theme
     {
         public ThemeType ThemeType { get; set; } = ThemeType.Auto;
 

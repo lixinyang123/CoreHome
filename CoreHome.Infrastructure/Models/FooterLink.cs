@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MemoryPack;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoreHome.Infrastructure.Models
 {
-    public class FooterLink
+    [MemoryPackable]
+    public partial class FooterLink
     {
         public string Id { get; set; }
 

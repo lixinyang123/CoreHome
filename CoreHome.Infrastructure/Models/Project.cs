@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MemoryPack;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoreHome.Infrastructure.Models
 {
     public enum ProjectSize { Big, Middle, Small }
 
-    public class Project
+    [MemoryPackable]
+    public partial class Project
     {
         public string Id { get; set; }
 

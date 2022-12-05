@@ -1,6 +1,9 @@
-﻿namespace CoreHome.Infrastructure.Models
+﻿using MemoryPack;
+
+namespace CoreHome.Infrastructure.Models
 {
-    public class OssConfig
+    [MemoryPackable]
+    public partial class OssConfig
     {
         public string AccessKeyId { get; set; }
 

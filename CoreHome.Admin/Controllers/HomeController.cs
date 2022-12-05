@@ -89,7 +89,7 @@ namespace CoreHome.Admin.Controllers
             try
             {
                 cacheKey = Request.Cookies["user"];
-                password = cache.Get(cacheKey).ToString();
+                password = cache.Get(cacheKey)?.ToString();
             }
             catch (Exception) { }
 
