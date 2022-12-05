@@ -41,7 +41,7 @@ namespace CoreHome.Infrastructure.Services
                 }
                 catch (Exception)
                 {
-                    return null;
+                    return string.Empty;
                 }
             }
         }
