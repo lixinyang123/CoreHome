@@ -1,6 +1,6 @@
 ﻿let timeOut = 60;
 
-function signIn() {
+function login() {
     getPassword();
     showTime();
 }
@@ -18,11 +18,11 @@ function getPassword() {
 }
 
 function showTime() {
-    document.querySelector("#btn_sign").setAttribute("disabled", "");
-    document.querySelector("#btn_sign").innerText = `Get verification code again（${timeOut}s）`;
+    document.querySelector("#btn_login").setAttribute("disabled", "");
+    document.querySelector("#btn_login").innerText = `Get verification code again (${timeOut}s)`;
     timeOut--;
     if (timeOut < 0) {
-        let btn = document.querySelector("#btn_sign");
+        let btn = document.querySelector("#btn_login");
         btn.innerText = "Get verification code again";
         btn.removeAttribute("disabled");
         timeOut = 60;
@@ -31,7 +31,7 @@ function showTime() {
     setTimeout(showTime, 1000);
 }
 
-function changeSigninFunc(index) {
+function changeLoginFunc(index) {
     window.localStorage.setItem("SigninFunc", index);
 }
 
