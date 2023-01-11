@@ -47,11 +47,8 @@ let startWsTest = function () {
         wschartData.datasets[0].data.push(wslag);
         window.myWSLine.update();
     };
-    webSocket.onerror = function (evt) {
-        alert(evt.message);
-    };
     webSocket.onclose = function () {
-        $("#spanStatus").text("disconnected");
+        $("#spanStatus").text("WebSocket Disconnected");
     };
 };
 

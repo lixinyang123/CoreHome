@@ -82,12 +82,6 @@ namespace CoreHome.Admin
                 _ = app.UseHsts();
             }
 
-            //Linux使用Nginx反向代理，不启用https
-            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                _ = app.UseHttpsRedirection();
-            }
-
             _ = app.UsePathBase(new PathString("/Admin"));
             _ = app.UseWebSockets();
             _ = app.UseStaticFiles();

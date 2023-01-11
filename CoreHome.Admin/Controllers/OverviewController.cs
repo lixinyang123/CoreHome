@@ -48,15 +48,15 @@ namespace CoreHome.Admin.Controllers
             {
                 try
                 {
-                    _ = pusher.SendMessage(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffffff") + $"|{i + 1}").GetAwaiter();
+                    _ = pusher.SendMessage(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + $"|{i + 1}").GetAwaiter();
                     await Task.Delay(100);
                 }
                 catch
                 {
-                    break;
+                    return NoContent();
                 }
             }
-            return null;
+            return Ok();
         }
 
         [NoCache]

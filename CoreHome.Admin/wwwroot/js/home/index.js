@@ -32,19 +32,19 @@ function showTime() {
 }
 
 function changeLoginFunc(index) {
-    window.localStorage.setItem("SigninFunc", index);
+    window.localStorage.setItem("LoginFunc", index);
 }
 
 function init() {
-    let signFunc = localStorage.getItem("SigninFunc");
+    let loginFunc = localStorage.getItem("LoginFunc");
 
-    if (isNaN(signFunc))
-        signFunc = 0;
+    if (isNaN(loginFunc))
+        loginFunc = 0;
 
-    if (!signFunc) 
+    if (!loginFunc) 
         document.querySelector(".carousel-item").className = "carousel-item active";
     else
-        document.querySelectorAll(".carousel-item")[signFunc].className = "carousel-item active";
+        document.querySelectorAll(".carousel-item")[loginFunc].className = "carousel-item active";
 }
 
 init();
