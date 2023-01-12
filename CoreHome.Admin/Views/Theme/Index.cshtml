@@ -100,7 +100,11 @@
                     <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="selectImage()">
                             <div class="overflow-hidden">
-                                <img src="https://corehome.oss-accelerate.aliyuncs.com/images/backgroundtype-image.jpg" />
+                                <img id="customImg" src="@(
+                                    string.IsNullOrEmpty(@OssService.GetBackground()) ? 
+                                        "https: //corehome.oss-accelerate.aliyuncs.com/images/backgroundtype-image.jpg" : 
+                                        $"{@OssService.GetBackground()}?{new Random().Next()}"
+                                )" />
                             </div>
                             <label>
                                 <input class="BackgroundType" id="custom" type="radio" name="BackgroundType" value="@BackgroundType.Custom"

@@ -1,12 +1,6 @@
-﻿img {
-    width: 100%;
-    transition: transform 0.2s ease-out;
-}
-
-label {
+﻿label {
     font-weight: bold;
-    padding-left: 1rem;
-    padding-top: 0.6rem;
+    padding: .6rem 0 0 1rem;
     margin-bottom: 0;
 }
 
@@ -14,11 +8,22 @@ label {
     margin-bottom: 40px;
 }
 
+.card-body {
+    padding: 0;
+}
+
+.card-body > .overflow-hidden {
+    height: 242px;
+}
+
+.card-body img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease-out;
+}
+
 .card:hover img {
     transition: transform 0.2s ease-out;
     transform: scale(1.05);
-}
-
-.card-body {
-    padding: 0;
 }

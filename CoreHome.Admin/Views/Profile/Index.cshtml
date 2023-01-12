@@ -66,7 +66,7 @@
             @if (string.IsNullOrEmpty(Model.AdminPassword))
             {
                 <div class="inputRow">
-                    <label asp-for="AdminPassword"></label>*（MinLength = 8）
+                    <label asp-for="AdminPassword"></label>*
                     <input asp-for="AdminPassword" type="text" autocomplete="off" class="form-control" />
                     <span asp-validation-for="AdminPassword" class="text-danger"></span>
                 </div>

@@ -50,7 +50,7 @@ namespace CoreHome.Admin.Services
 
         public string SHA256Encrypt(string str)
         {
-            byte[] password = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(str));
+            byte[] password = SHA256.HashData(Encoding.UTF8.GetBytes(str));
             StringBuilder builder = new();
             for (int i = 0; i < password.Length; i++)
             {

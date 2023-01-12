@@ -4,6 +4,7 @@ using CoreHome.Data.Models;
 using CoreHome.Infrastructure.Services;
 using CoreHome.Infrastructure.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Caching.Memory;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -57,6 +58,11 @@ namespace CoreHome.Admin.Controllers
             string password = Guid.NewGuid().ToString()[..6];
             string cacheKey = Request.Cookies["user"];
 
+            if(!string.IsNullOrEmpty(cache.Get(cacheKey)?.ToString()))
+            {
+                return NotFound("The request rate is too fast");
+            }
+
             //记录密码并设置过期时间为一分钟
             _ = cache.Set(cacheKey, password, DateTimeOffset.Now.AddMinutes(1));
             try
@@ -68,11 +74,11 @@ namespace CoreHome.Admin.Controllers
                 _ = await articleDbContext.SaveChangesAsync();
 
                 notifyService.PushNotify(title, content);
-                return Content("验证码已经发送");
+                return Ok();
             }
             catch (Exception)
             {
-                return Content("网络错误");
+                return NotFound("Unable to get verification code");
             }
         }
 

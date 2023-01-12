@@ -20,10 +20,9 @@ function selectImage() {
 }
 
 function uploadBackground() {
-    alert("Uploading...")
     let formData = new FormData();
     formData.append("file", document.querySelector("#fileSelector").files[0]);
-    formData.append("__RequestVerificationToken", document.getElementsByName("__RequestVerificationToken")[0].value);
+    formData.append("__RequestVerificationToken", document.querySelector('[name=__RequestVerificationToken]').value);
 
     $.ajax({
         url: "/Admin/Theme/UploadBackground",
@@ -32,7 +31,7 @@ function uploadBackground() {
         processData: false,
         contentType: false,
         success: function () {
-            alert("Upload successful");
+            document.querySelector('#customImg').src += `?${ Math.random() }`;
             changeBackground('custom');
         },
         error: function () {

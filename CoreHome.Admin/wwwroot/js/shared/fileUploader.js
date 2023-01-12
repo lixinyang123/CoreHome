@@ -29,7 +29,6 @@ function uploadAvatar() {
         contentType: false,
         success: function () {
             document.querySelector("#avatar").src = document.querySelector("#avatar").src + "?" + Math.random();
-            alert("Upload successful");
             uploadingState(false, "Upload Avatar");
         },
         error: function () {
@@ -54,7 +53,6 @@ function uploadProjectCover() {
         contentType: false,
         success: function (data) {
             document.querySelector("#coverUrl").value = data.toString();
-            alert("Upload successful");
             uploadingState(false, "Upload Cover");
         },
         error: function (response) {

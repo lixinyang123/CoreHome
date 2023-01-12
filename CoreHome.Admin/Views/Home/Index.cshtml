@@ -47,20 +47,20 @@
                     <h4>Login with Password</h4>
                     <form method="post" asp-controller="home" asp-action="VerifyPassword">
                         <div class="form-group pt-2">
-                            <input name="pwd" type="password" class="form-control" placeholder="Enter the password to login" />
+                            <input name="pwd" type="password" class="form-control" placeholder="Enter the password" />
                         </div>
-                        <button type="submit" class="btn btn-dark" onclick="changeLoginFunc(0)">Submit</button>
+                        <button type="submit" class="btn btn-dark" onclick="changeLoginFunc(0)">Login</button>
                     </form>
                 </div>
 
                 <div class="carousel-item">
                     <h4>Login with verification code</h4>
                     <form method="post" asp-controller="home" asp-action="VerifyPassword">
-                        <button id="btn_login" class="btn btn-dark mt-2" onclick="login()">Get verification code</button>
+                        <button id="btn_login" type="button" class="btn btn-dark mt-2" onclick="login()">Get verification code</button>
                         <div class="form-group mt-3">
-                            <input name="pwd" type="password" class="form-control" placeholder="Enter the verification code to login" />
+                            <input name="pwd" type="password" class="form-control" placeholder="Enter the verification code" />
                         </div>
-                        <button type="submit" class="btn btn-dark" onclick="changeLoginFunc(1)">Submit</button>
+                        <button type="submit" class="btn btn-dark" onclick="changeLoginFunc(1)">Login</button>
                     </form>
                 </div>
 

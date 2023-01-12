@@ -1,19 +1,12 @@
 ﻿let timeOut = 60;
 
 function login() {
-    getPassword();
-    showTime();
-}
-
-function getPassword() {
     $.ajax({
         url: '/Admin/Home/Login',
         type: 'get',
         dataType: 'text',
-        success: function (data) {
-            alert(data);
-        },
-        error: error => console.log(error)
+        success: () => showTime(),
+        error: (err) => document.querySelector("#btn_login").innerText = err.responseText
     });
 }
 
