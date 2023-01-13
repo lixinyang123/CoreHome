@@ -31,7 +31,8 @@ function uploadBackground() {
         processData: false,
         contentType: false,
         success: function () {
-            document.querySelector('#customImg').src += `?${ Math.random() }`;
+            let customImg = document.querySelector('#customImg')
+            customImg.src = customImg.getAttribute('custom') + `?${ Math.random() }`;
             changeBackground('custom');
         },
         error: function () {

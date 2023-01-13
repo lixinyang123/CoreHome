@@ -100,10 +100,10 @@
                     <div class="card mb-2 tests-card h-100">
                         <div class="card-body" onclick="selectImage()">
                             <div class="overflow-hidden">
-                                <img id="customImg" src="@(
-                                    string.IsNullOrEmpty(@OssService.GetBackground()) ? 
-                                        "https: //corehome.oss-accelerate.aliyuncs.com/images/backgroundtype-image.jpg" : 
-                                        $"{@OssService.GetBackground()}?{new Random().Next()}"
+                                <img id="customImg" custom="@OssService.GetBackground()" src="@(
+                                    Model.BackgroundType == BackgroundType.Custom ?
+                                        $"{@OssService.GetBackground()}?{ new Random().Next() }" :
+                                        "https://corehome.oss-accelerate.aliyuncs.com/images/backgroundtype-image.jpg"
                                 )" />
                             </div>
                             <label>
