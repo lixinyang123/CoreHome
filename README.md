@@ -31,7 +31,7 @@ Current personal [website](https://www.lllxy.net),
 #### Install pre-requisites
 
 - Visual Studio 2022 / Visual Studio Code
-- .NET 7.0 SDK
+- .NET 8.0 SDK
 - Entity Framework Core
 - Libman
 - Mysql
