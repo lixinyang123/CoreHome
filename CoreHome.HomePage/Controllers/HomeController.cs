@@ -23,21 +23,18 @@ namespace CoreHome.HomePage.Controllers
         public IActionResult Index()
         {
             // 推送到百度资源搜索平台
-            _ = Task.Run(async () =>
-            {
-                string log = await searchEngineService.PushToBaidu(environment.WebRootPath);
-            });
+            _ = searchEngineService.PushToBaidu(environment.WebRootPath);
 
             ViewBag.PageTitle = "Home";
 
-            string lastTime = Request.Cookies["lastTime"];
+            string lastTime = Request.Cookies["IS_BACK"];
 
             if (lastTime != null)
             {
                 ViewBag.Title = "Welcome Back !";
             }
 
-            Response.Cookies.Append("lastTime", string.Empty, new CookieOptions()
+            Response.Cookies.Append("IS_BACK", "true", new CookieOptions()
             {
                 Expires = DateTime.Now.AddMinutes(5)
             });
