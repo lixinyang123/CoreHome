@@ -11,7 +11,7 @@ WORKDIR "/src/CoreHome.ReverseProxy"
 RUN dotnet build "CoreHome.ReverseProxy.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "CoreHome.ReverseProxy.csproj" -c Release -o /app/publish -r linux-x64 -p:PublishReadyToRun=true
+RUN dotnet publish "CoreHome.ReverseProxy.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
