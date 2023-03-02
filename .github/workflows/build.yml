@@ -25,7 +25,7 @@ jobs:
     
     - name: Push image to DockerHub
       run: |
-        docker login -u lixinyang -p ${{ secrets.DOCKERHUB_PASSWORD }}
+        docker login -u lixinyang -p ${{ secrets.REGISTRY_PWD }}
         docker push lixinyang/corehome.admin:latest
         docker push lixinyang/corehome.homepage:latest
         docker push lixinyang/corehome.reverseproxy:latest
@@ -33,7 +33,7 @@ jobs:
     
     - name: Push image to aliyun
       run: |
-        docker login -u=lllxy啊啊啊 -p ${{ secrets.DOCKERHUB_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
+        docker login -u=lllxy啊啊啊 -p ${{ secrets.REGISTRY_PWD }} registry.cn-shenzhen.aliyuncs.com
         docker tag lixinyang/corehome.admin:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.admin:latest
         docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.admin:latest
         docker tag lixinyang/corehome.homepage:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.homepage:latest
@@ -137,13 +137,13 @@ jobs:
 
     - name: Push image to DockerHub
       run: |
-        docker login -u lixinyang -p ${{ secrets.DOCKERHUB_PASSWORD }}
+        docker login -u lixinyang -p ${{ secrets.REGISTRY_PWD }}
         docker push lixinyang/corehome.homepage:home
         docker logout
     
     - name: Push image to aliyun
       run: |
-        docker login -u=lllxy啊啊啊 -p ${{ secrets.DOCKERHUB_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
+        docker login -u=lllxy啊啊啊 -p ${{ secrets.REGISTRY_PWD }} registry.cn-shenzhen.aliyuncs.com
         docker tag lixinyang/corehome.homepage:home registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.homepage:home
         docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.homepage:home
         docker logout
