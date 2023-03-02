@@ -15,31 +15,31 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Build CoreHome.Admin
-      run: docker build --file ./CoreHome.Admin/Dockerfile --tag lixinyang/corehome-admin:latest .
+      run: docker build --file ./CoreHome.Admin/Dockerfile --tag lixinyang/corehome.admin:latest .
     
     - name: Build CoreHome.HomePage
-      run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome-homepage:latest .
+      run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome.homepage:latest .
 
     - name: Build CoreHome.ReverseProxy
-      run: docker build --file ./CoreHome.ReverseProxy/Dockerfile --tag lixinyang/corehome-reverseproxy:latest .
+      run: docker build --file ./CoreHome.ReverseProxy/Dockerfile --tag lixinyang/corehome.reverseproxy:latest .
     
     - name: Push image to DockerHub
       run: |
-        docker login -u lixinyang -p ${{ secrets.DOCKERHUB_PASSWORD }}
-        docker push lixinyang/corehome-admin:latest
-        docker push lixinyang/corehome-homepage:latest
-        docker push lixinyang/corehome-reverseproxy:latest
+        docker login -u lixinyang -p ${{ secrets.REGISTRY_PWD }}
+        docker push lixinyang/corehome.admin:latest
+        docker push lixinyang/corehome.homepage:latest
+        docker push lixinyang/corehome.reverseproxy:latest
         docker logout
     
     - name: Push image to aliyun
       run: |
-        docker login -u=lllxy啊啊啊 -p ${{ secrets.DOCKERHUB_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
-        docker tag lixinyang/corehome-admin:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-admin:latest
-        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-admin:latest
-        docker tag lixinyang/corehome-homepage:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-homepage:latest
-        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-homepage:latest
-        docker tag lixinyang/corehome-reverseproxy:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-reverseproxy:latest
-        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-reverseproxy:latest
+        docker login -u=lllxy啊啊啊 -p ${{ secrets.REGISTRY_PWD }} registry.cn-shenzhen.aliyuncs.com
+        docker tag lixinyang/corehome.admin:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.admin:latest
+        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.admin:latest
+        docker tag lixinyang/corehome.homepage:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.homepage:latest
+        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.homepage:latest
+        docker tag lixinyang/corehome.reverseproxy:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.reverseproxy:latest
+        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.reverseproxy:latest
         docker logout
 
 
@@ -133,17 +133,17 @@ jobs:
         EOF
         sed -i "s! ❤! <span id="EasterEggs">❤</span>! g" ./CoreHome.HomePage/Views/Shared/_Layout.cshtml
     - name: Build CoreHome.HomePage
-      run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome-homepage:home .
+      run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome.homepage:home .
 
     - name: Push image to DockerHub
       run: |
-        docker login -u lixinyang -p ${{ secrets.DOCKERHUB_PASSWORD }}
-        docker push lixinyang/corehome-homepage:home
+        docker login -u lixinyang -p ${{ secrets.REGISTRY_PWD }}
+        docker push lixinyang/corehome.homepage:home
         docker logout
     
     - name: Push image to aliyun
       run: |
-        docker login -u=lllxy啊啊啊 -p ${{ secrets.DOCKERHUB_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
-        docker tag lixinyang/corehome-homepage:home registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-homepage:home
-        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome-homepage:home
+        docker login -u=lllxy啊啊啊 -p ${{ secrets.REGISTRY_PWD }} registry.cn-shenzhen.aliyuncs.com
+        docker tag lixinyang/corehome.homepage:home registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.homepage:home
+        docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.homepage:home
         docker logout

@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
 
-  database:
+  corehome.database:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -11,29 +11,29 @@ services:
       - db:/var/lib/mysql
 
   corehome.homepage:
-    image: corehome-homepage
+    image: corehome.homepage
     build:
       context: ../
       dockerfile: CoreHome.HomePage/Dockerfile
     depends_on:
-      - database
+      - corehome.database
     restart: always
     volumes:
       - server:/home
 
   corehome.admin:
-    image: corehome-admin
+    image: corehome.admin
     build:
       context: ../
       dockerfile: CoreHome.Admin/Dockerfile
     depends_on:
-      - database
+      - corehome.database
     restart: always
     volumes:
       - server:/home
 
   corehome.reverseproxy:
-    image: corehome-reverseproxy
+    image: corehome.reverseproxy
     build:
       context: ../
       dockerfile: CoreHome.ReverseProxy/Dockerfile
