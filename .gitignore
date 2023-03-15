@@ -339,12 +339,12 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-# 前端库
+# Frontend dependences
 lib
 
-# vscode配置
+# VSCode
 .vscode
 
-# 压缩文件
+# Bundle and minify
 *.min.js
 *.min.css
