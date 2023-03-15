@@ -32,8 +32,8 @@ Current personal [website](https://www.lllxy.net),
 
 - Visual Studio 2022 / Visual Studio Code
 - .NET 8.0 SDK
-- Entity Framework Core
-- Libman
+- Libman (VS Extension)
+- Bundler & Minifier (VS Extension)
 - Mysql
 - Docker（WSL2 is recommended）
 
