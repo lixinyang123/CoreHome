@@ -113,13 +113,17 @@ namespace CoreHome.HomePage.Controllers
 
             int pageCount = await Task.Run(() =>
             {
-                int count = articleDbContext.ArticleTags.Include(i => i.Tag).Where(i => i.Tag.TagName == id).Count();
+                int count = articleDbContext.ArticleTags
+                    .AsNoTracking()
+                    .Include(i => i.Tag)
+                    .Where(i => i.Tag.TagName == id)
+                    .Count();
+
                 return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
             });
             index = CorrectIndex(index, pageCount);
 
             List<ArticleTag> articleTags = await articleDbContext.ArticleTags
-                .AsNoTracking()
                 .OrderByDescending(i => i.Article.Id)
                 .Include(i => i.Article)
                 .ThenInclude(i => i.ArticleTags)

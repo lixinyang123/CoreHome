@@ -159,8 +159,9 @@ namespace CoreHome.Admin.Controllers
 
         public async Task<IActionResult> Modify(Guid id)
         {
-            Article article = await articleDbContext.Articles.Include(i => i.Category)
+            Article article = await articleDbContext.Articles
                 .AsNoTracking()
+                .Include(i => i.Category)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .SingleOrDefaultAsync(i => i.ArticleCode == id);
