@@ -26,7 +26,10 @@ namespace CoreHome.HomePage.Controllers
         /// <returns>所有标签页面</returns>
         public async Task<IActionResult> AllTags()
         {
-            List<Tag> tags = await articleDbContext.Tags.Include(i => i.ArticleTags).ToListAsync();
+            List<Tag> tags = await articleDbContext.Tags
+                .AsNoTracking()
+                .Include(i => i.ArticleTags)
+                .ToListAsync();
 
             List<List<string>> wordClouds = new();
 

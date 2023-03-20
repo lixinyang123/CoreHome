@@ -57,6 +57,7 @@ namespace CoreHome.Admin.Controllers
             ViewBag.PageCount = pageCount == 0 ? 1 : pageCount;
 
             List<Article> articles = await articleDbContext.Articles
+                .AsNoTracking()
                 .OrderByDescending(i => i.Id)
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize)
@@ -159,6 +160,7 @@ namespace CoreHome.Admin.Controllers
         public async Task<IActionResult> Modify(Guid id)
         {
             Article article = await articleDbContext.Articles.Include(i => i.Category)
+                .AsNoTracking()
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .SingleOrDefaultAsync(i => i.ArticleCode == id);
@@ -276,6 +278,7 @@ namespace CoreHome.Admin.Controllers
             ViewBag.PageTitle = "Comment";
 
             Article article = await articleDbContext.Articles
+                .AsNoTracking()
                 .Include(i => i.Comments)
                 .SingleOrDefaultAsync(i => i.ArticleCode == id);
 

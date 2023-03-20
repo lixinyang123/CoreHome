@@ -55,6 +55,7 @@ namespace CoreHome.HomePage.Controllers
             index = CorrectIndex(index, pageCount);
 
             List<Article> articles = await articleDbContext.Articles
+                .AsNoTracking()
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.Category)
                 .Include(i => i.ArticleTags)
@@ -86,6 +87,7 @@ namespace CoreHome.HomePage.Controllers
             index = CorrectIndex(index, pageCount);
 
             List<Article> articles = await articleDbContext.Articles
+                .AsNoTracking()
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
@@ -117,6 +119,7 @@ namespace CoreHome.HomePage.Controllers
             index = CorrectIndex(index, pageCount);
 
             List<ArticleTag> articleTags = await articleDbContext.ArticleTags
+                .AsNoTracking()
                 .OrderByDescending(i => i.Article.Id)
                 .Include(i => i.Article)
                 .ThenInclude(i => i.ArticleTags)
@@ -153,12 +156,17 @@ namespace CoreHome.HomePage.Controllers
 
             int pageCount = await Task.Run(() =>
             {
-                int count = articleDbContext.Articles.Where(i => i.Month.Value == para && i.Month.Year.Value == id).Count();
+                int count = articleDbContext.Articles
+                    .AsNoTracking()
+                    .Where(i => i.Month.Value == para && i.Month.Year.Value == id)
+                    .Count();
+
                 return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
             });
             index = CorrectIndex(index, pageCount);
 
             List<Article> articles = await articleDbContext.Articles
+                .AsNoTracking()
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Where(i => i.Month.Value == para && i.Month.Year.Value == id)
@@ -188,12 +196,17 @@ namespace CoreHome.HomePage.Controllers
 
             int pageCount = await Task.Run(() =>
             {
-                int count = articleDbContext.Articles.Where(i => i.Title.ToLower().Contains(id.ToLower())).Count();
+                int count = articleDbContext.Articles
+                    .AsNoTracking()
+                    .Where(i => i.Title.ToLower().Contains(id.ToLower()))
+                    .Count();
+
                 return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
             });
             index = CorrectIndex(index, pageCount);
 
             List<Article> articles = await articleDbContext.Articles
+                .AsNoTracking()
                 .OrderByDescending(i => i.Id)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
@@ -215,6 +228,7 @@ namespace CoreHome.HomePage.Controllers
         public async Task<IActionResult> Detail(Guid id)
         {
             Article article = await articleDbContext.Articles
+                .AsNoTracking()
                 .Include(i => i.Category)
                 .Include(i => i.Comments)
                 .Include(i => i.ArticleTags)
@@ -244,11 +258,11 @@ namespace CoreHome.HomePage.Controllers
         public async Task<IActionResult> Detail(CommentViewModel viewModel)
         {
             Article article = await articleDbContext.Articles
-                   .Include(i => i.Category)
-                   .Include(i => i.Comments)
-                   .Include(i => i.ArticleTags)
-                   .ThenInclude(i => i.Tag)
-                   .SingleOrDefaultAsync(i => i.ArticleCode == viewModel.ArticleCode);
+                .Include(i => i.Category)
+                .Include(i => i.Comments)
+                .Include(i => i.ArticleTags)
+                .ThenInclude(i => i.Tag)
+                .SingleOrDefaultAsync(i => i.ArticleCode == viewModel.ArticleCode);
 
             if (article == null)
             {
@@ -289,7 +303,6 @@ namespace CoreHome.HomePage.Controllers
                 Time = DateTime.Now,
                 Detail = viewModel.Detail
             });
-            _ = articleDbContext.SaveChanges();
 
             string title = "[ New Comment ]";
             string content = $"### Blog\n {article.Title} \n### Detail\n {viewModel.Detail}";

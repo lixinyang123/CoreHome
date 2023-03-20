@@ -4,7 +4,6 @@ using CoreHome.Data.Models;
 using CoreHome.Infrastructure.Services;
 using CoreHome.Infrastructure.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Caching.Memory;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -58,7 +57,7 @@ namespace CoreHome.Admin.Controllers
             string password = Guid.NewGuid().ToString()[..6];
             string cacheKey = Request.Cookies["user"];
 
-            if(!string.IsNullOrEmpty(cache.Get(cacheKey)?.ToString()))
+            if (!string.IsNullOrEmpty(cache.Get(cacheKey)?.ToString()))
             {
                 return NotFound("The request rate is too fast");
             }

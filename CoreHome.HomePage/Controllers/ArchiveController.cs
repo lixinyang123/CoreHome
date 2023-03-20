@@ -23,6 +23,7 @@ namespace CoreHome.HomePage.Controllers
             ViewBag.PageTitle = "Archive";
 
             List<Year> years = await articleDbContext.Years
+                .AsNoTracking()
                 .OrderByDescending(i => i.Value)
                 .Include(i => i.Months)
                 .ThenInclude(i => i.Articles)
