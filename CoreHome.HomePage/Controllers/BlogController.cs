@@ -89,6 +89,7 @@ namespace CoreHome.HomePage.Controllers
             List<Article> articles = await articleDbContext.Articles
                 .AsNoTracking()
                 .OrderByDescending(i => i.Id)
+                .Include(i => i.Category)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Where(i => i.Category.CategoriesName == id)
@@ -171,6 +172,7 @@ namespace CoreHome.HomePage.Controllers
 
             List<Article> articles = await articleDbContext.Articles
                 .AsNoTracking()
+                .Include(i => i.Category)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Where(i => i.Month.Value == para && i.Month.Year.Value == id)
@@ -212,6 +214,7 @@ namespace CoreHome.HomePage.Controllers
             List<Article> articles = await articleDbContext.Articles
                 .AsNoTracking()
                 .OrderByDescending(i => i.Id)
+                .Include(i => i.Category)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Where(i => i.Title.ToLower().Contains(id.ToLower()) || i.Overview.ToLower().Contains(id.ToLower()))
