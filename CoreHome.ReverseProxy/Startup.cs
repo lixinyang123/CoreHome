@@ -29,6 +29,16 @@ namespace CoreHome.ReverseProxy
                     .PersistKeysToFileSystem(new DirectoryInfo(@"/home/Server/CoreHome/"));
             }
 
+            _ = services.AddRateLimiter(options =>
+            {
+                options.AddConcurrencyLimiter("MyPolicy", option =>
+                {
+                    option.QueueLimit = 10;
+                    option.PermitLimit = 10;
+                    option.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                });
+            });
+
             _ = services.AddReverseProxy().LoadFromConfig(Configuration.GetSection("ReverseProxy"));
         }
 
@@ -41,21 +51,7 @@ namespace CoreHome.ReverseProxy
             }
 
             // 速率限制
-            _ = app.UseRateLimiter(
-                new RateLimiterOptions()
-                {
-                    OnRejected = (context, cancellationToken) =>
-                    {
-                        context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
-                        return new ValueTask();
-                    }
-                }.AddConcurrencyLimiter("MyPolicy", option =>
-                {
-                    option.QueueLimit = 10;
-                    option.PermitLimit = 10;
-                    option.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-                })
-            );
+            _ = app.UseRateLimiter();
 
             _ = app.UseRouting();
 
