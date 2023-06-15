@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-preview AS base
+USER app
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8080
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
@@ -22,9 +22,9 @@ RUN ~/.dotnet/tools/libman restore
 RUN dotnet build "CoreHome.HomePage.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "CoreHome.HomePage.csproj" -c Release -o /app/publish
+RUN dotnet publish "CoreHome.HomePage.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CoreHome.HomePage.dll","urls=http://*:80"]
+ENTRYPOINT ["dotnet", "CoreHome.HomePage.dll"]
