@@ -41,7 +41,12 @@ namespace CoreHome.HomePage
             //数据库上下文
             _ = services.AddDbContext<ArticleDbContext>(options =>
             {
-                _ = options.UseMySql(Configuration.GetConnectionString("CoreHome"), new MySqlServerVersion(new Version(8, 0, 18)));
+                MySqlServerVersion version = new(new Version(8, 0, 18));
+
+                _ = options.UseMySql(Configuration.GetConnectionString("CoreHome"), version, option =>
+                {
+                    option.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                });
             });
 
             //验证服务

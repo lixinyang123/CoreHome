@@ -1,9 +1,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-preview AS base
-USER app
 WORKDIR /app
 EXPOSE 8080
 
-RUN sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0-preview AS build
 WORKDIR /src
