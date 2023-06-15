@@ -24,4 +24,4 @@ RUN dotnet publish "CoreHome.Admin.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CoreHome.Admin.dll","urls=http://*"]
+ENTRYPOINT ["dotnet", "CoreHome.Admin.dll","urls=http://*:80"]
