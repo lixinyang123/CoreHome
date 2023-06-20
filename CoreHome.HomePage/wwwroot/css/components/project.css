@@ -1,9 +1,10 @@
-﻿.fh5co-blog {
+.fh5co-blog {
     width: 100%;
     float: left;
+    position: relative;
     margin-bottom: 40px;
-    border: 1px solid rgba(0,0,0,0.12);
-    transition: transform 0.2s ease-out;
+    border: 1px solid rgba(0,0,0,.12);
+    transition: transform .2s ease-out;
 }
 
 .blog-imgbox {
@@ -16,14 +17,13 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    position: relative;
-    height: 300px;
-    transition: transform 0.2s ease-out;
+    height: 400px;
+    transition: transform .2s ease-out;
 }
 
 .fh5co-blog:hover {
     transform: translateY(-7px);
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 20px 50px 0 rgba(0,0,0,.5);
 }
 
 .fh5co-blog:hover .blog-bg {
@@ -31,12 +31,15 @@
 }
 
 .fh5co-blog .blog-text {
-    position: relative;
+    position: absolute;
     width: 100%;
     padding: 20px 30px;
     float: left;
-    background: white;
-    transition: 0.3s;
+    bottom: 0;
+    color: white;
+    background: #rgba(0,0,0,.6);
+    backdrop-filter: saturate(110%) blur(10px);
+    transition: .3s;
 }
 
 .fh5co-blog .blog-text h3 {
@@ -50,7 +53,6 @@
     margin-left: 10px;
 }
 
-
 @media screen and (max-width: 768px) {
     .fh5co-blog .blog-text .stuff li {
         font-size: 14px;
@@ -62,5 +64,5 @@
 }
 
 .fh5co-blog .blog-text .stuff li:last-child a {
-    color: black;
+    color: white;
 }
