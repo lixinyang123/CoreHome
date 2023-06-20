@@ -37,7 +37,7 @@
     float: left;
     bottom: 0;
     color: white;
-    background: #rgba(0,0,0,.6);
+    background: rgba(0,0,0,.6);
     backdrop-filter: saturate(110%) blur(10px);
     transition: .3s;
 }
