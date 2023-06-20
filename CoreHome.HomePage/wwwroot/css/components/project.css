@@ -22,7 +22,7 @@
 
 .fh5co-blog:hover {
     transform: translateY(-7px);
-    box-shadow: 0 20px 50px 0 rgba(0,0,0,.5);
+    box-shadow: 0 7px 20px 0 rgba(0,0,0,.5)
 }
 
 .fh5co-blog:hover .blog-bg {
