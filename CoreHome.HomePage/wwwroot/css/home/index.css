@@ -23,6 +23,7 @@
     left: 0;
     right: 0;
     background-color: rgba(70, 49, 112, 1);
+    background-attachment: fixed;
     background-image: 
         radial-gradient(closest-side,rgb(43, 66, 163),rgba(235,105,78,0)),
         radial-gradient(closest-side,rgb(122, 64, 143),rgba(243,11,164,0)),
@@ -41,6 +42,7 @@
     position: absolute;
     background-size: cover;
     background-position: 50%;
+    background-attachment: fixed;
     bottom: 0;
     left: 0;
 }
