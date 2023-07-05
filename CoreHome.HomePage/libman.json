@@ -3,7 +3,7 @@
   "defaultProvider": "jsdelivr",
   "libraries": [
     {
-      "library": "jquery@3.6.1",
+      "library": "jquery@3.7.0",
       "destination": "wwwroot/lib/jquery/"
     },
     {
@@ -11,7 +11,7 @@
       "destination": "wwwroot/lib/bootstrap/"
     },
     {
-      "library": "darkreader@4.9.57",
+      "library": "darkreader@4.9.58",
       "destination": "wwwroot/lib/darkreader/"
     },
     {
@@ -19,7 +19,7 @@
       "destination": "wwwroot/lib/editor.md/"
     },
     {
-      "library": "wordcloud@1.1.2",
+      "library": "wordcloud@1.2.2",
       "destination": "wwwroot/lib/wordcloud/"
     },
     {
@@ -27,7 +27,7 @@
       "destination": "wwwroot/lib/scrollreveal/"
     },
     {
-      "library": "typed.js@2.0.12",
+      "library": "typed.js@2.0.16",
       "destination": "wwwroot/lib/typed.js/"
     },
     {
@@ -35,7 +35,7 @@
       "destination": "wwwroot/lib/qrcodejs/"
     },
     {
-      "library": "viewerjs@1.9.2",
+      "library": "viewerjs@1.11.3",
       "destination": "wwwroot/lib/viewerjs/"
     }
   ]
