@@ -67,7 +67,7 @@ namespace CoreHome.Admin.Controllers
             try
             {
                 string title = "[ Login Notify ]";
-                string content = $"### VerifyCode\n > {password}";
+                string content = $"# VerifyCode \n> {password}";
 
                 _ = await articleDbContext.Notifications.AddAsync(new Notification(title, content));
                 _ = await articleDbContext.SaveChangesAsync();

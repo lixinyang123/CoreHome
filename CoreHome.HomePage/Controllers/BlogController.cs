@@ -204,7 +204,7 @@ namespace CoreHome.HomePage.Controllers
             {
                 int count = articleDbContext.Articles
                     .AsNoTracking()
-                    .Where(i => i.Title.ToLower().Contains(id.ToLower()))
+                    .Where(i => i.Title.Contains(id.ToLower(), StringComparison.CurrentCultureIgnoreCase))
                     .Count();
 
                 return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
@@ -217,7 +217,10 @@ namespace CoreHome.HomePage.Controllers
                 .Include(i => i.Category)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
-                .Where(i => i.Title.ToLower().Contains(id.ToLower()) || i.Overview.ToLower().Contains(id.ToLower()))
+                .Where(i => 
+                    i.Title.Contains(id.ToLower(), StringComparison.CurrentCultureIgnoreCase) || 
+                    i.Overview.Contains(id.ToLower(), StringComparison.CurrentCultureIgnoreCase)
+                )
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
 
@@ -312,7 +315,7 @@ namespace CoreHome.HomePage.Controllers
             });
 
             string title = "[ New Comment ]";
-            string content = $"### Blog\n {article.Title} \n### Detail\n {viewModel.Detail}";
+            string content = $"# Blog \n{article.Title} \n# Detail \n{viewModel.Detail}";
 
             _ = await articleDbContext.Notifications.AddAsync(new Notification(title, content));
             _ = await articleDbContext.SaveChangesAsync();

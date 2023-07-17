@@ -1,26 +1,35 @@
-﻿namespace CoreHome.Infrastructure.Services
+﻿using System.Text;
+using System.Text.Json;
+using CoreHome.Infrastructure.Models;
+
+namespace CoreHome.Infrastructure.Services
 {
     public class NotifyService
     {
-        private readonly string url = "https://api2.pushdeer.com/message/push";
+        private readonly string url = "https://wxpusher.zjiecode.com/api/send/message";
 
-        private readonly string sckey;
+        private readonly string token;
+
+        private readonly string uid;
 
         private readonly HttpClient httpClient;
 
-        public NotifyService(string sckey)
+        public NotifyService(PusherConfig config)
         {
-            this.sckey = sckey;
+            this.token = config.Token;
+            this.uid = config.Uid;
             httpClient = new();
         }
 
-        public void PushNotify(string text, string content)
+        public void PushNotify(string title, string content)
         {
-            HttpContent httpContent = new FormUrlEncodedContent(new List<KeyValuePair<string, string>>()
-            {
-                new KeyValuePair<string, string>("pushkey", sckey),
-                new KeyValuePair<string, string>("text", $"{text}\n\n\n{content}")
-            });
+            NotificationBody notification = new(token, uid, title, content);
+
+            HttpContent httpContent = new StringContent(
+                JsonSerializer.Serialize(notification), 
+                Encoding.UTF8, 
+                "application/json"
+            );
 
             _ = httpClient.PostAsync(url, httpContent);
         }
