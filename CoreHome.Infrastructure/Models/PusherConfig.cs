@@ -1,6 +1,6 @@
 namespace CoreHome.Infrastructure.Models
 {
-    public partial class PushDeerConfig
+    public partial class PusherConfig
     {
         public string Token { get; set; }
 

@@ -10,7 +10,7 @@ namespace CoreHome.Infrastructure.Models
             Summary = summery;
             Content = content;
             Uids = new() { uid };
-            Summary = "CoreHome 通知";
+            Summary = "CoreHome Notification";
             ContentType = 3;
             VerifyPay = false;
         }

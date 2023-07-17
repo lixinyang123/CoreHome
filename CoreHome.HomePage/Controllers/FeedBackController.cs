@@ -54,7 +54,7 @@ namespace CoreHome.HomePage.Controllers
             }
 
             string title = "[ New feedback ]";
-            string content = $"### Title\n {feedback.Title} \n### Content\n {feedback.Content} \n### Contact\n {feedback.Contact}";
+            string content = $"# Title \n{feedback.Title} \n# Contact \n{feedback.Contact} \n# Content \n{feedback.Content}";
 
             _ = await articleDbContext.Notifications.AddAsync(new Notification(title, content));
             _ = await articleDbContext.SaveChangesAsync();

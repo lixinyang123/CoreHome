@@ -14,16 +14,16 @@ namespace CoreHome.Infrastructure.Services
 
         private readonly HttpClient httpClient;
 
-        public NotifyService(PushDeerConfig config)
+        public NotifyService(PusherConfig config)
         {
             this.token = config.Token;
             this.uid = config.Uid;
             httpClient = new();
         }
 
-        public async void PushNotify(string text, string content)
+        public void PushNotify(string title, string content)
         {
-            NotificationBody notification = new(token,  uid, text, content);
+            NotificationBody notification = new(token, uid, title, content);
 
             HttpContent httpContent = new StringContent(
                 JsonSerializer.Serialize(notification), 
@@ -31,8 +31,7 @@ namespace CoreHome.Infrastructure.Services
                 "application/json"
             );
 
-            HttpResponseMessage response = await httpClient.PostAsync(url, httpContent);
-            string result = await response.Content.ReadAsStringAsync();
+            _ = httpClient.PostAsync(url, httpContent);
         }
     }
 }
