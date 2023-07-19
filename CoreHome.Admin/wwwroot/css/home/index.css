@@ -1,20 +1,16 @@
 ﻿#imgbg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #content {
     text-align: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
     width: 400px;
-    margin-left: -200px;
-    margin-top: -200px;
+    margin-bottom: 50px;
     background-color: rgba(255, 255, 255, 0.3);
     backdrop-filter: saturate(180%) blur(10px);
     box-shadow: 0 0 20px 10px rgba(0,0,0,.15);
@@ -33,8 +29,8 @@ form {
     width: 80%;
 }
 
-footer{
-    margin-top:20px;
+footer {
+    margin-top: 20px;
 }
 
 .btn {

@@ -34,55 +34,56 @@
 </head>
 <body>
 
-    <div id="imgbg" style="background-image:url('@await BingWallpaperService.GetUrl()');"></div>
+    <div id="imgbg" style="background-image:url('@await BingWallpaperService.GetUrl()');">
+        <div id="content">
 
-    <div id="content">
+            <img id="user" src="@OssService.GetAvatar()" />
 
-        <img id="user" src="@OssService.GetAvatar()" />
+            <div id="loginCarousel" class="carousel slide pl-4 pr-4" data-ride="carousel" data-interval="false">
+                <div class="carousel-inner">
 
-        <div id="loginCarousel" class="carousel slide pl-4 pr-4" data-ride="carousel" data-interval="false">
-            <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <h4>Login with Password</h4>
+                        <form method="post" asp-controller="home" asp-action="VerifyPassword">
+                            <div class="form-group pt-2">
+                                <input name="pwd" type="password" class="form-control" placeholder="Enter the password" />
+                            </div>
+                            <button type="submit" class="btn btn-dark" onclick="changeLoginFunc(0)">Login</button>
+                        </form>
+                    </div>
 
-                <div class="carousel-item">
-                    <h4>Login with Password</h4>
-                    <form method="post" asp-controller="home" asp-action="VerifyPassword">
-                        <div class="form-group pt-2">
-                            <input name="pwd" type="password" class="form-control" placeholder="Enter the password" />
-                        </div>
-                        <button type="submit" class="btn btn-dark" onclick="changeLoginFunc(0)">Login</button>
-                    </form>
+                    <div class="carousel-item">
+                        <h4>Login with verification code</h4>
+                        <form method="post" asp-controller="home" asp-action="VerifyPassword">
+                            <button id="btn_login" type="button" class="btn btn-dark mt-2" onclick="login()">Get verification code</button>
+                            <div class="form-group mt-3">
+                                <input name="pwd" type="password" class="form-control" placeholder="Enter the verification code" />
+                            </div>
+                            <button type="submit" class="btn btn-dark" onclick="changeLoginFunc(1)">Login</button>
+                        </form>
+                    </div>
+
                 </div>
 
-                <div class="carousel-item">
-                    <h4>Login with verification code</h4>
-                    <form method="post" asp-controller="home" asp-action="VerifyPassword">
-                        <button id="btn_login" type="button" class="btn btn-dark mt-2" onclick="login()">Get verification code</button>
-                        <div class="form-group mt-3">
-                            <input name="pwd" type="password" class="form-control" placeholder="Enter the verification code" />
-                        </div>
-                        <button type="submit" class="btn btn-dark" onclick="changeLoginFunc(1)">Login</button>
-                    </form>
-                </div>
+                <a class="carousel-control-prev" href="#loginCarousel" role="button" data-slide="prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z" />
+                    </svg>
+                </a>
 
+                <a class="carousel-control-next" href="#loginCarousel" role="button" data-slide="next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z" />
+                    </svg>
+                </a>
             </div>
 
-            <a class="carousel-control-prev" href="#loginCarousel" role="button" data-slide="prev">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z" />
-                </svg>
-            </a>
+            <footer>
+                <hr />
+                <p>&copy; @DateTime.Now.Year - @ViewBag.Profile.Name</p>
+            </footer>
 
-            <a class="carousel-control-next" href="#loginCarousel" role="button" data-slide="next">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z" />
-                </svg>
-            </a>
         </div>
-
-        <footer>
-            <hr />
-            <p>&copy; @DateTime.Now.Year - @ViewBag.Profile.Name</p>
-        </footer>
     </div>
 
     <script type="text/javascript" src="~/js/home/index.min.js"></script>
