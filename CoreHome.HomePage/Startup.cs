@@ -46,6 +46,7 @@ namespace CoreHome.HomePage
                 _ = options.UseMySql(Configuration.GetConnectionString("CoreHome"), version, option =>
                 {
                     option.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                    option.EnableStringComparisonTranslations();
                 });
             });
 

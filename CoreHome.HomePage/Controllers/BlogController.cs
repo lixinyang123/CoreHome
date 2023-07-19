@@ -204,11 +204,12 @@ namespace CoreHome.HomePage.Controllers
             {
                 int count = articleDbContext.Articles
                     .AsNoTracking()
-                    .Where(i => i.Title.Contains(id.ToLower(), StringComparison.CurrentCultureIgnoreCase))
+                    .Where(i => i.Title.Contains(id, StringComparison.OrdinalIgnoreCase))
                     .Count();
 
                 return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
             });
+
             index = CorrectIndex(index, pageCount);
 
             List<Article> articles = await articleDbContext.Articles
@@ -218,8 +219,8 @@ namespace CoreHome.HomePage.Controllers
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Where(i => 
-                    i.Title.Contains(id.ToLower(), StringComparison.CurrentCultureIgnoreCase) || 
-                    i.Overview.Contains(id.ToLower(), StringComparison.CurrentCultureIgnoreCase)
+                    i.Title.Contains(id, StringComparison.OrdinalIgnoreCase) || 
+                    i.Overview.Contains(id, StringComparison.OrdinalIgnoreCase)
                 )
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
