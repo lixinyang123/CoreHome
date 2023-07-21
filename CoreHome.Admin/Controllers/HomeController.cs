@@ -88,9 +88,10 @@ namespace CoreHome.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult VerifyPassword([FromForm][Required] string pwd)
+        public IActionResult VerifyPassword([FromForm][Required] string pwd, string redirect)
         {
             string cacheKey = null, password = null;
+
             try
             {
                 cacheKey = Request.Cookies["user"];
@@ -115,8 +116,9 @@ namespace CoreHome.Admin.Controllers
                 });
 
                 //重定向到仪表盘
-                return Redirect("/Admin/Overview");
+                return Redirect(string.IsNullOrEmpty(redirect) ? "/Admin/Overview" : redirect);
             }
+
             return Redirect("/Admin/Home");
         }
 
