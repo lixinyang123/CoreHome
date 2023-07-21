@@ -324,7 +324,7 @@ namespace CoreHome.HomePage.Controllers
             notifyService.PushNotify(
                 title, 
                 content, 
-                $"{Request.Headers.Referer}" + Path.Combine("/Admin/Blog/Comment/", article.ArticleCode.ToString())
+                $"{Request.Headers.Origin}" + Path.Combine("/Admin/Blog/Comment/", article.ArticleCode.ToString())
             );
 
             detailViewModel.CommentViewModel = new CommentViewModel();
