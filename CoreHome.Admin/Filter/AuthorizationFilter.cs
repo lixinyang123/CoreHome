@@ -55,7 +55,7 @@ namespace CoreHome.Admin.Filter
 
                 context.Result = new RedirectToActionResult("Index", "Home", new
                 {
-                    Redirect = context.HttpContext.Request.Path
+                    Redirect = context.HttpContext.Request.PathBase + context.HttpContext.Request.Path
                 });
             }
         }
