@@ -62,7 +62,7 @@ namespace CoreHome.HomePage.Controllers
             notifyService.PushNotify(
                 title,
                 content,
-                $"{Request.Scheme}://{Request.Host}/Admin/Notification"
+                $"{Request.Headers.Referer}/Admin/Notification"
             );
 
             ViewBag.Warning = "Thank you for your feedback";
