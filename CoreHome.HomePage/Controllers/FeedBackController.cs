@@ -59,7 +59,12 @@ namespace CoreHome.HomePage.Controllers
             _ = await articleDbContext.Notifications.AddAsync(new Notification(title, content));
             _ = await articleDbContext.SaveChangesAsync();
 
-            notifyService.PushNotify(title, content);
+            notifyService.PushNotify(
+                title,
+                content,
+                $"{Request.Scheme}://{Request.Host}/Admin/Notification"
+            );
+
             ViewBag.Warning = "Thank you for your feedback";
             return View();
         }

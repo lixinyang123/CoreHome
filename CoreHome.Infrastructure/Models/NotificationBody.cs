@@ -4,7 +4,7 @@ namespace CoreHome.Infrastructure.Models
 {
     public class NotificationBody
     {
-        public NotificationBody(string token, string uid, string summery, string content)
+        public NotificationBody(string token, string uid, string summery, string content, string url = "")
         {
             AppToken = token;
             Summary = summery;
@@ -13,6 +13,7 @@ namespace CoreHome.Infrastructure.Models
             Summary = "CoreHome Notification";
             ContentType = 3;
             VerifyPay = false;
+            Url = url;
         }
 
         [JsonPropertyName("appToken")]
@@ -29,6 +30,9 @@ namespace CoreHome.Infrastructure.Models
 
         [JsonPropertyName("uids")]
         public List<string> Uids { get; set; }
+
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
 
         [JsonPropertyName("verifyPay")]
         public bool VerifyPay { get; set; }

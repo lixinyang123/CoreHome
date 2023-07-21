@@ -6,7 +6,7 @@ namespace CoreHome.Infrastructure.Services
 {
     public class NotifyService
     {
-        private readonly string url = "https://wxpusher.zjiecode.com/api/send/message";
+        private readonly string api = "https://wxpusher.zjiecode.com/api/send/message";
 
         private readonly string token;
 
@@ -21,9 +21,9 @@ namespace CoreHome.Infrastructure.Services
             httpClient = new();
         }
 
-        public void PushNotify(string title, string content)
+        public void PushNotify(string title, string content, string url = "")
         {
-            NotificationBody notification = new(token, uid, title, content);
+            NotificationBody notification = new(token, uid, title, content, url);
 
             HttpContent httpContent = new StringContent(
                 JsonSerializer.Serialize(notification), 
@@ -31,7 +31,7 @@ namespace CoreHome.Infrastructure.Services
                 "application/json"
             );
 
-            _ = httpClient.PostAsync(url, httpContent);
+            _ = httpClient.PostAsync(api, httpContent);
         }
     }
 }

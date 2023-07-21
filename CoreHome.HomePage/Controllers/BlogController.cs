@@ -321,7 +321,11 @@ namespace CoreHome.HomePage.Controllers
             _ = await articleDbContext.Notifications.AddAsync(new Notification(title, content));
             _ = await articleDbContext.SaveChangesAsync();
 
-            notifyService.PushNotify(title, content);
+            notifyService.PushNotify(
+                title, 
+                content, 
+                $"{Request.Scheme}://{Request.Host}" + Path.Combine("/Admin/Blog/Comment/", article.ArticleCode.ToString())
+            );
 
             detailViewModel.CommentViewModel = new CommentViewModel();
             ViewBag.Warning = new
@@ -329,8 +333,8 @@ namespace CoreHome.HomePage.Controllers
                 Style = "alert alert-success",
                 Content = "Thank you for your Comment."
             };
-            return View(detailViewModel);
 
+            return View(detailViewModel);
         }
     }
 }
