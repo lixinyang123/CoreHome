@@ -322,9 +322,9 @@ namespace CoreHome.HomePage.Controllers
             _ = await articleDbContext.SaveChangesAsync();
 
             notifyService.PushNotify(
-                title, 
-                content, 
-                $"{Request.Headers.Origin}" + Path.Combine("/Admin/Blog/Comment/", article.ArticleCode.ToString())
+                title,
+                content,
+                $"{Request.Headers.Origin}/Admin/Blog/Comment/{article.ArticleCode}"
             );
 
             detailViewModel.CommentViewModel = new CommentViewModel();
