@@ -8,11 +8,11 @@ namespace CoreHome.Admin.Attributes
         {
             if (!context.HttpContext.Response.Headers.ContainsKey("Cache-Control"))
             {
-                context.HttpContext.Response.Headers.Add("Cache-Control", "no-cache");
+                context.HttpContext.Response.Headers.Append("Cache-Control", "no-cache");
             }
             if (!context.HttpContext.Response.Headers.ContainsKey("Expires"))
             {
-                context.HttpContext.Response.Headers.Add("Expires", "-1");
+                context.HttpContext.Response.Headers.Append("Expires", "-1");
             }
             base.OnActionExecuting(context);
         }

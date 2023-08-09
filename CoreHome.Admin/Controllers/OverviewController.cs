@@ -62,7 +62,7 @@ namespace CoreHome.Admin.Controllers
         [NoCache]
         public IActionResult Download()
         {
-            HttpContext.Response.Headers.Add("Content-Length", length.ToString());
+            HttpContext.Response.Headers.Append("Content-Length", length.ToString());
             return new FileContentResult(GetData(), "application/octet-stream");
         }
 
