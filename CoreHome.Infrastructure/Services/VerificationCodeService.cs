@@ -42,7 +42,7 @@ namespace CoreHome.Infrastructure.Services
         {
             using Image<Rgba32> image = new(100, 42);
 
-            IPen pen = Pens.Solid(Color.Black, 2);
+            Pen pen = Pens.Solid(Color.Black, 2);
             Font font = new(fontFamily, 30, FontStyle.Bold);
 
             // 画验证码
@@ -50,7 +50,7 @@ namespace CoreHome.Infrastructure.Services
                 .DrawText(VerificationCode, font, Color.Black, new PointF(12, 5)));
 
             // 画干扰线
-            image.Mutate(i => i.DrawLines(pen, RandomPoint().ToArray()));
+            image.Mutate(i => i.DrawLine(pen, RandomPoint().ToArray()));
 
             MemoryStream ms = new();
             image.Save(ms, new PngEncoder());
