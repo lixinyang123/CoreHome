@@ -66,9 +66,9 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/css/components/Navbar.min.css",
+    "outputFileName": "wwwroot/css/components/navbar.min.css",
     "inputFiles": [
-      "wwwroot/css/components/Navbar.css"
+      "wwwroot/css/components/navbar.css"
     ]
   },
   {
