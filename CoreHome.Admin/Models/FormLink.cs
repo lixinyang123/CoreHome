@@ -4,7 +4,7 @@
     {
         public FormLink()
         {
-            Paras = new Dictionary<string, string>();
+            Paras = [];
         }
 
         /// <summary>

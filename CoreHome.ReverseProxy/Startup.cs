@@ -31,7 +31,7 @@ namespace CoreHome.ReverseProxy
 
             _ = services.AddRateLimiter(options =>
             {
-                options.AddConcurrencyLimiter("MyPolicy", option =>
+                _ = options.AddConcurrencyLimiter("MyPolicy", option =>
                 {
                     option.QueueLimit = 10;
                     option.PermitLimit = 10;

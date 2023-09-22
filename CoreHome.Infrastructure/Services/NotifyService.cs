@@ -1,6 +1,6 @@
-﻿using System.Text;
+﻿using CoreHome.Infrastructure.Models;
+using System.Text;
 using System.Text.Json;
-using CoreHome.Infrastructure.Models;
 
 namespace CoreHome.Infrastructure.Services
 {
@@ -16,8 +16,8 @@ namespace CoreHome.Infrastructure.Services
 
         public NotifyService(PusherConfig config)
         {
-            this.token = config.Token;
-            this.uid = config.Uid;
+            token = config.Token;
+            uid = config.Uid;
             httpClient = new();
         }
 
@@ -26,8 +26,8 @@ namespace CoreHome.Infrastructure.Services
             NotificationBody notification = new(token, uid, title, content, url);
 
             HttpContent httpContent = new StringContent(
-                JsonSerializer.Serialize(notification), 
-                Encoding.UTF8, 
+                JsonSerializer.Serialize(notification),
+                Encoding.UTF8,
                 "application/json"
             );
 

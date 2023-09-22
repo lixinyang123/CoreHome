@@ -31,7 +31,7 @@ namespace CoreHome.HomePage.Controllers
                 .Include(i => i.ArticleTags)
                 .ToListAsync();
 
-            List<List<string>> wordClouds = new();
+            List<List<string>> wordClouds = [];
 
             tags.AsParallel().ForAll(tag =>
             {

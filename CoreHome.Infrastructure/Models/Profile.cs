@@ -8,8 +8,8 @@ namespace CoreHome.Infrastructure.Models
     {
         public Profile()
         {
-            WhatsNew = new List<FooterLink>()
-            {
+            WhatsNew =
+            [
                 new FooterLink()
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -22,10 +22,10 @@ namespace CoreHome.Infrastructure.Models
                     Title = "CloudShell",
                     Link = "https://www.conchbrain.club/#cloudshell"
                 }
-            };
+            ];
 
-            FriendLinks = new List<FooterLink>()
-            {
+            FriendLinks =
+            [
                 new FooterLink()
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -38,10 +38,10 @@ namespace CoreHome.Infrastructure.Models
                     Title = "ConchBrainClub",
                     Link = "https://conchbrain.club/"
                 }
-            };
+            ];
 
-            About = new List<FooterLink>()
-            {
+            About =
+            [
                 new FooterLink()
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -54,10 +54,10 @@ namespace CoreHome.Infrastructure.Models
                     Title = "微博",
                     Link = "https://weibo.com/"
                 }
-            };
+            ];
 
-            Others = new List<FooterLink>()
-            {
+            Others =
+            [
                 new FooterLink()
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -70,7 +70,7 @@ namespace CoreHome.Infrastructure.Models
                     Title = "Admin",
                     Link = "/Admin"
                 }
-            };
+            ];
         }
 
         [Required]

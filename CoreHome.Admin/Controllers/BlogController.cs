@@ -106,7 +106,7 @@ namespace CoreHome.Admin.Controllers
                 return View("Editor", articleViewModel);
             }
 
-            List<ArticleTag> articleTags = new();
+            List<ArticleTag> articleTags = [];
             new List<string>(articleViewModel.TagStr.Split("#").Distinct()).ForEach((i) =>
             {
                 Tag tag = articleDbContext.Tags.SingleOrDefault(tag => tag.TagName == i);
@@ -222,7 +222,7 @@ namespace CoreHome.Admin.Controllers
 
             ViewBag.PageTitle = article.Title;
 
-            List<ArticleTag> articleTags = new();
+            List<ArticleTag> articleTags = [];
             new List<string>(articleViewModel.TagStr.Split("#").Distinct()).ForEach((i) =>
             {
                 Tag tag = articleDbContext.Tags.SingleOrDefault(tag => tag.TagName == i);

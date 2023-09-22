@@ -30,7 +30,7 @@ namespace CoreHome.Infrastructure.Services
         private static List<PointF> RandomPoint()
         {
             Random random = new();
-            List<PointF> points = new();
+            List<PointF> points = [];
             for (int i = 0; i < 6; i++)
             {
                 points.Add(new PointF(random.Next(0, 100), random.Next(0, 42)));

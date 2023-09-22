@@ -9,7 +9,7 @@ namespace CoreHome.Infrastructure.Models
             AppToken = token;
             Summary = summery;
             Content = content;
-            Uids = new() { uid };
+            Uids = [uid];
             Summary = "CoreHome Notification";
             ContentType = 3;
             VerifyPay = false;

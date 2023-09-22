@@ -44,7 +44,7 @@ namespace CoreHome.Admin
 
                 _ = options.UseMySql(Configuration.GetConnectionString("CoreHome"), version, option =>
                 {
-                    option.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                    _ = option.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
                 });
             });
 

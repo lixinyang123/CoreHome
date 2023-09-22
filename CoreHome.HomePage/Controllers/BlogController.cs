@@ -133,7 +133,7 @@ namespace CoreHome.HomePage.Controllers
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
 
-            List<Article> articles = new();
+            List<Article> articles = [];
             articleTags.ForEach(i => articles.Add(i.Article));
 
             ViewBag.Pagination = new PaginationViewModel(index, pageCount, "Tags");
@@ -218,8 +218,8 @@ namespace CoreHome.HomePage.Controllers
                 .Include(i => i.Category)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
-                .Where(i => 
-                    i.Title.Contains(id, StringComparison.OrdinalIgnoreCase) || 
+                .Where(i =>
+                    i.Title.Contains(id, StringComparison.OrdinalIgnoreCase) ||
                     i.Overview.Contains(id, StringComparison.OrdinalIgnoreCase)
                 )
                 .Skip((index - 1) * pageSize)

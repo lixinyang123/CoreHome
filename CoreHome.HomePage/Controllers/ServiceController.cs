@@ -72,7 +72,7 @@ namespace CoreHome.HomePage.Controllers
                 .Take(5)
                 .ToListAsync();
 
-            List<PreSearchViewModel> viewModels = new();
+            List<PreSearchViewModel> viewModels = [];
 
             articles.ForEach(i =>
             {
