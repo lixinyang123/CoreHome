@@ -3,7 +3,7 @@
   "defaultProvider": "jsdelivr",
   "libraries": [
     {
-      "library": "jquery@3.7.0",
+      "library": "jquery@3.7.1",
       "destination": "wwwroot/lib/jquery/"
     },
     {
@@ -11,7 +11,7 @@
       "destination": "wwwroot/lib/bootstrap/"
     },
     {
-      "library": "darkreader@4.9.58",
+      "library": "darkreader@4.9.67",
       "destination": "wwwroot/lib/darkreader/"
     },
     {
@@ -35,7 +35,7 @@
       "destination": "wwwroot/lib/qrcodejs/"
     },
     {
-      "library": "viewerjs@1.11.3",
+      "library": "viewerjs@1.11.6",
       "destination": "wwwroot/lib/viewerjs/"
     }
   ]
