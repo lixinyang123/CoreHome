@@ -4,7 +4,7 @@ services:
 
   corehome.database:
     image: mysql
-    command: --default-authentication-plugin=mysql_native_password
+    command: --pid-file /var/lib/mysql/mysqld.pid
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
