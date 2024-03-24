@@ -9,14 +9,9 @@ using System.Runtime.InteropServices;
 
 namespace CoreHome.Admin
 {
-    public class Startup
+    public class Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; } = configuration;
 
         // 将服务添加到容器
         public void ConfigureServices(IServiceCollection services)

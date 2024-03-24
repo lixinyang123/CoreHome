@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy AS base
+FROM alpine AS base
 WORKDIR /app
 EXPOSE 8080
 
@@ -12,8 +12,9 @@ RUN dotnet build "CoreHome.ReverseProxy.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "CoreHome.ReverseProxy.csproj" -c Release -o /app/publish
+RUN rm /app/publish/CoreHome.ReverseProxy.pdb
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CoreHome.ReverseProxy.dll"]
+ENTRYPOINT ["CoreHome.ReverseProxy"]

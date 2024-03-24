@@ -18,7 +18,7 @@ RUN ~/.dotnet/tools/libman restore
 RUN dotnet build "CoreHome.Admin.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "CoreHome.Admin.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "CoreHome.Admin.csproj" -c Release -o /app/publish -p:PublishReadyToRun=true
 
 FROM base AS final
 WORKDIR /app
