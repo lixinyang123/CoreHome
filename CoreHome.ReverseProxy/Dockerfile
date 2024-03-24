@@ -1,6 +1,7 @@
 FROM alpine AS base
 WORKDIR /app
 EXPOSE 8080
+RUN apk add libc6-compat
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build
 WORKDIR /src
@@ -18,4 +19,4 @@ RUN rm /app/publish/CoreHome.ReverseProxy.dbg
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["CoreHome.ReverseProxy"]
+ENTRYPOINT ["./CoreHome.ReverseProxy"]
