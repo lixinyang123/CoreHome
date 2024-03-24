@@ -13,7 +13,7 @@ RUN dotnet build "CoreHome.ReverseProxy.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN apt update && apt install clang zlib1g-dev -y
 RUN dotnet publish "CoreHome.ReverseProxy.csproj" -c Release -o /app/publish
-RUN rm /app/publish/CoreHome.ReverseProxy.pdb
+RUN rm /app/publish/CoreHome.ReverseProxy.dbg
 
 FROM base AS final
 WORKDIR /app
