@@ -40,11 +40,12 @@ namespace CoreHome.Admin
             //数据库上下文
             _ = services.AddDbContext<ArticleDbContext>(options =>
             {
-                MySqlServerVersion version = new(new Version(8, 0, 18));
+                MySqlServerVersion version = new(new Version(8, 3, 0));
 
                 _ = options.UseMySql(Configuration.GetConnectionString("CoreHome"), version, option =>
                 {
                     _ = option.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                    _ = option.EnableRetryOnFailure();
                 });
             });
 
