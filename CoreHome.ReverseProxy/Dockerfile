@@ -19,4 +19,4 @@ RUN rm /app/publish/CoreHome.ReverseProxy.dbg
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["./CoreHome.ReverseProxy"]
+ENTRYPOINT ["./CoreHome.ReverseProxy", "urls=http://*:8080"]
