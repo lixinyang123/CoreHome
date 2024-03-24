@@ -11,7 +11,7 @@ WORKDIR "/src/CoreHome.ReverseProxy"
 RUN dotnet build "CoreHome.ReverseProxy.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN apk add gcc
+RUN apk update && apk add gcc
 RUN dotnet publish "CoreHome.ReverseProxy.csproj" -c Release -o /app/publish
 RUN rm /app/publish/CoreHome.ReverseProxy.pdb
 
