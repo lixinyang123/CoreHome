@@ -315,28 +315,36 @@ namespace CoreHome.Admin.Controllers
             }
         }
 
-        private void RecyclingData()
+        private void RecyclingData(int times = 0)
         {
             //回收分类
-            List<Category> noArticleCategories = articleDbContext.Categories.Where(i => i.Articles.Count == 0).ToList();
+            List<Category> noArticleCategories = [.. articleDbContext.Categories.Where(i => i.Articles.Count == 0)];
             noArticleCategories.ForEach(i => articleDbContext.Categories.Remove(i));
 
             //回收标签
-            List<Tag> noArticleTag = articleDbContext.Tags.Where(i => i.ArticleTags.Count == 0).ToList();
+            List<Tag> noArticleTag = [.. articleDbContext.Tags.Where(i => i.ArticleTags.Count == 0)];
             noArticleTag.ForEach(i => articleDbContext.Tags.Remove(i));
 
             //回收归档月份
-            List<Month> months = articleDbContext.Months.Where(i => i.Articles.Count == 0).ToList();
+            List<Month> months = [.. articleDbContext.Months.Where(i => i.Articles.Count == 0)];
             months.ForEach(i => articleDbContext.Months.Remove(i));
 
-            _ = articleDbContext.SaveChanges();
-
             //回收归档年份
-            List<Year> years = articleDbContext.Years.Where(i => i.Months.Count == 0).ToList();
+            List<Year> years = [.. articleDbContext.Years.Where
+            (
+                i => i.Months.Count == 0 || (i.Months.Count == 1 && months.Contains(i.Months.First()))
+            )];
             years.ForEach(i => articleDbContext.Years.Remove(i));
 
-            _ = articleDbContext.SaveChanges();
+            try
+            {
+                _ = articleDbContext.SaveChanges();
+            }
+            catch (Exception)
+            {
+                if (times > 2) throw;
+                RecyclingData(++times);
+            }
         }
-
     }
 }

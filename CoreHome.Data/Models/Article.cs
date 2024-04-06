@@ -64,5 +64,8 @@ namespace CoreHome.Data.Models
         /// 评论
         /// </summary>
         public List<Comment> Comments { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

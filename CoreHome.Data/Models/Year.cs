@@ -14,5 +14,8 @@ namespace CoreHome.Data.Models
             get => months.OrderBy(i => i.Value).ToList();
             set => months = value;
         }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

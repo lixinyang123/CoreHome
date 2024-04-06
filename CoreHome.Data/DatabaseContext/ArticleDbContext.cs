@@ -3,19 +3,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreHome.Data.DatabaseContext
 {
-    public class ArticleDbContext : DbContext
+    public class ArticleDbContext(DbContextOptions options) : DbContext(options)
     {
-        public ArticleDbContext(DbContextOptions options) : base(options) { }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             _ = modelBuilder.Entity<Year>()
                 .HasKey(i => i.Value);
 
+            _ = modelBuilder.Entity<Year>()
+                .Property(i => i.RowVersion)
+                .IsRowVersion();
+
             _ = modelBuilder.Entity<Month>()
                 .HasOne(i => i.Year)
                 .WithMany(i => i.Months)
                 .HasForeignKey(i => i.YearId);
+
+            _ = modelBuilder.Entity<Month>()
+                .Property(i => i.RowVersion)
+                .IsRowVersion();
 
             _ = modelBuilder.Entity<Article>()
                 .HasOne(i => i.Month)
@@ -26,6 +32,10 @@ namespace CoreHome.Data.DatabaseContext
                 .HasOne(i => i.Category)
                 .WithMany(i => i.Articles)
                 .HasForeignKey(i => i.CategoryId);
+
+            _ = modelBuilder.Entity<Article>()
+                .Property(i => i.RowVersion)
+                .IsRowVersion();
 
             _ = modelBuilder.Entity<ArticleTag>()
                 .HasKey(i => new { i.ArticleId, i.TagId });
@@ -40,6 +50,10 @@ namespace CoreHome.Data.DatabaseContext
                 .WithMany(i => i.ArticleTags)
                 .HasForeignKey(i => i.TagId);
 
+            _ = modelBuilder.Entity<ArticleTag>()
+                .Property(i => i.RowVersion)
+                .IsRowVersion();
+
             _ = modelBuilder.Entity<Comment>()
                 .HasOne(i => i.Article)
                 .WithMany(i => i.Comments)
@@ -47,6 +61,16 @@ namespace CoreHome.Data.DatabaseContext
 
             _ = modelBuilder.Entity<Notification>()
                 .HasKey(i => i.Id);
+
+            //foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            //{
+            //    var timestampProperty = entityType.FindProperty("RowVersion");
+
+            //    if (timestampProperty != null)
+            //    {
+            //        modelBuilder.Entity(entityType.ClrType).Property("RowVersion").IsRowVersion();
+            //    }
+            //}
         }
 
         public DbSet<Article> Articles { get; set; }

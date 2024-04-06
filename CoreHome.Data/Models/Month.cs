@@ -15,5 +15,8 @@ namespace CoreHome.Data.Models
         public Year Year { get; set; }
 
         public List<Article> Articles { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }
