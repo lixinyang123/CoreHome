@@ -59,7 +59,7 @@ namespace CoreHome.HomePage
             _ = services.AddSingleton(new ProfileService("Profile", new Profile()));
 
             //项目管理服务
-            _ = services.AddSingleton(new HomePageService("Project", new List<Project>()));
+            _ = services.AddSingleton(new HomePageService("Project", []));
 
             //主题服务
             _ = services.AddSingleton(new ThemeService("Theme", new Theme()));
