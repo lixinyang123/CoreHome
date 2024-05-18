@@ -16,7 +16,9 @@ namespace CoreHome.HomePage.Components
         public IViewComponentResult Invoke()
         {
             List<Category> categoriesList = articleDbContext.Categories
-                .OrderByDescending(i => i.Articles.Count).Take(10).ToList();
+                .OrderByDescending(i => i.Articles.Count)
+                .Take(10)
+                .ToList();
             return View(categoriesList);
         }
     }
