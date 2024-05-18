@@ -35,11 +35,11 @@ namespace CoreHome.HomePage.Controllers
 
             tags.AsParallel().ForAll(tag =>
             {
-                wordClouds.Add(new List<string>()
-                {
-                    {tag.TagName },
-                    {(tag.ArticleTags.Count*8).ToString() }
-                });
+                wordClouds.Add(
+                [
+                    tag.TagName,
+                    (tag.ArticleTags.Count * 8).ToString()
+                ]);
             });
 
             return Json(wordClouds);

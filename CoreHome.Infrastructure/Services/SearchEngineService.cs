@@ -21,8 +21,8 @@ namespace CoreHome.Infrastructure.Services
             {
                 HttpClient httpClient = new();
 
-                string SiteMapPath = Path.Combine(WebRootPath, "SiteMap.txt");
-                string linkStr = File.ReadAllText(SiteMapPath);
+                string siteMapPath = Path.Combine(WebRootPath, "SiteMap.txt");
+                string linkStr = await File.ReadAllTextAsync(siteMapPath);
                 HttpContent content = new StringContent(linkStr, Encoding.UTF8);
 
                 HttpResponseMessage responseMessage = await httpClient.PostAsync(baiduLinkSubmit, content);

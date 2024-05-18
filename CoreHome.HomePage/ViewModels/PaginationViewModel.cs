@@ -56,12 +56,7 @@
                     int index = CurrentIndex + skip;
                     if (index > 0)
                     {
-                        bool isCurrent = false;
-                        if (index == CurrentIndex)
-                        {
-                            isCurrent = true;
-                        }
-
+                        bool isCurrent = index == CurrentIndex;
                         indexs.Add(index, isCurrent);
                     }
                     skip++;

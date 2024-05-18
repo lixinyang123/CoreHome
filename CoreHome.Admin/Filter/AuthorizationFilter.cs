@@ -48,7 +48,7 @@ namespace CoreHome.Admin.Filter
                     throw new Exception("AuthenticationException");
                 }
             }
-            catch (Exception)
+            catch
             {
                 //验证访问令牌失败直接撤销管理员权限
                 context.HttpContext.Response.Cookies.Delete("accessToken");

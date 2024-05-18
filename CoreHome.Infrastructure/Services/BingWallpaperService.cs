@@ -39,7 +39,7 @@ namespace CoreHome.Infrastructure.Services
                     lastDay = nowDay;
                     return urlCache;
                 }
-                catch (Exception)
+                catch
                 {
                     return string.Empty;
                 }

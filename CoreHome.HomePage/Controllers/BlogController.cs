@@ -117,8 +117,7 @@ namespace CoreHome.HomePage.Controllers
                 int count = articleDbContext.ArticleTags
                     .AsNoTracking()
                     .Include(i => i.Tag)
-                    .Where(i => i.Tag.TagName == id)
-                    .Count();
+                    .Count(i => i.Tag.TagName == id);
 
                 return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
             });
@@ -163,8 +162,7 @@ namespace CoreHome.HomePage.Controllers
             {
                 int count = articleDbContext.Articles
                     .AsNoTracking()
-                    .Where(i => i.Month.Value == para && i.Month.Year.Value == id)
-                    .Count();
+                    .Count(i => i.Month.Value == para && i.Month.Year.Value == id);
 
                 return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
             });
@@ -204,8 +202,7 @@ namespace CoreHome.HomePage.Controllers
             {
                 int count = articleDbContext.Articles
                     .AsNoTracking()
-                    .Where(i => i.Title.Contains(id, StringComparison.OrdinalIgnoreCase))
-                    .Count();
+                    .Count(i => i.Title.Contains(id, StringComparison.OrdinalIgnoreCase));
 
                 return Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pageSize));
             });

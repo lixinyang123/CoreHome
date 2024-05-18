@@ -75,7 +75,7 @@ namespace CoreHome.Admin.Controllers
                 _ = memoryCache.Set("tempArticle", viewModel, DateTimeOffset.Now.AddDays(1));
                 return Ok();
             }
-            catch (Exception)
+            catch
             {
                 return BadRequest();
             }
@@ -340,9 +340,10 @@ namespace CoreHome.Admin.Controllers
             {
                 _ = articleDbContext.SaveChanges();
             }
-            catch (Exception)
+            catch
             {
-                if (times > 2) throw;
+                if (times > 2) 
+                    throw;
                 RecyclingData(++times);
             }
         }
