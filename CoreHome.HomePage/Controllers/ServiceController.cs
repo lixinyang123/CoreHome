@@ -68,7 +68,7 @@ namespace CoreHome.HomePage.Controllers
             List<Article> articles = await articleDbContext.Articles
                 .AsNoTracking()
                 .OrderByDescending(i => i.Id)
-                .Where(i => i.Title.ToLower().Contains(id.ToLower()) || i.Overview.ToLower().Contains(id.ToLower()))
+                .Where(i => i.Title.Contains(id, StringComparison.CurrentCultureIgnoreCase) || i.Overview.Contains(id, StringComparison.CurrentCultureIgnoreCase))
                 .Take(5)
                 .ToListAsync();
 

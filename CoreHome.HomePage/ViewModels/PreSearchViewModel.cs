@@ -8,7 +8,7 @@ namespace CoreHome.HomePage.ViewModels
         {
             ArticleCode = articleCode;
             Title = title;
-            Overview = overview[..60] + "......";
+            Overview = overview.Length > 60 ? overview[..60] + "......" : overview;
         }
 
         /// <summary>
