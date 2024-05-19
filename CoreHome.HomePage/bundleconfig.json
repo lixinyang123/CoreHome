@@ -30,12 +30,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/lib/darkreader/darkreader.min.js",
-    "inputFiles": [
-      "wwwroot/lib/darkreader/darkreader.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/css/blog/index.min.css",
     "inputFiles": [
       "wwwroot/css/blog/index.css"
