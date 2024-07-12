@@ -5,7 +5,6 @@ using CoreHome.Infrastructure.Services;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.InteropServices;
 
 namespace CoreHome.Admin
 {
@@ -16,17 +15,9 @@ namespace CoreHome.Admin
         // 将服务添加到容器
         public void ConfigureServices(IServiceCollection services)
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                _ = services.AddDataProtection().SetApplicationName("CoreHome")
-                    .PersistKeysToFileSystem(new DirectoryInfo(@"C:/Server/CoreHome/"));
-            }
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                _ = services.AddDataProtection().SetApplicationName("CoreHome")
-                    .PersistKeysToFileSystem(new DirectoryInfo(@"/home/Server/CoreHome/"));
-            }
+            _ = services.AddDataProtection()
+                .SetApplicationName("CoreHome")
+                .PersistKeysToFileSystem(new DirectoryInfo(StaticConfig.STORAGE_FOLDER));
 
             _ = services.Configure<CookieOptions>(config => config.SameSite = SameSiteMode.Lax);
 

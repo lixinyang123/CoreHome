@@ -1,12 +1,15 @@
 ﻿using MemoryPack;
-using System.Runtime.InteropServices;
 
 namespace CoreHome.Infrastructure.Models
 {
-    public class StaticConfig<ConfigType>
+    public class StaticConfig 
+    { 
+        public static readonly string STORAGE_FOLDER = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".corehome");    
+    }
+
+    public class StaticConfig<ConfigType> : StaticConfig
     {
         private readonly ConfigType initConfig;
-        private readonly string configPath;
         private readonly string configFile;
 
         /// <summary>
@@ -16,21 +19,11 @@ namespace CoreHome.Infrastructure.Models
         /// <param name="InitConfig">初始化配置</param>
         public StaticConfig(string fileName, ConfigType initConfig)
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                configPath = @"C:/Server/CoreHome/";
-            }
+            configFile = Path.Combine(STORAGE_FOLDER, fileName);
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            if (!Directory.Exists(STORAGE_FOLDER))
             {
-                configPath = @"/home/Server/CoreHome/";
-            }
-
-            configFile = Path.Combine(configPath, fileName);
-
-            if (!Directory.Exists(configPath))
-            {
-                _ = Directory.CreateDirectory(configPath);
+                _ = Directory.CreateDirectory(STORAGE_FOLDER);
             }
 
             this.initConfig = initConfig;
@@ -50,7 +43,7 @@ namespace CoreHome.Infrastructure.Models
                     return initConfig;
                 }
             }
-            set => File.WriteAllBytesAsync(configFile, MemoryPackSerializer.Serialize(value)).Wait();
+            set => File.WriteAllBytes(configFile, MemoryPackSerializer.Serialize(value));
         }
 
         public void ResetConfig()

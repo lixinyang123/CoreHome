@@ -23,7 +23,7 @@
 
             <div id="postdiv">
 
-                @foreach (var article in Model)
+                @foreach (Article article in Model)
                 {
                     <article class="reveal">
                         <a class="articleTitle" asp-controller="Blog" asp-action="Detail" asp-route-id="@article.ArticleCode">

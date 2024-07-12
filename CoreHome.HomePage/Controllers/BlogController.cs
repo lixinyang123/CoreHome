@@ -126,15 +126,14 @@ namespace CoreHome.HomePage.Controllers
             List<ArticleTag> articleTags = await articleDbContext.ArticleTags
                 .OrderByDescending(i => i.Article.Id)
                 .Include(i => i.Article)
-                .ThenInclude(i => i.ArticleTags)
+                .Include(i => i.Article.Category)
+                .Include(i => i.Article.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .Where(i => i.Tag.TagName == id)
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
 
-            List<Article> articles = [];
-            articleTags.ForEach(i => articles.Add(i.Article));
-
+            List<Article> articles = articleTags.Select(i => i.Article).ToList();
             ViewBag.Pagination = new PaginationViewModel(index, pageCount, "Tags");
 
             ViewBag.Warning = id;

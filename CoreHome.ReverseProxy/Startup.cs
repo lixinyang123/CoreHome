@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.RateLimiting;
-using System.Runtime.InteropServices;
 using System.Threading.RateLimiting;
 
 namespace CoreHome.ReverseProxy
@@ -12,17 +10,7 @@ namespace CoreHome.ReverseProxy
         // 配置服务
         public void ConfigureServices(IServiceCollection services)
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                _ = services.AddDataProtection().SetApplicationName("CoreHome")
-                    .PersistKeysToFileSystem(new DirectoryInfo(@"C:/Server/CoreHome/"));
-            }
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                _ = services.AddDataProtection().SetApplicationName("CoreHome")
-                    .PersistKeysToFileSystem(new DirectoryInfo(@"/home/Server/CoreHome/"));
-            }
+            _ = services.AddDataProtection();
 
             _ = services.AddRateLimiter(options =>
             {
