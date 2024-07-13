@@ -17,7 +17,7 @@ namespace CoreHome.Admin
         {
             _ = services.AddDataProtection()
                 .SetApplicationName("CoreHome")
-                .PersistKeysToFileSystem(new DirectoryInfo(StaticConfig.STORAGE_FOLDER));
+                .PersistKeysToFileSystem(new(Path.Combine(StaticConfig.STORAGE_FOLDER, "/DataProtection")));
 
             _ = services.Configure<CookieOptions>(config => config.SameSite = SameSiteMode.Lax);
 
