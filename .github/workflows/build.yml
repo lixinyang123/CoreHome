@@ -54,7 +54,8 @@ jobs:
     - name: Add EasterEggs
       run: |
         cat >> ./CoreHome.HomePage/Views/Home/Index.cshtml << EOF
-        <script src="https://fastly.jsdelivr.net/npm/jquery-snowfall@1.7.4/src/snowfall.jquery.min.js"></script>
+        <script async src="https://assistant.conchbrain.club/blog/init"></script>
+        <script async src="https://fastly.jsdelivr.net/npm/jquery-snowfall@1.7.4/src/snowfall.jquery.min.js"></script>
         <style>
             #EasterEggs {
                 cursor: pointer;
