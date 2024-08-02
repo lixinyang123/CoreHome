@@ -15,14 +15,18 @@ let isMobile = {
 };
 
 function fullHeight() {
+	if (isMobile.any()) return;
 
-	if (!isMobile.any()) {
-		let list = document.getElementsByClassName("js-fullheight");
-
-		for (let i = 0; i < list.length; i++) {
-			list[i].style.height = window.innerHeight + "px";
+	document.querySelectorAll(".js-fullheight").forEach(item => {
+		if (!document.startViewTransition) {
+			item.style.height = `${window.innerHeight}px`;
+			return;
 		}
-	}
+
+		document.startViewTransition(() => {
+			item.style.height = `${window.innerHeight}px`;
+		});
+	});
 }
 
 function MoveTop()
@@ -39,6 +43,7 @@ function getVerfyCode(img) {
 //=============Initializa================
 
 function init() {
+	window.onresize = fullHeight;
 	window.onscroll = () => {
 		if (window.scrollY > 200) {
 			document.querySelector(".js-top").classList.add("active");
@@ -47,9 +52,8 @@ function init() {
 			document.querySelector(".js-top").classList.remove("active");
         }
     }
-	window.onresize = fullHeight;
-	fullHeight();
 	ScrollReveal().reveal(".reveal");
+	fullHeight();
 }
 
 init();
