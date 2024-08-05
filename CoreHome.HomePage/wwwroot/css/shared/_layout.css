@@ -42,6 +42,10 @@ body {
     flex-direction: column;
 }
 
+.reveal {
+    visibility: hidden;
+}
+
 #content {
     padding-top: 50px;
     flex: 1;
