@@ -308,6 +308,7 @@ namespace CoreHome.HomePage.Controllers
             article.Comments.Add(new Comment()
             {
                 Time = DateTime.Now,
+                Email = viewModel.Email,
                 Detail = viewModel.Detail
             });
 

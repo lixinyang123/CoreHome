@@ -20,12 +20,13 @@
         @foreach (var notification in Model)
         {
             <div class="card mb-4">
-                <div class="card-header font-weight-bolder">
-                    @notification.Title
-                    <span class="float-right">
-                        @notification.Time.ToString("yyyy/MM/dd")
+                <div class="card-header text-muted">
+                    <span>@notification.Title</span>
+                    <span class="font-weight-light float-right">
+                        @notification.Time.ToString("yyyy/MM/dd HH:MM")
                     </span>
                 </div>
+
                 <div class="card-body">
                     <div class="markdown">
                         <textarea hidden>@notification.Content</textarea>

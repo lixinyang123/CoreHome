@@ -9,6 +9,9 @@ namespace CoreHome.Data.Models
         [Required]
         public DateTime Time { get; set; }
 
+        [EmailAddress]
+        public string Email { get; set; }
+
         [Required]
         public string Detail { get; set; }
 

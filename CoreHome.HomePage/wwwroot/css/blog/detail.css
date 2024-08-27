@@ -56,3 +56,11 @@
 .markdown img {
     cursor: pointer;
 }
+
+.card {
+    cursor: pointer;
+}
+
+.card:hover {
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}

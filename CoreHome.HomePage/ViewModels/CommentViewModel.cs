@@ -11,6 +11,11 @@ namespace CoreHome.HomePage.ViewModels
         public Guid ArticleCode { get; set; }
 
         /// <summary>
+        /// 邮箱
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
         /// 评论详情
         /// </summary>
         [Required]
