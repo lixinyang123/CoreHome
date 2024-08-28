@@ -77,6 +77,10 @@ footer a {
     z-index: 999;
 }
 
+#privacy svg {
+    border-radius: .25rem;
+}
+
 .gototop {
     position: fixed;
     bottom: 20px;
@@ -97,11 +101,11 @@ footer a {
     display: table;
     background: #007bff;
     text-align: center;
+    border-radius: .25rem;
 }
 
 #verfyImg, #verificationCode, #btn_submit {
     height: 40px;
-    border-radius: 0;
 }
 
 #verfyImg {
@@ -110,10 +114,6 @@ footer a {
 
 #verificationCode {
     max-width: 110px;
-}
-
-.btn{
-    border-radius: 0;
 }
 
 ::-webkit-scrollbar {

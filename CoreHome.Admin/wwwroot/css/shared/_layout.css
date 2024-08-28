@@ -27,13 +27,11 @@
 }
 
 ::view-transition-old(root) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-        300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out, 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
 }
 
 ::view-transition-new(root) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-        300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in, 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
 }
 
 app {
@@ -52,47 +50,47 @@ app {
     background-color: whitesmoke;
 }
 
-.sidebar .top-row {
-    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
-}
+    .sidebar .top-row {
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+    }
 
-.sidebar .navbar-brand {
-    font-size: 1.1rem;
-}
+    .sidebar .navbar-brand {
+        font-size: 1.1rem;
+    }
 
-.sidebar .oi {
-    width: 2rem;
-    font-size: 1.1rem;
-    vertical-align: text-top;
-    top: -2px;
-}
+    .sidebar .oi {
+        width: 2rem;
+        font-size: 1.1rem;
+        vertical-align: text-top;
+        top: -2px;
+    }
 
-.sidebar .nav-item {
-    font-size: 0.9rem;
-    padding-bottom: 0.5rem;
-}
+    .sidebar .nav-item {
+        font-size: 0.9rem;
+        padding-bottom: 0.5rem;
+    }
 
-.sidebar .nav-item:first-of-type {
-    padding-top: 1rem;
-}
+        .sidebar .nav-item:first-of-type {
+            padding-top: 1rem;
+        }
 
-.sidebar .nav-item:last-of-type {
-    padding-bottom: 1rem;
-}
+        .sidebar .nav-item:last-of-type {
+            padding-bottom: 1rem;
+        }
 
-.sidebar .nav-item a {
-    color: black;
-    border-radius: 4px;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    line-height: 3rem;
-}
+        .sidebar .nav-item a {
+            color: black;
+            border-radius: 4px;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            line-height: 3rem;
+        }
 
-.sidebar .nav-item a:hover {
-    background-color: #007bff;
-    color: white;
-}
+            .sidebar .nav-item a:hover {
+                background-color: #007bff;
+                color: white;
+            }
 
 .content {
     padding-top: 1.1rem;
@@ -124,17 +122,13 @@ app {
     }
 }
 
-.btn {
-    border-radius: 0;
-}
-
 .card {
     cursor: pointer;
 }
 
-.card:hover {
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
-}
+    .card:hover {
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    }
 
 #avatar {
     height: 200px;
@@ -151,6 +145,11 @@ app {
     cursor: pointer;
 }
 
+.input-group-append .btn {
+    border-top-right-radius: .25rem !important;
+    border-bottom-right-radius: .25rem !important;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -165,11 +164,11 @@ app {
     transition: 1.0s;
 }
 
-::-webkit-scrollbar-thumb:vertical:hover,
-::-webkit-scrollbar-thumb:horizontal:hover {
-    background-color: rgb(110, 110, 110);
-    transition: 0.3s;
-}
+    ::-webkit-scrollbar-thumb:vertical:hover,
+    ::-webkit-scrollbar-thumb:horizontal:hover {
+        background-color: rgb(110, 110, 110);
+        transition: 0.3s;
+    }
 
 ::-webkit-scrollbar-track {
     background-color: transparent;
@@ -178,7 +177,6 @@ app {
 ::-webkit-scrollbar-thumb:vertical:active,
 ::-webkit-scrollbar-thumb:horizontal:active {
     background: rgba(95, 91, 91, 1);
-
 }
 
 ::-webkit-scrollbar-corner {

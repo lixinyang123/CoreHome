@@ -8,46 +8,41 @@
     margin: 0 auto;
 }
 
-.loading{
+.loading {
     padding-top: 15px;
 }
 
-.loading .box{
+.loading .box {
     height: 15px;
     margin-bottom: 15px;
     background-color: whitesmoke;
-    background: linear-gradient(
-        100deg,
-        rgba(255,255,255,0) 40%,
-        rgba(255,255,255,0.8) 50%,
-        rgba(255,255,255,0) 60%
-    ) whitesmoke;
+    background: linear-gradient( 100deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 60% ) whitesmoke;
     background-size: 200% 100%;
     background-position-x: 120%;
     animation: 1s loading ease-in-out infinite;
 }
 
-.box-3{
+.box-3 {
     width: 30%;
 }
 
-.box-4{
+.box-4 {
     width: 40%;
 }
 
-.box-6{
+.box-6 {
     width: 60%;
 }
 
-.box-8{
+.box-8 {
     width: 80%;
 }
 
-.box-10{
+.box-10 {
     width: 100%;
 }
 
-@keyframes loading{
+@keyframes loading {
     to {
         background-position-x: -20%;
     }
@@ -57,10 +52,6 @@
     cursor: pointer;
 }
 
-.card {
-    cursor: pointer;
-}
-
-.card:hover {
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+#comment {
+    background-color: whitesmoke;
 }

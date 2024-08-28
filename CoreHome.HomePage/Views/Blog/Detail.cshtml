@@ -110,7 +110,7 @@
                 <hr class="my-4">
             </article>
 
-            <form asp-controller="Blog" asp-action="Detail" method="post" class="jumbotron border p-3">
+            <form id="comment" asp-controller="Blog" asp-action="Detail" method="post" class="card p-3">
                 <input type="hidden" value="@Model.Article.ArticleCode" name="ArticleCode" />
 
                 <input type="email" value="@Model.CommentViewModel.Email" name="Email" class="form-control mb-3" placeholder="Email (Optional)" />
@@ -129,7 +129,7 @@
                 </div>
             </form>
 
-            <div id="comments">
+            <div id="comments" class="mt-4">
 
                 @foreach (var comment in Model.Article.Comments)
                 {
