@@ -110,7 +110,7 @@
                 <hr class="my-4">
             </article>
 
-            <form id="comment" asp-controller="Blog" asp-action="Detail" method="post" class="card p-3">
+            <form asp-controller="Blog" asp-action="Detail" method="post" class="card card-header p-3">
                 <input type="hidden" value="@Model.Article.ArticleCode" name="ArticleCode" />
 
                 <input type="email" value="@Model.CommentViewModel.Email" name="Email" class="form-control mb-3" placeholder="Email (Optional)" />
