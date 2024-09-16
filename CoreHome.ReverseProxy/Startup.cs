@@ -38,10 +38,7 @@ namespace CoreHome.ReverseProxy
 
             _ = app.UseRouting();
 
-            _ = app.UseEndpoints(endpoints =>
-            {
-                _ = endpoints.MapReverseProxy();
-            });
+            _ = app.UseEndpoints(endpoints => endpoints.MapReverseProxy());
         }
     }
 }
