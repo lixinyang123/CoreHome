@@ -3,7 +3,7 @@ WORKDIR /app
 EXPOSE 8080
 RUN apk add libc6-compat
 
-FROM mcr.microsoft.com/dotnet/nightly/sdk:8.0-jammy-aot AS build
+FROM mcr.microsoft.com/dotnet/nightly/sdk:9.0.100-rc.1-noble-aot AS build
 WORKDIR /src
 COPY ["CoreHome.ReverseProxy/CoreHome.ReverseProxy.csproj", "CoreHome.ReverseProxy/"]
 RUN dotnet restore "CoreHome.ReverseProxy/CoreHome.ReverseProxy.csproj"
