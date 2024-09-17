@@ -1,6 +1,7 @@
 name: build
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
 
@@ -13,16 +14,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Build CoreHome.Admin
       run: docker build --file ./CoreHome.Admin/Dockerfile --tag lixinyang/corehome.admin:latest .
-    
+
     - name: Build CoreHome.HomePage
       run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome.homepage:latest .
 
     - name: Build CoreHome.ReverseProxy
       run: docker build --file ./CoreHome.ReverseProxy/Dockerfile --tag lixinyang/corehome.reverseproxy:latest .
-    
+
     - name: Push image to DockerHub
       run: |
         docker login -u lixinyang -p ${{ secrets.REGISTRY_PWD }}
@@ -30,7 +31,7 @@ jobs:
         docker push lixinyang/corehome.homepage:latest
         docker push lixinyang/corehome.reverseproxy:latest
         docker logout
-    
+
     - name: Push image to aliyun
       run: |
         docker login -u=lllxy啊啊啊 -p ${{ secrets.REGISTRY_PWD }} registry.cn-shenzhen.aliyuncs.com
@@ -41,7 +42,6 @@ jobs:
         docker tag lixinyang/corehome.reverseproxy:latest registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.reverseproxy:latest
         docker push registry.cn-shenzhen.aliyuncs.com/lllxy/corehome.reverseproxy:latest
         docker logout
-
 
   build-myhome:
     # needs: Analyze
@@ -140,7 +140,7 @@ jobs:
         docker login -u lixinyang -p ${{ secrets.REGISTRY_PWD }}
         docker push lixinyang/corehome.homepage:home
         docker logout
-    
+
     - name: Push image to aliyun
       run: |
         docker login -u=lllxy啊啊啊 -p ${{ secrets.REGISTRY_PWD }} registry.cn-shenzhen.aliyuncs.com
