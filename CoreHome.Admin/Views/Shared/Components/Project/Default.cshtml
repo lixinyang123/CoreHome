@@ -27,18 +27,18 @@
         Href = "/Admin/Project/MoveUp/",
         Text = "MoveUp",
         Paras = { {"id", Model.Id } },
-        ClassName = "btn-edit btn btn-info",
+        ClassName = "btn-edit btn btn-info mb-1",
         Warning = "Confirm MoveUp?"
     })
 
-    <a class="btn-edit btn btn-warning" asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn-edit btn btn-warning mb-1" asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
 
     @await Component.InvokeAsync("FormLink", new FormLink()
     {
         Href = "/Admin/Project/Delete/",
         Text = "Delete",
         Paras = { { "id", Model.Id } },
-        ClassName = "btn-edit btn btn-danger",
+        ClassName = "btn-edit btn btn-danger mb-1",
         Warning = "Confirm deletion?"
     })
 

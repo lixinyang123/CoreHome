@@ -7,7 +7,9 @@
     float: left;
     position: relative;
     margin-bottom: 40px;
-    transition: transform .2s ease-out
+    transition: transform .2s ease-out;
+    overflow: hidden;
+    border-radius: .25rem;
 }
 
 .blog-imgbox {
@@ -57,7 +59,7 @@
 
 @media screen and (max-width: 768px) {
     .fh5co-blog .blog-text .stuff li {
-        font-size:14px
+        font-size: 14px
     }
 }
 
