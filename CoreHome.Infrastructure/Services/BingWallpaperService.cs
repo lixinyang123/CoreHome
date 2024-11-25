@@ -3,47 +3,32 @@ using System.Text.Json;
 
 namespace CoreHome.Infrastructure.Services
 {
-    public class BingWallpaperService
+    public class BingWallpaperService()
     {
+        private const string API = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
+        private readonly HttpClient httpClient = new() { Timeout = TimeSpan.FromSeconds(3) };
+
+        private int lastDate;
         private string urlCache;
-        private int lastDay;
 
-        private readonly HttpClient httpClient;
-
-        public BingWallpaperService()
+        public string GetUrl()
         {
-            httpClient = new()
-            {
-                Timeout = TimeSpan.FromSeconds(5)
-            };
-        }
+            int date = DateTime.Now.Day;
+            if (date == lastDate) return urlCache;
 
-        public async Task<string> GetUrl()
-        {
-            int nowDay = DateTime.Now.Day;
-
-            if (nowDay == lastDay)
+            try
             {
-                return urlCache;
+                string jsonStr = httpClient.GetStringAsync(API).Result;
+                BingWallpaper wallpaper = JsonSerializer.Deserialize<BingWallpaper>(jsonStr);
+                urlCache = $"https://www.bing.com/{wallpaper.Images.First().Url}";
             }
-            else
+            catch (Exception) 
             {
-                try
-                {
-                    string url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
-
-                    string jsonStr = await httpClient.GetStringAsync(url);
-                    BingWallpaper wallpaper = JsonSerializer.Deserialize<BingWallpaper>(jsonStr);
-
-                    urlCache = "https://www.bing.com/" + wallpaper.images[0].url;
-                    lastDay = nowDay;
-                    return urlCache;
-                }
-                catch
-                {
-                    return string.Empty;
-                }
+                return string.Empty;
             }
+
+            lastDate = date;
+            return urlCache;
         }
     }
 }

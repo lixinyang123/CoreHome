@@ -15,46 +15,46 @@ namespace CoreHome.Admin
         // 将服务添加到容器
         public void ConfigureServices(IServiceCollection services)
         {
-            _ = services.AddDataProtection()
+            services.AddDataProtection()
                 .SetApplicationName("CoreHome")
                 .PersistKeysToFileSystem(new(Path.Combine(StaticConfig.STORAGE_FOLDER, "DataProtection")));
 
-            _ = services.Configure<CookieOptions>(config => config.SameSite = SameSiteMode.Lax);
+            services.Configure<CookieOptions>(config => config.SameSite = SameSiteMode.Lax);
 
-            _ = services.AddControllersWithViews(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
+            services.AddControllersWithViews(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 
             //数据库上下文
-            _ = services.AddDbContext<ArticleDbContext>(options =>
+            services.AddDbContext<ArticleDbContext>(options =>
             {
                 MySqlServerVersion version = new(new Version(8, 3, 0));
 
-                _ = options.UseMySql(Configuration.GetConnectionString("CoreHome"), version, option =>
+                options.UseMySql(Configuration.GetConnectionString("CoreHome"), version, option =>
                 {
-                    _ = option.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
-                    _ = option.EnableRetryOnFailure();
+                    option.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                    option.EnableRetryOnFailure();
                 });
             });
 
             //Bing壁纸服务
-            _ = services.AddSingleton<BingWallpaperService>();
+            services.AddSingleton<BingWallpaperService>();
 
             //个人信息服务
-            _ = services.AddSingleton(new ProfileService("Profile", new Profile()));
+            services.AddSingleton(new ProfileService("Profile", new Profile()));
 
             //项目管理服务
-            _ = services.AddSingleton(new HomePageService("Project", []));
+            services.AddSingleton(new HomePageService("Project", []));
 
             //主题服务
-            _ = services.AddSingleton(new ThemeService("Theme", new Theme()));
+            services.AddSingleton(new ThemeService("Theme", new Theme()));
 
             //通知服务
-            _ = services.AddSingleton(new NotifyService(Configuration.GetSection("PusherConfig").Get<PusherConfig>()));
+            services.AddSingleton(new NotifyService(Configuration.GetSection("PusherConfig").Get<PusherConfig>()));
 
             //阿里云OSS服务
-            _ = services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
+            services.AddSingleton(new OssService(Configuration.GetSection("OssConfig").Get<OssConfig>()));
 
             //安全服务
-            _ = services.AddSingleton(new SecurityService("Key", new Models.Secret()
+            services.AddSingleton(new SecurityService("Key", new Models.Secret()
             {
                 IV = Guid.NewGuid().ToString().Replace("-", "")[..16],
                 Key = Guid.NewGuid().ToString().Replace("-", "")
@@ -66,22 +66,22 @@ namespace CoreHome.Admin
         {
             if (env.IsDevelopment())
             {
-                _ = app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
-                _ = app.UseExceptionHandler("/Home/Error");
-                _ = app.UseHsts();
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
-            _ = app.UsePathBase(new PathString("/Admin"));
-            _ = app.UseWebSockets();
-            _ = app.UseStaticFiles();
-            _ = app.UseRouting();
+            app.UsePathBase(new PathString("/Admin"));
+            app.UseWebSockets();
+            app.UseStaticFiles();
+            app.UseRouting();
 
-            _ = app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints =>
             {
-                _ = endpoints.MapControllerRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });

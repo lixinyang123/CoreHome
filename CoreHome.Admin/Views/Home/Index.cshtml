@@ -34,26 +34,14 @@
 </head>
 <body>
 
-    <div id="imgbg" style="background-image:url('@await BingWallpaperService.GetUrl()');">
+    <div id="imgbg" style="background-image:url('@BingWallpaperService.GetUrl()');">
         <div id="content">
 
             <img id="user" src="@OssService.GetAvatar()" />
 
             <div id="loginCarousel" class="carousel slide pl-4 pr-4" data-ride="carousel" data-interval="false">
                 <div class="carousel-inner">
-
-                    <div class="carousel-item">
-                        <h4>Login with Password</h4>
-                        <form method="post" asp-controller="home" asp-action="VerifyPassword" asp-route-Redirect=@(Context.Request.Query["Redirect"])>
-                            <div class="form-group pt-2">
-                                <input name="pwd" type="password" class="form-control" placeholder="Enter the password" />
-                            </div>
-
-                            <button type="submit" class="btn btn-dark" onclick="changeLoginFunc(0)">Login</button>
-                        </form>
-                    </div>
-
-                    <div class="carousel-item">
+                    <div class="carousel-item" loginMethod="VerificationCode">
                         <h4>Login with verification code</h4>
                         <form method="post" asp-controller="home" asp-action="VerifyPassword" asp-route-Redirect=@(Context.Request.Query["Redirect"])>
                             <button id="btn_login" type="button" class="btn btn-dark mt-2" onclick="login()">Get verification code</button>
@@ -61,10 +49,20 @@
                                 <input name="pwd" type="password" class="form-control" placeholder="Enter the verification code" />
                             </div>
 
-                            <button type="submit" class="btn btn-dark" onclick="changeLoginFunc(1)">Login</button>
+                            <button type="submit" class="btn btn-dark">Login</button>
                         </form>
                     </div>
 
+                    <div class="carousel-item" loginMethod="Password">
+                        <h4>Login with Password</h4>
+                        <form method="post" asp-controller="home" asp-action="VerifyPassword" asp-route-Redirect=@(Context.Request.Query["Redirect"])>
+                            <div class="form-group pt-2">
+                                <input name="pwd" type="password" class="form-control" placeholder="Enter the password" />
+                            </div>
+
+                            <button type="submit" class="btn btn-dark">Login</button>
+                        </form>
+                    </div>
                 </div>
 
                 <a class="carousel-control-prev" href="#loginCarousel" role="button" data-slide="prev">
