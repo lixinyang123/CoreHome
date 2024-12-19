@@ -35,7 +35,7 @@ namespace CoreHome.Infrastructure.Models
                 new FooterLink()
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Title = "ConchBrainClub",
+                    Title = "ConchBrain",
                     Link = "https://conchbrain.club/"
                 }
             ];
@@ -61,7 +61,7 @@ namespace CoreHome.Infrastructure.Models
                 new FooterLink()
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Title = "Privacy&Cookie",
+                    Title = "Privacy",
                     Link = "/Home/Privacy"
                 },
                 new FooterLink()

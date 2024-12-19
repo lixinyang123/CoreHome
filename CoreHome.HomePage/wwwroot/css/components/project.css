@@ -2,7 +2,8 @@
     width: 100%;
     float: left;
     position: relative;
-    margin-bottom: 40px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     transition: transform .2s ease-out;
     overflow: hidden;
 }

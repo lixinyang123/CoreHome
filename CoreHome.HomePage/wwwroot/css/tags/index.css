@@ -4,4 +4,10 @@
 
 #allTags span {
     cursor: pointer;
+    transition: transform .2s ease-out;
+}
+
+#allTags span:hover {
+    transform: scale(1.2) !important;
+    z-index: 10;
 }

@@ -53,7 +53,6 @@
         </header>
 
         <div id="project" class="container">
-
             @if (ViewBag.HomePage.Count > 0)
             {
                 <!--Title-->
@@ -62,15 +61,14 @@
                         <h2 class="display-4">My Project</h2>
                     </div>
                 </div>
+
+                <div class="row mb-4">
+                    @foreach (var project in ViewBag.HomePage)
+                    {
+                        @await Component.InvokeAsync("Project", project)
+                    }
+                </div>
             }
-
-            <div class="row">
-                @foreach (var project in ViewBag.HomePage)
-                {
-                    @await Component.InvokeAsync("Project", project)
-                }
-            </div>
-
         </div>
 
         <audio id="player" src="/Service/BackgroundMusic"></audio>
