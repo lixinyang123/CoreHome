@@ -6,17 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreHome.HomePage.Controllers
 {
-    public class FeedbackController : Controller
+    public class FeedbackController(ArticleDbContext articleDbContext, NotifyService notifyService) : Controller
     {
-        private readonly ArticleDbContext articleDbContext;
+        private readonly ArticleDbContext articleDbContext = articleDbContext;
 
-        private readonly NotifyService notifyService;
-
-        public FeedbackController(ArticleDbContext articleDbContext, NotifyService notifyService)
-        {
-            this.articleDbContext = articleDbContext;
-            this.notifyService = notifyService;
-        }
+        private readonly NotifyService notifyService = notifyService;
 
         /// <summary>
         /// 访问反馈

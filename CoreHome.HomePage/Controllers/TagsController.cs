@@ -5,14 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreHome.HomePage.Controllers
 {
-    public class TagsController : Controller
+    public class TagsController(ArticleDbContext articleDbContext) : Controller
     {
-        private readonly ArticleDbContext articleDbContext;
-
-        public TagsController(ArticleDbContext articleDbContext)
-        {
-            this.articleDbContext = articleDbContext;
-        }
+        private readonly ArticleDbContext articleDbContext = articleDbContext;
 
         public IActionResult Index()
         {

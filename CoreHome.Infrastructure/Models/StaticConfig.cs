@@ -2,9 +2,9 @@
 
 namespace CoreHome.Infrastructure.Models
 {
-    public class StaticConfig 
-    { 
-        public static readonly string STORAGE_FOLDER = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".corehome");    
+    public class StaticConfig
+    {
+        public static readonly string STORAGE_FOLDER = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".corehome");
     }
 
     public class StaticConfig<ConfigType> : StaticConfig

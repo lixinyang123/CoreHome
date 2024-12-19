@@ -20,13 +20,12 @@ if (location.href.includes("Upload")) {
             "__RequestVerificationToken": document.querySelector('[name=__RequestVerificationToken]').value
         };
 
-        $.ajax({
-            url: "/Admin/Blog/Save",
-            type: "POST",
-            data: tempArticle,
-            error: function () {
-                console.log("save defeat");
-            }
-        });
+        fetch('/Admin/Blog/Save', {
+            method: 'POST',
+            body: JSON.stringify(tempArticle)
+        }).catch(err => {
+            console.log(err)
+        })
+
     }, 5000);
 }

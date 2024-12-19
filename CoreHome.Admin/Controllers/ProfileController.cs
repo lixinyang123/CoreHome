@@ -7,18 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreHome.Admin.Controllers
 {
     [TypeFilter(typeof(AuthorizationFilter))]
-    public class ProfileController : Controller
+    public class ProfileController(ProfileService profileService, OssService ossService, SecurityService securityService) : Controller
     {
-        private readonly ProfileService profileService;
-        private readonly OssService ossService;
-        private readonly SecurityService securityService;
-
-        public ProfileController(ProfileService profileService, OssService ossService, SecurityService securityService)
-        {
-            this.profileService = profileService;
-            this.ossService = ossService;
-            this.securityService = securityService;
-        }
+        private readonly ProfileService profileService = profileService;
+        private readonly OssService ossService = ossService;
+        private readonly SecurityService securityService = securityService;
 
         public IActionResult Index()
         {

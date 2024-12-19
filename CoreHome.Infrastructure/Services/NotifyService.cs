@@ -4,22 +4,15 @@ using System.Text.Json;
 
 namespace CoreHome.Infrastructure.Services
 {
-    public class NotifyService
+    public class NotifyService(PusherConfig config)
     {
         private readonly string api = "https://wxpusher.zjiecode.com/api/send/message";
 
-        private readonly string token;
+        private readonly string token = config.Token;
 
-        private readonly string uid;
+        private readonly string uid = config.Uid;
 
-        private readonly HttpClient httpClient;
-
-        public NotifyService(PusherConfig config)
-        {
-            token = config.Token;
-            uid = config.Uid;
-            httpClient = new();
-        }
+        private readonly HttpClient httpClient = new();
 
         public void PushNotify(string title, string content, string url = "")
         {

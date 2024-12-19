@@ -2,14 +2,9 @@
 
 namespace CoreHome.Infrastructure.Services
 {
-    public class SearchEngineService
+    public class SearchEngineService(string baiduLinkSubmit)
     {
-        private readonly string baiduLinkSubmit;
-
-        public SearchEngineService(string baiduLinkSubmit)
-        {
-            this.baiduLinkSubmit = baiduLinkSubmit;
-        }
+        private readonly string baiduLinkSubmit = baiduLinkSubmit;
 
         /// <summary>
         /// PushLinkToBaidu

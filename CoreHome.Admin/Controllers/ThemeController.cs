@@ -6,16 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreHome.Admin.Controllers
 {
     [TypeFilter(typeof(AuthorizationFilter))]
-    public class ThemeController : Controller
+    public class ThemeController(ThemeService themeService, OssService ossService) : Controller
     {
-        private readonly ThemeService themeService;
-        private readonly OssService ossService;
-
-        public ThemeController(ThemeService themeService, OssService ossService)
-        {
-            this.themeService = themeService;
-            this.ossService = ossService;
-        }
+        private readonly ThemeService themeService = themeService;
+        private readonly OssService ossService = ossService;
 
         public IActionResult Index()
         {

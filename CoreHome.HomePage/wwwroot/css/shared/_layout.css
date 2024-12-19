@@ -99,7 +99,9 @@ footer a {
     text-align: center;
 }
 
-#verfyImg, #verificationCode, #btn_submit {
+#verfyImg,
+#verificationCode,
+#btn_submit {
     height: 40px;
 }
 

@@ -5,16 +5,10 @@ using System.Diagnostics;
 
 namespace CoreHome.HomePage.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(IWebHostEnvironment environment, SearchEngineService searchEngineService) : Controller
     {
-        private readonly IWebHostEnvironment environment;
-        private readonly SearchEngineService searchEngineService;
-
-        public HomeController(IWebHostEnvironment environment, SearchEngineService searchEngineService)
-        {
-            this.environment = environment;
-            this.searchEngineService = searchEngineService;
-        }
+        private readonly IWebHostEnvironment environment = environment;
+        private readonly SearchEngineService searchEngineService = searchEngineService;
 
         /// <summary>
         /// 主页

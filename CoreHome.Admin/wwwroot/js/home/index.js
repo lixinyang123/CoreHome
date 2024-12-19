@@ -32,7 +32,7 @@ function init() {
 
     let methods = Array.from(document.querySelectorAll('.carousel-item'))
         .map(i => i.getAttribute('loginMethod'))
-    
+
     let method = localStorage.getItem("loginMethod")
 
     if (!method || !methods.includes(method))

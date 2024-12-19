@@ -5,14 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreHome.HomePage.Controllers
 {
-    public class ArchiveController : Controller
+    public class ArchiveController(ArticleDbContext articleDbContext) : Controller
     {
-        private readonly ArticleDbContext articleDbContext;
-
-        public ArchiveController(ArticleDbContext articleDbContext)
-        {
-            this.articleDbContext = articleDbContext;
-        }
+        private readonly ArticleDbContext articleDbContext = articleDbContext;
 
         /// <summary>
         /// 归档时间线

@@ -6,16 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreHome.Admin.Controllers
 {
     [TypeFilter(typeof(AuthorizationFilter))]
-    public class ProjectController : Controller
+    public class ProjectController(HomePageService homePageService, OssService ossService) : Controller
     {
-        private readonly HomePageService homePageService;
-        private readonly OssService ossService;
-
-        public ProjectController(HomePageService homePageService, OssService ossService)
-        {
-            this.homePageService = homePageService;
-            this.ossService = ossService;
-        }
+        private readonly HomePageService homePageService = homePageService;
+        private readonly OssService ossService = ossService;
 
         public IActionResult Index()
         {

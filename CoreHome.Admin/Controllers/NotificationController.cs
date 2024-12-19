@@ -5,14 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreHome.Admin.Controllers
 {
     [TypeFilter(typeof(AuthorizationFilter))]
-    public class NotificationController : Controller
+    public class NotificationController(ArticleDbContext articleDbContext) : Controller
     {
-        private readonly ArticleDbContext articleDbContext;
-
-        public NotificationController(ArticleDbContext articleDbContext)
-        {
-            this.articleDbContext = articleDbContext;
-        }
+        private readonly ArticleDbContext articleDbContext = articleDbContext;
 
         public IActionResult Index()
         {

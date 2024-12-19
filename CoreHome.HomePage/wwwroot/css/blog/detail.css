@@ -16,7 +16,7 @@
     height: 15px;
     margin-bottom: 15px;
     background-color: whitesmoke;
-    background: linear-gradient( 100deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 60% ) whitesmoke;
+    background: linear-gradient(100deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 60%) whitesmoke;
     background-size: 200% 100%;
     background-position-x: 120%;
     animation: 1s loading ease-in-out infinite;

@@ -4,16 +4,10 @@ using System.Web;
 
 namespace CoreHome.Infrastructure.Services
 {
-    public class OssService
+    public class OssService(OssConfig config)
     {
-        private readonly OssClient client;
-        private readonly OssConfig config;
-
-        public OssService(OssConfig config)
-        {
-            client = new OssClient(config.EndPoint, config.AccessKeyId, config.AccessKeySecret);
-            this.config = config;
-        }
+        private readonly OssClient client = new(config.EndPoint, config.AccessKeyId, config.AccessKeySecret);
+        private readonly OssConfig config = config;
 
         public string UploadProjCover(Stream stream)
         {

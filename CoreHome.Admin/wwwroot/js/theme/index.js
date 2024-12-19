@@ -32,7 +32,7 @@ function uploadBackground() {
         contentType: false,
         success: function () {
             let customImg = document.querySelector('#customImg')
-            customImg.src = customImg.getAttribute('custom') + `?${ Math.random() }`;
+            customImg.src = customImg.getAttribute('custom') + `?${Math.random()}`;
             changeBackground('custom');
         },
         error: function () {

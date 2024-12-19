@@ -2,8 +2,7 @@
 
 namespace CoreHome.Infrastructure.Services
 {
-    public class HomePageService : StaticConfig<List<Project>>
+    public class HomePageService(string fileName, List<Project> initProjects) : StaticConfig<List<Project>>(fileName, initProjects)
     {
-        public HomePageService(string fileName, List<Project> initProjects) : base(fileName, initProjects) { }
     }
 }

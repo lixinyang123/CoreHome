@@ -7,23 +7,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreHome.HomePage.Controllers
 {
-    public class ServiceController : Controller
+    public class ServiceController(VerificationCodeService verificationHelper,
+        OssService ossService,
+        ArticleDbContext articleDbContext,
+        IServiceProvider serviceProvider) : Controller
     {
-        private readonly VerificationCodeService verificationHelper;
-        private readonly OssService ossService;
-        private readonly IServiceProvider serviceProvider;
-        private readonly ArticleDbContext articleDbContext;
-
-        public ServiceController(VerificationCodeService verificationHelper,
-            OssService ossService,
-            ArticleDbContext articleDbContext,
-            IServiceProvider serviceProvider)
-        {
-            this.verificationHelper = verificationHelper;
-            this.ossService = ossService;
-            this.articleDbContext = articleDbContext;
-            this.serviceProvider = serviceProvider;
-        }
+        private readonly VerificationCodeService verificationHelper = verificationHelper;
+        private readonly OssService ossService = ossService;
+        private readonly IServiceProvider serviceProvider = serviceProvider;
+        private readonly ArticleDbContext articleDbContext = articleDbContext;
 
         /// <summary>
         /// 验证码

@@ -10,23 +10,15 @@ using Microsoft.Extensions.Caching.Memory;
 namespace CoreHome.Admin.Controllers
 {
     [TypeFilter(typeof(AuthorizationFilter))]
-    public class BlogController : Controller
+    public class BlogController(ArticleDbContext articleDbContext,
+        OssService ossService,
+        IMemoryCache memoryCache,
+        IConfiguration configuration) : Controller
     {
-        private readonly ArticleDbContext articleDbContext;
-        private readonly OssService ossService;
-        private readonly IMemoryCache memoryCache;
-        private readonly int pageSize;
-
-        public BlogController(ArticleDbContext articleDbContext,
-            OssService ossService,
-            IMemoryCache memoryCache,
-            IConfiguration configuration)
-        {
-            this.articleDbContext = articleDbContext;
-            this.ossService = ossService;
-            this.memoryCache = memoryCache;
-            pageSize = configuration.GetValue<int>("PageSize");
-        }
+        private readonly ArticleDbContext articleDbContext = articleDbContext;
+        private readonly OssService ossService = ossService;
+        private readonly IMemoryCache memoryCache = memoryCache;
+        private readonly int pageSize = configuration.GetValue<int>("PageSize");
 
         //矫正页码
         private static int CorrectIndex(int index, int pageCount)
@@ -342,7 +334,7 @@ namespace CoreHome.Admin.Controllers
             }
             catch
             {
-                if (times > 2) 
+                if (times > 2)
                     throw;
                 RecyclingData(++times);
             }

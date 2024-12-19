@@ -2,8 +2,7 @@
 
 namespace CoreHome.Infrastructure.Services
 {
-    public class ThemeService : StaticConfig<Theme>
+    public class ThemeService(string fileName, Theme initTheme) : StaticConfig<Theme>(fileName, initTheme)
     {
-        public ThemeService(string fileName, Theme initTheme) : base(fileName, initTheme) { }
     }
 }

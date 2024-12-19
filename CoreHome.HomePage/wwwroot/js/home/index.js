@@ -9,7 +9,7 @@ function playMusic() {
             }, 1000);
         });
         player.play();
-    } catch (e) {}
+    } catch (e) { }
 }
 
 function showInfo() {
@@ -28,7 +28,7 @@ function showInfo() {
 function scrollToProject() {
     try {
         $("html,body").animate({ scrollTop: $("#project").offset().top }, 500);
-    } catch (e) {}
+    } catch (e) { }
 }
 
 //=============Initializa================

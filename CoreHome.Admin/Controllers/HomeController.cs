@@ -10,26 +10,17 @@ using System.Diagnostics;
 
 namespace CoreHome.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(ArticleDbContext articleDbContext,
+        IMemoryCache cache,
+        NotifyService notifyService,
+        SecurityService securityService,
+        ProfileService profileService) : Controller
     {
-        private readonly ArticleDbContext articleDbContext;
-        private readonly IMemoryCache cache;
-        private readonly NotifyService notifyService;
-        private readonly SecurityService securityService;
-        private readonly ProfileService profileService;
-
-        public HomeController(ArticleDbContext articleDbContext,
-            IMemoryCache cache,
-            NotifyService notifyService,
-            SecurityService securityService,
-            ProfileService profileService)
-        {
-            this.articleDbContext = articleDbContext;
-            this.cache = cache;
-            this.notifyService = notifyService;
-            this.securityService = securityService;
-            this.profileService = profileService;
-        }
+        private readonly ArticleDbContext articleDbContext = articleDbContext;
+        private readonly IMemoryCache cache = cache;
+        private readonly NotifyService notifyService = notifyService;
+        private readonly SecurityService securityService = securityService;
+        private readonly ProfileService profileService = profileService;
 
         public IActionResult Index()
         {

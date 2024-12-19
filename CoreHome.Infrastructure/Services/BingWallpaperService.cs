@@ -22,7 +22,7 @@ namespace CoreHome.Infrastructure.Services
                 BingWallpaper wallpaper = JsonSerializer.Deserialize<BingWallpaper>(jsonStr);
                 urlCache = $"https://www.bing.com/{wallpaper.Images.First().Url}";
             }
-            catch (Exception) 
+            catch (Exception)
             {
                 return string.Empty;
             }

@@ -7,18 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreHome.HomePage.Controllers
 {
-    public class BlogController : Controller
+    public class BlogController(ArticleDbContext articleDbContext, IConfiguration configuration, NotifyService notifyService) : Controller
     {
-        private readonly ArticleDbContext articleDbContext;
-        private readonly NotifyService notifyService;
-        private readonly int pageSize;
-
-        public BlogController(ArticleDbContext articleDbContext, IConfiguration configuration, NotifyService notifyService)
-        {
-            this.articleDbContext = articleDbContext;
-            this.notifyService = notifyService;
-            pageSize = configuration.GetValue<int>("PageSize");
-        }
+        private readonly ArticleDbContext articleDbContext = articleDbContext;
+        private readonly NotifyService notifyService = notifyService;
+        private readonly int pageSize = configuration.GetValue<int>("PageSize");
 
         /// <summary>
         /// 矫正页码

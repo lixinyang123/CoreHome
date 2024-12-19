@@ -27,12 +27,12 @@
 }
 
 .fh5co-blog:hover {
-    box-shadow: 0 7px 20px 0 rgba(0,0,0,.5)
+    box-shadow: 0 7px 20px 0 rgba(0, 0, 0, .5)
 }
 
-    .fh5co-blog:hover .blog-bg {
-        transform: scale(1.07)
-    }
+.fh5co-blog:hover .blog-bg {
+    transform: scale(1.07)
+}
 
 .fh5co-blog .blog-text {
     position: absolute;
@@ -41,21 +41,21 @@
     float: left;
     bottom: 0;
     color: white;
-    background: rgba(0,0,0,.1);
+    background: rgba(0, 0, 0, .1);
     backdrop-filter: saturate(110%) blur(10px);
     transition: .3s
 }
 
-    .fh5co-blog .blog-text h3 {
-        font-size: 24px;
-        line-height: 1.5
-    }
+.fh5co-blog .blog-text h3 {
+    font-size: 24px;
+    line-height: 1.5
+}
 
-    .fh5co-blog .blog-text .stuff li {
-        list-style: none;
-        display: inline-block;
-        margin-left: 10px
-    }
+.fh5co-blog .blog-text .stuff li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 10px
+}
 
 @media screen and (max-width: 768px) {
     .fh5co-blog .blog-text .stuff li {
@@ -67,6 +67,6 @@
     float: right
 }
 
-    .fh5co-blog .blog-text .stuff li:last-child a {
-        color: white
-    }
+.fh5co-blog .blog-text .stuff li:last-child a {
+    color: white
+}

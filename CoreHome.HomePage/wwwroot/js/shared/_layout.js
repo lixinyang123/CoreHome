@@ -29,8 +29,7 @@ function fullHeight() {
 	});
 }
 
-function MoveTop()
-{
+function MoveTop() {
 	$("html,body").animate({ scrollTop: 0 }, 500);
 }
 
@@ -50,8 +49,8 @@ function init() {
 		}
 		else {
 			document.querySelector(".js-top").classList.remove("active");
-        }
-    }
+		}
+	}
 	ScrollReveal().reveal(".reveal");
 	fullHeight();
 }

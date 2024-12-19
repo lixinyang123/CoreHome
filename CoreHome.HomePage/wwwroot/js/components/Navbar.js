@@ -9,7 +9,7 @@ $('#search > input').popover({
 
 async function presearch() {
     var keyword = document.querySelector("#search > input").value.trim();
-    
+
     if (!keyword) {
         hiddenPreSearch();
         return;
@@ -33,7 +33,7 @@ async function presearch() {
         list += `
             <li class="list-group-item p-1">
                 <p><a href="/Blog/Detail/${i.articleCode}">${i.title}</a></p>
-                <div class="alert alert-light p-0" role="alert">
+                <div class="alert alert-light p-0 border-0" role="alert">
                     ${i.overview}
                 </div>
             </li>`;

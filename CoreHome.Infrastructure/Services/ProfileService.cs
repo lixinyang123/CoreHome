@@ -2,8 +2,7 @@
 
 namespace CoreHome.Infrastructure.Services
 {
-    public class ProfileService : StaticConfig<Profile>
+    public class ProfileService(string fileName, Profile initUserInfo) : StaticConfig<Profile>(fileName, initUserInfo)
     {
-        public ProfileService(string fileName, Profile initUserInfo) : base(fileName, initUserInfo) { }
     }
 }
