@@ -32,8 +32,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="input-group">
-                                <img id="verfyImg" onclick="getVerfyCode(this)" src="/Service/VerificationCode" />
-                                <input id="verificationCode" asp-for="VerificationCode" type="text" autocomplete="off" class="form-control" placeholder="Code" />
+                                <img id="verfyImg" class="rounded-left" onclick="getVerfyCode(this)" src="/Service/VerificationCode" />
+                                <input id="verificationCode" asp-for="VerificationCode" type="text" autocomplete="off" class="form-control rounded-right" placeholder="Code" />
                                 <span asp-validation-for="VerificationCode" class="text-danger"></span>
                             </div>
                         </div>
