@@ -1,12 +1,7 @@
 ﻿namespace CoreHome.Admin.Models
 {
-    public class FormLink
+    public class ConfirmLink
     {
-        public FormLink()
-        {
-            Paras = [];
-        }
-
         /// <summary>
         /// 表单ID
         /// </summary>
@@ -35,7 +30,7 @@
         /// <summary>
         /// Post参数
         /// </summary>
-        public Dictionary<string, string> Paras { get; set; }
+        public Dictionary<string, string> Paras { get; set; } = [];
 
         /// <summary>
         /// 提示警告

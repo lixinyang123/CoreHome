@@ -19,7 +19,7 @@
             <input id="fileSelector" type="file" onchange="uploadAvatar()" hidden />
             @if (!string.IsNullOrEmpty(Model.AdminPassword))
             {
-                @await Component.InvokeAsync("FormLink", new FormLink()
+                @await Component.InvokeAsync("ConfirmLink", new ConfirmLink()
                 {
                     Text = "Delete Password",
                     ClassName = "btn btn-danger",
@@ -84,7 +84,7 @@
 
     <div class="inputRow mt-5">
         @{
-            var formLink = new FormLink()
+            ConfirmLink confirmLink = new()
             {
                 Text = "Delete",
                 ClassName = "btn btn-danger",
@@ -108,13 +108,13 @@
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
                     @{
-                        formLink.Href = "/Admin/Profile/DeleteFooterLink?type=WhatsNew";
-                        formLink.Paras = new Dictionary<string, string>()
+                        confirmLink.Href = "/Admin/Profile/DeleteFooterLink?type=WhatsNew";
+                        confirmLink.Paras = new()
                         {
                             {"id", item.Id }
                         };
                     }
-                    @await Component.InvokeAsync("FormLink", formLink)
+                    @await Component.InvokeAsync("ConfirmLink", confirmLink)
                 </div>
             </div>
             <br />
@@ -138,13 +138,13 @@
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
                     @{
-                        formLink.Href = "/Admin/Profile/DeleteFooterLink?type=FriendLinks";
-                        formLink.Paras = new Dictionary<string, string>()
+                        confirmLink.Href = "/Admin/Profile/DeleteFooterLink?type=FriendLinks";
+                        confirmLink.Paras = new()
                         {
                             {"id", item.Id }
                         };
                     }
-                    @await Component.InvokeAsync("FormLink", formLink)
+                    @await Component.InvokeAsync("ConfirmLink", confirmLink)
                 </div>
             </div>
             <br />
@@ -168,13 +168,13 @@
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
                     @{
-                        formLink.Href = "/Admin/Profile/DeleteFooterLink?type=About";
-                        formLink.Paras = new Dictionary<string, string>()
+                        confirmLink.Href = "/Admin/Profile/DeleteFooterLink?type=About";
+                        confirmLink.Paras = new()
                         {
                             {"id", item.Id }
                         };
                     }
-                    @await Component.InvokeAsync("FormLink", formLink)
+                    @await Component.InvokeAsync("ConfirmLink", confirmLink)
                 </div>
             </div>
             <br />
@@ -198,13 +198,13 @@
                 <input type="text" placeholder="Link" class="form-control" value="@item.Link" disabled />
                 <div class="input-group-append">
                     @{
-                        formLink.Href = "/Admin/Profile/DeleteFooterLink?type=Others";
-                        formLink.Paras = new Dictionary<string, string>()
+                        confirmLink.Href = "/Admin/Profile/DeleteFooterLink?type=Others";
+                        confirmLink.Paras = new()
                         {
                             {"id", item.Id }
                         };
                     }
-                    @await Component.InvokeAsync("FormLink", formLink)
+                    @await Component.InvokeAsync("ConfirmLink", confirmLink)
                 </div>
             </div>
             <br />

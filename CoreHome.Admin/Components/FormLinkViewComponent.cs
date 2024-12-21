@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreHome.Admin.Components
 {
-    public class FormLinkViewComponent : ViewComponent
+    public class ConfirmLinkViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke(FormLink formLink)
+        public IViewComponentResult Invoke(ConfirmLink confirmLink)
         {
-            formLink.Id = Guid.NewGuid().ToString()[..6];
-            return View(formLink);
+            confirmLink.Id = Guid.NewGuid().ToString()[..6];
+            return View(confirmLink);
         }
     }
 }

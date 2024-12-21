@@ -22,23 +22,23 @@
 }
 
 <div class="@sizeClassName">
-    @await Component.InvokeAsync("FormLink", new FormLink()
+    @await Component.InvokeAsync("ConfirmLink", new ConfirmLink()
     {
         Href = "/Admin/Project/MoveUp/",
         Text = "MoveUp",
         Paras = { {"id", Model.Id } },
-        ClassName = "btn-edit btn btn-info mb-1",
+        ClassName = "btn btn-info",
         Warning = "Confirm MoveUp?"
     })
 
-    <a class="btn-edit btn btn-warning mb-1" asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn btn-warning" asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
 
-    @await Component.InvokeAsync("FormLink", new FormLink()
+    @await Component.InvokeAsync("ConfirmLink", new ConfirmLink()
     {
         Href = "/Admin/Project/Delete/",
         Text = "Delete",
         Paras = { { "id", Model.Id } },
-        ClassName = "btn-edit btn btn-danger mb-1",
+        ClassName = "btn btn-danger",
         Warning = "Confirm deletion?"
     })
 

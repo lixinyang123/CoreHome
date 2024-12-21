@@ -24,8 +24,8 @@
                     <div class="markdown">
                         <textarea hidden>@comment.Detail</textarea>
                     </div>
-                    
-                    @await Component.InvokeAsync("FormLink", new FormLink()
+
+                    @await Component.InvokeAsync("ConfirmLink", new ConfirmLink()
                     {
                         Href = "/Admin/Blog/DelComment/",
                         Text = "Delete",

@@ -28,17 +28,17 @@
                         <td><a asp-action="Modify" asp-route-id="@article.ArticleCode" class="badge badge-warning">Modify</a></td>
                         <td><a asp-action="Comment" asp-route-id="@article.ArticleCode" class="badge badge-info">Comment</a></td>
                         <td>
-                            @{
-                                var formLink = new FormLink()
+                            @await Component.InvokeAsync("ConfirmLink", new ConfirmLink()
+                            {
+                                Href = "/Admin/Blog/Delete/",
+                                Text = "Delete",
+                                ClassName = "badge badge-danger",
+                                Warning = "Confirm deletion?",
+                                Paras = new()
                                 {
-                                    Href = "/Admin/Blog/Delete/",
-                                    Text = "Delete",
-                                    ClassName = "badge badge-danger",
-                                    Warning = "Confirm deletion?"
-                                };
-                                formLink.Paras.Add("id", article.ArticleCode.ToString());
-                            }
-                            @await Component.InvokeAsync("FormLink", formLink)
+                                    { "id", article.ArticleCode.ToString() }
+                                }
+                            })
                         </td>
                     </tr>
                 }

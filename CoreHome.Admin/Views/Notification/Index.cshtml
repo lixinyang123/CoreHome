@@ -32,7 +32,7 @@
                         <textarea hidden>@notification.Content</textarea>
                     </div>
 
-                    @await Component.InvokeAsync("FormLink", new FormLink()
+                    @await Component.InvokeAsync("ConfirmLink", new ConfirmLink()
                     {
                         Href = "/Admin/Notification/Delete/",
                         Text = "Delete",
