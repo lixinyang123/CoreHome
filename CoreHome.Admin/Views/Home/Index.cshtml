@@ -6,18 +6,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Login | Admin</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/home/index.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/home/index.css" />
 
-    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
     @switch (ViewBag.Theme.ThemeType)
     {
         case ThemeType.Auto:
             @if (DateTime.Now.Hour > 18 || DateTime.Now.Hour < 7)
             {
-                <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
+                <script type="text/javascript" src="~/lib/darkreader/darkreader.js"></script>
                 <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
             }
             break;
@@ -26,7 +26,7 @@
             break;
 
         case ThemeType.Black:
-            <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
+            <script type="text/javascript" src="~/lib/darkreader/darkreader.js"></script>
             <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
             break;
     }
@@ -86,7 +86,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="~/js/home/index.min.js"></script>
+    <script type="text/javascript" src="~/js/home/index.js"></script>
 
 </body>
 </html>

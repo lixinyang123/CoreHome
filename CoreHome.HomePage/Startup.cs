@@ -24,6 +24,8 @@ namespace CoreHome.HomePage
 
             services.AddControllersWithViews(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 
+            services.AddWebOptimizer();
+
             //数据库上下文
             services.AddDbContext<ArticleDbContext>(options =>
             {
@@ -76,6 +78,7 @@ namespace CoreHome.HomePage
             }
 
             app.UseSession();
+            app.UseWebOptimizer();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
