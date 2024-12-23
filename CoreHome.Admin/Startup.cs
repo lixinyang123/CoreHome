@@ -23,6 +23,8 @@ namespace CoreHome.Admin
 
             services.AddControllersWithViews(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 
+            services.AddWebOptimizer();
+
             //数据库上下文
             services.AddDbContext<ArticleDbContext>(options =>
             {
@@ -76,6 +78,7 @@ namespace CoreHome.Admin
 
             app.UsePathBase(new PathString("/Admin"));
             app.UseWebSockets();
+            app.UseWebOptimizer();
             app.UseStaticFiles();
             app.UseRouting();
 

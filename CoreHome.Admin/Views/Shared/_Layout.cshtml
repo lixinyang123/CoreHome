@@ -15,19 +15,19 @@
 
     <title>@ViewBag.PageTitle | Admin</title>
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/open-iconic/font/css/open-iconic-bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/shared/_layout.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/open-iconic/font/css/open-iconic-bootstrap.css" />
+    <link rel="stylesheet" href="~/css/shared/_layout.css" />
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 
     @switch (ViewBag.Theme.ThemeType)
     {
         case ThemeType.Auto:
             @if (DateTime.Now.Hour > 18 || DateTime.Now.Hour < 7)
             {
-                <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
+                <script type="text/javascript" src="~/lib/darkreader/darkreader.js"></script>
                 <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
             }
             break;
@@ -36,7 +36,7 @@
             break;
 
         case ThemeType.Black:
-            <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
+            <script type="text/javascript" src="~/lib/darkreader/darkreader.js"></script>
             <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
             break;
     }
