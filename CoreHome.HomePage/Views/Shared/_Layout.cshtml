@@ -28,7 +28,7 @@
         case ThemeType.Auto:
             @if (DateTime.Now.Hour > 18 || DateTime.Now.Hour < 7)
             {
-                <script type="text/javascript" src="~/lib/darkreader/darkreader.js"></script>
+                <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
                 <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
             }
             break;
@@ -37,7 +37,7 @@
             break;
 
         case ThemeType.Black:
-            <script type="text/javascript" src="~/lib/darkreader/darkreader.js"></script>
+            <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
             <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
             break;
     }
