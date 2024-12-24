@@ -39,7 +39,7 @@ let startWsTest = function () {
         $('#wsStatus').html('Current: ' + wslag + 'ms');
         $("#wsmax").html('Max: ' + wsMaxLag + 'ms');
 
-        if (wschartData.labels.length > 200) {
+        if (wschartData.labels.length > 50) {
             wschartData.labels.shift();
             wschartData.datasets[0].data.shift();
         }
