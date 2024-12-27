@@ -13,7 +13,7 @@
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    _ = webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>();
                 });
         }
     }

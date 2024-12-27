@@ -25,6 +25,10 @@
     {
       "library": "open-iconic@1.1.1",
       "destination": "wwwroot/lib/open-iconic/"
+    },
+    {
+      "library": "@pqina/flip@1.8.4",
+      "destination": "wwwroot/lib/flip/"
     }
   ]
 }

@@ -1,29 +1,38 @@
 ﻿using CoreHome.Admin.Attributes;
 using CoreHome.Admin.Filter;
 using CoreHome.Admin.Models;
+using CoreHome.Admin.ViewModels;
+using CoreHome.Data.DatabaseContext;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.WebSockets;
 
 namespace CoreHome.Admin.Controllers
 {
     [TypeFilter(typeof(AuthorizationFilter))]
-    public class OverviewController : Controller
+    public class OverviewController(IConfiguration configuration, 
+        ArticleDbContext articleDbContext) : Controller
     {
         private static byte[] data;
 
         private const int length = 1024 * 1024 * 1;
 
-        private readonly IPusher<WebSocket> pusher;
+        private readonly WebSocketPusher pusher = new();
 
-        public OverviewController()
-        {
-            pusher = new WebSocketPusher();
-        }
+        private readonly IConfiguration configuration = configuration;
+
+        private readonly ArticleDbContext articleDbContext = articleDbContext;
 
         public IActionResult Index()
         {
             ViewBag.PageTitle = "Overview";
-            return View();
+            OverviewViewModel viewModel = new()
+            {
+                StartupTime = configuration.GetValue<string>("STARTUP_TIME"),
+                BlogCount = articleDbContext.Articles.Count(),
+                CategorieCount = articleDbContext.Categories.Count(),
+                TagCount = articleDbContext.Tags.Count(),
+                NotificationCount = articleDbContext.Notifications.Count()
+            };
+            return View(viewModel);
         }
 
         private static byte[] GetData()
@@ -44,11 +53,11 @@ namespace CoreHome.Admin.Controllers
         public async Task<IActionResult> Pushing()
         {
             await pusher.Accept(HttpContext);
-            for (int i = 0; i < 36000 && pusher.Connected; i++)
+            for (int i = 0; i < 1800 && pusher.Connected; i++)
             {
                 try
                 {
-                    _ = pusher.SendMessage(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + $"|{i + 1}").GetAwaiter();
+                    await pusher.SendMessage(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + $"|{i + 1}");
                     await Task.Delay(100);
                 }
                 catch
@@ -67,9 +76,6 @@ namespace CoreHome.Admin.Controllers
         }
 
         [NoCache]
-        public JsonResult GetPing()
-        {
-            return Json(new List<object>());
-        }
+        public IActionResult Ping() => Ok();
     }
-}
+} 

@@ -1,4 +1,6 @@
-﻿var searchSelector = '#search > input';
+﻿var searchSelector = window.innerWidth < 892
+    ? '.side-tool input'
+    : '.nav-tool > input';
 
 $(searchSelector).popover({
     html: true,
@@ -30,7 +32,7 @@ async function presearch() {
 
         list += `
             <li class="list-group-item p-1">
-                <p><a href="/Blog/Detail/${i.articleCode}">${i.title}</a></p>
+                <p><a href="/Admin/Blog/Modify/${i.articleCode}">${i.title}</a></p>
                 <div class="alert alert-light p-0 border-0" role="alert">
                     ${i.overview}
                 </div>
@@ -49,11 +51,4 @@ function hiddenPreSearch() {
 }
 
 let input = document.querySelector(searchSelector);
-
 input.oninput = presearch;
-input.onkeydown = e => {
-    if (e.keyCode != 13) return;
-    let keyword = input.value.trim();
-    if (keyword)
-        location.href = `/Blog/Search/${keyword}`;
-}

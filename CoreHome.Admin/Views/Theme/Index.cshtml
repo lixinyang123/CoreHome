@@ -5,16 +5,17 @@
 
 <div class="container">
 
-    <form asp-controller="Theme" asp-action="Index" method="post">
+    <form id="theme-form" asp-controller="Theme" asp-action="Index" method="post">
 
-        <div class="section">
+        @* Chrome 71 开始不支持音频自动播放（找到解决方案前暂时移除） *@
+        <div class="section" hidden>
             <h1 class="display-4">Bgm</h1>
             <br />
             <input class="form-control" asp-for="MusicUrl" autocomplete="off" placeholder="Random Music"/>
         </div>
 
         <div class="section">
-            <h1 class="display-4">Theme</h1>
+            <h1 class="display-4">Color</h1>
             <br />
             <div class="row no-gutters">
 
@@ -134,7 +135,7 @@
                 </div>
                 <div class="modal-body text-center">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-success" onclick="document.querySelector('form').submit()">Yes</button>
+                    <button type="button" class="btn btn-success" onclick="document.querySelector('#theme-form').submit()">Yes</button>
                 </div>
             </div>
         </div>

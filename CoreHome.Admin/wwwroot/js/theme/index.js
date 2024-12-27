@@ -1,6 +1,5 @@
 ﻿function changeTheme(type) {
     let themeTypes = document.querySelectorAll(".ThemeType");
-    console.log(themeTypes);
     for (let i = 0; i < themeTypes.length; i++) {
         themeTypes[i].removeAttribute("checked");
     }

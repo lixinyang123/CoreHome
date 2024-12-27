@@ -22,38 +22,42 @@
 }
 
 <div class="@sizeClassName">
-    @await Component.InvokeAsync("ConfirmLink", new ConfirmLink()
-    {
-        Href = "/Admin/Project/MoveUp/",
-        Text = "MoveUp",
-        Paras = { {"id", Model.Id } },
-        ClassName = "btn btn-info",
-        Warning = "Confirm MoveUp?"
-    })
-
-    <a class="btn btn-warning" asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-
-    @await Component.InvokeAsync("ConfirmLink", new ConfirmLink()
-    {
-        Href = "/Admin/Project/Delete/",
-        Text = "Delete",
-        Paras = { { "id", Model.Id } },
-        ClassName = "btn btn-danger",
-        Warning = "Confirm deletion?"
-    })
-
     <div class="fh5co-blog rounded">
         <div class="blog-imgbox">
             <a class="blog-bg" style="background-image:url(@Model.CoverUrl);" href="@Model.Link" target="_blank"></a>
         </div>
+
         <div class="blog-text">
             <h3>@Model.Name</h3>
             <p class="detail">@Html.Raw(Model.Detail)</p>
+
             <ul class="stuff">
                 <li>
                     <a href="@Model.Link" target="_blank">@Model.Tip</a>
                 </li>
             </ul>
+
+            <div>
+                @await Component.InvokeAsync("ConfirmLink", new ConfirmLink()
+                {
+                    Href = "/Admin/Project/MoveUp/",
+                    Text = "MoveUp",
+                    Paras = { { "id", Model.Id } },
+                    ClassName = "btn btn-info",
+                    Warning = "Confirm MoveUp?"
+                })
+
+                <a class="btn btn-warning" asp-controller="Project" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+
+                @await Component.InvokeAsync("ConfirmLink", new ConfirmLink()
+                {
+                    Href = "/Admin/Project/Delete/",
+                    Text = "Delete",
+                    Paras = { { "id", Model.Id } },
+                    ClassName = "btn btn-danger",
+                    Warning = "Confirm deletion?"
+                })
+            </div>
         </div>
     </div>
 </div>

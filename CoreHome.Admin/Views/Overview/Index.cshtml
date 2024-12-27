@@ -1,55 +1,117 @@
 ﻿@using System.Globalization
 
-<div class="container">
+@model CoreHome.Admin.ViewModels.OverviewViewModel
 
-    <h1 class="display-4">@DateTime.Now.ToString("MMMM dd, yyyy dddd",CultureInfo.CreateSpecificCulture("en-GB"))</h1>
-    <br />
-    <p>Access from <code>@Context.Connection.RemoteIpAddress.ToString()</code><span class="badge badge-secondary ml-2" id="spanStatus">Idle</span></p>
+<link rel="stylesheet" href="~/lib/flip/dist/flip.min.css" />
 
-    <div class="row">
+<h1 class="display-4">@DateTime.Now.ToString("MMMM dd, yyyy dddd", CultureInfo.CreateSpecificCulture("en-GB"))</h1>
+<br />
+<p>Access from <code>@Context.Connection.RemoteIpAddress.ToString()</code><span class="badge badge-secondary ml-2" id="spanStatus">Idle</span></p>
 
-        <div class="col-md-6 mt-4">
-            <div class="card p-3 mb-2 tests-card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">HTTP Lag</h5>
-                    <p class="test-status"><pre id="httpStatus"></pre></p>
-                    <p class="test-status"><code id="httpMax"></code></p>
-                    <canvas id="httpChart"></canvas>
-                </div>
+<div class="row">
+    <div class="col-md-4 mt-4">
+        <div class="card mb-2 tests-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">HTTP Lag</h5>
+                <p class="test-status"><pre id="httpStatus"></pre></p>
+                <p class="test-status"><code id="httpMax"></code></p>
+                <canvas id="httpChart"></canvas>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-6 mt-4">
-            <div class="card p-3 mb-2 tests-card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Download Speed</h5>
-                    <p class="test-status"><pre id="downStatus"></pre></p>
-                    <p class="test-status"><code id="downMax"></code></p>
-                    <canvas id="downloadChart"></canvas>
-                </div>
+    <div class="col-md-4 mt-4">
+        <div class="card mb-2 tests-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Download Speed</h5>
+                <p class="test-status"><pre id="downStatus"></pre></p>
+                <p class="test-status"><code id="downMax"></code></p>
+                <canvas id="downloadChart"></canvas>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-6 mt-4">
-            <div class="card p-3 mb-2 tests-card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">WebSocket Lag</h5>
-                    <p class="test-status"><pre id="wsStatus"></pre></p>
-                    <p class="test-status"><code id="wsmax"></code></p>
-                    <canvas id="wsChart"></canvas>
+    <div class="col-md-4 mt-4">
+        <div class="card mb-2 tests-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">WebSocket Lag</h5>
+                <p class="test-status"><pre id="wsStatus"></pre></p>
+                <p class="test-status"><code id="wsmax"></code></p>
+                <canvas id="wsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mt-4">
+        <div class="card mb-2 tests-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Startup Time</h5>
+                <div class="tick" data-did-init="handleTickInit" data-credits="false">
+                    <div data-layout="horizontal fit">
+                        <span data-key="days" data-transform="pad(00)" data-view="flip"></span>
+                        <span data-view="text" data-key="sep" class="tick-text-inline"></span>
+                        <span data-key="hours" data-transform="pad(00)" data-view="flip"></span>
+                        <span data-view="text" data-key="sep" class="tick-text-inline"></span>
+                        <span data-key="minutes" data-transform="pad(00)" data-view="flip"></span>
+                        <span data-view="text" data-key="sep" class="tick-text-inline"></span>
+                        <span data-key="seconds" data-transform="pad(00)" data-view="flip"></span>
+                    </div>
+                </div>
+
+                <input id="startupTime" value="@Model.StartupTime" hidden />
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-2 mt-4">
+        <div class="card mb-2 tests-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Blogs</h5>
+                <div class="text-center">
+                    <p class="display-4 font-weight-lighter font-italic text-primary">@Model.BlogCount</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="~/lib/chart.js/dist/chart.umd.min.js"></script>
+    <div class="col-md-2 mt-4">
+        <div class="card mb-2 tests-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Categories</h5>
+                <div class="text-center">
+                    <p class="display-4 font-weight-lighter font-italic text-success">@Model.CategorieCount</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script src="~/js/overview/down.js"></script>
-    <script src="~/js/overview/http.js"></script>
-    <script src="~/js/overview/ws.js"></script>
-    <script src="~/js/overview/site.js"></script>
+    <div class="col-md-2 mt-4">
+        <div class="card mb-2 tests-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Tags</h5>
+                <div class="text-center">
+                    <p class="display-4 font-weight-lighter font-italic text-danger">@Model.TagCount</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script>
-        window.onload = setTimeout(startAll, 1000);
-    </script>
+    <div class="col-md-2 mt-4">
+        <div class="card mb-2 tests-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Notification</h5>
+                <div class="text-center">
+                    <p class="display-4 font-weight-lighter font-italic text-warning">@Model.NotificationCount</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript" src="~/lib/chart.js/dist/chart.umd.min.js"></script>
+<script type="text/javascript" src="~/lib/flip/dist/flip.min.js"></script>
+
+<script type="text/javascript" src="~/js/overview/down.js"></script>
+<script type="text/javascript" src="~/js/overview/http.js"></script>
+<script type="text/javascript" src="~/js/overview/ws.js"></script>
+<script type="text/javascript" src="~/js/overview/index.js"></script>

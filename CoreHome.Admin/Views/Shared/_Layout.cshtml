@@ -20,72 +20,73 @@
     <link rel="stylesheet" href="~/css/shared/_layout.css" />
 
     <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
-    @switch (ViewBag.Theme.ThemeType)
+    @if (ViewBag.EnableDarkReader)
     {
-        case ThemeType.Auto:
-            @if (DateTime.Now.Hour > 18 || DateTime.Now.Hour < 7)
-            {
-                <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
-                <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
-            }
-            break;
-
-        case ThemeType.White:
-            break;
-
-        case ThemeType.Black:
-            <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
-            <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
-            break;
+        <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
+        <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
     }
-
 </head>
+
 <body>
+    <nav class="px-4 navbar navbar-light bg-light">
+        <a class="navbar-brand" asp-controller="Overview" asp-action="Index">Admin | @ViewBag.Profile.Name</a>
+
+        <div class="nav-tool form-inline">
+            <input class="form-control" type="search" autocomplete="off" placeholder="Search" data-toggle="popover" data-placement="bottom" />
+            <a class="btn btn-outline-primary" asp-controller="Notification" asp-action="Index">
+                <span class="oi oi-bell"></span>&nbsp;
+                <span class="badge badge-primary">@ViewBag.NotificationCount</span>
+            </a>
+        </div>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
     <app>
-        <div class="sidebar">
-
-            <div class="top-row pl-4 navbar navbar-light bg-light">
-                <a class="navbar-brand" asp-controller="Overview" asp-action="Index">Admin | @ViewBag.Profile.Name</a>
-                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-
+        <div class="sidebar bg-light">
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav flex-column">
-                    @if(ViewBag.NotificationCount > 0)
-                    {
-                        <li class="nav-item px-3">
-                            <a class="nav-link bg-primary text-white" asp-controller="Notification" asp-action="Index">
+                    <div class="side-tool nav-item px-3 pb-0">
+                        <li class="nav-item py-2">
+                            <input class="form-control" type="search" autocomplete="off" placeholder="Search" data-toggle="popover" data-placement="bottom" />
+                        </li>
+
+                        <li class="nav-item pt-2 pb-0">
+                            <a class="nav-link @(Context.Request.Path.Value == "/Notification" ? "active" : string.Empty)" asp-controller="Notification" asp-action="Index">
                                 <span class="oi oi-bell"></span> Notification &nbsp;&nbsp;
                                 <span class="badge badge-secondary">@ViewBag.NotificationCount</span>
                             </a>
                         </li>
-                    }
+
+                        <hr class="mb-0" />
+                    </div>
+
                     <li class="nav-item px-3">
-                        <a class="nav-link" asp-controller="Overview" asp-action="Index">
+                        <a class="nav-link @(Context.Request.Path.Value == "/Overview" ? "active" : string.Empty)" asp-controller="Overview" asp-action="Index">
                             <span class="oi oi-home"></span> Overview
                         </a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" asp-controller="Profile" asp-action="Index">
+                        <a class="nav-link @(Context.Request.Path.Value == "/Profile" ? "active" : string.Empty)" asp-controller="Profile" asp-action="Index">
                             <span class="oi oi-person"></span> Profile
                         </a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" asp-controller="Project" asp-action="Index">
+                        <a class="nav-link @(Context.Request.Path.Value == "/Project" ? "active" : string.Empty)" asp-controller="Project" asp-action="Index">
                             <span class="oi oi-project"></span> Project
                         </a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" asp-controller="Theme" asp-action="Index">
+                        <a class="nav-link @(Context.Request.Path.Value == "/Theme" ? "active" : string.Empty)" asp-controller="Theme" asp-action="Index">
                             <span class="oi oi-sun"></span> Theme
                         </a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link" asp-controller="Blog" asp-action="Index">
+                        <a class="nav-link @(Context.Request.Path.Value == "/Blog" ? "active" : string.Empty)" asp-controller="Blog" asp-action="Index">
                             <span class="oi oi-script"></span> Blog
                         </a>
                     </li>
@@ -101,13 +102,15 @@
                     </li>
                 </ul>
             </div>
-
         </div>
 
-        <div class="main">
-            @RenderBody()
+        <div class="main bg-light">
+            <div class="container-fuild p-3 bg-white rounded">
+                @RenderBody()
+            </div>
         </div>
-
     </app>
+
+    <script type="text/javascript" src="~/js/shared/_layout.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CoreHome.HomePage.ViewModels
+namespace CoreHome.Admin.ViewModels
 {
     public class PreSearchViewModel(Guid articleCode, string title, string overview)
     {

@@ -3,4 +3,11 @@
     ViewBag.FrameworkVersion = Environment.Version.ToString();
     ViewBag.Profile = ProfileService.Config;
     ViewBag.Theme = ThemeService.Config;
+
+    ViewBag.EnableDarkReader = ViewBag.Theme.ThemeType switch
+    {
+        ThemeType.Auto => DateTime.Now.Hour > 18 || DateTime.Now.Hour < 7,
+        ThemeType.Black => true,
+        _ => false
+    };
 }

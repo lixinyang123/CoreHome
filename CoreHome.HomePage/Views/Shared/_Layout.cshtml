@@ -23,25 +23,11 @@
     <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script type="text/javascript" src="~/lib/scrollreveal/dist/scrollreveal.js"></script>
 
-    @switch (ViewBag.Theme.ThemeType)
+    @if (ViewBag.EnableDarkReader)
     {
-        case ThemeType.Auto:
-            @if (DateTime.Now.Hour > 18 || DateTime.Now.Hour < 7)
-            {
-                <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
-                <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
-            }
-            break;
-
-        case ThemeType.White:
-            break;
-
-        case ThemeType.Black:
-            <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
-            <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
-            break;
+        <script type="text/javascript" src="~/lib/darkreader/darkreader.min.js"></script>
+        <script>DarkReader.setFetchMethod(window.fetch); DarkReader.enable();</script>
     }
-
 </head>
 <body>
 

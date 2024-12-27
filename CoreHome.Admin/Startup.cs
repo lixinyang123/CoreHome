@@ -33,6 +33,7 @@ namespace CoreHome.Admin
                 options.UseMySql(Configuration.GetConnectionString("CoreHome"), version, option =>
                 {
                     option.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                    option.EnableStringComparisonTranslations();
                     option.EnableRetryOnFailure();
                 });
             });

@@ -1,15 +1,4 @@
-﻿let trig = function (trigger, value) {
-    let newTr = logTable.insertRow(-1);
-    let newTd0 = newTr.insertCell();
-    let newTd1 = newTr.insertCell();
-    let newTd2 = newTr.insertCell();
-    newTd0.innerText = new Date();
-    newTd1.innerText = trigger;
-    newTd2.innerText = value;
-};
-
-
-let ctx = document.getElementById('httpChart').getContext('2d');
+﻿let ctx = document.getElementById('httpChart').getContext('2d');
 let downloadChartCtx = document.getElementById('downloadChart').getContext('2d');
 let wsChartCtx = document.getElementById('wsChart').getContext('2d');
 
@@ -74,3 +63,18 @@ let startAll = function () {
     ping();
     download();
 };
+
+startAll();
+
+function handleTickInit(tick) {
+    let startTime = new Date(Date.parse(document.querySelector('#startupTime').value));
+
+    Tick.helper.interval(function () {
+        let time = new Date() - startTime;
+        let seconds = Math.floor((time / 1000) % 60);
+        let minutes = Math.floor((time / (1000 * 60)) % 60);
+        let hours = Math.floor((time / (1000 * 60 * 60)) % 24);
+        let days = Math.floor(time / (1000 * 60 * 60 * 24));
+        tick.value = { sep: ':', days, hours, minutes, seconds };
+    });
+}

@@ -20,7 +20,9 @@ namespace CoreHome.Admin
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    _ = webBuilder.UseStartup<Startup>();
+                    webBuilder
+                        .UseSetting("STARTUP_TIME", DateTime.Now.ToString())
+                        .UseStartup<Startup>();
                 });
         }
     }

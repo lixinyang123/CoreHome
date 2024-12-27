@@ -15,7 +15,7 @@ let startping = function () {
     }
     //prepare
     let startTime = new Date();
-    $.get('/admin/overview/GetPing', function (data) {
+    $.get('/admin/overview/Ping', function (data) {
         //get time
         let endtime = new Date();
         let lag = endtime - startTime - 7;
