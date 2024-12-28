@@ -15,7 +15,7 @@ namespace CoreHome.HomePage.Components
 
         public IViewComponentResult Invoke()
         {
-            List<Category> categories = articleDbContext.Categories.ToList();
+            List<Category> categories = [.. articleDbContext.Categories];
             return View(categories);
         }
     }

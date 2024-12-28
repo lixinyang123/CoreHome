@@ -126,7 +126,7 @@ namespace CoreHome.HomePage.Controllers
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
 
-            List<Article> articles = articleTags.Select(i => i.Article).ToList();
+            List<Article> articles = [.. articleTags.Select(i => i.Article)];
             ViewBag.Pagination = new PaginationViewModel(index, pageCount, "Tags");
 
             ViewBag.Warning = id;
@@ -288,7 +288,7 @@ namespace CoreHome.HomePage.Controllers
             }
 
             string str = HttpContext.Session.GetString("VerificationCode");
-            if (str != viewModel.VerificationCode.ToLower())
+            if (!str.Equals(viewModel.VerificationCode, StringComparison.CurrentCultureIgnoreCase))
             {
                 ViewBag.Warning = new
                 {
@@ -308,8 +308,8 @@ namespace CoreHome.HomePage.Controllers
             string title = "[ New Comment ]";
             string content = $"# Blog \n{article.Title} \n# Detail \n{viewModel.Detail}";
 
-            _ = await articleDbContext.Notifications.AddAsync(new Notification(title, content));
-            _ = await articleDbContext.SaveChangesAsync();
+            await articleDbContext.Notifications.AddAsync(new Notification(title, content));
+            await articleDbContext.SaveChangesAsync();
 
             notifyService.PushNotify(
                 title,

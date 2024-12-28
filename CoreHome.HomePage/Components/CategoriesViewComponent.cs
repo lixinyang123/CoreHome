@@ -4,14 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreHome.HomePage.Components
 {
-    public class CategoriesViewComponent : ViewComponent
+    public class CategoriesViewComponent(ArticleDbContext articleDbContext) : ViewComponent
     {
-        private readonly ArticleDbContext articleDbContext;
-
-        public CategoriesViewComponent(ArticleDbContext articleDbContext)
-        {
-            this.articleDbContext = articleDbContext;
-        }
+        private readonly ArticleDbContext articleDbContext = articleDbContext;
 
         public IViewComponentResult Invoke()
         {
