@@ -1,7 +1,6 @@
 ﻿@model List<Article>
 
-<div class="container">
-
+<div>
     <h1 class="display-4">Blog</h1>
     <br />
     <a asp-action="Upload" class="btn btn-primary">Upload Blog</a>
@@ -11,11 +10,12 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">ArticleCode</th>
-                    <th scope="col">ArticleTitle</th>
-                    <th scope="col">Modify</th>
-                    <th scope="col">Comment</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col" colspan="2">#</th>
+                    <th scope="col" colspan="2">Date</th>
+                    <th scope="col" colspan="5">ArticleTitle</th>
+                    <th scope="col" colspan="1">Modify</th>
+                    <th scope="col" colspan="1">Comment</th>
+                    <th scope="col" colspan="1">Delete</th>
                 </tr>
             </thead>
 
@@ -23,11 +23,12 @@
                 @foreach (var article in Model)
                 {
                     <tr>
-                        <th scope="row">@article.ArticleCode.ToString().Substring(0, 6)</th>
-                        <td>@article.Title</td>
-                        <td><a asp-action="Modify" asp-route-id="@article.ArticleCode" class="badge badge-warning">Modify</a></td>
-                        <td><a asp-action="Comment" asp-route-id="@article.ArticleCode" class="badge badge-info">Comment</a></td>
-                        <td>
+                        <th colspan="2">@article.ArticleCode.ToString().Substring(0, 6)</th>
+                        <td colspan="2">@article.Time.ToString("yyyy/MM/dd")</td>
+                        <td colspan="5">@article.Title</td>
+                        <td colspan="1"><a asp-action="Modify" asp-route-id="@article.ArticleCode" class="badge badge-warning">Modify</a></td>
+                        <td colspan="1"><a asp-action="Comment" asp-route-id="@article.ArticleCode" class="badge badge-info">Comment</a></td>
+                        <td colspan="1">
                             @await Component.InvokeAsync("ConfirmLink", new ConfirmLink()
                             {
                                 Href = "/Admin/Blog/Delete/",
@@ -46,25 +47,8 @@
         </table>
     </div>
 
-    <nav class="m-3 fixed-bottom">
-        @{
-            string previous = "", next = "";
-            if (ViewBag.CurrentIndex <= 1)
-                previous = "disabled";
-            if (ViewBag.CurrentIndex >= ViewBag.PageCount)
-                next = "disabled";
-        }
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <button @previous class="page-link" onclick="window.location.href='/Admin/Blog?index=@(ViewBag.CurrentIndex-1)'">&lt;</button>
-            </li>
-            <li class="page-item">
-                <button class="page-link" disabled>Page @ViewBag.CurrentIndex of @ViewBag.PageCount</button>
-            </li>
-            <li class="page-item">
-                <button @next class="page-link" onclick="window.location.href='/Admin/Blog?index=@(ViewBag.CurrentIndex+1)'">&gt;</button>
-            </li>
-        </ul>
-    </nav>
-
+    @if (ViewBag.Pagination != null)
+    {
+        <partial name="Pagination" model="@ViewBag.Pagination" />
+    }
 </div>

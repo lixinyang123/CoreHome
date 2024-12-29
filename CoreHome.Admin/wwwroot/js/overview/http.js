@@ -1,21 +1,13 @@
 ﻿let pingMaxlag = 0;
 let pingStop = false;
-let ping = function () {
-    //thread safe
-    if ($('#pingbutton').attr('disabled') === 'disabled') {
-        return;
-    }
-    $('#pingbutton').attr('disabled', 'disabled');
-    pingStop = false;
-    startping();
-};
-let startping = function () {
+
+let startPing = function () {
     if(pingStop) {
         return;
     }
     //prepare
     let startTime = new Date();
-    $.get('/admin/overview/Ping', function (data) {
+    $.get('/Admin/Overview/Ping', function (data) {
         //get time
         let endtime = new Date();
         let lag = endtime - startTime - 7;
@@ -30,19 +22,18 @@ let startping = function () {
         //update view
         $('#httpStatus').html('Current: ' + lag + 'ms');
         $('#httpMax').html('Max lag: ' + pingMaxlag + 'ms');
-        if (chartData.labels.length > 25) {
-            chartData.labels.shift();
-            chartData.datasets[0].data.shift();
+        if (httpChartData.labels.length > 25) {
+            httpChartData.labels.shift();
+            httpChartData.datasets[0].data.shift();
         }
-        chartData.labels.push('');
-        chartData.datasets[0].data.push(lag);
-        window.myLine.update();
+        httpChartData.labels.push('');
+        httpChartData.datasets[0].data.push(lag);
+        window.httpLine.update();
 
-        setTimeout(startping, 1000);
+        setTimeout(startPing, 1000);
     });
 };
 
 let stopPing = function () {
     pingStop = true;
-    $('#pingbutton').removeAttr('disabled', 'disabled');
 };

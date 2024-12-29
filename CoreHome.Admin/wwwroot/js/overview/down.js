@@ -1,19 +1,10 @@
 ﻿let downMaxTime = 0;
 let downloadStopped = false;
-let download = function () {
-    //thread safe
-    if ($('#downloadbutton').attr('disabled') === 'disabled') {
-        return;
-    }
-    $('#downloadbutton').attr('disabled', 'disabled');
-    downloadStopped = false;
-    startdownload();
-};
 
-let startdownload = function () {
+let startDownload = function () {
     //prepare
     let st = new Date();
-    $.get('/admin/overview/download?t=' + st.getMilliseconds(), function (data) {
+    $.get('/Admin/Overview/Download?t=' + st.getMilliseconds(), function (data) {
         if (downloadStopped) {
             return;
         }
@@ -35,21 +26,18 @@ let startdownload = function () {
         $('#downStatus').html('Speed: ' + speed.toFixed(2) + 'MB/s');
         $('#downMax').html('Min: ' + minspeed.toFixed(2) + 'MB/s');
 
-        if (downloadchartData.labels.length > 25) {
-            downloadchartData.labels.shift();
-            downloadchartData.datasets[0].data.shift();
+        if (downloadChartData.labels.length > 25) {
+            downloadChartData.labels.shift();
+            downloadChartData.datasets[0].data.shift();
         }
-        downloadchartData.labels.push('');
-        downloadchartData.datasets[0].data.push(speed.toFixed(2));
-        window.myDownloadLine.update();
+        downloadChartData.labels.push('');
+        downloadChartData.datasets[0].data.push(speed.toFixed(2));
+        window.downloadLine.update();
 
-        setTimeout(startdownload, 1000);
+        setTimeout(startDownload, 1000);
     });
 };
 
 let stopDownload = function () {
     downloadStopped = true;
-    if ($('#downloadbutton').removeAttr('disabled')) {
-        return;
-    }
 };

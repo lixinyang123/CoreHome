@@ -4,7 +4,6 @@
 
 <div class="container mt-4 mb-5">
     <div class="row">
-
         <aside class="col-lg-3 d-none d-lg-block">
 
             @await Component.InvokeAsync("TopTags")
@@ -14,7 +13,6 @@
         </aside>
 
         <section class="col-lg-9 col-md-12">
-
             <h2 class="display-4">Archive Timeline</h2>
             <hr>
             <ul class="timeline">
@@ -28,7 +26,6 @@
                             <hr />
                             <div class="timeline-body">
                                 <div class="row">
-
                                     @foreach (var month in year.Months)
                                     {
                                         <div class="col-md-6 col-sm-6 col-6 article-month">
@@ -38,14 +35,12 @@
                                             </a>
                                         </div>
                                     }
-
                                 </div>
                             </div>
 
                         </div>
                     </li>
                 }
-
             </ul>
         </section>
 

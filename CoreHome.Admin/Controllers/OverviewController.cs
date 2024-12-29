@@ -3,7 +3,9 @@ using CoreHome.Admin.Filter;
 using CoreHome.Admin.Models;
 using CoreHome.Admin.ViewModels;
 using CoreHome.Data.DatabaseContext;
+using CoreHome.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreHome.Admin.Controllers
 {
@@ -34,7 +36,6 @@ namespace CoreHome.Admin.Controllers
             };
             return View(viewModel);
         }
-
         private static byte[] GetData()
         {
             if (data == null)
@@ -46,6 +47,16 @@ namespace CoreHome.Admin.Controllers
                 }
             }
             return data;
+        }
+
+        [NoCache]
+        public IActionResult Ping() => Ok();
+
+        [NoCache]
+        public IActionResult Download()
+        {
+            HttpContext.Response.Headers.Append("Content-Length", length.ToString());
+            return new FileContentResult(GetData(), "application/octet-stream");
         }
 
         [NoCache]
@@ -68,14 +79,15 @@ namespace CoreHome.Admin.Controllers
             return Ok();
         }
 
-        [NoCache]
-        public IActionResult Download()
+        async public Task<IActionResult> Archive()
         {
-            HttpContext.Response.Headers.Append("Content-Length", length.ToString());
-            return new FileContentResult(GetData(), "application/octet-stream");
-        }
+            List<Month> months = await articleDbContext.Months
+                .AsNoTracking()
+                .Include(i => i.Year)
+                .Include(i => i.Articles)
+                .ToListAsync();
 
-        [NoCache]
-        public IActionResult Ping() => Ok();
+            return Json(months.Select(i => new KeyValuePair<string, int>($"{i.Year.Value}/{i.Value}", i.Articles.Count)));
+        }
     }
-} 
+}

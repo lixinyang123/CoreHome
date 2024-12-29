@@ -22,18 +22,18 @@ namespace CoreHome.Admin.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            _ = articleDbContext.Notifications.Remove(
+            articleDbContext.Notifications.Remove(
                 articleDbContext.Notifications.Single(i => i.Id == id)
             );
 
-            _ = await articleDbContext.SaveChangesAsync();
+            await articleDbContext.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> DeleteAll()
         {
             articleDbContext.Notifications.RemoveRange(articleDbContext.Notifications);
-            _ = await articleDbContext.SaveChangesAsync();
+            await articleDbContext.SaveChangesAsync();
             return RedirectToAction("Index");
         }
     }

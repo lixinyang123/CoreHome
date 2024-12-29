@@ -55,6 +55,7 @@ namespace CoreHome.Admin.Controllers
                 .Take(pageSize)
                 .ToListAsync();
 
+            ViewBag.Pagination = new PaginationViewModel(index, pageCount, "Index");
             return View(articles);
         }
 
@@ -299,11 +300,11 @@ namespace CoreHome.Admin.Controllers
             try
             {
                 string uri = ossService.UploadBlogPic(stream);
-                return Json(new { success = 1, message = "上传成功", url = uri });
+                return Json(new { success = 1, message = "Upload Success", url = uri });
             }
             catch (Exception ex)
             {
-                return Json(new { success = 0, message = "上传失败" + ex.ToString(), url = string.Empty });
+                return Json(new { success = 0, message = "Upload Failed" + ex.ToString(), url = string.Empty });
             }
         }
 

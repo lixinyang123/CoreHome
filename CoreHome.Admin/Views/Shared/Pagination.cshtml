@@ -1,8 +1,8 @@
-﻿@model CoreHome.HomePage.ViewModels.PaginationViewModel
+﻿@model CoreHome.Admin.ViewModels.PaginationViewModel
 
 <div class="pagination-container">
     <ul class="pagination justify-content-end">
-        @if(Model.showStart)
+        @if (Model.showStart)
         {
             <li class="page-item PagedList-skipToFirst">
                 <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="1">&lt;&lt;</a>
@@ -18,7 +18,7 @@
 
         @foreach (KeyValuePair<int, bool> index in Model.Indexs)
         {
-            if(index.Key == Model.CurrentIndex)
+            if (index.Key == Model.CurrentIndex)
             {
                 <li class="page-item active">
                     <span class="page-link">@index.Key</span>

@@ -4,20 +4,14 @@
     let head = ishttps ? "wss://" : "ws://";
     return head + host;
 }
+
 let webSocket;
 let wsMaxLag = 0;
-let WsTest = function () {
-    //thread safe
-    if ($('#wsbutton').attr('disabled') === 'disabled') {
-        return;
-    }
-    $('#wsbutton').attr('disabled', 'disabled');
-    startWsTest();
-};
+
 let startWsTest = function () {
     //prepare
     let wsStartTime = new Date();
-    webSocket = new WebSocket(getWSAddress() + "/admin/overview/Pushing");
+    webSocket = new WebSocket(getWSAddress() + "/Admin/Overview/Pushing");
     webSocket.onopen = function () {
         $("#spanStatus").text("connected");
     };
@@ -39,13 +33,13 @@ let startWsTest = function () {
         $('#wsStatus').html('Current: ' + wslag + 'ms');
         $("#wsmax").html('Max: ' + wsMaxLag + 'ms');
 
-        if (wschartData.labels.length > 50) {
-            wschartData.labels.shift();
-            wschartData.datasets[0].data.shift();
+        if (wsChartData.labels.length > 50) {
+            wsChartData.labels.shift();
+            wsChartData.datasets[0].data.shift();
         }
-        wschartData.labels.push('');
-        wschartData.datasets[0].data.push(wslag);
-        window.myWSLine.update();
+        wsChartData.labels.push('');
+        wsChartData.datasets[0].data.push(wslag);
+        window.wsLine.update();
     };
     webSocket.onclose = function () {
         $("#spanStatus").text("WebSocket Disconnected");
@@ -56,5 +50,4 @@ let stopWsTest = function () {
     if (webSocket) {
         webSocket.close();
     }
-    $('#wsbutton').removeAttr('disabled', 'disabled');
 };
