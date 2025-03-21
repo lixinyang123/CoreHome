@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="CoreHome.Admin/CoreHome.Admin.csproj" />
+  <Project Path="CoreHome.Data/CoreHome.Data.csproj" />
+  <Project Path="CoreHome.HomePage/CoreHome.HomePage.csproj" />
+  <Project Path="CoreHome.Infrastructure/CoreHome.Infrastructure.csproj" />
+  <Project Path="CoreHome.ReverseProxy/CoreHome.ReverseProxy.csproj" />
+  <Project Path="DockerCompose/docker-compose.dcproj">
+    <Build />
+  </Project>
+</Solution>
