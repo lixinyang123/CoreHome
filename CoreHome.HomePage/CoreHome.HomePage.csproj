@@ -10,12 +10,12 @@
 
   <ItemGroup>
 	<PackageReference Include="LigerShark.WebOptimizer.Core" Version="3.0.436" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6">
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.12">
 		<PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.12" />
   </ItemGroup>
 
   <ItemGroup>
