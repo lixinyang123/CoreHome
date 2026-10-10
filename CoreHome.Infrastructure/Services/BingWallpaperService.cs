@@ -14,7 +14,10 @@ namespace CoreHome.Infrastructure.Services
         public string GetUrl()
         {
             int date = DateTime.Now.Day;
-            if (date == lastDate) return urlCache;
+            if (date == lastDate)
+            {
+                return urlCache;
+            }
 
             try
             {

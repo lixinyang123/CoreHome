@@ -42,7 +42,7 @@ namespace CoreHome.Infrastructure.Services
                 .StrokeColor(MagickColors.Black)
                 .StrokeWidth(2)
                 .Polyline(RandomPoint());
-            drawables.Draw(image);
+            _ = drawables.Draw(image);
 
             using MemoryStream ms = new();
             image.Write(ms, MagickFormat.Png);

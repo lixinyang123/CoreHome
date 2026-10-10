@@ -308,8 +308,8 @@ namespace CoreHome.HomePage.Controllers
             string title = "[ New Comment ]";
             string content = $"# Blog \n{article.Title} \n# Detail \n{viewModel.Detail}";
 
-            await articleDbContext.Notifications.AddAsync(new Notification(title, content));
-            await articleDbContext.SaveChangesAsync();
+            _ = await articleDbContext.Notifications.AddAsync(new Notification(title, content));
+            _ = await articleDbContext.SaveChangesAsync();
 
             notifyService.PushNotify(
                 title,

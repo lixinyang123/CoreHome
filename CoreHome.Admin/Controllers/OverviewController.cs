@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CoreHome.Admin.Controllers
 {
     [TypeFilter(typeof(AuthorizationFilter))]
-    public class OverviewController(IConfiguration configuration, 
+    public class OverviewController(IConfiguration configuration,
         ArticleDbContext articleDbContext) : Controller
     {
         private static byte[] data;
@@ -50,7 +50,10 @@ namespace CoreHome.Admin.Controllers
         }
 
         [NoCache]
-        public IActionResult Ping() => Ok();
+        public IActionResult Ping()
+        {
+            return Ok();
+        }
 
         [NoCache]
         public IActionResult Download()
@@ -79,7 +82,7 @@ namespace CoreHome.Admin.Controllers
             return Ok();
         }
 
-        async public Task<IActionResult> Archive()
+        public async Task<IActionResult> Archive()
         {
             List<Month> months = await articleDbContext.Months
                 .AsNoTracking()

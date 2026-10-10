@@ -7,12 +7,10 @@ namespace CoreHome.Data.Models
         [Required]
         public int Value { get; set; }
 
-        private List<Month> months;
-
         public List<Month> Months
         {
-            get => months.OrderBy(i => i.Value).ToList();
-            set => months = value;
+            get => field.OrderBy(i => i.Value).ToList();
+            set;
         }
 
         [Timestamp]

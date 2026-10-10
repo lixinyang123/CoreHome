@@ -65,7 +65,7 @@ namespace CoreHome.Admin.Controllers
             try
             {
                 //暂存文章
-                memoryCache.Set("tempArticle", viewModel, DateTimeOffset.Now.AddDays(1));
+                _ = memoryCache.Set("tempArticle", viewModel, DateTimeOffset.Now.AddDays(1));
                 return Ok();
             }
             catch
@@ -129,7 +129,7 @@ namespace CoreHome.Admin.Controllers
 
             month ??= new Month() { Value = time.Month, Year = year };
 
-            articleDbContext.Articles.Add(new Article()
+            _ = articleDbContext.Articles.Add(new Article()
             {
                 ArticleCode = Guid.NewGuid(),
                 Title = articleViewModel.Title,
@@ -141,7 +141,7 @@ namespace CoreHome.Admin.Controllers
                 Content = articleViewModel.Content
             });
 
-            articleDbContext.SaveChanges();
+            _ = articleDbContext.SaveChanges();
 
             //移除缓存
             memoryCache.Remove("tempArticle");
@@ -241,7 +241,7 @@ namespace CoreHome.Admin.Controllers
             article.Overview = articleViewModel.Overview;
             article.Content = articleViewModel.Content;
 
-            articleDbContext.SaveChanges();
+            _ = articleDbContext.SaveChanges();
 
             RecyclingData();
 
@@ -257,10 +257,10 @@ namespace CoreHome.Admin.Controllers
 
             if (article != null)
             {
-                articleDbContext.Remove(article);
+                _ = articleDbContext.Remove(article);
                 article.ArticleTags.ForEach(i => articleDbContext.ArticleTags.Remove(i));
                 article.Comments.ForEach(i => articleDbContext.Comments.Remove(i));
-                articleDbContext.SaveChanges();
+                _ = articleDbContext.SaveChanges();
 
                 RecyclingData();
             }
@@ -285,8 +285,8 @@ namespace CoreHome.Admin.Controllers
             Comment comment = await articleDbContext.Comments.SingleOrDefaultAsync(i => i.Id == id);
             if (comment != null)
             {
-                articleDbContext.Comments.Remove(comment);
-                articleDbContext.SaveChanges();
+                _ = articleDbContext.Comments.Remove(comment);
+                _ = articleDbContext.SaveChanges();
             }
             return RedirectToAction("Comment", new { id = articleCode });
         }
@@ -331,12 +331,15 @@ namespace CoreHome.Admin.Controllers
 
             try
             {
-                articleDbContext.SaveChanges();
+                _ = articleDbContext.SaveChanges();
             }
             catch
             {
                 if (times > 2)
+                {
                     throw;
+                }
+
                 RecyclingData(++times);
             }
         }

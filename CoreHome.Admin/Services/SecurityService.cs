@@ -52,7 +52,7 @@ namespace CoreHome.Admin.Services
         {
             byte[] password = SHA256.HashData(Encoding.UTF8.GetBytes(str));
             StringBuilder builder = new();
-            foreach (var b in password)
+            foreach (byte b in password)
             {
                 _ = builder.Append(b.ToString("X2"));
             }

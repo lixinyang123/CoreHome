@@ -59,8 +59,8 @@ namespace CoreHome.HomePage.Controllers
 
             List<Article> articles = await articleDbContext.Articles
                 .AsNoTracking()
+                .Where(i => EF.Functions.Like(i.Title, $"%{id}%") || EF.Functions.Like(i.Overview, $"%{id}%"))
                 .OrderByDescending(i => i.Id)
-                .Where(i => i.Title.Contains(id, StringComparison.CurrentCultureIgnoreCase) || i.Overview.Contains(id, StringComparison.CurrentCultureIgnoreCase))
                 .Take(5)
                 .ToListAsync();
 
