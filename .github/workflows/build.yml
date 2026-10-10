@@ -131,7 +131,7 @@ jobs:
             }
         </script>
         EOF
-        sed -i "s! ❤! <span id="EasterEggs">❤</span><script async src="https://assistant.conchbrain.club/blog/init"></script>! g" ./CoreHome.HomePage/Views/Shared/_Layout.cshtml
+        sed -i "s! ❤! <span id="EasterEggs">❤</span>! g" ./CoreHome.HomePage/Views/Shared/_Layout.cshtml
     - name: Build CoreHome.HomePage
       run: docker build --file ./CoreHome.HomePage/Dockerfile --tag lixinyang/corehome.homepage:home .
 
