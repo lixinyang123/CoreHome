@@ -348,3 +348,6 @@ lib
 # Bundle and minify
 *.min.js
 *.min.css
+
+# Database
+*.db*

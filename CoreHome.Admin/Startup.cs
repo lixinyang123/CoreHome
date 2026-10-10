@@ -28,13 +28,9 @@ namespace CoreHome.Admin
             //数据库上下文
             services.AddDbContext<ArticleDbContext>(options =>
             {
-                MySqlServerVersion version = new(new Version(8, 3, 0));
-
-                options.UseMySql(Configuration.GetConnectionString("CoreHome"), version, option =>
+                options.UseSqlite(Configuration.GetConnectionString("CoreHome"), option =>
                 {
                     option.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
-                    option.EnableStringComparisonTranslations();
-                    option.EnableRetryOnFailure();
                 });
             });
 

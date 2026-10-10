@@ -1,9 +1,5 @@
-﻿using SixLabors.Fonts;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Drawing.Processing;
-using SixLabors.ImageSharp.Formats.Png;
-using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing;
+﻿using ImageMagick;
+using ImageMagick.Drawing;
 
 namespace CoreHome.Infrastructure.Services
 {
@@ -12,11 +8,8 @@ namespace CoreHome.Infrastructure.Services
         public string VerificationCode { get; set; }
         public byte[] VerificationImage { get; set; }
 
-        private readonly FontFamily fontFamily;
-
         public VerificationCodeService()
         {
-            fontFamily = new FontCollection().Add("./wwwroot/font/Ubuntu-BI.ttf");
             CreateCode();
             CreateImage();
         }
@@ -27,34 +20,33 @@ namespace CoreHome.Infrastructure.Services
         }
 
         // 随机生成干扰线
-        private static List<PointF> RandomPoint()
+        private static List<PointD> RandomPoint()
         {
             Random random = new();
-            List<PointF> points = [];
+            List<PointD> points = [];
             for (int i = 0; i < 6; i++)
             {
-                points.Add(new PointF(random.Next(0, 100), random.Next(0, 42)));
+                points.Add(new PointD(random.Next(0, 100), random.Next(0, 42)));
             }
             return points;
         }
 
         private void CreateImage()
         {
-            using Image<Rgba32> image = new(100, 42);
+            using MagickImage image = new(MagickColors.White, 100, 42);
+            IDrawables<byte> drawables = new Drawables()
+                .Font("./wwwroot/font/Ubuntu-BI.ttf")
+                .FontPointSize(30)
+                .FillColor(MagickColors.Black)
+                .Text(12, 32, VerificationCode)
+                .StrokeColor(MagickColors.Black)
+                .StrokeWidth(2)
+                .Polyline(RandomPoint());
+            drawables.Draw(image);
 
-            Pen pen = Pens.Solid(Color.Black, 2);
-            Font font = new(fontFamily, 30, FontStyle.Bold);
-
-            // 画验证码
-            image.Mutate(i => i.Fill(Color.White)
-                .DrawText(VerificationCode, font, Color.Black, new PointF(12, 5)));
-
-            // 画干扰线
-            image.Mutate(i => i.DrawLine(pen, RandomPoint().ToArray()));
-
-            MemoryStream ms = new();
-            image.Save(ms, new PngEncoder());
-            VerificationImage = ms.GetBuffer();
+            using MemoryStream ms = new();
+            image.Write(ms, MagickFormat.Png);
+            VerificationImage = ms.ToArray();
         }
 
         // System.Drawing.Common 从 .NET 6 开始仅支持 Windows 系统
