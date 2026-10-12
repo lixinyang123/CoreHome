@@ -1,4 +1,5 @@
 ﻿@model CoreHome.Data.Models.Article
+@using CoreHome.Admin.ViewModels
 
 @{
     ViewData["Title"] = "Comment";
@@ -34,12 +35,18 @@
                         Paras = new()
                         {
                             { "id", comment.Id.ToString() },
-                            { "articleCode", Model.ArticleCode.ToString() }
+                            { "articleCode", Model.ArticleCode.ToString() },
+                            { "index", ((PaginationViewModel)ViewBag.Pagination).CurrentIndex.ToString() }
                         }
                     })
                 </div>
             </div>
         }
+    }
+
+    @if (ViewBag.Pagination != null)
+    {
+        <partial name="Pagination" model="@ViewBag.Pagination" />
     }
 
     <partial name="MarkdownRender" />

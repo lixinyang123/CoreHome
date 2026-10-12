@@ -8,6 +8,10 @@
     margin: 0 auto;
 }
 
+#load-more-comments {
+    margin-bottom: 1rem;
+}
+
 .loading {
     padding-top: 15px;
 }

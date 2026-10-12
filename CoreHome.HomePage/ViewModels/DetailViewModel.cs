@@ -13,5 +13,7 @@ namespace CoreHome.HomePage.ViewModels
         /// 评论
         /// </summary>
         public CommentViewModel CommentViewModel { get; set; }
+
+        public CommentBatchViewModel CommentBatchViewModel { get; set; }
     }
 }

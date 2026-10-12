@@ -1,0 +1,21 @@
+@model CoreHome.HomePage.ViewModels.CommentBatchViewModel
+
+<div class="comment-batch" data-has-more="@Model.HasMore.ToString().ToLowerInvariant()">
+    @foreach (var comment in Model.Comments)
+    {
+        <div class="card comment-item mb-4">
+            <div class="card-header">
+                <small class="text-muted">@(comment.Email ?? "anonymous")</small>
+                <small class="text-muted font-weight-light float-right">@comment.Time.ToString("yyyy/MM/dd HH:mm")</small>
+            </div>
+
+            <div class="card-body markdown">
+                <div class="loading container">
+                    <div class="row"><div class="rounded box box-6"></div></div>
+                    <div class="row"><div class="rounded box box-10"></div></div>
+                </div>
+                <textarea hidden>@comment.Detail</textarea>
+            </div>
+        </div>
+    }
+</div>

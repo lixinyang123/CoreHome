@@ -267,20 +267,37 @@ namespace CoreHome.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Comment(Guid id)
+        public async Task<IActionResult> Comment(Guid id, int index = 1)
         {
             ViewBag.PageTitle = "Comment";
 
             Article article = await articleDbContext.Articles
                 .AsNoTracking()
-                .Include(i => i.Comments)
                 .SingleOrDefaultAsync(i => i.ArticleCode == id);
 
+            int commentCount = await articleDbContext.Comments
+                .CountAsync(i => i.ArticleId == article.Id);
+            int pageCount = Convert.ToInt32(Math.Ceiling((double)commentCount / pageSize));
+            index = CorrectIndex(index, pageCount);
+
+            article.Comments = await articleDbContext.Comments
+                .AsNoTracking()
+                .Where(i => i.ArticleId == article.Id)
+                .OrderByDescending(i => i.Time)
+                .ThenByDescending(i => i.Id)
+                .Skip((index - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.Pagination = new PaginationViewModel(index, pageCount, "Comment", new()
+            {
+                ["id"] = id.ToString()
+            });
             return View(article);
         }
 
         [HttpPost]
-        public async Task<IActionResult> DelComment(int id, Guid articleCode)
+        public async Task<IActionResult> DelComment(int id, Guid articleCode, int index = 1)
         {
             Comment comment = await articleDbContext.Comments.SingleOrDefaultAsync(i => i.Id == id);
             if (comment != null)
@@ -288,7 +305,7 @@ namespace CoreHome.Admin.Controllers
                 _ = articleDbContext.Comments.Remove(comment);
                 _ = articleDbContext.SaveChanges();
             }
-            return RedirectToAction("Comment", new { id = articleCode });
+            return RedirectToAction("Comment", new { id = articleCode, index });
         }
 
         [HttpPost]

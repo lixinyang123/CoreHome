@@ -23,11 +23,19 @@
         /// </summary>
         public string ActionName { get; set; }
 
+        public Dictionary<string, string> RouteValues { get; set; } = [];
+
         public PaginationViewModel(int currentIndex, int pageCount, string actionName)
         {
             CurrentIndex = currentIndex;
             PageCount = pageCount;
             ActionName = actionName;
+        }
+
+        public PaginationViewModel(int currentIndex, int pageCount, string actionName, Dictionary<string, string> routeValues)
+            : this(currentIndex, pageCount, actionName)
+        {
+            RouteValues = routeValues;
         }
 
         /// <summary>

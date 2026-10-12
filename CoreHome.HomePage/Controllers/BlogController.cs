@@ -9,6 +9,7 @@ namespace CoreHome.HomePage.Controllers
 {
     public class BlogController(ArticleDbContext articleDbContext, IConfiguration configuration, NotifyService notifyService) : Controller
     {
+        private const int commentBatchSize = 5;
         private readonly ArticleDbContext articleDbContext = articleDbContext;
         private readonly NotifyService notifyService = notifyService;
         private readonly int pageSize = configuration.GetValue<int>("PageSize");
@@ -230,7 +231,6 @@ namespace CoreHome.HomePage.Controllers
             Article article = await articleDbContext.Articles
                 .AsNoTracking()
                 .Include(i => i.Category)
-                .Include(i => i.Comments)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .SingleOrDefaultAsync(i => i.ArticleCode == id);
@@ -245,8 +245,39 @@ namespace CoreHome.HomePage.Controllers
             return View(new DetailViewModel()
             {
                 Article = article,
-                CommentViewModel = new CommentViewModel()
+                CommentViewModel = new CommentViewModel(),
+                CommentBatchViewModel = await GetCommentBatchAsync(id, 0)
             });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CommentBatch(Guid id, int skip = 0)
+        {
+            return PartialView("_CommentBatch", await GetCommentBatchAsync(id, skip));
+        }
+
+        private async Task<CommentBatchViewModel> GetCommentBatchAsync(Guid articleCode, int skip)
+        {
+            List<Comment> comments = await articleDbContext.Comments
+                .AsNoTracking()
+                .Where(i => i.Article.ArticleCode == articleCode)
+                .OrderByDescending(i => i.Time)
+                .ThenByDescending(i => i.Id)
+                .Skip(Math.Max(0, skip))
+                .Take(commentBatchSize + 1)
+                .ToListAsync();
+
+            bool hasMore = comments.Count > commentBatchSize;
+            if (hasMore)
+            {
+                comments.RemoveAt(commentBatchSize);
+            }
+
+            return new CommentBatchViewModel
+            {
+                Comments = comments,
+                HasMore = hasMore
+            };
         }
 
         /// <summary>
@@ -259,7 +290,6 @@ namespace CoreHome.HomePage.Controllers
         {
             Article article = await articleDbContext.Articles
                 .Include(i => i.Category)
-                .Include(i => i.Comments)
                 .Include(i => i.ArticleTags)
                 .ThenInclude(i => i.Tag)
                 .SingleOrDefaultAsync(i => i.ArticleCode == viewModel.ArticleCode);
@@ -274,7 +304,8 @@ namespace CoreHome.HomePage.Controllers
             DetailViewModel detailViewModel = new()
             {
                 Article = article,
-                CommentViewModel = viewModel
+                CommentViewModel = viewModel,
+                CommentBatchViewModel = await GetCommentBatchAsync(article.ArticleCode, 0)
             };
 
             if (!ModelState.IsValid)
@@ -298,8 +329,9 @@ namespace CoreHome.HomePage.Controllers
                 return View(detailViewModel);
             }
 
-            article.Comments.Add(new Comment()
+            _ = await articleDbContext.Comments.AddAsync(new Comment()
             {
+                ArticleId = article.Id,
                 Time = DateTime.Now,
                 Email = viewModel.Email,
                 Detail = viewModel.Detail
@@ -310,6 +342,8 @@ namespace CoreHome.HomePage.Controllers
 
             _ = await articleDbContext.Notifications.AddAsync(new Notification(title, content));
             _ = await articleDbContext.SaveChangesAsync();
+
+            detailViewModel.CommentBatchViewModel = await GetCommentBatchAsync(article.ArticleCode, 0);
 
             notifyService.PushNotify(
                 title,

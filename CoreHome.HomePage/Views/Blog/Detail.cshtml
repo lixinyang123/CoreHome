@@ -129,26 +129,18 @@
                 </div>
             </form>
 
-            <div id="comments" class="mt-4">
-
-                @foreach (var comment in Model.Article.Comments)
+            <div id="comments" class="mt-4"
+                 data-url="@Url.Action("CommentBatch", "Blog", new { id = Model.Article.ArticleCode })"
+                 data-skip="@Model.CommentBatchViewModel.Comments.Count">
+                <div id="comment-list">
+                    <partial name="_CommentBatch" model="Model.CommentBatchViewModel" />
+                </div>
+                @if (Model.CommentBatchViewModel.HasMore)
                 {
-                    <div class="card comment-item mb-4">
-                        <div class="card-header">
-                            <small class="text-muted">@(comment.Email ?? "anonymous")</small>
-                            <small class="text-muted font-weight-light float-right">@comment.Time.ToString("yyyy/MM/dd HH:MM")</small>
-                        </div>
-
-                        <div class="card-body markdown">
-                            <div class="loading container">
-                                <div class="row"><div class="rounded box box-6"></div></div>
-                                <div class="row"><div class="rounded box box-10"></div></div>
-                            </div>
-                            <textarea hidden>@comment.Detail</textarea>
-                        </div>
+                    <div class="text-center">
+                        <button id="load-more-comments" type="button" class="btn btn-outline-primary">Load mroe</button>
                     </div>
                 }
-
             </div>
         </selection>
 

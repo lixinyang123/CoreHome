@@ -5,14 +5,14 @@
         @if (Model.showStart)
         {
             <li class="page-item PagedList-skipToFirst">
-                <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="1">&lt;&lt;</a>
+                <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-all-route-data="@Model.RouteValues" asp-route-index="1">&lt;&lt;</a>
             </li>
         }
 
         @if (Model.showPrevious)
         {
             <li class="page-item PagedList-skipToNext">
-                <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="@(Model.CurrentIndex-1)" rel="next">&lt;</a>
+                <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-all-route-data="@Model.RouteValues" asp-route-index="@(Model.CurrentIndex-1)" rel="prev">&lt;</a>
             </li>
         }
 
@@ -27,7 +27,7 @@
             else
             {
                 <li class="page-item">
-                    <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="@index.Key">@index.Key</a>
+                    <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-all-route-data="@Model.RouteValues" asp-route-index="@index.Key">@index.Key</a>
                 </li>
             }
         }
@@ -35,14 +35,14 @@
         @if (Model.showNext)
         {
             <li class="page-item PagedList-skipToNext">
-                <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="@(Model.CurrentIndex+1)" rel="next">&gt;</a>
+                <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-all-route-data="@Model.RouteValues" asp-route-index="@(Model.CurrentIndex+1)" rel="next">&gt;</a>
             </li>
         }
 
         @if (Model.showEnd)
         {
             <li class="page-item PagedList-skipToLast">
-                <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-route-index="@Model.PageCount">&gt;&gt;</a>
+                <a class="page-link" asp-controller="Blog" asp-action="@Model.ActionName" asp-all-route-data="@Model.RouteValues" asp-route-index="@Model.PageCount">&gt;&gt;</a>
             </li>
         }
     </ul>
